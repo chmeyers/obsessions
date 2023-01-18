@@ -1,0 +1,72 @@
+﻿l_english:
+
+ ####################################
+ # Anomaly Categories
+ ####################################
+ # ROOT = PLANET SCOPE
+ # FROM = SHIP SCOPE
+
+obsessions_mod_category_asteroid_rocko:0 "A rocky asteroid."
+obsessions_mod_category_asteroid_rocko_desc:0 "The asteroid [Root.GetName] has caught the attention of our Science Officer. The rest of the crew thinks that it's just a rock."
+
+
+ ####################################
+ # Anomaly Events
+ ####################################
+ # Special Project loc strings are mixed in with their associated events.
+
+#TODO(chmeyers): Option descriptions can only be about 60 characters long, anything more has to go in the tooltip.
+# The Rocko tree of events.
+NAME_Obsessions_Mod_Rocko:0 "Rocko" 
+obsessions_mod.2.name:0 "It's just a Rock"
+obsessions_mod.2.desc:0 "Detailed scans of the asteroid indicate that it is, in fact, just a rock."
+obsessions_mod.2.a:0 "At least it was a good learning experience for the crew."
+obsessions_mod.2.b:0 "Our Science officer shouldn't waste their time."
+obsessions_mod.2.c:0 "There are a few more esoteric scans we could attempt."
+obsessions_mod.2.d:0 "We could try praying to it."
+
+obsessions_mod.3.name:0 "It's still just a Rock"
+obsessions_mod.3.desc:0 "Further observation of the asteroid continue to point to it being a boring rock. The crew has named it $NAME_Obsessions_Mod_Rocko$."
+obsessions_mod.3.a:0 "We've learned all we can here."
+obsessions_mod.3.b:0 "The crew has really bonded over this experience."
+
+obsessions_mod.4.name:0 "It's still still just a Rock"
+obsessions_mod.4.desc:0 "Word has leaked out about asteroid $NAME_Obsessions_Mod_Rocko$. Perhaps the story grew in the retelling, or perhaps there really is something special about that rock, but a group of colonists is clamoring to see it up close."
+obsessions_mod.4.a:0 "Fine. Organize a colony ship to observe it."
+obsessions_mod.4.b:0 "Ridiculous. Suppress the clamor."
+obsessions_mod.4.c:0 "No. We have better things to do."
+obsessions_mod.4.c.tooltip:0 "The spiritual elements of our society will spread.\n §Y10§ £pops£ Pops convert to §YSpiritualism§"
+obsessions_mod.4.d:0 "This does not follow the teachings of our priests."
+obsessions_mod.4.d.tooltip:0 "The anti-spiritual elements of our society will spread.\n §Y10§ £pops£ Pops convert to §YMaterialism§"
+OBSESSIONS_MOD_ASTEROID_VIEWING_PROJECT:0 "View the Rock"
+OBSESSIONS_MOD_ASTEROID_VIEWING_PROJECT_DESC:0 "People are clamoring to see [From.GetName] for themselves. While all scientific evidence points to it just being a rock, many think it may hold deeper spiritual meaning."
+
+obsessions_mod.5.name:0 "Everyone agrees that it is indeed a Rock"
+obsessions_mod.5.desc:0 "The viewing of [FromFrom.GetName] has finished. For half a day everything was calm. Then they all started arguing about the exact spritual significance of it all."
+obsessions_mod.5.a:0 "That's over, right?"
+obsessions_mod.5.a.tooltip:0 "Somehow, this doesn't seem like the last you'll hear about this dumb rock."
+obsessions_mod.5.b:0 "This ends right here."
+obsessions_mod.5.b.tooltip:0 "Set the autopilot to navigate the colony ship into the nearest star. The colony ship will be destroyed, but you'll never hear about this dumb rock again."
+
+obsessions_mod.6.name:0 "You've been dreading this day"
+obsessions_mod.6.desc:0 "They're back. Things were quiet for years, but now a movement has started, asking for something to be done to bring the enlightenment of $NAME_Obsessions_Mod_Rocko$ to all. It's just a stupid rock, an asteroid the size of a small moon, but for some reason they want to bring it through hyperspace to the capital."
+obsessions_mod.6.a:0 "No. There is no way it's possible."
+obsessions_mod.6.b:0 "Well, perhaps two science ships working together..."
+obsessions_mod.6.c:0 "Alright. With our technology, that's not even hard."
+obsessions_mod.6.c.tooltip:0 "$NAME_Obsessions_Mod_Rocko$ will be moved into orbit around our capital."
+OBSESSIONS_MOD_ASTEROID_RETRIEVAL_PROJECT:0 "Retrieve the Rock"
+OBSESSIONS_MOD_ASTEROID_RETRIEVAL_PROJECT_DESC:0 "Bring the rock back to orbit over our capital."
+
+obsessions_mod.7.name:0 "Still just a Rock"
+obsessions_mod.7.desc:0 "We did it. We really did it. A new moon shines over our capital. Everyone can look up at night and see the face of... God or something. A true testament to the strength of our civilization. Some of the population want it to be declared consecrated. You're still pretty sure it's just a rock."
+obsessions_mod.7.a:0 "Bringing it here was a breakthrough in physics."
+obsessions_mod.7.b:0 "The largest object ever brought through a hyperspace breach."
+obsessions_mod.7.c:0 "Is it getting closer?"
+obsessions_mod.7.c.tooltip:0 "Did anybody think through the implications of placing a large rock in an unstable orbit over our capital? The rock will crash into the capital, killing millions. This probably would have worked out better if the capital was on a planet.\n§Y1§ £pops£ Pop killed."
+obsessions_mod.7.d:0 "Push the rock into a more stable orbit."
+d_rocko_unity_deposit:0 "£unity£ +5\n"
+
+decision_consecrated_rocko:1 "Consecrate $NAME_Obsessions_Mod_Rocko$"
+decision_consecrated_rocko_desc:2 "Declare this to be a sacred place, consecrated in the traditions of our faith. Pilgrims will travel from afar to rejoice in its holy aura."
+decision_consecrated_rocko_effects_short:1 "Adds $NAME_Obsessions_Mod_Rocko$ to our canon of Consecrated Worlds, boosting §YSpiritualist Ethics Attraction§! and §YEmpire-Wide Amenities§! as well as £unity£ §YUnity Generation§!."
+decision_consecrated_rocko_effects_custom:1 "Adds $NAME_Obsessions_Mod_Rocko$ to our canon of Consecrated Worlds (up to §Y3§!), increasing §YSpiritualist Ethics Attraction§!, §YEmpire-Wide Amenities§! and boosting £unity£ §YUnity Generation§!, scaling to the spiritual significance of the planet."

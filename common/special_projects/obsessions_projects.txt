@@ -1,0 +1,45 @@
+# Special Projects associated with events in the Obsessions mod.
+
+special_project = {
+	key = "OBSESSIONS_MOD_ASTEROID_VIEWING_PROJECT"
+	# TODO(chmeyers): Choose an icon
+	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	cost = 0
+	days_to_research = 1
+	tech_department = society_technology
+	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_colonizer = 1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod.5 }
+	}
+}
+
+
+special_project = {
+	key = "OBSESSIONS_MOD_ASTEROID_RETRIEVAL_PROJECT"
+	# TODO(chmeyers): Choose an icon
+	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	cost = 0
+	days_to_research = 1080
+	tech_department = physics_technology
+	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	location = yes
+
+	event_scope = country_event
+
+	requirements = {
+		shipclass_science_ship = 2
+		leader = scientist
+	}
+
+	on_success = {
+		country_event = { id = obsessions_mod.7 }
+	}
+}

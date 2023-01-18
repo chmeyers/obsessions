@@ -1,0 +1,466 @@
+##################################
+# Events for the Obsessions Mod. #
+##################################
+namespace = obsessions_mod
+
+# The first event just sets our global flag, so that others can check for our presence if they want.
+country_event = {
+	id = obsessions_mod.1
+	hide_window = yes
+	fire_only_once = yes
+	mean_time_to_happen = {
+		days = 1
+	}
+	trigger = {
+		NOT = {
+			has_global_flag = obsessions_mod_installed
+		}
+	}
+	immediate = {
+		set_global_flag = obsessions_mod_installed
+	}
+}
+
+### Rocko
+ship_event = {
+	id = obsessions_mod.2
+	title = "obsessions_mod.2.name"
+	desc = "obsessions_mod.2.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = FROM
+	is_triggered_only = yes
+	auto_opens = yes
+	trigger = {
+		FROM = {
+			is_planet_class = pc_asteroid
+		}
+	}
+	immediate = {
+		from = {
+			set_name = NAME_Obsessions_Mod_Rocko
+			save_global_event_target_as = obsessions_mod_rocko
+		}
+	}
+	option = {
+		name = obsessions_mod.2.a
+		trigger = { leader = { has_skill <= 3 } }
+		leader = {
+			add_experience = 100
+		}
+	}
+	option = {
+		name = obsessions_mod.2.b
+		trigger = { leader = { has_skill > 3 } }
+		leader = {
+			add_experience = 10
+		}
+	}
+	option = {
+		name = obsessions_mod.2.c
+		trigger = {
+			owner = {
+				NOT = {
+					has_ethic = ethic_gestalt_consciousness
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -200
+			}
+		}
+		hidden_effect = {
+			ship_event = {
+				id = obsessions_mod.3
+			}
+		}
+	}
+	option = {
+		name = obsessions_mod.2.d
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_fanatic_spiritualist
+					has_ethic = ethic_spiritualist
+				}
+			}
+		}
+		hidden_effect = {
+			ship_event = {
+				id = obsessions_mod.3
+			}
+		}
+	}
+}
+
+# Rocko, con't.
+ship_event = {
+	id = obsessions_mod.3
+	title = "obsessions_mod.3.name"
+	desc = "obsessions_mod.3.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = obsessions_mod.3.a
+		leader = {
+			add_experience = 100
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = obsessions_mod.4
+					days = 1024
+				}
+			}
+		}
+	}
+	option = {
+		name = obsessions_mod.3.b
+		owner = {
+			add_resource = {
+				unity = 200
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = obsessions_mod.4
+					days = 360
+				}
+			}
+		}
+	}
+}
+
+# Rocko getting out of hand.
+country_event = {
+	id = obsessions_mod.4
+	title = "obsessions_mod.4.name"
+	desc = "obsessions_mod.4.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko
+	is_triggered_only = yes
+	auto_opens = yes
+	# Issue Special Project to view the Rock.
+	option = {
+		name = obsessions_mod.4.a
+		enable_special_project = {
+			name = "OBSESSIONS_MOD_ASTEROID_VIEWING_PROJECT"
+			location = event_target:obsessions_mod_rocko
+			owner = root.owner
+		}
+	}
+	# Suppress it. Ends the chain.
+	option = {
+		name = obsessions_mod.4.b
+		owner = {
+			add_resource = {
+				influence = -25
+			}
+		}
+		clear_global_event_target = obsessions_mod_rocko
+	}
+	# Say no without suppressing it. Cause trouble but end the chain.
+	option = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_ethic = ethic_fanatic_spiritualist
+					has_ethic = ethic_spiritualist
+				}
+			}
+		}
+		name = obsessions_mod.4.c
+		custom_tooltip = obsessions_mod.4.c.tooltip
+		hidden_effect = {
+			while = {
+				count = 10
+				random_owned_pop = {
+					wipe_pop_ethos = yes
+					pop_change_ethic = ethic_spiritualist
+				}
+			}
+			clear_global_event_target = obsessions_mod_rocko
+		}
+	}
+	option = {
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_fanatic_spiritualist
+					has_ethic = ethic_spiritualist
+				}
+			}
+		}
+		name = obsessions_mod.4.d
+		owner = {
+			add_resource = {
+				unity = -500
+			}
+		}
+		custom_tooltip = obsessions_mod.4.d.tooltip
+		hidden_effect = {
+			while = {
+				count = 10
+				random_owned_pop = {
+					wipe_pop_ethos = yes
+					pop_change_ethic = ethic_materialist
+				}
+			}
+			clear_global_event_target = obsessions_mod_rocko
+		}
+	}
+}
+
+# Rocko has been viewed.
+ship_event = {
+	id = obsessions_mod.5
+	title = "obsessions_mod.5.name"
+	desc = "obsessions_mod.5.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko
+	is_triggered_only = yes
+	auto_opens = yes
+	# Let everyone go home. You're going to be hearing about the Rock again.
+	option = {
+		name = obsessions_mod.5.a
+		custom_tooltip = obsessions_mod.5.a.tooltip
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = obsessions_mod.6
+					days = 1024
+				}
+			}
+		}
+	}
+	# Throw the ship into the nearest star. Ends the chain.
+	option = {
+		name = obsessions_mod.5.b
+		custom_tooltip = obsessions_mod.5.b.tooltip
+		destroy_ship = this
+		clear_global_event_target = obsessions_mod_rocko
+	}
+}
+
+# Bring Rocko home.
+country_event = {
+	id = obsessions_mod.6
+	title = "obsessions_mod.6.name"
+	desc = "obsessions_mod.6.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko
+	is_triggered_only = yes
+	auto_opens = yes
+	# Say no. End of chain, no downsides, no reward.
+	option = {
+		name = obsessions_mod.6.a
+		clear_global_event_target = obsessions_mod_rocko
+	}
+	# Bring her home. Issues a special project.
+	option = {
+		name = obsessions_mod.6.b
+		enable_special_project = {
+			name = "OBSESSIONS_MOD_ASTEROID_RETRIEVAL_PROJECT"
+			location = event_target:obsessions_mod_rocko
+			owner = root.owner			#TODO(chmeyers): This correct?
+		}
+	}
+	option = {
+		trigger = {
+			owner = {
+				OR = {
+					has_technology = tech_jump_drive_1
+					has_technology = tech_psi_jump_drive_1
+					has_technology = tech_titans
+				}
+			}
+		}
+		name = obsessions_mod.6.c
+		owner = {
+			country_event = {
+				id = obsessions_mod.7
+				days = 30
+			}
+		}
+	}
+}
+
+# Rocko is just a rock.
+country_event = {
+	id = obsessions_mod.7
+	title = "obsessions_mod.7.name"
+	desc = "obsessions_mod.7.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = root.capital_scope
+	is_triggered_only = yes
+	auto_opens = yes
+	immediate = {
+		# Move Rocko to orbit the capital. Unless the capital is an artificial planet.
+		if = {
+			limit = {
+				owner = {
+					root.capital_scope = {
+						is_artificial = no
+					}
+				}
+			}
+			root.capital_scope.solar_system = {
+				spawn_planet = {
+					class = pc_asteroid
+					location = root.capital_scope.planet
+					orbit_location = yes
+					orbit_distance_offset = 10
+					orbit_angle_offset = 5
+					size = 2
+					init_effect = {
+						save_global_event_target_as = obsessions_mod_rocko_moon
+						set_name = NAME_Obsessions_Mod_Rocko
+						set_surveyed = {
+							surveyed = yes
+							surveyor = root.owner
+						}
+						add_deposit = d_rocko_unity_deposit
+					}
+				}
+			}
+		}
+		event_target:obsessions_mod_rocko = {
+			remove_planet = yes
+		}
+		clear_global_event_target = obsessions_mod_rocko
+	}
+	# End of chain, reap the rewards.
+	# Option A if they didn't already have the tech reward.
+	option = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_technology = tech_experimental_subspace_navigation
+					root.capital_scope = {
+						is_artificial = yes
+					}
+				}
+			}
+		}
+		name = obsessions_mod.7.a
+		owner = {
+			give_technology = {
+				tech = tech_experimental_subspace_navigation
+			}
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier5unityreward
+				min = @tier5unitymin
+				max = @tier5unitymax
+			}
+		}
+	}
+	# Option B if they already had the tech.
+	option = {
+		trigger = {
+			owner = {
+				has_technology = tech_experimental_subspace_navigation
+				root.capital_scope = {
+					is_artificial = no
+				}
+			}
+		}
+		name = obsessions_mod.7.b
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier5unityreward
+				min = @tier5unitymin
+				max = @tier5unitymax
+			}
+		}
+	}
+	# Option C if their capital is an artificial planet. They don't get the full rewards and a pop is killed.
+	option = {
+		trigger = {
+			capital_scope = {
+				is_artificial = yes
+			}
+		}
+		name = obsessions_mod.7.c
+		custom_tooltip = obsessions_mod.7.c.tooltip
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			capital_scope = {
+				random_owned_pop = {
+					kill_pop = yes
+				}
+			}
+		}
+		event_target:obsessions_mod_rocko = {
+			remove_planet = yes
+		}
+		clear_global_event_target = obsessions_mod_rocko
+	}
+	# Option D if their capital is an artificial planet and they can pay the extra cost.
+	option = {
+		trigger = {
+			capital_scope = {
+				is_artificial = yes
+			}
+		}
+		name = obsessions_mod.7.d
+		custom_tooltip = obsessions_mod.7.d.tooltip
+		owner = {
+			owner = {
+				add_resource = {
+					energy = -5000
+				}
+			}
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		root.capital_scope.solar_system = {
+			spawn_planet = {
+				class = pc_asteroid
+				location = this
+				orbit_location = yes
+				orbit_distance_offset = 10
+				orbit_angle_offset = 5
+				size = 5
+				init_effect = {
+					save_global_event_target_as = obsessions_mod_rocko_moon
+					set_name = NAME_Obsessions_Mod_Rocko
+					set_surveyed = {
+						surveyed = yes
+						surveyor = root.owner
+					}
+					add_deposit = d_rocko_unity_deposit
+				}
+			}
+		}
+		event_target:obsessions_mod_rocko = {
+			remove_planet = yes
+		}
+		clear_global_event_target = obsessions_mod_rocko
+	}
+}

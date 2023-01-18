@@ -1,0 +1,100 @@
+# Anomaly Categories for the Obsessions mod
+# FROM = ship
+
+
+# For Alpha/Beta testing, make them very common
+@obsessions_mod_spawn_base = 100
+@obsessions_mod_spawn_modifier = 100
+
+
+
+# The Rocko anomaly
+obsessions_mod_category_asteroid_rocko = {
+
+	# All obsessions anomalies are human only.
+	# This is the default setting, but it's listed here so that I comment on it.
+	should_ai_use = no
+	
+	# *_desc is the default.
+	desc = "obsessions_mod_category_asteroid_rocko_desc"
+
+	# TODO(chmeyers): Replace this picture
+	picture = GFX_evt_mining_station
+	level = 1 # Rocko is just a rock, a level 1 anomaly
+
+	max_once = no # default NO, if true will spawn category only once per empire
+	max_once_global = no # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	# These should only spawn on asteroids to low level scientists.
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_asteroid
+			#from.leader = { skill <= 3 } #TODO(chmeyers): How to do this?
+		}
+	}
+
+	on_success = {
+		1 = {
+			modifier = {
+				add = 3
+				owner = {
+					OR = {
+						has_ethic = ethic_fanatic_spiritualist
+						has_ethic = ethic_spiritualist
+					}
+				}
+			}
+			anomaly_event = obsessions_mod.2
+		}
+	}
+}
+
+# obsessions_mod_category_asteroid_rocko = {
+
+# 	# All obsessions anomalies are human only.
+# 	# This is the default setting, but it's listed here so that I comment on it.
+# 	should_ai_use = no
+	
+# 	# *_desc is the default.
+# 	desc = "obessions_mod_category_asteroid_1_desc"
+
+# 	# TODO(chmeyers): Replace this picture
+# 	picture = GFX_evt_mining_station
+# 	level = 1 # Anomaly level, 1 to 10
+
+# 	max_once = no # default NO, if true will spawn category only once per empire
+# 	max_once_global = no # default NO, if true will spawn category only once per game
+
+# 	on_spawn = {
+# 		clear_deposits = yes 
+# 	}
+
+# 	# These should only spawn on asteroids to low level scientists.
+# 	spawn_chance = {
+# 		modifier = {
+# 			add = @obsessions_mod_spawn_modifier
+# 			is_planet_class = pc_asteroid
+# 			from.leader = { skill <= 2 }
+# 		}
+# 	}
+
+# 	on_success = {
+# 		1 = {
+# 			modifier = {
+# 				add = 3
+# 				owner = {
+# 					OR = {
+# 						has_ethic = ethic_fanatic_spiritualist
+# 						has_ethic = ethic_spiritualist
+# 					}
+# 				}
+# 			}
+# 			anomaly_event = obsessions_mod.2
+# 		}
+# 	}
+# }
