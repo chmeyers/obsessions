@@ -1,0 +1,20 @@
+entity = {
+	name = "obsessions_asteroid_entity"
+	# Reuse the vanilla asteroid ship mesh
+	pdxmesh = "asteroid_ship_mesh"
+	default_state = "idle"
+
+	# An attachment point for the weapons section
+	locator = { name = "root" position = { 0 0 0 } }
+
+	state = {
+		name = "idle"
+		event = {
+			sound = {
+				soundeffect = "amb_astroid_fields"
+			}
+		}
+	}
+	# Rocko is bigger than the vanilla asteroid ship.
+	scale = 2.5
+}

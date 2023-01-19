@@ -26,13 +26,20 @@ special_project = {
 	key = "OBSESSIONS_MOD_ASTEROID_RETRIEVAL_PROJECT"
 	# TODO(chmeyers): Choose an icon
 	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
-	cost = 0
-	days_to_research = 1080
+	cost = {
+		base = 6000
+		modifier = {
+			# It's cheaper if you already have tech_experimental_subspace_navigation since you won't get it
+			# as an extra reward.
+			factor = 0.25
+			has_technology = tech_experimental_subspace_navigation
+		}
+	}
 	tech_department = physics_technology
 	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
 	location = yes
 
-	event_scope = country_event
+	event_scope = ship_event
 
 	requirements = {
 		shipclass_science_ship = 2
@@ -40,6 +47,27 @@ special_project = {
 	}
 
 	on_success = {
-		country_event = { id = obsessions_mod.7 }
+		ship_event = { id = obsessions_mod.11 }
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_ASTEROID_PROPULSION_PROJECT"
+	# TODO(chmeyers): Choose an icon
+	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	cost = 0
+	days_to_research = 1080
+	tech_department = engineering_technology
+	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod.10 }
 	}
 }

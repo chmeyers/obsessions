@@ -18,12 +18,15 @@ obsessions_mod_category_asteroid_rocko_desc:0 "The asteroid [Root.GetName] has c
 #TODO(chmeyers): Option descriptions can only be about 60 characters long, anything more has to go in the tooltip.
 # The Rocko tree of events.
 NAME_Obsessions_Mod_Rocko:0 "Rocko" 
+obsessions_rocko_1:0 "$NAME_Obsessions_Mod_Rocko$"
+obsessions_rocko_1_plural:0 "$NAME_Obsessions_Mod_Rocko$"
 obsessions_mod.2.name:0 "It's just a Rock"
 obsessions_mod.2.desc:0 "Detailed scans of the asteroid indicate that it is, in fact, just a rock."
 obsessions_mod.2.a:0 "At least it was a good learning experience for the crew."
 obsessions_mod.2.b:0 "Our Science officer shouldn't waste their time."
 obsessions_mod.2.c:0 "There are a few more esoteric scans we could attempt."
 obsessions_mod.2.d:0 "We could try praying to it."
+obsessions_mod.2.e:0 "It looks a little like one of our ships."
 
 obsessions_mod.3.name:0 "It's still just a Rock"
 obsessions_mod.3.desc:0 "Further observation of the asteroid continue to point to it being a boring rock. The crew has named it $NAME_Obsessions_Mod_Rocko$."
@@ -70,3 +73,23 @@ decision_consecrated_rocko:1 "Consecrate $NAME_Obsessions_Mod_Rocko$"
 decision_consecrated_rocko_desc:2 "Declare this to be a sacred place, consecrated in the traditions of our faith. Pilgrims will travel from afar to rejoice in its holy aura."
 decision_consecrated_rocko_effects_short:1 "Adds $NAME_Obsessions_Mod_Rocko$ to our canon of Consecrated Worlds, boosting §YSpiritualist Ethics Attraction§! and §YEmpire-Wide Amenities§! as well as £unity£ §YUnity Generation§!."
 decision_consecrated_rocko_effects_custom:1 "Adds $NAME_Obsessions_Mod_Rocko$ to our canon of Consecrated Worlds (up to §Y3§!), increasing §YSpiritualist Ethics Attraction§!, §YEmpire-Wide Amenities§! and boosting £unity£ §YUnity Generation§!, scaling to the spiritual significance of the planet."
+
+obsessions_mod.8.name:0 "It's still just a Rock"
+obsessions_mod.8.desc:0 "Further observation of the asteroid show that it does indeed look a little like one of our voidcraft. The crew has named it $NAME_Obsessions_Mod_Rocko$."
+obsessions_mod.8.a:0 "Send some pictures back to the admirality."
+obsessions_mod.8.b:0 "We're done here."
+
+obsessions_mod.9.name:0 "The stuff ships are made of"
+obsessions_mod.9.desc:0 "Our military staff has circulated the pictures of $NAME_Obsessions_Mod_Rocko$ and agrees that it does indeed look like a ship. They think we should stick an engine on it."
+obsessions_mod.9.a:0 "I doubt this will work, but sure."
+obsessions_mod.9.b:0 "We're not doing that."
+OBSESSIONS_MOD_ASTEROID_PROPULSION_PROJECT:0 "Move the Heavens"
+OBSESSIONS_MOD_ASTEROID_PROPULSION_PROJECT_DESC:0 "Install an engine on $NAME_Obsessions_Mod_Rocko$, turning it into a rudimentary voidcraft of gigantic proportions."
+
+obsessions_mod.10.name:0 "The rock moves"
+obsessions_mod.10.desc:0 "Engines have been fitted onto $NAME_Obsessions_Mod_Rocko$. It's a ship now, sort of."
+obsessions_mod.10.a:0 "We should really add some weapons."
+obsessions_mod.10.b:0 "It's perfect for now. We can alter it later."
+
+#The ship designs are always named Rocko.
+NAME_Obsessions_Rocko_Ship_1:0 "$NAME_Obsessions_Mod_Rocko$"

@@ -1,0 +1,60 @@
+ship_design = {
+	name = "NAME_Obsessions_Rocko_Ship_1"
+	ship_size = obsessions_rocko_1
+	
+	use_design_name = yes
+	required_component = "HYPER_DRIVE_1"
+	required_component = "SHIP_THRUSTER_1"
+	required_component = "COMBAT_COMPUTER_DEFAULT"
+}
+
+# Rocko with basic weapons
+ship_design = {
+	name = "NAME_Obsessions_Rocko_Ship_2"
+	ship_size = obsessions_rocko_1
+	
+	section = {
+		template = "obsessions_rocko_ship_section_1"
+		slot = "mid"
+
+		component = {
+			slot = "LARGE_GUN_01"
+			template = "LARGE_RED_LASER"
+		}
+		component = {
+			slot = "LARGE_GUN_02"
+			template = "LARGE_MASS_DRIVER_1"
+		}
+		component = {
+			slot = "LARGE_GUN_03"
+			template = "LARGE_RED_LASER"
+		}
+		component = {
+			slot = "SMALL_GUN_01"
+			template = "MISSILE_1"
+		}
+		component = {
+			slot = "SMALL_GUN_02"
+			template = "MISSILE_1"
+		}
+		component = {
+			slot = "SMALL_GUN_03"
+			template = "MISSILE_1"
+		}
+		component = {
+			slot = "PD_01"
+			template = "FLAK_BATTERY_1"
+		}
+		component = {
+			slot = "PD_02"
+			template = "POINT_DEFENCE_1"
+		}
+		
+	}
+
+	use_design_name = yes
+	required_component = "SENSOR_1"
+	required_component = "HYPER_DRIVE_1"
+	required_component = "SHIP_THRUSTER_1"
+	required_component = "COMBAT_COMPUTER_DEFAULT"
+}

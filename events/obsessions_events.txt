@@ -2,7 +2,6 @@
 # Events for the Obsessions Mod. #
 ##################################
 namespace = obsessions_mod
-
 # The first event just sets our global flag, so that others can check for our presence if they want.
 country_event = {
 	id = obsessions_mod.1
@@ -44,14 +43,22 @@ ship_event = {
 	}
 	option = {
 		name = obsessions_mod.2.a
-		trigger = { leader = { has_skill <= 3 } }
+		trigger = {
+			leader = {
+				has_skill <= 3
+			}
+		}
 		leader = {
 			add_experience = 100
 		}
 	}
 	option = {
 		name = obsessions_mod.2.b
-		trigger = { leader = { has_skill > 3 } }
+		trigger = {
+			leader = {
+				has_skill > 3
+			}
+		}
 		leader = {
 			add_experience = 10
 		}
@@ -60,8 +67,12 @@ ship_event = {
 		name = obsessions_mod.2.c
 		trigger = {
 			owner = {
-				NOT = {
-					has_ethic = ethic_gestalt_consciousness
+				NOR = {
+					has_ethic = ethic_gestalt_consciousness					#TODO(chmeyers): Do gestalts get a path?
+					has_ethic = ethic_fanatic_spiritualist
+					has_ethic = ethic_spiritualist
+					has_ethic = ethic_fanatic_militarist
+					has_ethic = ethic_militarist
 				}
 			}
 		}
@@ -89,6 +100,34 @@ ship_event = {
 		hidden_effect = {
 			ship_event = {
 				id = obsessions_mod.3
+			}
+		}
+	}
+	option = {
+		name = obsessions_mod.2.e
+		trigger = {
+			OR = {
+				owner = {
+					OR = {
+						has_ethic = ethic_fanatic_militarist
+						has_ethic = ethic_militarist
+					}
+				}
+				leader = {
+					OR = {
+						has_trait = leader_trait_expertise_voidcraft
+						has_trait = leader_trait_expertise_propulsion
+						has_trait = leader_trait_expertise_military_theory
+						has_trait = leader_trait_carefree
+						has_trait = leader_trait_roamer
+					}
+				}
+			}
+		}
+		hidden_effect = {
+			ship_event = {
+				# It looks like a ship!
+				id = obsessions_mod.8
 			}
 		}
 	}
@@ -293,6 +332,20 @@ country_event = {
 	}
 }
 
+# Hidden ship event to fire obsessions_mod.7 as a country_event
+ship_event = {
+	id = obsessions_mod.11
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		owner = {
+			country_event = {
+				id = obsessions_mod.7
+			}
+		}
+	}
+}
+
 # Rocko is just a rock.
 country_event = {
 	id = obsessions_mod.7
@@ -300,7 +353,7 @@ country_event = {
 	desc = "obsessions_mod.7.desc"
 	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
 	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
-	location = root.capital_scope
+	location = this.owner.capital_scope
 	is_triggered_only = yes
 	auto_opens = yes
 	immediate = {
@@ -308,15 +361,15 @@ country_event = {
 		if = {
 			limit = {
 				owner = {
-					root.capital_scope = {
+					this.owner.capital_scope = {
 						is_artificial = no
 					}
 				}
 			}
-			root.capital_scope.solar_system = {
+			this.owner.capital_scope.solar_system = {
 				spawn_planet = {
 					class = pc_asteroid
-					location = root.capital_scope.planet
+					location = this.owner.capital_scope.planet
 					orbit_location = yes
 					orbit_distance_offset = 10
 					orbit_angle_offset = 5
@@ -326,7 +379,7 @@ country_event = {
 						set_name = NAME_Obsessions_Mod_Rocko
 						set_surveyed = {
 							surveyed = yes
-							surveyor = root.owner
+							surveyor = this.owner
 						}
 						add_deposit = d_rocko_unity_deposit
 					}
@@ -345,7 +398,7 @@ country_event = {
 			owner = {
 				NOR = {
 					has_technology = tech_experimental_subspace_navigation
-					root.capital_scope = {
+					this.owner.capital_scope = {
 						is_artificial = yes
 					}
 				}
@@ -369,7 +422,7 @@ country_event = {
 		trigger = {
 			owner = {
 				has_technology = tech_experimental_subspace_navigation
-				root.capital_scope = {
+				this.owner.capital_scope = {
 					is_artificial = no
 				}
 			}
@@ -393,7 +446,7 @@ country_event = {
 	# Option C if their capital is an artificial planet. They don't get the full rewards and a pop is killed.
 	option = {
 		trigger = {
-			capital_scope = {
+			owner.capital_scope = {
 				is_artificial = yes
 			}
 		}
@@ -420,12 +473,11 @@ country_event = {
 	# Option D if their capital is an artificial planet and they can pay the extra cost.
 	option = {
 		trigger = {
-			capital_scope = {
+			owner.capital_scope = {
 				is_artificial = yes
 			}
 		}
 		name = obsessions_mod.7.d
-		custom_tooltip = obsessions_mod.7.d.tooltip
 		owner = {
 			owner = {
 				add_resource = {
@@ -439,22 +491,125 @@ country_event = {
 				max = @tier2researchmax
 			}
 		}
-		root.capital_scope.solar_system = {
-			spawn_planet = {
-				class = pc_asteroid
-				location = this
-				orbit_location = yes
-				orbit_distance_offset = 10
-				orbit_angle_offset = 5
-				size = 5
-				init_effect = {
-					save_global_event_target_as = obsessions_mod_rocko_moon
-					set_name = NAME_Obsessions_Mod_Rocko
-					set_surveyed = {
-						surveyed = yes
-						surveyor = root.owner
+		hidden_effect = {
+			root.owner.capital_scope.solar_system = {
+				spawn_planet = {
+					class = pc_asteroid
+					location = this
+					orbit_location = yes
+					orbit_distance_offset = 100
+					orbit_angle_offset = 5
+					size = 2
+					init_effect = {
+						save_global_event_target_as = obsessions_mod_rocko_moon
+						set_name = NAME_Obsessions_Mod_Rocko
+						set_surveyed = {
+							surveyed = yes
+							surveyor = root.owner
+						}
+						add_deposit = d_rocko_unity_deposit
 					}
-					add_deposit = d_rocko_unity_deposit
+				}
+			}
+			event_target:obsessions_mod_rocko = {
+				remove_planet = yes
+			}
+			clear_global_event_target = obsessions_mod_rocko
+		}
+	}
+}
+
+# Rocko the ship.
+ship_event = {
+	id = obsessions_mod.8
+	title = "obsessions_mod.8.name"
+	desc = "obsessions_mod.8.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = obsessions_mod.8.a
+		leader = {
+			add_experience = 100
+		}
+		owner = {
+			country_event = {
+				id = obsessions_mod.9
+				days = 90
+			}
+		}
+	}
+	option = {
+		name = obsessions_mod.8.b
+		leader = {
+			add_experience = 100
+		}
+	}
+}
+
+# Can we make it into a ship?
+country_event = {
+	id = obsessions_mod.9
+	title = "obsessions_mod.9.name"
+	desc = "obsessions_mod.9.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = obsessions_mod.9.a
+		add_resource = {
+			alloys = -50
+		}
+		add_resource = {
+			energy = -200
+		}
+		enable_special_project = {
+			name = "OBSESSIONS_MOD_ASTEROID_PROPULSION_PROJECT"
+			location = event_target:obsessions_mod_rocko
+			owner = root.owner
+		}
+	}
+	option = {
+		name = obsessions_mod.9.b
+		hidden_effect = {
+			clear_global_event_target = obsessions_mod_rocko
+		}
+	}
+}
+
+#Rocko has been turned into a basic ship.
+ship_event = {
+	id = obsessions_mod.10
+	title = "obsessions_mod.10.name"
+	desc = "obsessions_mod.10.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		owner = {
+			create_fleet = {
+				name = NAME_Obsessions_Mod_Rocko
+				effect = {
+					set_owner = root.owner
+					create_ship = {
+						name = NAME_Obsessions_Mod_Rocko
+						design = NAME_Obsessions_Rocko_Ship_1
+					}
+					last_created_ship = {
+						save_global_event_target_as = obsessions_mod_rocko_ship
+					}
+					set_location = {
+						target = root
+						distance = 1
+						angle = random
+					}
 				}
 			}
 		}
@@ -462,5 +617,43 @@ country_event = {
 			remove_planet = yes
 		}
 		clear_global_event_target = obsessions_mod_rocko
+	}
+	# Put some weapons on it.
+	option = {
+		name = obsessions_mod.10.a
+		owner = {
+			add_resource = {
+				alloys = -200
+			}
+		}
+		hidden_effect = {
+			owner = {
+				destroy_ship = event_target:obsessions_mod_rocko_ship
+				create_fleet = {
+					name = NAME_Obsessions_Mod_Rocko
+					effect = {
+						set_owner = root.owner
+						create_ship = {
+							name = NAME_Obsessions_Mod_Rocko
+							design = NAME_Obsessions_Rocko_Ship_2
+							upgradable = yes
+						}
+						last_created_ship = {
+							save_global_event_target_as = obsessions_mod_rocko_ship
+						}
+						set_location = {
+							target = root
+							distance = 1
+							angle = random
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	# Leave it be for now.
+	option = {
+		name = obsessions_mod.10.b
 	}
 }
