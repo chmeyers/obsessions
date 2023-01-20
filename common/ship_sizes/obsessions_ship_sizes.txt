@@ -1,10 +1,10 @@
 # Rocko as a ship
 obsessions_rocko_1 = {
-	can_be_inspected = yes #TODO(chmeyers): revert
+	can_be_inspected = no
 	entity = "obsessions_asteroid_entity"
 
 	is_space_object = yes
-	max_speed = 60
+	max_speed = 30
 	
 	# Rocko can't disengage
 	combat_disengage_chance = 0
@@ -62,7 +62,7 @@ obsessions_rocko_supreme = {
 	entity = "obsessions_asteroid_entity"
 
 	is_space_object = yes
-	max_speed = 120
+	max_speed = 60
 	
 	# Rocko can't disengage
 	combat_disengage_chance = 0
@@ -74,11 +74,11 @@ obsessions_rocko_supreme = {
 	#Rocko gets most of the titan modifiers.
 	formation_priority = @titan_formation_priority
 	# Rocko Supreme gets buffed Hull Points. It's a beast!
-	max_hitpoints = 50000
+	max_hitpoints = 100000
 	modifier = {
 		ship_evasion_add = @titan_evasion
 	}
-	size_multiplier = 0
+	size_multiplier = 16
 	combat_size_multiplier = 16
 	collision_radius = 5
 	fleet_slot_size = 16
@@ -96,10 +96,14 @@ obsessions_rocko_supreme = {
 
 	default_behavior = artillery
 
-	#TODO(chmeyers): Remove all these?
-	base_buildtime = 5
+	base_buildtime = 100
 	enable_3dview_in_ship_browser = yes
 	construction_type = starbase_shipyard
+
+	# It should only show up in the design list if you already have a Rocko Supreme to upgrade.
+	potential_country = {
+		is_rocko_supreme_country = yes
+	}
 
 	# Something as beautiful as Rocko can only be constructed at a fully upgraded art installation.
 	# In reality, this is just here so that starbases can't construct it.
@@ -122,4 +126,5 @@ obsessions_rocko_supreme = {
 	required_component_set = "thruster_components"
 	required_component_set = "sensor_components"
 	required_component_set = "combat_computers"
+	required_component_set = "ship_aura_components"
 }

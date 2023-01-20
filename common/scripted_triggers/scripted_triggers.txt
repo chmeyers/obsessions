@@ -1,0 +1,5 @@
+is_rocko_supreme_country = {
+	any_owned_ship = {
+		is_ship_size = obsessions_rocko_supreme
+	}
+}

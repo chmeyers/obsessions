@@ -773,6 +773,14 @@ ship_design = {
 			slot = "PD_04"
 			template = "POINT_DEFENCE_3"
 		}
+		component = {
+			slot = "PD_05"
+			template = "FLAK_BATTERY_3"
+		}
+		component = {
+			slot = "PD_06"
+			template = "POINT_DEFENCE_3"
+		}
 
 		component = {
 			slot = "LARGE_UTILITY_1"
@@ -820,6 +828,38 @@ ship_design = {
 		}
 		component = {
 			slot = "LARGE_UTILITY_12"
+			template = "LARGE_ARMOR_5"
+		}
+		component = {
+			slot = "LARGE_UTILITY_13"
+			template = "LARGE_SHIELD_5"
+		}
+		component = {
+			slot = "LARGE_UTILITY_14"
+			template = "LARGE_ARMOR_5"
+		}
+		component = {
+			slot = "LARGE_UTILITY_15"
+			template = "LARGE_SHIELD_5"
+		}
+		component = {
+			slot = "LARGE_UTILITY_16"
+			template = "LARGE_ARMOR_5"
+		}
+		component = {
+			slot = "LARGE_UTILITY_17"
+			template = "LARGE_SHIELD_5"
+		}
+		component = {
+			slot = "LARGE_UTILITY_18"
+			template = "LARGE_ARMOR_5"
+		}
+		component = {
+			slot = "LARGE_UTILITY_19"
+			template = "LARGE_SHIELD_5"
+		}
+		component = {
+			slot = "LARGE_UTILITY_20"
 			template = "LARGE_ARMOR_5"
 		}
 
