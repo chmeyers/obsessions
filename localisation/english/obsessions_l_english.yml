@@ -20,6 +20,8 @@ obsessions_mod_category_asteroid_rocko_desc:0 "The asteroid [Root.GetName] has c
 NAME_Obsessions_Mod_Rocko:0 "Rocko" 
 obsessions_rocko_1:0 "$NAME_Obsessions_Mod_Rocko$"
 obsessions_rocko_1_plural:0 "$NAME_Obsessions_Mod_Rocko$"
+obsessions_rocko_supreme:0 "$NAME_Obsessions_Mod_Rocko$ Supreme"
+obsessions_rocko_supreme_plural:0 "$NAME_Obsessions_Mod_Rocko$ Supreme"
 obsessions_mod.2.name:0 "It's just a Rock"
 obsessions_mod.2.desc:0 "Detailed scans of the asteroid indicate that it is, in fact, just a rock."
 obsessions_mod.2.a:0 "At least it was a good learning experience for the crew."
@@ -91,5 +93,98 @@ obsessions_mod.10.desc:0 "Engines have been fitted onto $NAME_Obsessions_Mod_Roc
 obsessions_mod.10.a:0 "We should really add some weapons."
 obsessions_mod.10.b:0 "It's perfect for now. We can alter it later."
 
-#The ship designs are always named Rocko.
+#The ship designs are always named Rocko until they get to Supreme.
 NAME_Obsessions_Rocko_Ship_1:0 "$NAME_Obsessions_Mod_Rocko$"
+NAME_Obsessions_Rocko_Ship_2:0 "$NAME_Obsessions_Mod_Rocko$"
+NAME_Obsessions_Rocko_Ship_3:0 "$NAME_Obsessions_Mod_Rocko$"
+NAME_Obsessions_Rocko_Ship_4:0 "$NAME_Obsessions_Mod_Rocko$"
+NAME_Obsessions_Rocko_Ship_5:0 "$NAME_Obsessions_Mod_Rocko$"
+NAME_Obsessions_Rocko_Ship_6:0 "$NAME_Obsessions_Mod_Rocko$"
+NAME_Obsessions_Rocko_Ship_7:0 "$NAME_Obsessions_Mod_Rocko$"
+NAME_Obsessions_Rocko_Ship_Supreme:0 "$NAME_Obsessions_Mod_Rocko$ Supreme"
+
+obsessions_rocko_ship_section_1:0 "$NAME_Obsessions_Mod_Rocko$ Weapons Cluster"
+ROCKO_ZERO_POINT_REACTOR:0 "$NAME_Obsessions_Mod_Rocko$ Central Reactor"
+ROCKO_DARK_MATTER_REACTOR:0 "$NAME_Obsessions_Mod_Rocko$ Dark Matter Reactor"
+ROCKO_SHIP_THRUSTER_1:0 "$NAME_Obsessions_Mod_Rocko$ Chemical Thrusters"
+ROCKO_SHIP_THRUSTER_2:0 "$NAME_Obsessions_Mod_Rocko$ Ion Thrusters"
+ROCKO_SHIP_THRUSTER_3:0 "$NAME_Obsessions_Mod_Rocko$ Plasma Thrusters"
+ROCKO_SHIP_THRUSTER_4:0 "$NAME_Obsessions_Mod_Rocko$ Impulse Thrusters"
+ROCKO_SHIP_THRUSTER_5:0 "$NAME_Obsessions_Mod_Rocko$ Dark Matter Thrusters"
+COMBAT_COMPUTER_ROCKO_BASIC:0 "$NAME_Obsessions_Mod_Rocko$ Basic Computer"
+COMBAT_COMPUTER_ROCKO_ADVANCED:0 "$NAME_Obsessions_Mod_Rocko$ Advanced Computer"
+COMBAT_COMPUTER_ROCKO_SAPIENT:0 "$NAME_Obsessions_Mod_Rocko$ Sapient Brain"
+COMBAT_COMPUTER_ROCKO_AUTONOMOUS:0 "$NAME_Obsessions_Mod_Rocko$ Autonomous Computer"
+COMBAT_COMPUTER_ROCKO_PRECOG:0 "$NAME_Obsessions_Mod_Rocko$ Precognitive Interface"
+
+OBSESSIONS_MOD_ROCKO_LEVEL_2_PROJECT:0 "It's just a Rock"
+OBSESSIONS_MOD_ROCKO_LEVEL_2_PROJECT_DESC:0 "$NAME_Obsessions_Mod_Rocko$ can move, but is defenseless. Our engineers think they could afix some rudimentary weapons systems."
+OBSESSIONS_MOD_ROCKO_LEVEL_3_PROJECT:0 "More like a Pebble"
+OBSESSIONS_MOD_ROCKO_LEVEL_3_PROJECT_DESC:0 "The technology on $NAME_Obsessions_Mod_Rocko$ is woefully outdated. Our engineers think that they can add an enhanced weapons cluster and some basic shielding."
+OBSESSIONS_MOD_ROCKO_LEVEL_4_PROJECT:0 "No Stone left Unturned"
+OBSESSIONS_MOD_ROCKO_LEVEL_4_PROJECT_DESC:0 "The superstructure of $NAME_Obsessions_Mod_Rocko$ is showing it's age.Our engineers think that they can enlarge the weapons cluster and give the crew of $NAME_Obsessions_Mod_Rocko$ some ability to repair the ship in the field."
+OBSESSIONS_MOD_ROCKO_LEVEL_5_PROJECT:0 "Throwing Stones in Glass Houses"
+OBSESSIONS_MOD_ROCKO_LEVEL_5_PROJECT_DESC:0 "The capabilities of $NAME_Obsessions_Mod_Rocko$ are outclassed by our newer battleship designs. Our engineers believe that $NAME_Obsessions_Mod_Rocko$ is large enough to host a fleet of strike craft, as well as upgrading it's other systems."
+OBSESSIONS_MOD_ROCKO_LEVEL_6_PROJECT:0 "The Stone Giant"
+OBSESSIONS_MOD_ROCKO_LEVEL_6_PROJECT_DESC:0 "The size of $NAME_Obsessions_Mod_Rocko$ allows us to add a large energy lance. Our engineers will also upgrade it's other systems."
+OBSESSIONS_MOD_ROCKO_LEVEL_7_PROJECT:0 "Not Just a Rock"
+OBSESSIONS_MOD_ROCKO_LEVEL_7_PROJECT_DESC:0 "Our titan technology can be applied to $NAME_Obsessions_Mod_Rocko$. Our engineers believe they can enlarge it's weapon mounts to support our newer weapons technology. In addition, they have plans to add a jump drive."
+OBSESSIONS_MOD_ROCKO_SUPREME_PROJECT:0 "$obsessions_rocko_supreme$"
+OBSESSIONS_MOD_ROCKO_SUPREME_PROJECT_DESC:0 "Our technology has advanced to such a point where it no longer makes sense to manage $NAME_Obsessions_Mod_Rocko$ seperately from the rest of our fleet. Our engineers will make a final set of hull enhancments and allow $NAME_Obsessions_Mod_Rocko$ to be integrated into our normal command structure."
+
+obsessions_mod.13.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_2_PROJECT$"
+obsessions_mod.13.desc:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_2_PROJECT_DESC$"
+obsessions_mod.13.a:0 "Dispatch a crew."
+obsessions_mod.13.b:0 "We have other priorities."
+
+obsessions_mod.14.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_3_PROJECT$"
+obsessions_mod.14.desc:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_3_PROJECT_DESC$"
+obsessions_mod.14.a:0 "Put them to work."
+obsessions_mod.14.b:0 "We have other priorities."
+
+obsessions_mod.15.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_4_PROJECT$"
+obsessions_mod.15.desc:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_4_PROJECT_DESC$"
+obsessions_mod.15.a:0 "Schedule it."
+obsessions_mod.15.b:0 "We have other priorities."
+
+obsessions_mod.16.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_5_PROJECT$"
+obsessions_mod.16.desc:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_5_PROJECT_DESC$"
+obsessions_mod.16.a:0 "This aligns with our plans."
+obsessions_mod.16.b:0 "We have other priorities."
+
+obsessions_mod.17.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_6_PROJECT$"
+obsessions_mod.17.desc:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_6_PROJECT_DESC$"
+obsessions_mod.17.a:0 "Approved."
+obsessions_mod.17.b:0 "We have other priorities."
+
+obsessions_mod.18.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_7_PROJECT$"
+obsessions_mod.18.desc:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_7_PROJECT_DESC$"
+obsessions_mod.18.a:0 "None shall stop us."
+obsessions_mod.18.b:0 "We have other priorities."
+
+obsessions_mod.19.name:0 "$OBSESSIONS_MOD_ROCKO_SUPREME_PROJECT$"
+obsessions_mod.19.desc:0 "$OBSESSIONS_MOD_ROCKO_SUPREME_PROJECT_DESC$"
+obsessions_mod.19.a:0 "This better be worth it."
+obsessions_mod.19.b:0 "We have other priorities."
+
+obsessions_mod.20.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_2_PROJECT$"
+obsessions_mod.20.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been upgraded with some basic weapons systems. Further improvements will have to wait until we have the proper technology."
+obsessions_mod.20.a:0 "We've got some research to do."
+
+obsessions_mod.21.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_3_PROJECT$"
+obsessions_mod.21.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been upgraded with an enhanced weapons cluster and some basic shielding. Further improvements will have to wait until we have the proper technology."
+
+obsessions_mod.22.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_4_PROJECT$"
+obsessions_mod.22.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been upgraded with advanced weapons and repair ability. Further improvements will have to wait until we have the proper technology."
+
+obsessions_mod.23.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_5_PROJECT$"
+obsessions_mod.23.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been upgraded with strike craft and more advanced weapons systems. Further improvements will have to wait until we have the proper technology."
+
+obsessions_mod.24.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_6_PROJECT$"
+obsessions_mod.24.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been upgraded with an energy lance and improved armor and shields. Further improvements will have to wait until we have the proper technology."
+
+obsessions_mod.25.name:0 "$OBSESSIONS_MOD_ROCKO_LEVEL_7_PROJECT$"
+obsessions_mod.25.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been upgraded with titanic weapons and a jump drive. Further improvements will have to wait until we have the proper technology."
+
+obsessions_mod.26.name:0 "$OBSESSIONS_MOD_ROCKO_SUPREME_PROJECT$"
+obsessions_mod.26.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been renamed $obsessions_rocko_supreme$ and can now be integrated into our regular fleets. It's hull has been greatly enhanced. There is nothing left to improve about the design, but we can now customize the design to upgrade it to in the ship designer."

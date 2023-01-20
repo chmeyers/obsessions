@@ -68,7 +68,7 @@ ship_event = {
 		trigger = {
 			owner = {
 				NOR = {
-					has_ethic = ethic_gestalt_consciousness					#TODO(chmeyers): Do gestalts get a path?
+					has_ethic = ethic_gestalt_consciousness #TODO(chmeyers): Do gestalts get a path?
 					has_ethic = ethic_fanatic_spiritualist
 					has_ethic = ethic_spiritualist
 					has_ethic = ethic_fanatic_militarist
@@ -603,6 +603,7 @@ ship_event = {
 						design = NAME_Obsessions_Rocko_Ship_1
 					}
 					last_created_ship = {
+						set_ship_flag = obsessions_rocko_level_1
 						save_global_event_target_as = obsessions_mod_rocko_ship
 					}
 					set_location = {
@@ -625,29 +626,10 @@ ship_event = {
 			add_resource = {
 				alloys = -200
 			}
-		}
-		hidden_effect = {
-			owner = {
-				destroy_ship = event_target:obsessions_mod_rocko_ship
-				create_fleet = {
-					name = NAME_Obsessions_Mod_Rocko
-					effect = {
-						set_owner = root.owner
-						create_ship = {
-							name = NAME_Obsessions_Mod_Rocko
-							design = NAME_Obsessions_Rocko_Ship_2
-							upgradable = yes
-						}
-						last_created_ship = {
-							save_global_event_target_as = obsessions_mod_rocko_ship
-						}
-						set_location = {
-							target = root
-							distance = 1
-							angle = random
-						}
-					}
-				}
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_ROCKO_LEVEL_2_PROJECT"
+				location = event_target:obsessions_mod_rocko_ship
+				owner = root.owner
 			}
 		}
 	}
@@ -655,5 +637,752 @@ ship_event = {
 	# Leave it be for now.
 	option = {
 		name = obsessions_mod.10.b
+		hidden_effect = {
+			owner = { country_event = { id = obsessions_mod.12 days = 360 } }
+		}
+	}
+}
+
+#
+# obsessions_mod.11 is a hidden event placed up before 7
+#
+
+@rocko_upgrade_tick = 3 # TODO(chmeyers): make this 360?
+@rocko_upgrade_denied_tick = 5 # TODO(chmeyers): make this to five years?
+
+# Rocko ship upgrades
+country_event = {
+	id = obsessions_mod.12
+	hide_window = yes
+	is_triggered_only = yes
+	immediate = {
+		if = {
+			limit = { exists = event_target:obsessions_mod_rocko_ship }
+			# Decide if Rocko qualifies for any upgrades.
+			event_target:obsessions_mod_rocko_ship = {
+				if = {
+					limit = { has_ship_flag = obsessions_rocko_level_1 }
+					# Level 1 Rocko can be upgraded to Level 2 whenever the owner has 200 alloy.
+					owner = {
+						if = {
+							limit = { resource_stockpile_compare = { resource = alloys value >= 200 } }
+							country_event = { id = obsessions_mod.13 days = 1 }
+						}
+						else = {
+							country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+						}
+					}
+				}
+				else_if = {
+					limit = { has_ship_flag = obsessions_rocko_level_2 }
+					# Level 2 Rocko can be upgraded to Level 3 whenever the owner has 400 alloy
+					# and the required techs.
+					owner = {
+						if = {
+							limit = {
+								resource_stockpile_compare = { resource = alloys value >= 400 }
+								has_technology = tech_destroyers
+								has_technology = tech_starbase_3
+								calc_true_if = { # Has at least 5 of the weapons techs needed.
+									amount >= 5
+									has_technology = tech_mass_drivers_2
+									has_technology = tech_lasers_2
+									has_technology = tech_autocannons_1
+									has_technology = tech_missiles_2
+									has_technology = tech_pd_tracking_2
+									has_technology = tech_thrusters_2
+									has_technology = tech_hyper_drive_2
+									has_technology = tech_sensors_2
+								}
+							}
+							country_event = { id = obsessions_mod.14 days = 1 }
+						}
+						else = {
+							country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+						}
+					}
+				}
+				else_if = {
+					limit = { has_ship_flag = obsessions_rocko_level_3 }
+					# Level 3 Rocko can be upgraded to Level 4 whenever the owner has 800 alloy
+					# and the required techs.
+					owner = {
+						if = {
+							limit = {
+								resource_stockpile_compare = { resource = alloys value >= 800 }
+								has_technology = tech_cruisers
+								has_technology = tech_starbase_4
+								calc_true_if = { # Has at least 6 of the weapons techs needed.
+									amount >= 6
+									has_technology = tech_mass_drivers_3
+									has_technology = tech_lasers_3
+									has_technology = tech_autocannons_1
+									has_technology = tech_missiles_3
+									has_technology = tech_flak_batteries_2
+									has_technology = tech_ship_armor_2
+									has_technology = tech_shields_2
+									has_technology = tech_thrusters_3
+									has_technology = tech_hyper_drive_3
+									has_technology = tech_sensors_3
+								}
+							}
+							country_event = { id = obsessions_mod.15 days = 1 }
+						}
+						else = {
+							country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+						}
+					}
+				}
+				else_if = {
+					limit = { has_ship_flag = obsessions_rocko_level_4 }
+					# Level 4 Rocko can be upgraded to Level 5 whenever the owner has 1600 alloy
+					# and the required techs.
+					owner = {
+						if = {
+							limit = {
+								resource_stockpile_compare = { resource = alloys value >= 1600 }
+								has_technology = tech_cruisers
+								has_technology = tech_starbase_4
+								calc_true_if = { # Has at least 5 of the weapons techs needed.
+									amount >= 5
+									has_technology = tech_mass_drivers_4
+									has_technology = tech_lasers_4
+									has_technology = tech_strike_craft_2
+									has_technology = tech_missiles_4
+									has_technology = tech_pd_tracking_3
+									has_technology = tech_ship_armor_3
+									has_technology = tech_shields_3
+									has_technology = tech_thrusters_4
+									has_technology = tech_sensors_4
+								}
+							}
+							country_event = { id = obsessions_mod.16 days = 1 }
+						}
+						else = {
+							country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+						}
+					}
+				}
+				else_if = {
+					limit = { has_ship_flag = obsessions_rocko_level_5 }
+					# Level 5 Rocko can be upgraded to Level 6 whenever the owner has 3200 alloy
+					# and the required techs.
+					owner = {
+						if = {
+							limit = {
+								resource_stockpile_compare = { resource = alloys value >= 3200 }
+								has_technology = tech_battleships
+								has_technology = tech_starbase_5
+								has_technology = tech_energy_lance_1
+								calc_true_if = { # Has at least 4 of the weapons techs needed.
+									amount >= 4
+									has_technology = tech_strike_craft_3
+									has_technology = tech_plasma_2
+									has_technology = tech_kinetic_artillery_1
+									has_technology = tech_autocannons_2
+									has_technology = tech_flak_batteries_3
+									has_technology = tech_ship_armor_4
+									has_technology = tech_shields_4
+								}
+							}
+							country_event = { id = obsessions_mod.17 days = 1 }
+						}
+						else = {
+							country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+						}
+					}
+				}
+				else_if = {
+					limit = { has_ship_flag = obsessions_rocko_level_6 }
+					# Level 6 Rocko can be upgraded to Level 7 whenever the owner has 4800 alloy
+					# and the required techs.
+					owner = {
+						if = {
+							limit = {
+								resource_stockpile_compare = { resource = alloys value >= 4800 }
+								has_technology = tech_titans
+								OR = { # Has some jump drive tech.
+									has_technology = tech_jump_drive_1
+									has_technology = tech_psi_jump_drive_1
+								}
+								calc_true_if = { # Has at least 5 of the weapons techs needed.
+									amount >= 5
+									has_technology = tech_energy_lance_2
+									has_technology = tech_plasma_3
+									has_technology = tech_kinetic_artillery_2
+									has_technology = tech_autocannons_3
+									has_technology = tech_ship_armor_5
+									has_technology = tech_shields_5
+									has_technology = tech_missiles_5
+								}
+							}
+							country_event = { id = obsessions_mod.18 days = 1 }
+						}
+						else = {
+							country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+						}
+					}
+				}
+				else_if = {
+					limit = { has_ship_flag = obsessions_rocko_level_7 }
+					# Can they get the Rocko Supreme?
+					owner = {
+						if = {
+							limit = {
+								resource_stockpile_compare = { resource = alloys value >= 6400 }
+								has_technology = tech_mega_engineering
+								has_technology = tech_doctrine_fleet_size_5
+								# They have to have all the relevant techs, not just a majority.
+								has_technology = tech_energy_lance_2
+								has_technology = tech_plasma_3
+								has_technology = tech_kinetic_artillery_2
+								has_technology = tech_autocannons_3
+								has_technology = tech_ship_armor_5
+								has_technology = tech_shields_5
+								has_technology = tech_missiles_5
+								has_technology = tech_thrusters_4
+								has_technology = tech_sensors_4
+								has_technology = tech_strike_craft_3
+								has_technology = tech_flak_batteries_3
+								has_technology = tech_pd_tracking_3
+							}
+							country_event = { id = obsessions_mod.19 days = 1 }
+						}
+						else = {
+							country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+						}
+					}
+				}
+				else = {
+					# Rocko doesn't seem to have any of the flags. This might be a bug...
+					country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+				}
+			}
+		}
+		else = {
+			# Rocko is no more, just do clean up.
+			clear_global_event_target = obsessions_mod_rocko_ship
+		}
+	}
+}
+
+#13: Upgrade Rocko to level 2
+country_event = {
+	id = obsessions_mod.13
+	title = "obsessions_mod.13.name"
+	desc = "obsessions_mod.13.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = obsessions_mod.13.a
+		add_resource = {
+			alloys = -200
+		}
+		enable_special_project = {
+			name = "OBSESSIONS_MOD_ROCKO_LEVEL_2_PROJECT"
+			location = event_target:obsessions_mod_rocko_ship
+			owner = root.owner
+		}
+	}
+	option = {
+		name = obsessions_mod.13.b
+		hidden_effect = {
+			country_event = { id = obsessions_mod.12 days = @rocko_upgrade_denied_tick }
+		}
+	}
+}
+
+#14: Upgrade Rocko to level 3
+country_event = {
+	id = obsessions_mod.14
+	title = "obsessions_mod.14.name"
+	desc = "obsessions_mod.14.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = obsessions_mod.14.a
+		add_resource = {
+			alloys = -400
+		}
+		enable_special_project = {
+			name = "OBSESSIONS_MOD_ROCKO_LEVEL_3_PROJECT"
+			location = event_target:obsessions_mod_rocko_ship
+			owner = root.owner
+		}
+	}
+	option = {
+		name = obsessions_mod.14.b
+		hidden_effect = {
+			country_event = { id = obsessions_mod.12 days = @rocko_upgrade_denied_tick }
+		}
+	}
+}
+
+#15: Upgrade Rocko to level 4
+country_event = {
+	id = obsessions_mod.15
+	title = "obsessions_mod.15.name"
+	desc = "obsessions_mod.15.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = obsessions_mod.15.a
+		add_resource = {
+			alloys = -800
+		}
+		enable_special_project = {
+			name = "OBSESSIONS_MOD_ROCKO_LEVEL_4_PROJECT"
+			location = event_target:obsessions_mod_rocko_ship
+			owner = root.owner
+		}
+	}
+	option = {
+		name = obsessions_mod.15.b
+		hidden_effect = {
+			country_event = { id = obsessions_mod.12 days = @rocko_upgrade_denied_tick }
+		}
+	}
+}
+
+#16: Upgrade Rocko to level 5
+country_event = {
+	id = obsessions_mod.16
+	title = "obsessions_mod.16.name"
+	desc = "obsessions_mod.16.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = obsessions_mod.16.a
+		add_resource = {
+			alloys = -1600
+		}
+		enable_special_project = {
+			name = "OBSESSIONS_MOD_ROCKO_LEVEL_5_PROJECT"
+			location = event_target:obsessions_mod_rocko_ship
+			owner = root.owner
+		}
+	}
+	option = {
+		name = obsessions_mod.16.b
+		hidden_effect = {
+			country_event = { id = obsessions_mod.12 days = @rocko_upgrade_denied_tick }
+		}
+	}
+}
+
+#17: Upgrade Rocko to level 6
+country_event = {
+	id = obsessions_mod.17
+	title = "obsessions_mod.17.name"
+	desc = "obsessions_mod.17.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = obsessions_mod.17.a
+		add_resource = {
+			alloys = -3200
+		}
+		enable_special_project = {
+			name = "OBSESSIONS_MOD_ROCKO_LEVEL_6_PROJECT"
+			location = event_target:obsessions_mod_rocko_ship
+			owner = root.owner
+		}
+	}
+	option = {
+		name = obsessions_mod.17.b
+		hidden_effect = {
+			country_event = { id = obsessions_mod.12 days = @rocko_upgrade_denied_tick }
+		}
+	}
+}
+
+#18: Upgrade Rocko to level 7
+country_event = {
+	id = obsessions_mod.18
+	title = "obsessions_mod.18.name"
+	desc = "obsessions_mod.18.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = obsessions_mod.18.a
+		add_resource = {
+			alloys = -4800
+		}
+		enable_special_project = {
+			name = "OBSESSIONS_MOD_ROCKO_LEVEL_7_PROJECT"
+			location = event_target:obsessions_mod_rocko_ship
+			owner = root.owner
+		}
+	}
+	option = {
+		name = obsessions_mod.18.b
+		hidden_effect = {
+			country_event = { id = obsessions_mod.12 days = @rocko_upgrade_denied_tick }
+		}
+	}
+}
+
+#19: Upgrade Rocko to Rocko Supreme!
+country_event = {
+	id = obsessions_mod.19
+	title = "obsessions_mod.19.name"
+	desc = "obsessions_mod.19.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = obsessions_mod.19.a
+		add_resource = {
+			alloys = -6400
+		}
+		enable_special_project = {
+			name = "OBSESSIONS_MOD_ROCKO_SUPREME_PROJECT"
+			location = event_target:obsessions_mod_rocko_ship
+			owner = root.owner
+		}
+	}
+	option = {
+		name = obsessions_mod.18.b
+		hidden_effect = {
+			country_event = { id = obsessions_mod.12 days = @rocko_upgrade_denied_tick }
+		}
+	}
+}
+
+# Rocko upgraded to level 2
+ship_event = {
+	id = obsessions_mod.20
+	title = "obsessions_mod.20.name"
+	desc = "obsessions_mod.20.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		owner = {
+			destroy_ship = event_target:obsessions_mod_rocko_ship
+			create_fleet = {
+				name = NAME_Obsessions_Mod_Rocko
+				effect = {
+					set_owner = root.owner
+					create_ship = {
+						name = NAME_Obsessions_Mod_Rocko
+						design = NAME_Obsessions_Rocko_Ship_2
+						upgradable = yes
+					}
+					last_created_ship = {
+						set_ship_flag = obsessions_rocko_level_2
+						save_global_event_target_as = obsessions_mod_rocko_ship
+					}
+					set_location = {
+						target = root
+						distance = 1
+						angle = random
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = obsessions_mod.20.a
+		hidden_effect = {
+			owner = {
+				country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+			}
+		}
+	}
+}
+
+# Rocko upgraded to level 3
+ship_event = {
+	id = obsessions_mod.21
+	title = "obsessions_mod.21.name"
+	desc = "obsessions_mod.21.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		owner = {
+			destroy_ship = event_target:obsessions_mod_rocko_ship
+			create_fleet = {
+				name = NAME_Obsessions_Mod_Rocko
+				effect = {
+					set_owner = root.owner
+					create_ship = {
+						name = NAME_Obsessions_Mod_Rocko
+						design = NAME_Obsessions_Rocko_Ship_3
+						upgradable = yes
+					}
+					last_created_ship = {
+						set_ship_flag = obsessions_rocko_level_3
+						save_global_event_target_as = obsessions_mod_rocko_ship
+					}
+					set_location = {
+						target = root
+						distance = 1
+						angle = random
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = FANTASTIC
+		hidden_effect = {
+			owner = {
+				country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+			}
+		}
+	}
+}
+
+# Rocko upgraded to level 4
+ship_event = {
+	id = obsessions_mod.22
+	title = "obsessions_mod.22.name"
+	desc = "obsessions_mod.22.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		owner = {
+			destroy_ship = event_target:obsessions_mod_rocko_ship
+			create_fleet = {
+				name = NAME_Obsessions_Mod_Rocko
+				effect = {
+					set_owner = root.owner
+					create_ship = {
+						name = NAME_Obsessions_Mod_Rocko
+						design = NAME_Obsessions_Rocko_Ship_4
+						upgradable = yes
+					}
+					last_created_ship = {
+						set_ship_flag = obsessions_rocko_level_4
+						save_global_event_target_as = obsessions_mod_rocko_ship
+					}
+					set_location = {
+						target = root
+						distance = 1
+						angle = random
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = FANTASTIC
+		hidden_effect = {
+			owner = {
+				country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+			}
+		}
+	}
+}
+
+# Rocko upgraded to level 5
+ship_event = {
+	id = obsessions_mod.23
+	title = "obsessions_mod.23.name"
+	desc = "obsessions_mod.23.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		owner = {
+			destroy_ship = event_target:obsessions_mod_rocko_ship
+			create_fleet = {
+				name = NAME_Obsessions_Mod_Rocko
+				effect = {
+					set_owner = root.owner
+					create_ship = {
+						name = NAME_Obsessions_Mod_Rocko
+						design = NAME_Obsessions_Rocko_Ship_5
+						upgradable = yes
+					}
+					last_created_ship = {
+						set_ship_flag = obsessions_rocko_level_5
+						save_global_event_target_as = obsessions_mod_rocko_ship
+					}
+					set_location = {
+						target = root
+						distance = 1
+						angle = random
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = FANTASTIC
+		hidden_effect = {
+			owner = {
+				country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+			}
+		}
+	}
+}
+
+# Rocko upgraded to level 6
+ship_event = {
+	id = obsessions_mod.24
+	title = "obsessions_mod.24.name"
+	desc = "obsessions_mod.24.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		owner = {
+			destroy_ship = event_target:obsessions_mod_rocko_ship
+			create_fleet = {
+				name = NAME_Obsessions_Mod_Rocko
+				effect = {
+					set_owner = root.owner
+					create_ship = {
+						name = NAME_Obsessions_Mod_Rocko
+						design = NAME_Obsessions_Rocko_Ship_6
+						upgradable = yes
+					}
+					last_created_ship = {
+						set_ship_flag = obsessions_rocko_level_6
+						save_global_event_target_as = obsessions_mod_rocko_ship
+					}
+					set_location = {
+						target = root
+						distance = 1
+						angle = random
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = FANTASTIC
+		hidden_effect = {
+			owner = {
+				country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+			}
+		}
+	}
+}
+
+# Rocko upgraded to level 7
+ship_event = {
+	id = obsessions_mod.25
+	title = "obsessions_mod.25.name"
+	desc = "obsessions_mod.25.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		owner = {
+			destroy_ship = event_target:obsessions_mod_rocko_ship
+			create_fleet = {
+				name = NAME_Obsessions_Mod_Rocko
+				effect = {
+					set_owner = root.owner
+					create_ship = {
+						name = NAME_Obsessions_Mod_Rocko
+						design = NAME_Obsessions_Rocko_Ship_7
+						upgradable = yes
+					}
+					last_created_ship = {
+						set_ship_flag = obsessions_rocko_level_7
+						save_global_event_target_as = obsessions_mod_rocko_ship
+					}
+					set_location = {
+						target = root
+						distance = 1
+						angle = random
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = FANTASTIC
+		hidden_effect = {
+			owner = {
+				country_event = { id = obsessions_mod.12 days = @rocko_upgrade_tick }
+			}
+		}
+	}
+}
+
+# Rocko upgraded to Rocko Supreme!
+ship_event = {
+	id = obsessions_mod.26
+	title = "obsessions_mod.26.name"
+	desc = "obsessions_mod.26.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_ship
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		owner = {
+			destroy_ship = event_target:obsessions_mod_rocko_ship
+			create_fleet = {
+				name = NAME_Obsessions_Mod_Rocko_Supreme
+				effect = {
+					set_owner = root.owner
+					create_ship = {
+						name = NAME_Obsessions_Mod_Rocko_Supreme
+						design = NAME_Obsessions_Rocko_Ship_Supreme
+						upgradable = yes
+					}
+					last_created_ship = {
+						set_ship_flag = obsessions_rocko_level_supreme
+						save_global_event_target_as = obsessions_mod_rocko_ship
+					}
+					set_location = {
+						target = root
+						distance = 1
+						angle = random
+					}
+				}
+			}
+		}
+	}
+	option = {
+		name = FANTASTIC
+		# No more upgrades to do, so end the event chain.
 	}
 }

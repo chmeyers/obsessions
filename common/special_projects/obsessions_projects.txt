@@ -56,7 +56,7 @@ special_project = {
 	# TODO(chmeyers): Choose an icon
 	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
 	cost = 0
-	days_to_research = 1080
+	days_to_research = 80 #TODO(chmeyers): revert to 1080
 	tech_department = engineering_technology
 	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
 	location = yes
@@ -69,5 +69,152 @@ special_project = {
 
 	on_success = {
 		ship_event = { id = obsessions_mod.10 }
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_ROCKO_LEVEL_2_PROJECT"
+	# TODO(chmeyers): Choose an icon
+	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	cost = 0
+	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	tech_department = engineering_technology
+	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod.20 }
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_ROCKO_LEVEL_3_PROJECT"
+	# TODO(chmeyers): Choose an icon
+	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	cost = 0
+	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	tech_department = engineering_technology
+	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod.21 }
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_ROCKO_LEVEL_4_PROJECT"
+	# TODO(chmeyers): Choose an icon
+	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	cost = 0
+	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	tech_department = engineering_technology
+	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod.22 }
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_ROCKO_LEVEL_5_PROJECT"
+	# TODO(chmeyers): Choose an icon
+	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	cost = 0
+	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	tech_department = engineering_technology
+	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod.23 }
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_ROCKO_LEVEL_6_PROJECT"
+	# TODO(chmeyers): Choose an icon
+	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	cost = 0
+	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	tech_department = engineering_technology
+	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod.24 }
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_ROCKO_LEVEL_7_PROJECT"
+	# TODO(chmeyers): Choose an icon
+	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	cost = 0
+	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	tech_department = engineering_technology
+	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod.25 }
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_ROCKO_SUPREME_PROJECT"
+	# TODO(chmeyers): Choose an icon
+	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	cost = 0
+	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	tech_department = engineering_technology
+	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod.26 }
 	}
 }
