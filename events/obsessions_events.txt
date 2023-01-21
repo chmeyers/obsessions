@@ -131,6 +131,23 @@ ship_event = {
 			}
 		}
 	}
+	option = {
+		name = obsessions_mod.2.f
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_fanatic_pacifist
+					has_ethic = ethic_pacifist
+				}
+			}
+		}
+		hidden_effect = {
+			ship_event = {
+				# It could work as a habitat
+				id = obsessions_mod.28
+			}
+		}
+	}
 }
 
 # Rocko, con't.
@@ -416,6 +433,9 @@ country_event = {
 				max = @tier5unitymax
 			}
 		}
+		hidden_effect = {
+			owner = { country_event = { id = obsessions_mod.27 days = 18000 } }
+		}
 	}
 	# Option B if they already had the tech.
 	option = {
@@ -441,6 +461,9 @@ country_event = {
 				min = @tier5unitymin
 				max = @tier5unitymax
 			}
+		}
+		hidden_effect = {
+			owner = { country_event = { id = obsessions_mod.27 days = 18000 } }
 		}
 	}
 	# Option C if their capital is an artificial planet. They don't get the full rewards and a pop is killed.
@@ -511,10 +534,28 @@ country_event = {
 					}
 				}
 			}
+			root.owner = { country_event = { id = obsessions_mod.27 days = 18000 } }
 			event_target:obsessions_mod_rocko = {
 				remove_planet = yes
 			}
 			clear_global_event_target = obsessions_mod_rocko
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_mod.27
+	title = "obsessions_mod.27.name"
+	desc = "obsessions_mod.27.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko_moon
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		name = FANTASTIC
+		event_target:obsessions_mod_rocko_moon = {
+			add_deposit = d_rocko_anniversity_unity_deposit
 		}
 	}
 }
@@ -1384,5 +1425,307 @@ ship_event = {
 	option = {
 		name = FANTASTIC
 		# No more upgrades to do, so end the event chain.
+	}
+}
+
+# Rocko the Habitat.
+ship_event = {
+	id = obsessions_mod.28
+	title = "obsessions_mod.28.name"
+	desc = "obsessions_mod.28.desc"
+	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
+	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko
+	is_triggered_only = yes
+	auto_opens = yes
+	option = {
+		trigger = {
+			owner = {
+				is_same_value = event_target:obsessions_mod_rocko.solar_system.owner
+			} 
+		}
+		name = obsessions_mod.28.a
+		owner = {
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_ASTEROID_CONVERSION_PROJECT"
+				location = event_target:obsessions_mod_rocko
+				owner = root.owner
+			}
+		}
+	}
+	option = {
+		trigger = {
+			NOT = {
+				owner = {
+					is_same_value = event_target:obsessions_mod_rocko.solar_system.owner
+				}
+			}
+		}
+		name = obsessions_mod.28.b
+		hidden_effect = {
+			owner = {
+				country_event = { id = obsessions_mod.29 days = 120 }
+			}
+		}
+	}
+	option = {
+		name = obsessions_mod.28.c
+		# Ends this event chain
+		custom_tooltip = obsessions_mod.28.c.tooltip
+		clear_global_event_target = obsessions_mod_rocko
+	}
+}
+
+# looping check for owning rocko, once every four months
+country_event = {
+	id = obsessions_mod.29
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				owner = {
+					is_same_value = event_target:obsessions_mod_rocko.solar_system.owner
+				}
+			}
+			country_event = { id = obsessions_mod.30 } # enable project
+		}
+		else = {
+			country_event = { id = obsessions_mod.29 days = 120 } # *THIS* looping check
+		}
+	}
+}
+
+# Make Rocko home.
+country_event = {
+	id = obsessions_mod.30
+	title = "obsessions_mod.30.name"
+	desc = "obsessions_mod.30.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko
+	is_triggered_only = yes
+	auto_opens = yes
+	
+	# Make her a home. Issues a special project.
+	option = {
+		name = obsessions_mod.30.a
+		owner = {
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_ASTEROID_CONVERSION_PROJECT"
+				location = event_target:obsessions_mod_rocko
+				owner = root.owner
+			}
+		}
+	}
+	# Say no. End of chain, no downsides, no reward.
+	option = {
+		name = obsessions_mod.30.b
+		custom_tooltip = obsessions_mod.30.b.tooltip
+		clear_global_event_target = obsessions_mod_rocko
+	}
+}
+
+# Rocko is just a rock.
+ship_event = {
+	id = obsessions_mod.31
+	title = "obsessions_mod.31.name"
+	desc = "obsessions_mod.31.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko
+	is_triggered_only = yes
+	auto_opens = yes
+	immediate = {
+		# Change Rocko to be a habitat
+		event_target:obsessions_mod_rocko.solar_system = {
+			spawn_planet = {
+				class = pc_habitat
+				location = event_target:obsessions_mod_rocko
+				orbit_location = yes
+				orbit_distance_offset = 10
+				orbit_angle_offset = 5
+				size = 2
+				init_effect = {
+					save_global_event_target_as = obsessions_mod_rocko_hab
+					set_name = NAME_Obsessions_Mod_Rocko
+					set_surveyed = {
+						surveyed = yes
+					}
+					# Rocko comes pre-upgraded, mostly so that the upgrade decision
+					# won't mess with it.
+					set_planet_flag = advanced_habitat
+					set_planet_flag = advanced_habitat_2
+					set_planet_size = 10 # Bigger than your average rock.
+					set_planet_entity = {
+						entity = "obsessions_asteroid_entity"
+					}
+				}
+			}
+		}
+		event_target:obsessions_mod_rocko = {
+			remove_planet = yes
+		}
+		clear_global_event_target = obsessions_mod_rocko
+	}
+	# Reap the rewards.
+	# Option A if they didn't already have the tech reward.
+	option = {
+		trigger = {
+			owner = {
+				NOT = {
+					has_technology = tech_habitat_1
+				}
+			}
+		}
+		name = obsessions_mod.31.a
+		owner = {
+			give_technology = {
+				tech = tech_habitat_1
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = { id = obsessions_mod.32 days = 120 }
+			}
+		}
+	}
+	# Option B if they already had the tech.
+	option = {
+		trigger = {
+			owner = {
+				has_technology = tech_habitat_1
+			}
+		}
+		name = obsessions_mod.31.b
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = { id = obsessions_mod.32 days = 120 }
+			}
+		}
+	}
+	
+}
+
+# looping check for rocko being colonized, once every year
+country_event = {
+	id = obsessions_mod.32
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				owner = {
+					is_same_value = event_target:obsessions_mod_rocko_hab.solar_system.owner
+				}
+				event_target:obsessions_mod_rocko_hab = {
+					is_colony = yes
+					num_pops >= 1
+				}
+			}
+			country_event = { id = obsessions_mod.33 days = 1 }
+		}
+		else = {
+			country_event = { id = obsessions_mod.32 days = 360 } # *THIS* looping check
+		}
+	}
+}
+
+# Rocko is changing people.
+country_event = {
+	id = obsessions_mod.33
+	title = "obsessions_mod.33.name"
+	desc = "obsessions_mod.33.desc"
+	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
+	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	location = event_target:obsessions_mod_rocko
+	is_triggered_only = yes
+	auto_opens = yes
+	
+	# Make her a home. Issues a special project.
+	option = {
+		name = obsessions_mod.33.a
+		event_target:obsessions_mod_rocko_hab = {
+			random_owned_pop = {
+				limit = {
+					is_lithoid = no
+				}
+				modify_species = {
+					species = this
+					add_trait = trait_lithoid
+					change_scoped_species = yes
+				}
+			}
+			random_owned_pop = {
+				limit = {
+					is_lithoid = yes
+				}
+				modify_species = {
+					species = this
+					add_trait = trait_delicious
+					change_scoped_species = yes
+				}
+			}
+			add_deposit = d_rocko_delicious_rocks_deposit
+		}
+		hidden_effect = {
+			owner = {
+				country_event = { id = obsessions_mod.34 days = 1800 }
+			}
+		}
+	}
+}
+
+# looping check to keep converting people to delicious rocks
+country_event = {
+	id = obsessions_mod.34
+	hide_window = yes
+
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				event_target:obsessions_mod_rocko_hab = {
+					is_colony = yes
+				}
+			}
+			event_target:obsessions_mod_rocko_hab = {
+				random_owned_pop = {
+					limit = {
+						is_lithoid = no
+					}
+					modify_species = {
+						species = this
+						add_trait = trait_lithoid
+						change_scoped_species = yes
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						is_lithoid = yes
+						NOT = { has_trait = trait_delicious }
+					}
+					modify_species = {
+						species = this
+						add_trait = trait_delicious
+						change_scoped_species = yes
+					}
+				}
+			}
+		}
+		country_event = { id = obsessions_mod.32 days = 1800 } # *THIS* looping every five years
 	}
 }

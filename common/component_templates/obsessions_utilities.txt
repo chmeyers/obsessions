@@ -404,7 +404,7 @@ utility_component_template = {
 
 	friendly_aura = {
 		name = "aura_inspiring_presence"
-		radius = @shipAuraRange
+		radius = 80
 		apply_on = ships
 
 		stack_info = {			#A ship can only be affected by one aura of a certain id. If multiple auras have the same ID the one with the highest priority will be applied.

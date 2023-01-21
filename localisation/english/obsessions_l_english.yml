@@ -30,6 +30,7 @@ obsessions_mod.2.b:0 "Our Science officer shouldn't waste their time."
 obsessions_mod.2.c:0 "There are a few more esoteric scans we could attempt."
 obsessions_mod.2.d:0 "We could try praying to it."
 obsessions_mod.2.e:0 "It looks a little like one of our ships."
+obsessions_mod.2.f:0 "It's a nice location."
 
 obsessions_mod.3.name:0 "It's still just a Rock"
 obsessions_mod.3.desc:0 "Further observation of the asteroid continue to point to it being a boring rock. The crew has named it $NAME_Obsessions_Mod_Rocko$."
@@ -71,6 +72,10 @@ obsessions_mod.7.c:0 "Is it getting closer?"
 obsessions_mod.7.c.tooltip:0 "Did anybody think through the implications of placing a large rock in an unstable orbit over our capital? The rock will crash into the capital, killing millions. This probably would have worked out better if the capital was on a planet.\n§Y1§ £pops£ Pop killed."
 obsessions_mod.7.d:0 "Push the rock into a more stable orbit."
 d_rocko_unity_deposit:0 "£unity£ +5\n"
+
+obsessions_mod.27.name:0 "Fifty Years a Rock"
+obsessions_mod.27.desc:0 "It has been fifty years since we brought $NAME_Obsessions_Mod_Rocko$ through hyperspace to orbit our capital. For some reason, people are still obsessed with this stupid rock."
+d_rocko_anniversity_unity_deposit:0 "£unity£ +50\n"
 
 decision_consecrated_rocko:1 "Consecrate $NAME_Obsessions_Mod_Rocko$"
 decision_consecrated_rocko_desc:2 "Declare this to be a sacred place, consecrated in the traditions of our faith. Pilgrims will travel from afar to rejoice in its holy aura."
@@ -193,3 +198,31 @@ obsessions_mod.25.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been upgraded with tit
 
 obsessions_mod.26.name:0 "$OBSESSIONS_MOD_ROCKO_SUPREME_PROJECT$"
 obsessions_mod.26.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been renamed $obsessions_rocko_supreme$ and can now be integrated into our regular fleets. It's hull has been greatly enhanced. There is nothing left to improve about the design, but we can now customize the design to upgrade it to in the ship designer."
+
+
+obsessions_mod.28.name:0 "The Perfect Rock"
+obsessions_mod.28.desc:0 "$NAME_Obsessions_Mod_Rocko$ is just a boring rock, but it happens to be in a perfect orbit to convert into an experimental habitat."
+obsessions_mod.28.a:0 "It could work."
+obsessions_mod.28.b:0 "We would need control of this system first."
+obsessions_mod.28.c:0 "Living is space is ridiculous."
+obsessions_mod.28.c.tooltip:0 "End this event chain."
+
+obsessions_mod.30.name:0 "A Rock to Call Home"
+obsessions_mod.30.desc:0 "Now that we have control of the system containing $NAME_Obsessions_Mod_Rocko$, our engineers are excited to go ahead with their plans of converting it into an experimental habitat."
+obsessions_mod.30.a:0 "Surely there is no downside."
+obsessions_mod.30.b:0 "Not interested."
+obsessions_mod.30.b.tooltip:0 "End this event chain."
+
+OBSESSIONS_MOD_ASTEROID_CONVERSION_PROJECT:0 "A Rock to Call Home"
+OBSESSIONS_MOD_ASTEROID_CONVERSION_PROJECT_DESC:0 "$NAME_Obsessions_Mod_Rocko$ is in a perfect location for an experimental asteroid habitat."
+
+obsessions_mod.31.name:0 "Stone Sweet Stone"
+obsessions_mod.31.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been converted to a magnificent artificial world. Our engineers say that everything is perfect and ready for inhabitants. They stress very strongly that nothing could possibly go wrong and we should definitely colonize the habitat as soon as possible."
+obsessions_mod.31.a:0 "Nothing can go wrong?"
+obsessions_mod.31.b:0 "Nothing can go wrong?"
+
+obsessions_mod.33.name:0 "A Stone so Sweet"
+obsessions_mod.33.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been colonized for a while now, and despite promises to the contrary, something seems to have gone wrong. Some of the local population has taken to eating unused portions, claiming that the rocks are extremely delicous. It seems to be changing their physiology somehow. The colonists seem happy with the situation and wouldn't allow our scientists to stop it even if they knew how."
+obsessions_mod.33.a:0 "This is going to keep happening, isn't it?"
+d_rocko_delicious_rocks_deposit:0 "Delicious Rocks"
+d_rocko_delicious_rocks_deposit_desc:0 "$NAME_Obsessions_Mod_Rocko$ has delicious rocks, which have a strange effect on the population."

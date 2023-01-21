@@ -17,3 +17,27 @@ d_rocko_unity_deposit = {
 	is_for_colonizable = no
 	drop_weight = { weight = 0 }
 }
+
+d_rocko_anniversity_unity_deposit = {
+	resources = {
+		category = orbital_research_deposits
+		produces = {
+			unity = 50
+		}
+	}
+	station = shipclass_research_station
+	is_for_colonizable = no
+	drop_weight = { weight = 0 }
+}
+
+d_rocko_delicious_rocks_deposit = {
+	icon = d_monument
+	category = deposit_cat_rare
+	is_for_colonizable = yes
+	planet_modifier = {
+		pop_happiness = 0.05
+		lithoid_pop_happiness = 0.10
+	}
+	potential = { always = no }
+	drop_weight = { weight = 0 }
+}

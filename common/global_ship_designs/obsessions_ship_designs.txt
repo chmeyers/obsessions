@@ -678,7 +678,7 @@ ship_design = {
 	ship_size = obsessions_rocko_supreme
 	
 	section = {
-		template = "obsessions_rocko_ship_section_1"
+		template = "obsessions_rocko_ship_supreme_section"
 		slot = "mid"
 
 		component = {

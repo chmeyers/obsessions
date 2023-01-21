@@ -218,3 +218,31 @@ special_project = {
 		ship_event = { id = obsessions_mod.26 }
 	}
 }
+
+special_project = {
+	key = "OBSESSIONS_MOD_ASTEROID_CONVERSION_PROJECT"
+	# TODO(chmeyers): Choose an icon
+	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	cost = {
+		base = 6000
+		modifier = {
+			# It's cheaper if you already have tech_habitat_1 since you won't get it
+			# as an extra reward.
+			factor = 0.25
+			has_technology = tech_habitat_1
+		}
+	}
+	tech_department = engineering_technology
+	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_constructor = 1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod.31 }
+	}
+}
