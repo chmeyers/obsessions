@@ -1,6 +1,7 @@
 # Small events that don't involve long chains.
 namespace = obsessions_mod_minor
 
+# Outgassing Asteroid
 ship_event = {
 	id = obsessions_mod_minor.1
 	title = "obsessions_mod_minor.1.name"
@@ -121,6 +122,142 @@ ship_event = {
 		desc = "obsessions_mod_minor.3.desc_bad"
 		option = {
 			name = obsessions_mod_minor.3.b
+		}
+	}
+}
+
+# Life filled Asteroid
+ship_event = {
+	id = obsessions_mod_minor.4
+	title = "obsessions_mod_minor.4.name"
+	desc = "obsessions_mod_minor.4.desc"
+	picture = GFX_evt_asteroid_field
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	auto_opens = yes
+
+	option = {
+		name = obsessions_mod_minor.4.a
+		ship_event = { id = obsessions_mod_minor.5 from = FROM }
+	}
+	option = {
+		name = obsessions_mod_minor.4.b
+		ship_event = { id = obsessions_mod_minor.5 from = FROM }
+	}
+	option = {
+		trigger = {
+			leader = {
+				AND = {
+					lithoid = no
+					OR = {
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_expertise_biology
+						has_trait = leader_trait_expertise_new_worlds
+						species = {
+							has_trait = trait_agrarian
+							has_trait = trait_natural_engineers
+							has_trait = trait_natural_sociologists
+							has_trait = trait_robot_harvesters
+						}
+					}
+				}
+			}
+		}
+		name = obsessions_mod_minor.4.c
+		from = { add_deposit = d_food_3 }
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.5
+	title = "obsessions_mod_minor.5.name"
+	picture = GFX_evt_asteroid_field
+	location = FROM
+	is_triggered_only = yes
+	auto_opens = yes
+
+	if = {
+		limit = {
+			AND = {
+				leader = {
+					lithoid = no
+				}
+				owner = {
+					NOR = {
+						has_ethic = ethic_fanatic_xenophobe
+						has_ethic = ethic_xenophobe
+					}
+				}
+			}
+		}
+		desc = "obsessions_mod_minor.5.desc"
+		option = {
+			name = obsessions_mod_minor.5.a
+			from = { add_deposit = d_food_3 }
+			if = {
+				limit = {
+					leader = { NOT = { has_trait = leader_trait_expertise_biology } }
+				}
+				leader = {
+					add_trait = leader_trait_expertise_biology
+				}
+			}
+		}
+	}
+	else = {
+		desc = "obsessions_mod_minor.5.desc_bad"
+		option = {
+			name = obsessions_mod_minor.5.b
+			leader = {
+				add_trait = leader_trait_maimed
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.6
+	title = "obsessions_mod_minor.6.name"
+	picture = GFX_evt_asteroid_field
+	location = FROM
+	is_triggered_only = yes
+	auto_opens = yes
+
+	if = {
+		limit = {
+			OR = {
+				leader = {
+					lithoid = yes
+				}
+				owner = {
+					OR = {
+						has_ethic = ethic_fanatic_xenophobe
+						has_ethic = ethic_xenophobe
+					}
+				}
+			}
+		}
+		desc = "obsessions_mod_minor.6.desc"
+		option = {
+			name = obsessions_mod_minor.6.a
+			if = {
+				limit = {
+					leader = { NOT = { has_trait = leader_trait_expertise_biology } }
+				}
+				leader = {
+					add_trait = leader_trait_expertise_biology
+				}
+			}
+			else = {
+				leader = { add_trait = leader_trait_inspired_surveyor }
+			}
+		}
+	}
+	else = {
+		desc = "obsessions_mod_minor.6.desc_bad"
+		option = {
+			name = obsessions_mod_minor.6.b
 		}
 	}
 }

@@ -10,6 +10,7 @@
 obsessions_mod_category_asteroid_1:0 "Accelerating Asteroid."
 obsessions_mod_category_asteroid_1_desc:0 "The asteroid [Root.GetName] has caught the attention of our Science Officer due to minor changes in it's orbital velocity that suggest it is actively navigating the asteroid field."
 
+# Outgassing asteroid
 obsessions_mod_minor.1.name:0 "Rocky outgassing"
 obsessions_mod_minor.1.desc:0 "Investigation has shown that the asteroid's acceleration is due to natural outgassing from some unstable craters on the rock's surface."
 obsessions_mod_minor.1.a:0 "Drill into one of the craters."
@@ -27,3 +28,24 @@ obsessions_mod_minor.3.desc:0 "Careful investigation of the outgassing has given
 obsessions_mod_minor.3.desc_bad:0 "The acceleration given by the gases does not appear to be an improvement on our current technology."
 obsessions_mod_minor.3.a:0 "Wonderful."
 obsessions_mod_minor.3.b:0 "Disappointing."
+
+# Life-filled asteroid
+obsessions_mod_minor.4.name:0 "Unusual Life"
+obsessions_mod_minor.4.desc:0 "A close scan of the asteroid immediately revealed that it is covered in single-celled plant life, which is altering the asteroid's orbit by cycling through different albedos."
+obsessions_mod_minor.4.a:0 "Test the lifeforms."
+obsessions_mod_minor.4.b:0 "Destroy them to be safe."
+obsessions_mod_minor.4.c:0 "It appears edible."
+
+obsessions_mod_minor.5.name:0 "Unusual Life"
+obsessions_mod_minor.5.desc:0 "Extensive experimentation has shown the plants to be not only safe, but tasty."
+obsessions_mod_minor.5.desc_bad:0 "Despite precautions, the lifeforms infected our Science Officer. Though we were able to eradicate them, it was not without side effects."
+obsessions_mod_minor.5.a:0 "Amazing."
+obsessions_mod_minor.5.b:0 "Unfortunate."
+
+obsessions_mod_minor.6.name:0 "Unusual Life"
+obsessions_mod_minor.6.desc:0 "Our Science Officer has learned much from the thorough destruction."
+obsessions_mod_minor.6.desc_bad:0 "The crew is disappointed that we wasted this opportunity to examine the lifeforms."
+obsessions_mod_minor.6.a:0 "Amazing."
+obsessions_mod_minor.6.b:0 "Unfortunate."
+
+# Glitch in our sensors

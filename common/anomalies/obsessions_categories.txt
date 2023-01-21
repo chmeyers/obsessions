@@ -83,5 +83,6 @@ obsessions_mod_category_asteroid_1 = {
 			}
 			anomaly_event = obsessions_mod_minor.1
 		}
+		1 = { anomaly_event = obsessions_mod_minor.4 }
 	}
 }
