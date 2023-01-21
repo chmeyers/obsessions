@@ -2,12 +2,11 @@
 
 special_project = {
 	key = "OBSESSIONS_MOD_ASTEROID_VIEWING_PROJECT"
-	# TODO(chmeyers): Choose an icon
-	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
 	cost = 0
 	days_to_research = 1
 	tech_department = society_technology
-	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	picture = GFX_evt_asteroid_field
 	location = yes
 
 	event_scope = ship_event
@@ -24,8 +23,7 @@ special_project = {
 
 special_project = {
 	key = "OBSESSIONS_MOD_ASTEROID_RETRIEVAL_PROJECT"
-	# TODO(chmeyers): Choose an icon
-	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
 	cost = {
 		base = 6000
 		modifier = {
@@ -36,7 +34,7 @@ special_project = {
 		}
 	}
 	tech_department = physics_technology
-	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	picture = GFX_evt_mining_station
 	location = yes
 
 	event_scope = ship_event
@@ -53,12 +51,11 @@ special_project = {
 
 special_project = {
 	key = "OBSESSIONS_MOD_ASTEROID_PROPULSION_PROJECT"
-	# TODO(chmeyers): Choose an icon
-	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
 	cost = 0
-	days_to_research = 80 #TODO(chmeyers): revert to 1080
+	days_to_research = 720
 	tech_department = engineering_technology
-	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	picture = GFX_evt_mining_station
 	location = yes
 
 	event_scope = ship_event
@@ -74,12 +71,11 @@ special_project = {
 
 special_project = {
 	key = "OBSESSIONS_MOD_ROCKO_LEVEL_2_PROJECT"
-	# TODO(chmeyers): Choose an icon
-	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
 	cost = 0
-	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	days_to_research = 90
 	tech_department = engineering_technology
-	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	picture = GFX_evt_megastructure_construction
 	location = yes
 
 	event_scope = ship_event
@@ -95,12 +91,11 @@ special_project = {
 
 special_project = {
 	key = "OBSESSIONS_MOD_ROCKO_LEVEL_3_PROJECT"
-	# TODO(chmeyers): Choose an icon
-	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
 	cost = 0
-	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	days_to_research = 180
 	tech_department = engineering_technology
-	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	picture = GFX_evt_megastructure_construction
 	location = yes
 
 	event_scope = ship_event
@@ -116,12 +111,11 @@ special_project = {
 
 special_project = {
 	key = "OBSESSIONS_MOD_ROCKO_LEVEL_4_PROJECT"
-	# TODO(chmeyers): Choose an icon
-	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
 	cost = 0
-	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	days_to_research = 360
 	tech_department = engineering_technology
-	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	picture = GFX_evt_megastructure_construction
 	location = yes
 
 	event_scope = ship_event
@@ -137,12 +131,11 @@ special_project = {
 
 special_project = {
 	key = "OBSESSIONS_MOD_ROCKO_LEVEL_5_PROJECT"
-	# TODO(chmeyers): Choose an icon
-	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
 	cost = 0
-	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	days_to_research = 360
 	tech_department = engineering_technology
-	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	picture = GFX_evt_megastructure_construction
 	location = yes
 
 	event_scope = ship_event
@@ -158,12 +151,11 @@ special_project = {
 
 special_project = {
 	key = "OBSESSIONS_MOD_ROCKO_LEVEL_6_PROJECT"
-	# TODO(chmeyers): Choose an icon
-	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
 	cost = 0
-	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	days_to_research = 360
 	tech_department = engineering_technology
-	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	picture = GFX_evt_megastructure_construction
 	location = yes
 
 	event_scope = ship_event
@@ -179,12 +171,11 @@ special_project = {
 
 special_project = {
 	key = "OBSESSIONS_MOD_ROCKO_LEVEL_7_PROJECT"
-	# TODO(chmeyers): Choose an icon
-	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
 	cost = 0
-	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	days_to_research = 360
 	tech_department = engineering_technology
-	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	picture = GFX_evt_megastructure_construction
 	location = yes
 
 	event_scope = ship_event
@@ -200,12 +191,11 @@ special_project = {
 
 special_project = {
 	key = "OBSESSIONS_MOD_ROCKO_SUPREME_PROJECT"
-	# TODO(chmeyers): Choose an icon
-	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
 	cost = 0
-	days_to_research = 5 #TODO(chmeyers): revert to something longer
+	days_to_research = 360
 	tech_department = engineering_technology
-	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	picture = GFX_evt_megastructure_construction
 	location = yes
 
 	event_scope = ship_event
@@ -221,8 +211,7 @@ special_project = {
 
 special_project = {
 	key = "OBSESSIONS_MOD_ASTEROID_CONVERSION_PROJECT"
-	# TODO(chmeyers): Choose an icon
-	# icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
 	cost = {
 		base = 6000
 		modifier = {
@@ -233,7 +222,7 @@ special_project = {
 		}
 	}
 	tech_department = engineering_technology
-	picture = GFX_evt_landing_ship # TODO(chmeyers): Choose a picture
+	picture = GFX_evt_underground_city
 	location = yes
 
 	event_scope = ship_event

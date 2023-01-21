@@ -15,7 +15,7 @@ obsessions_mod_category_asteroid_rocko_desc:0 "The asteroid [Root.GetName] has c
  ####################################
  # Special Project loc strings are mixed in with their associated events.
 
-#TODO(chmeyers): Option descriptions can only be about 60 characters long, anything more has to go in the tooltip.
+# Option descriptions can only be about 60 characters long, anything more has to go in the tooltip.
 # The Rocko tree of events.
 NAME_Obsessions_Mod_Rocko:0 "Rocko" 
 NAME_Obsessions_Mod_Rocko_Supreme:0 "$NAME_Obsessions_Mod_Rocko$ Supreme"
@@ -31,6 +31,13 @@ obsessions_mod.2.c:0 "There are a few more esoteric scans we could attempt."
 obsessions_mod.2.d:0 "We could try praying to it."
 obsessions_mod.2.e:0 "It looks a little like one of our ships."
 obsessions_mod.2.f:0 "It's a nice location."
+obsessions_mod.2.g:0 "It looks like a giant eye."
+
+obsessions_mod.35.name:0 "Scans show that it's just a Rock"
+obsessions_mod.35.desc:0 "Further scans of the asteroid continue to point to it being a boring rock. The crew has named it $NAME_Obsessions_Mod_Rocko$."
+obsessions_mod.35.a:0 "The crew has really bonded over this experience."
+obsessions_mod.35.b:0 "It does look a little like a ship, though."
+obsessions_mod.35.c:0 "It has an ideal orbit."
 
 obsessions_mod.3.name:0 "It's still just a Rock"
 obsessions_mod.3.desc:0 "Further observation of the asteroid continue to point to it being a boring rock. The crew has named it $NAME_Obsessions_Mod_Rocko$."

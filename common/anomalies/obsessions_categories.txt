@@ -5,7 +5,7 @@
 # For Alpha/Beta testing, make them very common
 @obsessions_mod_spawn_base = 100
 @obsessions_mod_spawn_modifier = 100
-
+@obsessions_mod_spawn_rocko = 1000
 
 
 # The Rocko anomaly
@@ -18,8 +18,7 @@ obsessions_mod_category_asteroid_rocko = {
 	# *_desc is the default.
 	desc = "obsessions_mod_category_asteroid_rocko_desc"
 
-	# TODO(chmeyers): Replace this picture
-	picture = GFX_evt_mining_station
+	picture = GFX_evt_asteroid_field
 	level = 1 # Rocko is just a rock, a level 1 anomaly
 
 	max_once = no # default NO, if true will spawn category only once per empire
@@ -32,26 +31,13 @@ obsessions_mod_category_asteroid_rocko = {
 	# These should only spawn on asteroids to low level scientists.
 	spawn_chance = {
 		modifier = {
-			add = @obsessions_mod_spawn_modifier
+			add = @obsessions_mod_spawn_rocko
 			is_planet_class = pc_asteroid
-			#from.leader = { skill <= 3 } #TODO(chmeyers): How to do this?
+			from.leader = { has_skill <= 3 }
 		}
 	}
 
-	on_success = {
-		1 = {
-			modifier = {
-				add = 3
-				owner = {
-					OR = {
-						has_ethic = ethic_fanatic_spiritualist
-						has_ethic = ethic_spiritualist
-					}
-				}
-			}
-			anomaly_event = obsessions_mod.2
-		}
-	}
+	on_success = obsessions_mod.2
 }
 
 # obsessions_mod_category_asteroid_rocko = {
@@ -63,8 +49,7 @@ obsessions_mod_category_asteroid_rocko = {
 # 	# *_desc is the default.
 # 	desc = "obessions_mod_category_asteroid_1_desc"
 
-# 	# TODO(chmeyers): Replace this picture
-# 	picture = GFX_evt_mining_station
+# 	picture = GFX_evt_asteroid_field
 # 	level = 1 # Anomaly level, 1 to 10
 
 # 	max_once = no # default NO, if true will spawn category only once per empire
@@ -79,7 +64,7 @@ obsessions_mod_category_asteroid_rocko = {
 # 		modifier = {
 # 			add = @obsessions_mod_spawn_modifier
 # 			is_planet_class = pc_asteroid
-# 			from.leader = { skill <= 2 }
+# 			from.leader = { has_skill <= 2 }
 # 		}
 # 	}
 

@@ -25,8 +25,8 @@ ship_event = {
 	id = obsessions_mod.2
 	title = "obsessions_mod.2.name"
 	desc = "obsessions_mod.2.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_asteroid_field
+	show_sound = event_scanner_03
 	location = FROM
 	is_triggered_only = yes
 	auto_opens = yes
@@ -65,20 +65,34 @@ ship_event = {
 	}
 	option = {
 		name = obsessions_mod.2.c
-		trigger = {
-			owner = {
-				NOR = {
-					has_ethic = ethic_gestalt_consciousness #TODO(chmeyers): Do gestalts get a path?
-					has_ethic = ethic_fanatic_spiritualist
-					has_ethic = ethic_spiritualist
-					has_ethic = ethic_fanatic_militarist
-					has_ethic = ethic_militarist
-				}
-			}
-		}
+		# Everyone can try the fallback path, but they have to pay.
 		owner = {
 			add_resource = {
-				energy = -200
+				energy = -2000
+			}
+		}
+		hidden_effect = {
+			ship_event = {
+				id = obsessions_mod.35
+			}
+		}
+	}
+	option = {
+		name = obsessions_mod.2.d
+		trigger = {
+			OR = {
+				owner = {
+					OR = {
+						has_ethic = ethic_fanatic_spiritualist
+						has_ethic = ethic_spiritualist
+					}
+				}
+				leader = {
+					OR = {
+						has_trait = leader_trait_expertise_psionics
+						has_trait = leader_trait_curator
+					}
+				}
 			}
 		}
 		hidden_effect = {
@@ -88,12 +102,26 @@ ship_event = {
 		}
 	}
 	option = {
-		name = obsessions_mod.2.d
+		name = obsessions_mod.2.g
 		trigger = {
 			owner = {
 				OR = {
-					has_ethic = ethic_fanatic_spiritualist
-					has_ethic = ethic_spiritualist
+					OR = {
+						has_ethic = ethic_fanatic_authoritarian
+						has_ethic = ethic_authoritarian
+						has_ethic = ethic_fanatic_xenophile
+						has_ethic = ethic_fanatic_xenophobe
+					}
+					leader = {
+						OR = {
+							has_trait = leader_trait_expertise_paranoid
+							has_trait = leader_trait_expertise_field_manipulation
+							has_trait = leader_trait_expertise_field_particles
+							has_trait = leader_trait_expertise_biology
+							has_trait = leader_trait_curator
+							has_trait = leader_trait_towel
+						}
+					}
 				}
 			}
 		}
@@ -111,6 +139,8 @@ ship_event = {
 					OR = {
 						has_ethic = ethic_fanatic_militarist
 						has_ethic = ethic_militarist
+						has_ethic = ethic_fanatic_materialist
+						has_ethic = ethic_materialist
 					}
 				}
 				leader = {
@@ -120,6 +150,8 @@ ship_event = {
 						has_trait = leader_trait_expertise_military_theory
 						has_trait = leader_trait_carefree
 						has_trait = leader_trait_roamer
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_towel
 					}
 				}
 			}
@@ -136,9 +168,25 @@ ship_event = {
 		trigger = {
 			owner = {
 				OR = {
-					has_ethic = ethic_fanatic_pacifist
-					has_ethic = ethic_pacifist
+					OR = {
+						has_ethic = ethic_fanatic_pacifist
+						has_ethic = ethic_pacifist
+						has_ethic = ethic_fanatic_egalitarian
+						has_ethic = ethic_egalitarian
+					}
+					leader = {
+						OR = {
+							has_trait = leader_trait_expertise_new_worlds
+							has_trait = leader_trait_expertise_mindful
+							has_trait = leader_trait_expertise_materials
+							has_trait = leader_trait_expertise_industry
+							has_trait = leader_trait_expertise_statecraft
+							has_trait = leader_trait_curator
+							has_trait = leader_trait_towel
+						}
+					}
 				}
+				
 			}
 		}
 		hidden_effect = {
@@ -150,13 +198,56 @@ ship_event = {
 	}
 }
 
+ship_event = {
+	id = obsessions_mod.35
+	title = "obsessions_mod.35.name"
+	desc = "obsessions_mod.35.desc"
+	picture = GFX_evt_asteroid_field
+	show_sound = event_scanner_03
+	location = FROM
+	is_triggered_only = yes
+	auto_opens = yes
+
+	# Rocko the moon
+	option = {
+		name = obsessions_mod.35.a
+		owner = {
+			add_resource = {
+				unity = 100
+			}
+		}
+		hidden_effect = {
+			owner = {
+				country_event = {
+					id = obsessions_mod.4
+					days = 360
+				}
+			}
+		}
+	}
+	# Rocko the ship
+	option = {
+		name = obsessions_mod.35.b
+		ship_event = {
+			id = obsessions_mod.8
+		}
+	}
+	# Rocko the hab
+	option = {
+		name = obsessions_mod.35.c
+		ship_event = {
+			id = obsessions_mod.28
+		}
+	}
+}
+
 # Rocko, con't.
 ship_event = {
 	id = obsessions_mod.3
 	title = "obsessions_mod.3.name"
 	desc = "obsessions_mod.3.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_asteroid_field
+	show_sound = event_scanner_03
 	location = event_target:obsessions_mod_rocko
 	is_triggered_only = yes
 	auto_opens = yes
@@ -197,8 +288,8 @@ country_event = {
 	id = obsessions_mod.4
 	title = "obsessions_mod.4.name"
 	desc = "obsessions_mod.4.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_news_room
+	show_sound = event_scanner_03
 	location = event_target:obsessions_mod_rocko
 	is_triggered_only = yes
 	auto_opens = yes
@@ -278,8 +369,8 @@ ship_event = {
 	id = obsessions_mod.5
 	title = "obsessions_mod.5.name"
 	desc = "obsessions_mod.5.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_ship_travel
+	show_sound = event_scanner_03
 	location = event_target:obsessions_mod_rocko
 	is_triggered_only = yes
 	auto_opens = yes
@@ -310,8 +401,8 @@ country_event = {
 	id = obsessions_mod.6
 	title = "obsessions_mod.6.name"
 	desc = "obsessions_mod.6.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_asteroid_approaching_planet
+	show_sound = event_scanner_03
 	location = event_target:obsessions_mod_rocko
 	is_triggered_only = yes
 	auto_opens = yes
@@ -326,7 +417,7 @@ country_event = {
 		enable_special_project = {
 			name = "OBSESSIONS_MOD_ASTEROID_RETRIEVAL_PROJECT"
 			location = event_target:obsessions_mod_rocko
-			owner = root.owner			#TODO(chmeyers): This correct?
+			owner = root.owner
 		}
 	}
 	option = {
@@ -368,8 +459,8 @@ country_event = {
 	id = obsessions_mod.7
 	title = "obsessions_mod.7.name"
 	desc = "obsessions_mod.7.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_asteroid_approaching_planet
+	show_sound = event_celebration
 	location = this.owner.capital_scope
 	is_triggered_only = yes
 	auto_opens = yes
@@ -547,8 +638,8 @@ country_event = {
 	id = obsessions_mod.27
 	title = "obsessions_mod.27.name"
 	desc = "obsessions_mod.27.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_asteroid_approaching_planet
+	show_sound = event_celebration
 	location = event_target:obsessions_mod_rocko_moon
 	is_triggered_only = yes
 	auto_opens = yes
@@ -565,8 +656,8 @@ ship_event = {
 	id = obsessions_mod.8
 	title = "obsessions_mod.8.name"
 	desc = "obsessions_mod.8.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_asteroid_field
+	show_sound = event_construction_02
 	location = event_target:obsessions_mod_rocko
 	is_triggered_only = yes
 	auto_opens = yes
@@ -595,8 +686,8 @@ country_event = {
 	id = obsessions_mod.9
 	title = "obsessions_mod.9.name"
 	desc = "obsessions_mod.9.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_asteroid_field
+	show_sound = event_construction_02
 	location = event_target:obsessions_mod_rocko
 	is_triggered_only = yes
 	auto_opens = yes
@@ -627,8 +718,8 @@ ship_event = {
 	id = obsessions_mod.10
 	title = "obsessions_mod.10.name"
 	desc = "obsessions_mod.10.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_airlock_02
 	location = event_target:obsessions_mod_rocko
 	is_triggered_only = yes
 	auto_opens = yes
@@ -688,8 +779,8 @@ ship_event = {
 # obsessions_mod.11 is a hidden event placed up before 7
 #
 
-@rocko_upgrade_tick = 3 # TODO(chmeyers): make this 360?
-@rocko_upgrade_denied_tick = 5 # TODO(chmeyers): make this to five years?
+@rocko_upgrade_tick = 360
+@rocko_upgrade_denied_tick =  1800
 
 # Rocko ship upgrades
 country_event = {
@@ -912,8 +1003,8 @@ country_event = {
 	id = obsessions_mod.13
 	title = "obsessions_mod.13.name"
 	desc = "obsessions_mod.13.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_construction_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -941,8 +1032,8 @@ country_event = {
 	id = obsessions_mod.14
 	title = "obsessions_mod.14.name"
 	desc = "obsessions_mod.14.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_construction_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -970,8 +1061,8 @@ country_event = {
 	id = obsessions_mod.15
 	title = "obsessions_mod.15.name"
 	desc = "obsessions_mod.15.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_construction_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -999,8 +1090,8 @@ country_event = {
 	id = obsessions_mod.16
 	title = "obsessions_mod.16.name"
 	desc = "obsessions_mod.16.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_construction_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1028,8 +1119,8 @@ country_event = {
 	id = obsessions_mod.17
 	title = "obsessions_mod.17.name"
 	desc = "obsessions_mod.17.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_construction_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1057,8 +1148,8 @@ country_event = {
 	id = obsessions_mod.18
 	title = "obsessions_mod.18.name"
 	desc = "obsessions_mod.18.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_construction_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1086,8 +1177,8 @@ country_event = {
 	id = obsessions_mod.19
 	title = "obsessions_mod.19.name"
 	desc = "obsessions_mod.19.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_celebration
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1115,8 +1206,8 @@ ship_event = {
 	id = obsessions_mod.20
 	title = "obsessions_mod.20.name"
 	desc = "obsessions_mod.20.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_airlock_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1161,8 +1252,8 @@ ship_event = {
 	id = obsessions_mod.21
 	title = "obsessions_mod.21.name"
 	desc = "obsessions_mod.21.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_airlock_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1207,8 +1298,8 @@ ship_event = {
 	id = obsessions_mod.22
 	title = "obsessions_mod.22.name"
 	desc = "obsessions_mod.22.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_airlock_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1253,8 +1344,8 @@ ship_event = {
 	id = obsessions_mod.23
 	title = "obsessions_mod.23.name"
 	desc = "obsessions_mod.23.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_airlock_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1299,8 +1390,8 @@ ship_event = {
 	id = obsessions_mod.24
 	title = "obsessions_mod.24.name"
 	desc = "obsessions_mod.24.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_airlock_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1345,8 +1436,8 @@ ship_event = {
 	id = obsessions_mod.25
 	title = "obsessions_mod.25.name"
 	desc = "obsessions_mod.25.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_airlock_02
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1391,8 +1482,8 @@ ship_event = {
 	id = obsessions_mod.26
 	title = "obsessions_mod.26.name"
 	desc = "obsessions_mod.26.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_mining_station
+	show_sound = event_celebration
 	location = event_target:obsessions_mod_rocko_ship
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1433,8 +1524,8 @@ ship_event = {
 	id = obsessions_mod.28
 	title = "obsessions_mod.28.name"
 	desc = "obsessions_mod.28.desc"
-	picture = GFX_evt_wormhole	#TODO(chmeyers): Pick a new picture
-	show_sound = event_space_cloud	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_asteroid_field
+	show_sound = event_construction_02
 	location = event_target:obsessions_mod_rocko
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1503,8 +1594,8 @@ country_event = {
 	id = obsessions_mod.30
 	title = "obsessions_mod.30.name"
 	desc = "obsessions_mod.30.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_underground_city
+	show_sound = event_scanner
 	location = event_target:obsessions_mod_rocko
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1533,8 +1624,8 @@ ship_event = {
 	id = obsessions_mod.31
 	title = "obsessions_mod.31.name"
 	desc = "obsessions_mod.31.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_underground_city
+	show_sound = event_celebration
 	location = event_target:obsessions_mod_rocko
 	is_triggered_only = yes
 	auto_opens = yes
@@ -1648,19 +1739,19 @@ country_event = {
 	id = obsessions_mod.33
 	title = "obsessions_mod.33.name"
 	desc = "obsessions_mod.33.desc"
-	picture = GFX_evt_news_room	#TODO(chmeyers): Pick a new picture
-	show_sound = event_scanner	#TODO(chmeyers): Pick a new sound
+	picture = GFX_evt_underground_city
+	show_sound = event_planetary_riot_02
 	location = event_target:obsessions_mod_rocko
 	is_triggered_only = yes
 	auto_opens = yes
 	
-	# Make her a home. Issues a special project.
 	option = {
 		name = obsessions_mod.33.a
 		event_target:obsessions_mod_rocko_hab = {
 			random_owned_pop = {
 				limit = {
 					is_lithoid = no
+					is_organic_species = yes
 				}
 				modify_species = {
 					species = this
@@ -1671,10 +1762,21 @@ country_event = {
 			random_owned_pop = {
 				limit = {
 					is_lithoid = yes
+					is_organic_species = yes
 				}
 				modify_species = {
 					species = this
 					add_trait = trait_delicious
+					change_scoped_species = yes
+				}
+			}
+			random_owned_pop = {
+				limit = {
+					is_organic_species = no
+				}
+				modify_species = {
+					species = this
+					add_trait = trait_robot_high_maintenance
 					change_scoped_species = yes
 				}
 			}
@@ -1729,3 +1831,5 @@ country_event = {
 		country_event = { id = obsessions_mod.32 days = 1800 } # *THIS* looping every five years
 	}
 }
+
+# obsessions_mod.35 is used above.
