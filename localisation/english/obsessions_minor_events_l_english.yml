@@ -49,3 +49,20 @@ obsessions_mod_minor.6.a:0 "Amazing."
 obsessions_mod_minor.6.b:0 "Unfortunate."
 
 # Glitch in our sensors
+obsessions_mod_minor.7.name:0 "Nothing to See"
+obsessions_mod_minor.7.desc:0 "After tracking the asteroid through a portion of it's orbit our Science Officer has determined that the asteroid is normal and it was the computer analysis of the sensor logs which was in error."
+obsessions_mod_minor.7.a:0 "Investigate the error."
+obsessions_mod_minor.7.b:0 "Someone is to blame."
+obsessions_mod_minor.7.c:0 "Correct the bug."
+
+obsessions_mod_minor.8.name:0 "Nothing to See"
+obsessions_mod_minor.8.desc:0 "Our Science Officer has learned alot investigating the problem."
+obsessions_mod_minor.8.desc_bad:0 "It seems the source of the problem was the science officer themself. They have been disciplined."
+obsessions_mod_minor.8.a:0 "Excellent."
+obsessions_mod_minor.8.b:0 "Foolish."
+
+obsessions_mod_minor.9.name:0 "Nothing to See"
+obsessions_mod_minor.9.desc:0 "It seems the source of the problem was the science officer themself. The errors in their training have been rectified."
+obsessions_mod_minor.9.desc_bad:0 "It seems the source of the problem was the science officer themself. They have not taken the criticism well."
+obsessions_mod_minor.9.a:0 "Excellent."
+obsessions_mod_minor.9.b:0 "Foolish."

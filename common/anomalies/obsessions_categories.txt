@@ -83,6 +83,48 @@ obsessions_mod_category_asteroid_1 = {
 			}
 			anomaly_event = obsessions_mod_minor.1
 		}
-		1 = { anomaly_event = obsessions_mod_minor.4 }
+		1 = {
+			modifier = {
+				add = 3
+				from.leader = {
+					species = {
+						has_trait = trait_agrarian
+						has_trait = trait_natural_sociologists
+						has_trait = trait_robot_harvesters
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.4
+		}
+		0 = {
+			modifier = {
+				add = 1
+				from.owner = {
+					NOT = { has_ethic = ethic_gestalt_consciousness }
+				}
+			}
+			anomaly_event = obsessions_mod_minor.7
+		}
 	}
 }
+
+# Planet Classes
+# pc_ice_asteroid
+# pc_gas_giant
+# pc_molten
+# pc_barren
+# pc_cold_barren
+# pc_frozen
+# pc_toxic
+# Habitables
+# pc_alpine
+# pc_arctic
+# pc_tundra
+# pc_ocean
+# pc_continental
+# pc_temperate
+# pc_savannah
+# pc_arid
+# pc_desert
+# pc_gaia
+# pc_nuked

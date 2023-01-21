@@ -143,7 +143,7 @@ ship_event = {
 	}
 	option = {
 		name = obsessions_mod_minor.4.b
-		ship_event = { id = obsessions_mod_minor.5 from = FROM }
+		ship_event = { id = obsessions_mod_minor.6 from = FROM }
 	}
 	option = {
 		trigger = {
@@ -259,5 +259,141 @@ ship_event = {
 		option = {
 			name = obsessions_mod_minor.6.b
 		}
+	}
+}
+
+# Glitchy Sensors
+ship_event = {
+	id = obsessions_mod_minor.7
+	title = "obsessions_mod_minor.7.name"
+	desc = "obsessions_mod_minor.7.desc"
+	picture = GFX_evt_asteroid_field
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	auto_opens = yes
+
+	option = {
+		name = obsessions_mod_minor.7.a
+		ship_event = { id = obsessions_mod_minor.8 from = FROM }
+	}
+	option = {
+		name = obsessions_mod_minor.7.b
+		ship_event = { id = obsessions_mod_minor.8 from = FROM }
+	}
+	option = {
+		trigger = {
+			leader = {
+				AND = {
+					OR = {
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_expertise_computing
+						has_trait = leader_trait_custom_AI_assistant
+						has_trait = leader_trait_sapient_AI_assistant
+						has_trait = leader_trait_scientist_cyborg
+						has_trait = leader_trait_scientist_synthetic
+						has_trait = leader_trait_scientist_adaptable
+						species = {
+							has_trait = trait_natural_engineers
+							has_trait = trait_machine_unit
+							has_trait = trait_hive_mind
+							has_trait = trait_mechanical
+						}
+					}
+				}
+			}
+		}
+		name = obsessions_mod_minor.7.c
+		leader = {
+			add_experience = 200
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.8
+	title = "obsessions_mod_minor.8.name"
+	picture = GFX_evt_asteroid_field
+	location = FROM
+	is_triggered_only = yes
+	auto_opens = yes
+
+	if = {
+		limit = {
+			owner = {
+				NOR = {
+					has_ethic = ethic_fanatic_authoritarian
+					has_ethic = ethic_authoritarian
+					has_ethic = ethic_fanatic_spiritualist
+					has_ethic = ethic_spiritualist
+				}
+			}
+		}
+		desc = "obsessions_mod_minor.8.desc"
+		option = {
+			name = obsessions_mod_minor.8.a
+			if = {
+				limit = {
+					leader = { NOT = { has_trait = leader_trait_custom_AI_assistant } }
+				}
+				leader = {
+					add_trait = leader_trait_custom_AI_assistant
+				}
+			}
+			leader = {
+				add_experience = 200
+			}
+		}
+	}
+	else = {
+		desc = "obsessions_mod_minor.8.desc_bad"
+		option = {
+			name = obsessions_mod_minor.8.b
+		}
+		leader = { add_trait = leader_trait_stubborn }
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.9
+	title = "obsessions_mod_minor.9.name"
+	picture = GFX_evt_asteroid_field
+	location = FROM
+	is_triggered_only = yes
+	auto_opens = yes
+
+	if = {
+		limit = {
+			owner = {
+				OR = {
+					has_ethic = ethic_fanatic_authoritarian
+					has_ethic = ethic_authoritarian
+					has_ethic = ethic_fanatic_spiritualist
+					has_ethic = ethic_spiritualist
+				}
+			}
+		}
+		desc = "obsessions_mod_minor.9.desc"
+		option = {
+			name = obsessions_mod_minor.9.a
+			if = {
+				limit = {
+					leader = { NOT = { has_trait = leader_trait_custom_AI_assistant } }
+				}
+				leader = {
+					add_trait = leader_trait_custom_AI_assistant
+				}
+			}
+			leader = {
+				add_experience = 200
+			}
+		}
+	}
+	else = {
+		desc = "obsessions_mod_minor.9.desc_bad"
+		option = {
+			name = obsessions_mod_minor.9.b
+		}
+		leader = { add_trait = leader_trait_stubborn }
 	}
 }
