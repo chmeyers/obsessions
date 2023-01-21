@@ -21,8 +21,8 @@ obsessions_mod_category_asteroid_rocko = {
 	picture = GFX_evt_asteroid_field
 	level = 1 # Rocko is just a rock, a level 1 anomaly
 
-	max_once = no # default NO, if true will spawn category only once per empire
-	max_once_global = no # default NO, if true will spawn category only once per game
+	max_once = yes # only one Rocko per empire
+	max_once_global = yes # only one Rocko per game
 
 	on_spawn = {
 		clear_deposits = yes 
@@ -40,46 +40,48 @@ obsessions_mod_category_asteroid_rocko = {
 	on_success = obsessions_mod.2
 }
 
-# obsessions_mod_category_asteroid_rocko = {
+obsessions_mod_category_asteroid_1 = {
 
-# 	# All obsessions anomalies are human only.
-# 	# This is the default setting, but it's listed here so that I comment on it.
-# 	should_ai_use = no
+	# All obsessions anomalies are human only.
+	# This is the default setting, but it's listed here so that I comment on it.
+	should_ai_use = no
 	
-# 	# *_desc is the default.
-# 	desc = "obessions_mod_category_asteroid_1_desc"
+	# *_desc is the default.
+	desc = "obessions_mod_category_asteroid_1_desc"
 
-# 	picture = GFX_evt_asteroid_field
-# 	level = 1 # Anomaly level, 1 to 10
+	picture = GFX_evt_asteroid_field
+	level = 1 # Anomaly level, 1 to 10
 
-# 	max_once = no # default NO, if true will spawn category only once per empire
-# 	max_once_global = no # default NO, if true will spawn category only once per game
+	max_once = no # default NO, if true will spawn category only once per empire
+	max_once_global = no # default NO, if true will spawn category only once per game
 
-# 	on_spawn = {
-# 		clear_deposits = yes 
-# 	}
+	on_spawn = {
+		clear_deposits = yes 
+	}
 
-# 	# These should only spawn on asteroids to low level scientists.
-# 	spawn_chance = {
-# 		modifier = {
-# 			add = @obsessions_mod_spawn_modifier
-# 			is_planet_class = pc_asteroid
-# 			from.leader = { has_skill <= 2 }
-# 		}
-# 	}
+	# These should only spawn on asteroids to low level scientists.
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_asteroid
+			from.leader = { has_skill <= 2 }
+		}
+	}
 
-# 	on_success = {
-# 		1 = {
-# 			modifier = {
-# 				add = 3
-# 				owner = {
-# 					OR = {
-# 						has_ethic = ethic_fanatic_spiritualist
-# 						has_ethic = ethic_spiritualist
-# 					}
-# 				}
-# 			}
-# 			anomaly_event = obsessions_mod.2
-# 		}
-# 	}
-# }
+	on_success = {
+		1 = {
+			modifier = {
+				add = 3
+				from.leader = {
+					species = {
+						has_trait = trait_industrious
+						has_trait = trait_natural_engineers
+						has_trait = trait_robot_power_drills
+						has_trait = trait_robot_efficient_processors
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.1
+		}
+	}
+}

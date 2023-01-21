@@ -116,7 +116,7 @@ ship_event = {
 						OR = {
 							has_trait = leader_trait_expertise_paranoid
 							has_trait = leader_trait_expertise_field_manipulation
-							has_trait = leader_trait_expertise_field_particles
+							has_trait = leader_trait_expertise_particles
 							has_trait = leader_trait_expertise_biology
 							has_trait = leader_trait_curator
 							has_trait = leader_trait_towel
@@ -1823,6 +1823,16 @@ country_event = {
 					modify_species = {
 						species = this
 						add_trait = trait_delicious
+						change_scoped_species = yes
+					}
+				}
+				random_owned_pop = {
+					limit = {
+						is_organic_species = no
+					}
+					modify_species = {
+						species = this
+						add_trait = trait_robot_high_maintenance
 						change_scoped_species = yes
 					}
 				}

@@ -1,0 +1,29 @@
+﻿l_english:
+
+
+ ####################################
+ # Anomaly Categories
+ ####################################
+ # ROOT = PLANET SCOPE
+ # FROM = SHIP SCOPE
+
+obsessions_mod_category_asteroid_1:0 "Accelerating Asteroid."
+obsessions_mod_category_asteroid_1_desc:0 "The asteroid [Root.GetName] has caught the attention of our Science Officer due to minor changes in it's orbital velocity that suggest it is actively navigating the asteroid field."
+
+obsessions_mod_minor.1.name:0 "Rocky outgassing"
+obsessions_mod_minor.1.desc:0 "Investigation has shown that the asteroid's acceleration is due to natural outgassing from some unstable craters on the rock's surface."
+obsessions_mod_minor.1.a:0 "Drill into one of the craters."
+obsessions_mod_minor.1.b:0 "Perhaps our own ships could accelerate in this fashion."
+obsessions_mod_minor.1.c:0 "Analyze the gases."
+
+obsessions_mod_minor.2.name:0 "Rocky outgassing"
+obsessions_mod_minor.2.desc:0 "Careful drilling allowed us to tap into a contained reservoir of gases."
+obsessions_mod_minor.2.desc_bad:0 "The crew bungled the drilling, causing an explosive pressure release from an underground reservoir of gas and narrowly escaping uninjured. Any gases that remained on the asteroid were lost."
+obsessions_mod_minor.2.a:0 "Wonderful."
+obsessions_mod_minor.2.b:0 "Disappointing."
+
+obsessions_mod_minor.3.name:0 "Rocky outgassing"
+obsessions_mod_minor.3.desc:0 "Careful investigation of the outgassing has given us a new insight into propulsion."
+obsessions_mod_minor.3.desc_bad:0 "The acceleration given by the gases does not appear to be an improvement on our current technology."
+obsessions_mod_minor.3.a:0 "Wonderful."
+obsessions_mod_minor.3.b:0 "Disappointing."

@@ -1,0 +1,126 @@
+# Small events that don't involve long chains.
+namespace = obsessions_mod_minor
+
+ship_event = {
+	id = obsessions_mod_minor.1
+	title = "obsessions_mod_minor.1.name"
+	desc = "obsessions_mod_minor.1.desc"
+	picture = GFX_evt_asteroid_field
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	auto_opens = yes
+
+	option = {
+		name = obsessions_mod_minor.1.a
+		ship_event = { id = obsessions_mod_minor.2 from = FROM }
+	}
+	option = {
+		name = obsessions_mod_minor.1.b
+		ship_event = { id = obsessions_mod_minor.3 from = FROM }
+	}
+	option = {
+		trigger = {
+			OR = {
+				owner = {
+					OR = {
+						has_ethic = ethic_fanatic_materialist
+						has_ethic = ethic_materialist
+					}
+				}
+				leader = {
+					OR = {
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_expertise_particles
+						has_trait = leader_trait_expertise_materials
+						has_trait = leader_trait_expertise_propulsion
+					}
+				}
+			}
+		}
+		name = obsessions_mod_minor.1.c
+		from = { add_deposit = d_exotic_gases_1 }
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.2
+	title = "obsessions_mod_minor.2.name"
+	picture = GFX_evt_asteroid_field
+	location = FROM
+	is_triggered_only = yes
+	auto_opens = yes
+
+	if = {
+		limit = {
+			OR = {
+				owner = {
+					OR = {
+						has_ethic = ethic_fanatic_materialist
+						has_ethic = ethic_materialist
+					}
+				}
+				leader = {
+					OR = {
+						has_trait = leader_trait_meticulous
+						has_trait = leader_trait_mindful
+						has_trait = leader_trait_spark_of_genius
+						has_trait = leader_trait_maniacal
+						has_trait = leader_trait_scientist_erudite
+						has_trait = leader_trait_expertise_industry
+						has_trait = leader_trait_scientist_cyborg
+						species = {
+							has_trait = trait_industrious
+							has_trait = trait_natural_engineers
+							has_trait = trait_robot_power_drills
+							has_trait = trait_robot_efficient_processors
+						}
+					}
+				}
+			}
+		}
+		desc = "obsessions_mod_minor.2.desc"
+		option = {
+			name = obsessions_mod_minor.2.a
+			from = { add_deposit = d_exotic_gases_1 }
+		}
+	}
+	else = {
+		desc = "obsessions_mod_minor.2.desc_bad"
+		option = {
+			name = obsessions_mod_minor.2.b
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.3
+	title = "obsessions_mod_minor.3.name"
+	picture = GFX_evt_asteroid_field
+	location = FROM
+	is_triggered_only = yes
+	auto_opens = yes
+
+	if = {
+		limit = {
+			owner = {
+				NOT = { has_technology = tech_thrusters_2 }
+			}
+		}
+		desc = "obsessions_mod_minor.3.desc"
+		option = {
+			name = obsessions_mod_minor.3.a
+			add_research_option = tech_thrusters_2
+			add_tech_progress = {
+				tech = tech_thrusters_2
+				progress = 0.1
+			}
+		}
+	}
+	else = {
+		desc = "obsessions_mod_minor.3.desc_bad"
+		option = {
+			name = obsessions_mod_minor.3.b
+		}
+	}
+}
