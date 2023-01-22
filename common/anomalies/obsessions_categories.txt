@@ -108,6 +108,74 @@ obsessions_mod_category_asteroid_1 = {
 	}
 }
 
+obsessions_mod_category_ice_asteroid_1 = {
+
+	# All obsessions anomalies are human only.
+	# This is the default setting, but it's listed here so that I comment on it.
+	should_ai_use = no
+	
+	# *_desc is the default.
+	desc = "obessions_mod_category_ice_asteroid_1_desc"
+
+	picture = GFX_evt_ice_asteroids
+	level = 2
+
+	max_once = no # default NO, if true will spawn category only once per empire
+	max_once_global = no # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	# These should only spawn on asteroids to low level scientists.
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_ice_asteroid
+			from.leader = { has_skill <= 4 }
+		}
+	}
+
+	on_success = {
+		1 = {
+			modifier = {
+				add = 3
+				from.leader = {
+					species = {
+						has_trait = trait_industrious
+						has_trait = trait_natural_engineers
+						has_trait = trait_robot_power_drills
+						has_trait = trait_robot_efficient_processors
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.10
+		}
+		1 = {
+			modifier = {
+				add = 3
+				from.leader = {
+					species = {
+						has_trait = trait_agrarian
+						has_trait = trait_natural_sociologists
+						has_trait = trait_robot_harvesters
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.13
+		}
+		0 = {
+			modifier = {
+				add = 1
+				from.owner = {
+					NOT = { has_ethic = ethic_gestalt_consciousness }
+				}
+			}
+			anomaly_event = obsessions_mod_minor.15
+		}
+	}
+}
+
 # Planet Classes
 # pc_ice_asteroid
 # pc_gas_giant
