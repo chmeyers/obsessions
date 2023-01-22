@@ -1,0 +1,57 @@
+give_next_shield_tech_option_effect = {
+	if = {
+		limit = { NOT = { has_technology = tech_shields_2 }  }
+		add_research_option = tech_shields_2
+		add_tech_progress = { tech = tech_shields_2 progress = 0.5 }
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_shields_3 } } 
+		add_research_option = tech_shields_3
+		add_tech_progress = { tech = tech_shields_3 progress = 0.5 }
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_shields_4 } } 
+		add_research_option = tech_shields_4
+		add_tech_progress = { tech = tech_shields_4 progress = 0.5 }
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_shields_5 } } 
+		add_research_option = tech_shields_5
+		add_tech_progress = { tech = tech_shields_5 progress = 0.5 }
+	}
+	else = {
+		add_research_option = tech_repeatable_improved_shield_output
+		add_tech_progress = { tech = tech_repeatable_improved_shield_output progress = 0.75 }
+	}
+}
+
+give_next_gene_tech_effect = {
+	if = {
+		limit = { NOT = { has_technology = tech_genome_mapping } } 
+		add_research_option = tech_genome_mapping
+		add_tech_progress = { tech = tech_genome_mapping progress = 0.5 }
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_vitality_boosters } } 
+		add_research_option = tech_vitality_boosters
+		add_tech_progress = { tech = tech_vitality_boosters progress = 0.5 }
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_epigenetic_triggers } } 
+		add_research_option = tech_epigenetic_triggers
+		add_tech_progress = { tech = tech_epigenetic_triggers progress = 0.5 }
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_cloning } } 
+		add_research_option = tech_cloning
+		add_tech_progress = { tech = tech_cloning progress = 0.5 }
+	}
+	else = {
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier3researchreward
+			min = @tier3researchmin
+			max = @tier3researchmax
+		}
+	}
+}

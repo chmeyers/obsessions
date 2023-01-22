@@ -3,3 +3,122 @@ is_rocko_supreme_country = {
 		is_ship_size = obsessions_rocko_supreme
 	}
 }
+
+# Scope country
+
+
+# Scope leader
+is_research_genius = {
+	OR = {
+		has_trait = leader_trait_spark_of_genius
+		has_trait = leader_trait_maniacal
+		has_trait = leader_trait_curator
+		has_trait = leader_trait_scientist_erudite
+		has_trait = leader_trait_custom_AI_assistant
+		has_trait = leader_trait_sapient_AI_assistant
+		has_trait = leader_trait_scientist_cyborg
+		has_trait = leader_trait_scientist_psionic
+		has_trait = leader_trait_scientist_chosen
+		has_trait = leader_trait_scientist_composer_chosen
+		has_trait = leader_trait_scientist_instrument_chosen
+		has_trait = leader_trait_scientist_whisperers_chosen
+	}
+}
+
+is_survey_genius = {
+	OR = {
+		has_trait = leader_trait_curator
+		has_trait = leader_trait_scientist_erudite
+		has_trait = leader_trait_meticulous
+		has_trait = leader_trait_mindful
+		has_trait = leader_trait_carefree
+		has_trait = leader_trait_archaeologist_ancrel
+		has_trait = leader_trait_archaeologist
+		has_trait = leader_trait_custom_AI_assistant
+		has_trait = leader_trait_sapient_AI_assistant
+		has_trait = leader_trait_percussive_maintainer
+		has_trait = leader_trait_towel
+		has_trait = leader_trait_inspired_surveyor
+	}
+}
+
+is_specialist_engineer = {
+	OR = {
+		has_trait = leader_trait_expertise_industry
+		has_trait = leader_trait_expertise_materials
+		has_trait = leader_trait_expertise_propulsion
+		has_trait = leader_trait_expertise_voidcraft
+	}
+}
+
+is_specialist_society = {
+	OR = {
+		has_trait = leader_trait_expertise_biology
+		has_trait = leader_trait_expertise_military_theory
+		has_trait = leader_trait_expertise_new_worlds
+		has_trait = leader_trait_expertise_psionics
+		has_trait = leader_trait_expertise_statecraft
+	}
+}
+
+is_specialist_physics = {
+	OR = {
+		has_trait = leader_trait_expertise_computing
+		has_trait = leader_trait_expertise_field_manipulation
+		has_trait = leader_trait_expertise_particles
+	}
+}
+
+is_mineral_expert = {
+	OR = {
+		has_trait = leader_trait_expertise_industry
+		has_trait = leader_trait_expertise_materials
+		species = {
+			OR = {
+				is_lithoid = yes
+				has_trait = trait_lithoid
+				has_trait = trait_industrious
+				has_trait = trait_natural_engineers
+				has_trait = trait_robot_power_drills
+				has_trait = trait_robot_efficient_processors
+				has_trait = trait_cyborg_power_drills
+			}
+		}
+	}
+}
+
+is_energy_expert = {
+	OR = {
+		has_trait = leader_trait_expertise_field_manipulation
+		has_trait = leader_trait_expertise_particles
+		species = {
+			OR = {
+				has_trait = trait_machine_unit
+				has_trait = trait_mechanical
+				has_trait = trait_ingenious
+				has_trait = trait_natural_physicists
+				has_trait = trait_robot_superconductive
+				has_trait = trait_cyborg_superconductive
+			}
+		}
+	}
+}
+
+is_food_expert = {
+	OR = {
+		has_trait = leader_trait_expertise_biology
+		has_trait = leader_trait_expertise_new_worlds
+		species = {
+			OR = {
+				has_trait = trait_hive_mind
+				has_trait = trait_plantoid_budding
+				has_trait = trait_plantoid_phototrophic
+				has_trait = trait_plantoid_radiotrophic
+				has_trait = trait_agrarian
+				has_trait = trait_natural_sociologists
+				has_trait = trait_robot_harvesters
+				has_trait = trait_cyborg_harvesters
+			}
+		}
+	}
+}

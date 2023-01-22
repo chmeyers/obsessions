@@ -68,7 +68,7 @@ obsessions_mod_minor.9.a:0 "Excellent."
 obsessions_mod_minor.9.b:0 "Foolish."
 
 obsessions_mod_category_ice_asteroid_1:0 "Temperature Anomaly"
-obsessions_mod_category_ice_asteroid_1_desc:0 "Our infrared sensors indicate that the ice asteroid [Root.GetName] has a temperature inconsistent with it's orbital distance from the star."
+obsessions_mod_category_ice_asteroid_1_desc:0 "Our infrared sensors indicate that this ice asteroid has a temperature inconsistent with it's orbital distance from the star."
 
 # Asteroid too hot
 obsessions_mod_minor.10.name:0 "Asteroid Too Hot"
@@ -106,3 +106,76 @@ obsessions_mod_minor.15.name:0 "Asteroid Just Right"
 obsessions_mod_minor.15.desc:0 "Observations of the ice asteroid show that it is actually the correct temperature for it's orbit, but a large metallic deposit on it's surface caused the sensors to read the temperature incorrectly. The deposit appears to be made up of high quality alloys. Our Science Officer would like to extract the deposit for study."
 obsessions_mod_minor.15.a:0 "Leave the alloys for proper mining."
 obsessions_mod_minor.15.b:0 "Extract and study the alloys."
+
+# Gas Giant Field Manipulation event
+
+obsessions_mod_category_gas_giant_1:0 "Unusual Field Fluctuations"
+obsessions_mod_category_gas_giant_1_desc:0 "Readings indicate that this Gas Giant has unusual fluctuations in it's magnetic field. Recommend dispatching an expert in Field Manipulation to investigate."
+
+# Sent an expert
+obsessions_mod_minor.16.name:0 "Magnetic Bottle"
+obsessions_mod_minor.16.desc:0 "[leader.GetName] was able to use their expertise in field manipulation to determine that the gas giant's atmosphere generates an unusual magnetic bottle. They have generated insights into advanced shield technology."
+obsessions_mod_minor.16.a:0 "Excellent."
+
+# Sent a near-expert
+obsessions_mod_minor.17.name:0 "Magnetic Bottle"
+obsessions_mod_minor.17.desc:0 "[leader.GetName] was able to use their general physics expertise to determine that the gas giant's atmosphere generates an unusual magnetic bottle. They learned much about field manipulation in the process."
+obsessions_mod_minor.17.a:0 "Excellent."
+
+# Sent a rando
+obsessions_mod_minor.18.name:0 "Magnetic Bottle"
+obsessions_mod_minor.18.desc:0 "[leader.GetName] had no idea what they were doing investigating this phenomenon. Utilizing the ship's general science database they determined that the unusual fields were some sort of magnetic bottle. The planet may be useful for further physics research."
+obsessions_mod_minor.18.a:0 "Alright."
+
+# Sent a Social Scientist
+obsessions_mod_minor.19.name:0 "Magnetic Something?"
+obsessions_mod_minor.19.desc:0 "For some reason you sent a social scientist to investigate a physics phenomenon. It went... poorly. Whatever the unusual magnetic fields were, they are gone now. [leader.GetName] is unable to say exactly what happened."
+obsessions_mod_minor.19.a:0 "Oops."
+
+# Gas Giant Biology event
+obsessions_mod_category_gas_giant_2:0 "Something moving down there"
+obsessions_mod_category_gas_giant_2_desc:0 "Scans of this Gas Giant show that large objects are moving below the cloud surface, likely some form of life. Recommend dispatching an expert in Biology to investigate."
+
+# Sent an expert
+obsessions_mod_minor.20.name:0 "Cloud Life"
+obsessions_mod_minor.20.desc:0 "[leader.GetName] was able to use their expertise in biology to determine that the creatures living inside the gas giant have a unique genetic structure. The insights seem to apply to our own genetics."
+obsessions_mod_minor.20.a:0 "Excellent."
+
+# Sent a near-expert
+obsessions_mod_minor.21.name:0 "Cloud Life"
+obsessions_mod_minor.21.desc:0 "[leader.GetName] was able to use their general social science expertise to determine that the gas giant's atmosphere is a unique ecosystem. They learned much about biology in the process."
+obsessions_mod_minor.21.a:0 "Excellent."
+
+# Sent a rando
+obsessions_mod_minor.22.name:0 "Cloud Life"
+obsessions_mod_minor.22.desc:0 "[leader.GetName] had no idea what they were doing investigating this phenomenon. Utilizing the ship's general science database they determined that the unusual objects were some sort of animal. The planet may be useful for further physics research."
+obsessions_mod_minor.22.a:0 "Alright."
+
+# Sent an Engineer
+obsessions_mod_minor.23.name:0 "It's gone now"
+obsessions_mod_minor.23.desc:0 "For some reason you sent a engineer to investigate a biological phenomenon. It went... poorly. Whatever the moving objects were, they are gone now. [leader.GetName] thinks that using lasers might have been a bad idea."
+obsessions_mod_minor.23.a:0 "Oops."
+
+# Gas Giant Ship event
+obsessions_mod_category_gas_giant_3:0 "Impossible Orbit"
+obsessions_mod_category_gas_giant_3_desc:0 "Scans of this Gas Giant have detected derelict ship somehow remaining in orbit just above the cloud layer. Recommend dispatching an expert in Voidcraft to investigate."
+
+# Sent an expert
+obsessions_mod_minor.24.name:0 "Cloud Rider"
+obsessions_mod_minor.24.desc:0 "[leader.GetName] was able to use their expertise in voidcraft to determine that the ship's unusual hull allows it to skim over the planet's atmosphere . The insights seem to apply to our hull designs."
+obsessions_mod_minor.24.a:0 "Excellent."
+
+# Sent a near-expert
+obsessions_mod_minor.25.name:0 "Cloud Rider"
+obsessions_mod_minor.25.desc:0 "[leader.GetName] was able to use their general engineering expertise to determine that the ship's unique hull allows it to skim over the gas giant's atmosphere. They learned much about voidcraft in the process."
+obsessions_mod_minor.25.a:0 "Excellent."
+
+# Sent a rando
+obsessions_mod_minor.26.name:0 "Some sort of ship"
+obsessions_mod_minor.26.desc:0 "[leader.GetName] had no idea what they were doing investigating this phenomenon. Utilizing the ship's general science database they discovered that the unusual ship was some sort of ship. Before their interference caused it to slip below the clouds, they determined that the planet's makeup made it's orbit possible. The planet may be useful for further engineering research."
+obsessions_mod_minor.26.a:0 "Alright."
+
+# Sent a Physicist
+obsessions_mod_minor.27.name:0 "It's gone now"
+obsessions_mod_minor.27.desc:0 "For some reason you sent a physicist to investigate this unusual voidcraft. It went... poorly. [leader.GetName] is unable to say exactly what happened, but the unusual ship fell into gas giant's atmosphere shortly after they began their investigation."
+obsessions_mod_minor.27.a:0 "Oops."

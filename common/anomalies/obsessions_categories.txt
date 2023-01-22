@@ -47,7 +47,7 @@ obsessions_mod_category_asteroid_1 = {
 	should_ai_use = no
 	
 	# *_desc is the default.
-	desc = "obessions_mod_category_asteroid_1_desc"
+	desc = "obsessions_mod_category_asteroid_1_desc"
 
 	picture = GFX_evt_asteroid_field
 	level = 1 # Anomaly level, 1 to 10
@@ -72,7 +72,7 @@ obsessions_mod_category_asteroid_1 = {
 		1 = {
 			modifier = {
 				add = 3
-				from.leader = {
+				leader = {
 					species = {
 						has_trait = trait_industrious
 						has_trait = trait_natural_engineers
@@ -86,7 +86,7 @@ obsessions_mod_category_asteroid_1 = {
 		1 = {
 			modifier = {
 				add = 3
-				from.leader = {
+				leader = {
 					species = {
 						has_trait = trait_agrarian
 						has_trait = trait_natural_sociologists
@@ -115,7 +115,7 @@ obsessions_mod_category_ice_asteroid_1 = {
 	should_ai_use = no
 	
 	# *_desc is the default.
-	desc = "obessions_mod_category_ice_asteroid_1_desc"
+	desc = "obsessions_mod_category_ice_asteroid_1_desc"
 
 	picture = GFX_evt_ice_asteroids
 	level = 2
@@ -140,7 +140,7 @@ obsessions_mod_category_ice_asteroid_1 = {
 		1 = {
 			modifier = {
 				add = 3
-				from.leader = {
+				leader = {
 					species = {
 						has_trait = trait_industrious
 						has_trait = trait_natural_engineers
@@ -154,7 +154,7 @@ obsessions_mod_category_ice_asteroid_1 = {
 		1 = {
 			modifier = {
 				add = 3
-				from.leader = {
+				leader = {
 					species = {
 						has_trait = trait_agrarian
 						has_trait = trait_natural_sociologists
@@ -176,8 +176,312 @@ obsessions_mod_category_ice_asteroid_1 = {
 	}
 }
 
+obsessions_mod_category_gas_giant_1 = {
+
+	# All obsessions anomalies are human only.
+	# This is the default setting, but it's listed here so that I comment on it.
+	should_ai_use = no
+	
+	# *_desc is the default.
+	desc = "obsessions_mod_category_gas_giant_1_desc"
+
+	picture = GFX_evt_gas_giant
+	level = 3
+
+	max_once = no # default NO, if true will spawn category only once per empire
+	max_once_global = no # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	# These should only spawn to low level scientists.
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_gas_giant
+			from.leader = { has_skill <= 5 }
+		}
+	}
+
+	on_success = {
+		# You sent an expert on field manipulation
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					OR = {
+						has_trait = leader_trait_expertise_field_manipulation
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_scientist_erudite
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.16
+		}
+		# You sent a different physicist or genius
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_field_manipulation }
+					OR = {
+						has_trait = leader_trait_expertise_particles
+						has_trait = leader_trait_expertise_computing
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_scientist_erudite
+						has_trait = leader_trait_scientist_cyborg
+						has_trait = leader_trait_scientist_synthetic
+						has_trait = leader_trait_scientist_psionic
+						has_trait = leader_trait_scientist_chosen
+						has_trait = leader_trait_towel
+						has_trait = leader_trait_spark_of_genius
+						has_trait = leader_trait_maniacal
+						has_trait = leader_trait_sapient_AI_assistant
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.17
+		}
+		# You sent an engineer or non-specialized scientist
+		0 = {
+			modifier = {
+				add = 1
+				leader = {
+					NOT = {
+						has_trait = leader_trait_expertise_field_manipulation
+						has_trait = leader_trait_expertise_new_worlds
+						has_trait = leader_trait_expertise_statecraft
+						has_trait = leader_trait_expertise_biology
+						has_trait = leader_trait_expertise_military_theory
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.18
+		}
+		# You sent a social scientist?
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_field_manipulation }
+					OR = {
+						has_trait = leader_trait_expertise_new_worlds
+						has_trait = leader_trait_expertise_statecraft
+						has_trait = leader_trait_expertise_biology
+						has_trait = leader_trait_expertise_military_theory
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.19
+		}
+	}
+}
+
+obsessions_mod_category_gas_giant_2 = {
+
+	# All obsessions anomalies are human only.
+	# This is the default setting, but it's listed here so that I comment on it.
+	should_ai_use = no
+	
+	# *_desc is the default.
+	desc = "obsessions_mod_category_gas_giant_2_desc"
+
+	picture = GFX_evt_gas_giant
+	level = 3
+
+	max_once = no # default NO, if true will spawn category only once per empire
+	max_once_global = no # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	# These should only spawn to low level scientists.
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_gas_giant
+			from.leader = { has_skill <= 5 }
+		}
+	}
+
+	on_success = {
+		# You sent an expert on biology
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					OR = {
+						has_trait = leader_trait_expertise_biology
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_scientist_erudite
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.20
+		}
+		# You sent a different social scientist or genius
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_biology }
+					OR = {
+						has_trait = leader_trait_expertise_new_worlds
+						has_trait = leader_trait_expertise_statecraft
+						has_trait = leader_trait_expertise_military_theory
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_scientist_erudite
+						has_trait = leader_trait_scientist_cyborg
+						has_trait = leader_trait_scientist_synthetic
+						has_trait = leader_trait_scientist_psionic
+						has_trait = leader_trait_scientist_chosen
+						has_trait = leader_trait_towel
+						has_trait = leader_trait_spark_of_genius
+						has_trait = leader_trait_maniacal
+						has_trait = leader_trait_sapient_AI_assistant
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.21
+		}
+		# You sent an engineer or non-specialized scientist
+		0 = {
+			modifier = {
+				add = 1
+				leader = {
+					NOT = {
+						has_trait = leader_trait_expertise_new_worlds
+						has_trait = leader_trait_expertise_statecraft
+						has_trait = leader_trait_expertise_biology
+						has_trait = leader_trait_expertise_military_theory
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.22
+		}
+		# You sent an engineer?
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_biology }
+					OR = {
+						has_trait = leader_trait_expertise_materials
+						has_trait = leader_trait_expertise_propulsion
+						has_trait = leader_trait_expertise_voidcraft
+						has_trait = leader_trait_expertise_industry
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.23
+		}
+	}
+}
+
+obsessions_mod_category_gas_giant_3 = {
+
+	# All obsessions anomalies are human only.
+	# This is the default setting, but it's listed here so that I comment on it.
+	should_ai_use = no
+	
+	# *_desc is the default.
+	desc = "obsessions_mod_category_gas_giant_3_desc"
+
+	picture = GFX_evt_gas_giant
+	level = 3
+
+	max_once = no # default NO, if true will spawn category only once per empire
+	max_once_global = no # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	# These should only spawn to low level scientists.
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_gas_giant
+			from.leader = { has_skill <= 5 }
+		}
+	}
+
+	on_success = {
+		# You sent an expert on voidcraft
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					OR = {
+						has_trait = leader_trait_expertise_voidcraft
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_scientist_erudite
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.24
+		}
+		# You sent a different engineering scientist or genius
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_voidcraft }
+					OR = {
+						has_trait = leader_trait_expertise_materials
+						has_trait = leader_trait_expertise_propulsion
+						has_trait = leader_trait_expertise_industry
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_scientist_erudite
+						has_trait = leader_trait_scientist_cyborg
+						has_trait = leader_trait_scientist_synthetic
+						has_trait = leader_trait_scientist_psionic
+						has_trait = leader_trait_scientist_chosen
+						has_trait = leader_trait_towel
+						has_trait = leader_trait_spark_of_genius
+						has_trait = leader_trait_maniacal
+						has_trait = leader_trait_sapient_AI_assistant
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.25
+		}
+		# You sent a social scientist or non-specialized scientist
+		0 = {
+			modifier = {
+				add = 1
+				leader = {
+					NOT = {
+						has_trait = leader_trait_expertise_voidcraft
+						has_trait = leader_trait_expertise_materials
+						has_trait = leader_trait_expertise_propulsion
+						has_trait = leader_trait_expertise_industry
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.26
+		}
+		# You sent a physicist?
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_voidcraft }
+					OR = {
+						has_trait = leader_trait_expertise_field_manipulation
+						has_trait = leader_trait_expertise_particles
+						has_trait = leader_trait_expertise_computing
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.27
+		}
+	}
+}
+
 # Planet Classes
-# pc_ice_asteroid
 # pc_gas_giant
 # pc_molten
 # pc_barren
