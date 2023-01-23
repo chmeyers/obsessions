@@ -158,7 +158,7 @@ obsessions_mod_minor.23.a:0 "Oops."
 
 # Gas Giant Ship event
 obsessions_mod_category_gas_giant_3:0 "Impossible Orbit"
-obsessions_mod_category_gas_giant_3_desc:0 "Scans of this Gas Giant have detected derelict ship somehow remaining in orbit just above the cloud layer. Recommend dispatching an expert in Voidcraft to investigate."
+obsessions_mod_category_gas_giant_3_desc:0 "Scans of this Gas Giant have detected a derelict ship somehow remaining in orbit just above the cloud layer. Recommend dispatching an expert in Voidcraft to investigate."
 
 # Sent an expert
 obsessions_mod_minor.24.name:0 "Cloud Rider"
@@ -179,3 +179,27 @@ obsessions_mod_minor.26.a:0 "Alright."
 obsessions_mod_minor.27.name:0 "It's gone now"
 obsessions_mod_minor.27.desc:0 "For some reason you sent a physicist to investigate this unusual voidcraft. It went... poorly. [leader.GetName] is unable to say exactly what happened, but the unusual ship fell into gas giant's atmosphere shortly after they began their investigation."
 obsessions_mod_minor.27.a:0 "Oops."
+
+# Molten particles event
+obsessions_mod_category_molten_1:0 "Particle Geyser"
+obsessions_mod_category_molten_1_desc:0 "Scans of this molten planet have shown an excess of exotic particles originating from a geyser-like feature on the surface."
+
+# Sent an expert
+obsessions_mod_minor.28.name:0 "Dark Matter Particles"
+obsessions_mod_minor.28.desc:0 "[leader.GetName] was able to use their expertise in particles to determine that the exotic emissions were caused by a large dark matter mass embedded in the planet's mantle. The energy is easily accessible and we may be able to draw the dark matter as well."
+obsessions_mod_minor.28.a:0 "Excellent."
+
+# Sent a near-expert
+obsessions_mod_minor.29.name:0 "High Energy Particles"
+obsessions_mod_minor.29.desc:0 "[leader.GetName] was able to use their general physics expertise to determine that the exotic particles can be easily harvested as an energy source using a magnetic funnel. They learned a significant amount about particles in the process."
+obsessions_mod_minor.29.a:0 "Excellent."
+
+# Sent a rando
+obsessions_mod_minor.30.name:0 "Energetic Particles"
+obsessions_mod_minor.30.desc:0 "[leader.GetName] had no idea what they were doing investigating this phenomenon. Utilizing the ship's general science database they discovered that the unusual particles could be useful as an energy source."
+obsessions_mod_minor.30.a:0 "Alright."
+
+# Sent a Social Scientist
+obsessions_mod_minor.31.name:0 "What Geyser?"
+obsessions_mod_minor.31.desc:0 "For some reason you sent a social scientist to investigate this unusual particle phenomenon. It went... poorly. [leader.GetName] is unable to say exactly what happened, but the geyser destabilized and disappeared."
+obsessions_mod_minor.31.a:0 "Oops."

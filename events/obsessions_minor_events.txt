@@ -878,3 +878,79 @@ ship_event = {
 		name = obsessions_mod_minor.27.a
 	}
 }
+
+# Molten particles event
+ship_event = {
+	id = obsessions_mod_minor.28
+	title = "obsessions_mod_minor.28.name"
+	desc = "obsessions_mod_minor.28.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+
+	option = {
+		name = obsessions_mod_minor.28.a
+		from = {
+			add_deposit = d_energy_5
+			add_deposit = d_dark_matter_deposit_1
+		}
+		leader = {
+			add_experience = 1000
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.29
+	title = "obsessions_mod_minor.29.name"
+	desc = "obsessions_mod_minor.29.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+
+	option = {
+		name = obsessions_mod_minor.29.a
+		from = { add_deposit = d_energy_5 }
+		leader = {
+			add_experience = 200
+			add_trait = leader_trait_expertise_particles
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.30
+	title = "obsessions_mod_minor.30.name"
+	desc = "obsessions_mod_minor.30.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+
+	option = {
+		name = obsessions_mod_minor.30.a
+		from = { add_deposit = d_energy_2 }
+		leader = {
+			add_experience = 100
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.31
+	title = "obsessions_mod_minor.31.name"
+	desc = "obsessions_mod_minor.31.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+
+	option = {
+		name = obsessions_mod_minor.31.a
+	}
+}
