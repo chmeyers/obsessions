@@ -188,7 +188,7 @@ obsessions_mod_category_gas_giant_1 = {
 	picture = GFX_evt_gas_giant
 	level = 3
 
-	max_once = no # default NO, if true will spawn category only once per empire
+	max_once = yes # default NO, if true will spawn category only once per empire
 	max_once_global = no # default NO, if true will spawn category only once per game
 
 	on_spawn = {
@@ -272,7 +272,7 @@ obsessions_mod_category_gas_giant_2 = {
 	picture = GFX_evt_gas_giant
 	level = 3
 
-	max_once = no # default NO, if true will spawn category only once per empire
+	max_once = yes # default NO, if true will spawn category only once per empire
 	max_once_global = no # default NO, if true will spawn category only once per game
 
 	on_spawn = {
@@ -351,7 +351,7 @@ obsessions_mod_category_gas_giant_3 = {
 	picture = GFX_evt_gas_giant
 	level = 3
 
-	max_once = no # default NO, if true will spawn category only once per empire
+	max_once = yes # default NO, if true will spawn category only once per empire
 	max_once_global = no # default NO, if true will spawn category only once per game
 
 	on_spawn = {
@@ -430,9 +430,9 @@ obsessions_mod_category_molten_1 = {
 	desc = "obsessions_mod_category_molten_1_desc"
 
 	picture = GFX_evt_molten
-	level = 3
+	level = 4
 
-	max_once = no # default NO, if true will spawn category only once per empire
+	max_once = yes # default NO, if true will spawn category only once per empire
 	max_once_global = no # default NO, if true will spawn category only once per game
 
 	on_spawn = {
@@ -510,9 +510,9 @@ obsessions_mod_category_molten_2 = {
 	desc = "obsessions_mod_category_molten_2_desc"
 
 	picture = GFX_evt_molten
-	level = 3
+	level = 4
 
-	max_once = no # default NO, if true will spawn category only once per empire
+	max_once = yes # default NO, if true will spawn category only once per empire
 	max_once_global = no # default NO, if true will spawn category only once per game
 
 	on_spawn = {
@@ -590,9 +590,9 @@ obsessions_mod_category_molten_3 = {
 	desc = "obsessions_mod_category_molten_3_desc"
 
 	picture = GFX_evt_molten
-	level = 3
+	level = 4
 
-	max_once = no # default NO, if true will spawn category only once per empire
+	max_once = yes # default NO, if true will spawn category only once per empire
 	max_once_global = no # default NO, if true will spawn category only once per game
 
 	on_spawn = {
@@ -660,12 +660,90 @@ obsessions_mod_category_molten_3 = {
 	}
 }
 
+obsessions_mod_category_barren_1 = {
+
+	# All obsessions anomalies are human only.
+	# This is the default setting, but it's listed here so that I comment on it.
+	should_ai_use = no
+	
+	# *_desc is the default.
+	desc = "obsessions_mod_category_barren_1_desc"
+
+	picture = GFX_evt_warm_barren
+	level = 5
+
+	max_once = yes # default NO, if true will spawn category only once per empire
+	max_once_global = no # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_molten
+		}
+	}
+
+	on_success = {
+		# You sent an expert on computing
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					OR = {
+						has_trait = leader_trait_expertise_computing
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_scientist_erudite
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.40
+		}
+		# You sent a different physicist or genius
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_computing }
+					OR = {
+						is_specialist_physics = yes
+						is_research_genius = yes
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.41
+		}
+		# You sent an engineer or non-specialized scientist
+		0 = {
+			modifier = {
+				add = 1
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_computing }
+					is_specialist_society = no
+				}
+			}
+			anomaly_event = obsessions_mod_minor.42
+		}
+		# You sent a social scientist?
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					is_specialist_physics = no
+					is_specialist_society = yes
+				}
+			}
+			anomaly_event = obsessions_mod_minor.43
+		}
+	}
+}
+
 # Planet Classes
-# pc_molten
-# pc_barren
-# pc_cold_barren
-# pc_frozen
-# pc_toxic
+# pc_barren GFX_evt_warm_barren
+# pc_cold_barren GFX_evt_cold_barren
+# pc_frozen GFX_evt_frozen
 # Habitables
 # pc_alpine
 # pc_arctic

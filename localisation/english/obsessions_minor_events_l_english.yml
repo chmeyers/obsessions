@@ -251,3 +251,27 @@ obsessions_mod_minor.38.a:0 "Alright."
 obsessions_mod_minor.39.name:0 "Spherical Cow"
 obsessions_mod_minor.39.desc:0 "For some reason you sent a physicist to gather engineering data. It went... poorly. [leader.GetName] spent most of their research time developing a computer model to identify the ideal alloy distribution. Unfortunately, their model assumed that the planet was completely spherical and as such did not match reality. They did find some useful minerals."
 obsessions_mod_minor.39.a:0 "Oops."
+
+# Molten particles event
+obsessions_mod_category_barren_1:0 "Silicon Dust"
+obsessions_mod_category_barren_1_desc:0 "Scans have picked up a faint energy signature on the surface of this barren planet. Initial investigation has shown it to be emanating from a building housing what appears to be a computer of antique design. An expert might be able to get it working again."
+
+# Sent an expert
+obsessions_mod_minor.40.name:0 "Did you try turning it off and on again?"
+obsessions_mod_minor.40.desc:0 "[leader.GetName] was able to use their expertise in computing to determine that the computer just needed to be rebooted. It contained a large amount of information on a diverse range of scientific topics."
+obsessions_mod_minor.40.a:0 "Excellent."
+
+# Sent a near-expert
+obsessions_mod_minor.41.name:0 "High Energy Computing"
+obsessions_mod_minor.41.desc:0 "[leader.GetName] was able to use their general physics expertise to determine that the computer was compatible with our power systems and was able to power it up briefly to download some technical information before it overloaded. They learned a lot about computing in the process."
+obsessions_mod_minor.41.a:0 "Excellent."
+
+# Sent a rando
+obsessions_mod_minor.42.name:0 "Energetic Computing"
+obsessions_mod_minor.42.desc:0 "[leader.GetName] was able to determine that the computer was some sort of computer. They pulled out some of the parts and have provided them to our research laboratories."
+obsessions_mod_minor.42.a:0 "Alright."
+
+# Sent a Social Scientist
+obsessions_mod_minor.43.name:0 "Ctrl-Alt-Del"
+obsessions_mod_minor.43.desc:0 "For some reason you sent a social scientist to investigate this unusual computer. It went... poorly. [leader.GetName] attempted to put out the fire with an antique fire extinguisher, but that also caught on fire. They were unable to remember the numeric code for the ships emergency system despite it being taught using a catchy jingle, and therefore nothing was able to be recovered."
+obsessions_mod_minor.43.a:0 "Oops."

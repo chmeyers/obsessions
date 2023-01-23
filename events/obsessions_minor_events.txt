@@ -1114,3 +1114,112 @@ ship_event = {
 		from = { add_deposit = d_minerals_1 }
 	}
 }
+
+# Barren computer event
+ship_event = {
+	id = obsessions_mod_minor.40
+	title = "obsessions_mod_minor.40.name"
+	desc = "obsessions_mod_minor.40.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod_minor.40.a
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier4researchreward
+			min = @tier4researchmin
+			max = @tier4researchmax
+		}
+		add_monthly_resource_mult = {
+			resource = engineering_research
+			value = @tier4researchreward
+			min = @tier4researchmin
+			max = @tier4researchmax
+		}
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = @tier5researchreward
+			min = @tier5researchmin
+			max = @tier5researchmax
+		}
+		leader = {
+			add_experience = 1000
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.41
+	title = "obsessions_mod_minor.41.name"
+	desc = "obsessions_mod_minor.41.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod_minor.41.a
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier2researchreward
+			min = @tier2researchmin
+			max = @tier2researchmax
+		}
+		add_monthly_resource_mult = {
+			resource = engineering_research
+			value = @tier2researchreward
+			min = @tier2researchmin
+			max = @tier2researchmax
+		}
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = @tier2researchreward
+			min = @tier2researchmin
+			max = @tier2researchmax
+		}
+		leader = {
+			add_experience = 200
+			add_trait = leader_trait_expertise_computing
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.42
+	title = "obsessions_mod_minor.42.name"
+	desc = "obsessions_mod_minor.42.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod_minor.42.a
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = @tier1researchreward
+			min = @tier1researchmin
+			max = @tier1researchmax
+		}
+		leader = {
+			add_experience = 100
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.43
+	title = "obsessions_mod_minor.43.name"
+	desc = "obsessions_mod_minor.43.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+
+	option = {
+		name = obsessions_mod_minor.43.a
+	}
+}
