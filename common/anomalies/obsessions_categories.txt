@@ -740,6 +740,86 @@ obsessions_mod_category_barren_1 = {
 	}
 }
 
+obsessions_mod_category_barren_2 = {
+
+	# All obsessions anomalies are human only.
+	# This is the default setting, but it's listed here so that I comment on it.
+	should_ai_use = no
+	
+	# *_desc is the default.
+	desc = "obsessions_mod_category_barren_2_desc"
+
+	picture = GFX_evt_warm_barren
+	level = 5
+
+	max_once = yes # default NO, if true will spawn category only once per empire
+	max_once_global = no # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_molten
+		}
+	}
+
+	on_success = {
+		# You sent an expert
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					OR = {
+						has_trait = leader_trait_expertise_military_theory
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_scientist_erudite
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.44
+		}
+		# You sent a neear-expert or genius
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_military_theory }
+					OR = {
+						is_specialist_society = yes
+						is_research_genius = yes
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.45
+		}
+		# You sent an okay or non-specialized scientist
+		0 = {
+			modifier = {
+				add = 1
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_military_theory }
+					is_specialist_society = no
+				}
+			}
+			anomaly_event = obsessions_mod_minor.46
+		}
+		# You sent a poor choice
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					is_specialist_physics = yes
+					is_specialist_society = no
+				}
+			}
+			anomaly_event = obsessions_mod_minor.47
+		}
+	}
+}
+
 # Planet Classes
 # pc_barren GFX_evt_warm_barren
 # pc_cold_barren GFX_evt_cold_barren

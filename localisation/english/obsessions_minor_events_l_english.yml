@@ -252,7 +252,7 @@ obsessions_mod_minor.39.name:0 "Spherical Cow"
 obsessions_mod_minor.39.desc:0 "For some reason you sent a physicist to gather engineering data. It went... poorly. [leader.GetName] spent most of their research time developing a computer model to identify the ideal alloy distribution. Unfortunately, their model assumed that the planet was completely spherical and as such did not match reality. They did find some useful minerals."
 obsessions_mod_minor.39.a:0 "Oops."
 
-# Molten particles event
+# Barren Computer event
 obsessions_mod_category_barren_1:0 "Silicon Dust"
 obsessions_mod_category_barren_1_desc:0 "Scans have picked up a faint energy signature on the surface of this barren planet. Initial investigation has shown it to be emanating from a building housing what appears to be a computer of antique design. An expert might be able to get it working again."
 
@@ -275,3 +275,27 @@ obsessions_mod_minor.42.a:0 "Alright."
 obsessions_mod_minor.43.name:0 "Ctrl-Alt-Del"
 obsessions_mod_minor.43.desc:0 "For some reason you sent a social scientist to investigate this unusual computer. It went... poorly. [leader.GetName] attempted to put out the fire with an antique fire extinguisher, but that also caught on fire. They were unable to remember the numeric code for the ships emergency system despite it being taught using a catchy jingle, and therefore nothing was able to be recovered."
 obsessions_mod_minor.43.a:0 "Oops."
+
+# Barren Fortress event
+obsessions_mod_category_barren_2:0 "Abandoned Fortress"
+obsessions_mod_category_barren_2_desc:0 "Scans of this barren planet have recorded a series of ancient earthworks. Pattern matching by the ship's computer indicate that they may have once been used as part of a fortress complex. An expert might be able to determine it's usefulness."
+
+# Sent an expert
+obsessions_mod_minor.44.name:0 "Abandoned Fortress"
+obsessions_mod_minor.44.desc:0 "[leader.GetName] was able to use their expertise in military theory to map out the fortress' defences and believes that they can apply some of the techniques to our own buildings. They found several interesting artifacts."
+obsessions_mod_minor.44.a:0 "Excellent."
+
+# Sent a near-expert
+obsessions_mod_minor.45.name:0 "Abandoned Fortress"
+obsessions_mod_minor.45.desc:0 "[leader.GetName] was able to use their general social science expertise to delve into the building. They found several interesting artifacts and learned alot about military theory in the process."
+obsessions_mod_minor.45.a:0 "Excellent."
+
+# Sent a rando
+obsessions_mod_minor.46.name:0 "Imposing Fortress"
+obsessions_mod_minor.46.desc:0 "[leader.GetName] was able to determine that the building was indeed a fortress. They found a few interesting trinkets."
+obsessions_mod_minor.46.a:0 "Alright."
+
+# Sent a Physicist
+obsessions_mod_minor.47.name:0 "Like a Tourist"
+obsessions_mod_minor.47.desc:0 "For some reason you sent a physicist to investigate ancient alien architecture. [leader.GetName] wandered around the complex for a while taking random pictures. They don't seem to be of much research value."
+obsessions_mod_minor.47.a:0 "Oops."

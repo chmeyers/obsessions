@@ -1223,3 +1223,103 @@ ship_event = {
 		name = obsessions_mod_minor.43.a
 	}
 }
+
+# Barren Fortress event
+ship_event = {
+	id = obsessions_mod_minor.44
+	title = "obsessions_mod_minor.44.name"
+	desc = "obsessions_mod_minor.44.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod_minor.44.a
+		owner = {
+			add_resource = { minor_artifacts = 5 }
+			if = {
+				limit = { NOT = { has_technology = tech_centralized_command } } 
+				add_research_option = tech_centralized_command
+				add_tech_progress = { tech = tech_centralized_command progress = 0.5 }
+			}
+			else_if = {
+				limit = { NOT = { has_technology = tech_ground_defense_planning } } 
+				add_research_option = tech_ground_defense_planning
+				add_tech_progress = { tech = tech_ground_defense_planning progress = 0.5 }
+			}
+			else_if = {
+				limit = { NOT = { has_technology = tech_combat_training } } 
+				add_research_option = tech_combat_training
+				add_tech_progress = { tech = tech_combat_training progress = 0.5 }
+			}
+			else_if = {
+				limit = { NOT = { has_technology = tech_global_defense_grid } } 
+				add_research_option = tech_global_defense_grid
+				add_tech_progress = { tech = tech_global_defense_grid progress = 0.5 }
+			}
+			else = {
+				add_monthly_resource_mult = {
+					resource = society_research
+					value = @tier2researchreward
+					min = @tier2researchmin
+					max = @tier2researchmax
+				}
+			}
+		}
+		leader = {
+			add_experience = 1000
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.45
+	title = "obsessions_mod_minor.45.name"
+	desc = "obsessions_mod_minor.45.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod_minor.45.a
+		owner = { add_resource = { minor_artifacts = 3 } }
+		leader = {
+			add_experience = 200
+			add_trait = leader_trait_expertise_military_theory
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.46
+	title = "obsessions_mod_minor.46.name"
+	desc = "obsessions_mod_minor.46.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod_minor.46.a
+		owner = { add_resource = { minor_artifacts = 1 } }
+		leader = {
+			add_experience = 100
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.47
+	title = "obsessions_mod_minor.47.name"
+	desc = "obsessions_mod_minor.47.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+
+	option = {
+		name = obsessions_mod_minor.47.a
+	}
+}
