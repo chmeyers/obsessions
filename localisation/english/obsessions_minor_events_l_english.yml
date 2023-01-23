@@ -299,3 +299,27 @@ obsessions_mod_minor.46.a:0 "Alright."
 obsessions_mod_minor.47.name:0 "Like a Tourist"
 obsessions_mod_minor.47.desc:0 "For some reason you sent a physicist to investigate ancient alien architecture. [leader.GetName] wandered around the complex for a while taking random pictures. They don't seem to be of much research value."
 obsessions_mod_minor.47.a:0 "Oops."
+
+# Barren Industry event
+obsessions_mod_category_barren_3:0 "Abandoned Factory"
+obsessions_mod_category_barren_3_desc:0 "Scans of this barren planet have recorded a large abandoned building that appears to have been a vast industrial factory. An expert might be able to gain insight into how it worked."
+
+# Sent an expert
+obsessions_mod_minor.48.name:0 "Automated Factory"
+obsessions_mod_minor.48.desc:0 "[leader.GetName] was able to use their expertise in industry to create blueprints of the major machinery present in the factory. The designs will be useful in our own research. They managed to reactivate a portion of the factory to process local alloys."
+obsessions_mod_minor.48.a:0 "Excellent."
+
+# Sent a near-expert
+obsessions_mod_minor.49.name:0 "Abandoned Factory"
+obsessions_mod_minor.49.desc:0 "[leader.GetName] was able to use their general engineering expertise to glean some interesting insights into the machinery present in the factory. They believe that the rest of the factory can be scrapped for it's valuable alloys. They learned alot about industry in the process."
+obsessions_mod_minor.49.a:0 "Excellent."
+
+# Sent a rando
+obsessions_mod_minor.50.name:0 "Ancient Factory"
+obsessions_mod_minor.50.desc:0 "[leader.GetName] was able to determine that the building was indeed a factory. They copied the designs of the accessible machines and believe that the rest can be scrapped."
+obsessions_mod_minor.50.a:0 "Alright."
+
+# Sent a Physicist or Social Scientist
+obsessions_mod_minor.51.name:0 "It blew up"
+obsessions_mod_minor.51.desc:0 "For some reason you didn't send an engineer to investigate this factory. [leader.GetName] has determined that it's just filled with useless junk that should be broken up for scrap alloys. They ordered that this be done before asking for a second opinion from an engineer."
+obsessions_mod_minor.51.a:0 "Oops."

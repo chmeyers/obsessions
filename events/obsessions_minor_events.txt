@@ -1323,3 +1323,98 @@ ship_event = {
 		name = obsessions_mod_minor.47.a
 	}
 }
+
+# Barren Factory event
+ship_event = {
+	id = obsessions_mod_minor.48
+	title = "obsessions_mod_minor.48.name"
+	desc = "obsessions_mod_minor.48.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod_minor.48.a
+		from = { add_deposit = d_alloys_3 }
+		owner = {
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+		}
+		leader = {
+			add_experience = 1000
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.49
+	title = "obsessions_mod_minor.49.name"
+	desc = "obsessions_mod_minor.49.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod_minor.49.a
+		owner = {
+			add_resource = { alloys = 100 }
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+		leader = {
+			add_experience = 200
+			add_trait = leader_trait_expertise_industry
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.50
+	title = "obsessions_mod_minor.50.name"
+	desc = "obsessions_mod_minor.50.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod_minor.50.a
+		owner = {
+			add_resource = { alloys = 100 }
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+		leader = {
+			add_experience = 100
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.51
+	title = "obsessions_mod_minor.51.name"
+	desc = "obsessions_mod_minor.51.desc"
+	picture = GFX_evt_warm_barren
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+
+	option = {
+		name = obsessions_mod_minor.51.a
+		owner = { add_resource = { alloys = 50 } }
+	}
+}
