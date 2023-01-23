@@ -682,7 +682,7 @@ obsessions_mod_category_barren_1 = {
 	spawn_chance = {
 		modifier = {
 			add = @obsessions_mod_spawn_modifier
-			is_planet_class = pc_molten
+			is_planet_class = pc_barren
 		}
 	}
 
@@ -762,7 +762,7 @@ obsessions_mod_category_barren_2 = {
 	spawn_chance = {
 		modifier = {
 			add = @obsessions_mod_spawn_modifier
-			is_planet_class = pc_molten
+			is_planet_class = pc_barren
 		}
 	}
 
@@ -842,7 +842,7 @@ obsessions_mod_category_barren_3 = {
 	spawn_chance = {
 		modifier = {
 			add = @obsessions_mod_spawn_modifier
-			is_planet_class = pc_molten
+			is_planet_class = pc_barren
 		}
 	}
 
@@ -903,7 +903,6 @@ obsessions_mod_category_barren_3 = {
 }
 
 # Planet Classes
-# pc_barren GFX_evt_warm_barren
 # pc_cold_barren GFX_evt_cold_barren
 # pc_frozen GFX_evt_frozen
 # Habitables
