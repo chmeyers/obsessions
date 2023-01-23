@@ -1037,3 +1037,80 @@ ship_event = {
 		}
 	}
 }
+
+# Molten alloys event
+ship_event = {
+	id = obsessions_mod_minor.36
+	title = "obsessions_mod_minor.36.name"
+	desc = "obsessions_mod_minor.36.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+
+	option = {
+		name = obsessions_mod_minor.36.a
+		owner = {
+			give_next_alloys_tech_effect = yes
+		}
+		from = { add_deposit = d_alloys_5 }
+		leader = {
+			add_experience = 1000
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.37
+	title = "obsessions_mod_minor.37.name"
+	desc = "obsessions_mod_minor.37.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+
+	option = {
+		name = obsessions_mod_minor.37.a
+		from = { add_deposit = d_alloys_3 }
+		leader = {
+			add_experience = 200
+			add_trait = leader_trait_expertise_materials
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.38
+	title = "obsessions_mod_minor.38.name"
+	desc = "obsessions_mod_minor.38.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+
+	option = {
+		name = obsessions_mod_minor.38.a
+		from = { add_deposit = d_alloys_2 }
+		leader = {
+			add_experience = 50
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.39
+	title = "obsessions_mod_minor.39.name"
+	desc = "obsessions_mod_minor.39.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+
+	option = {
+		name = obsessions_mod_minor.39.a
+		from = { add_deposit = d_minerals_1 }
+	}
+}

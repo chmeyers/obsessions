@@ -227,3 +227,27 @@ obsessions_mod_minor.34.a:0 "Alright."
 obsessions_mod_minor.35.name:0 "Big Bother"
 obsessions_mod_minor.35.desc:0 "For some reason you sent an engineer to gather terraforming data. It went... poorly. [leader.GetName] burned themselves on the lava."
 obsessions_mod_minor.35.a:0 "Oops."
+
+# Molten materials event
+obsessions_mod_category_molten_2:0 "Molten metal"
+obsessions_mod_category_molten_2_desc:0 "Scans indicate that the surface of this molten world is entirely composed of metallic compounds. They don't appear to be immediately exploitable, but an expert on alloys might be able to investigate further."
+
+# Sent an expert
+obsessions_mod_minor.36.name:0 "Molten alloys"
+obsessions_mod_minor.36.desc:0 "[leader.GetName] was able to use their expertise in materials to identify several molten whirlpools on the surface of the planet that would allow the mining of high quality alloys. They also identified several new alloys that our scientists had never seen before."
+obsessions_mod_minor.36.a:0 "Excellent."
+
+# Sent a near-expert
+obsessions_mod_minor.37.name:0 "Molten alloys"
+obsessions_mod_minor.37.desc:0 "[leader.GetName] was able to use their general engineering expertise to find deposits of high quality alloys on the planet's surface. They learned a lot about material engineering in the process."
+obsessions_mod_minor.37.a:0 "Excellent."
+
+# Sent a rando
+obsessions_mod_minor.38.name:0 "Molten alloys"
+obsessions_mod_minor.38.desc:0 "[leader.GetName] was able to randomly sample the major areas of the planet's surface and determine a few candidates for the harvesting of alloys."
+obsessions_mod_minor.38.a:0 "Alright."
+
+# Sent a Physicist
+obsessions_mod_minor.39.name:0 "Spherical Cow"
+obsessions_mod_minor.39.desc:0 "For some reason you sent a physicist to gather engineering data. It went... poorly. [leader.GetName] spent most of their research time developing a computer model to identify the ideal alloy distribution. Unfortunately, their model assumed that the planet was completely spherical and as such did not match reality. They did find some useful minerals."
+obsessions_mod_minor.39.a:0 "Oops."
