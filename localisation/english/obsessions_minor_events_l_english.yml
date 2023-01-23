@@ -203,3 +203,27 @@ obsessions_mod_minor.30.a:0 "Alright."
 obsessions_mod_minor.31.name:0 "What Geyser?"
 obsessions_mod_minor.31.desc:0 "For some reason you sent a social scientist to investigate this unusual particle phenomenon. It went... poorly. [leader.GetName] is unable to say exactly what happened, but the geyser destabilized and disappeared."
 obsessions_mod_minor.31.a:0 "Oops."
+
+# Molten terraforming event
+obsessions_mod_category_molten_2:0 "Brave New World"
+obsessions_mod_category_molten_2_desc:0 "This molten world appears to be exceptionally young, formed in just the past few million years. An investigation by an expert could advance our understanding of terraforming."
+
+# Sent an expert
+obsessions_mod_minor.32.name:0 "That has no people in it"
+obsessions_mod_minor.32.desc:0 "[leader.GetName] was able to use their expertise in new worlds and terraforming to catalog the emergent geology of this planet. Their data has added significantly to our terraforming knowledge."
+obsessions_mod_minor.32.a:0 "Excellent."
+
+# Sent a near-expert
+obsessions_mod_minor.33.name:0 "That has no people in it"
+obsessions_mod_minor.33.desc:0 "[leader.GetName] was able to use their general social science expertise to record catalog data on the planet. They learned a significant amount about terraforming in the process."
+obsessions_mod_minor.33.a:0 "Excellent."
+
+# Sent a rando
+obsessions_mod_minor.34.name:0 "Intriguing New World"
+obsessions_mod_minor.34.desc:0 "[leader.GetName] had no idea what they were doing investigating this molten. Utilizing the ship's general science database they discovered that it appears to be covered in something called lava, which could be an energy source."
+obsessions_mod_minor.34.a:0 "Alright."
+
+# Sent a Engineer
+obsessions_mod_minor.35.name:0 "Big Bother"
+obsessions_mod_minor.35.desc:0 "For some reason you sent an engineer to gather terraforming data. It went... poorly. [leader.GetName] burned themselves on the lava."
+obsessions_mod_minor.35.a:0 "Oops."

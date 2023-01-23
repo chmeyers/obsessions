@@ -954,3 +954,86 @@ ship_event = {
 		name = obsessions_mod_minor.31.a
 	}
 }
+
+# Molten new world event
+ship_event = {
+	id = obsessions_mod_minor.32
+	title = "obsessions_mod_minor.32.name"
+	desc = "obsessions_mod_minor.32.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+
+	option = {
+		name = obsessions_mod_minor.32.a
+		owner = {
+			give_next_terraforming_tech_option_effect = yes
+		}
+		leader = {
+			add_experience = 1000
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.33
+	title = "obsessions_mod_minor.33.name"
+	desc = "obsessions_mod_minor.33.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+
+	option = {
+		name = obsessions_mod_minor.33.a
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier2researchreward
+			min = @tier2researchmin
+			max = @tier2researchmax
+		}
+		leader = {
+			add_experience = 200
+			add_trait = leader_trait_expertise_new_worlds
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.34
+	title = "obsessions_mod_minor.34.name"
+	desc = "obsessions_mod_minor.34.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+	
+
+	option = {
+		name = obsessions_mod_minor.34.a
+		from = { add_deposit = d_energy_1 }
+		leader = {
+			add_experience = 50
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_mod_minor.35
+	title = "obsessions_mod_minor.35.name"
+	desc = "obsessions_mod_minor.35.desc"
+	picture = GFX_evt_molten
+	show_sound = event_scanner
+	location = FROM
+	is_triggered_only = yes
+
+	option = {
+		name = obsessions_mod_minor.35.a
+		leader = {
+			add_trait = leader_trait_maimed
+		}
+	}
+}

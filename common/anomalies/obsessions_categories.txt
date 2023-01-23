@@ -480,10 +480,8 @@ obsessions_mod_category_molten_1 = {
 			modifier = {
 				add = 1
 				leader = {
-					NOT = {
-						has_trait = leader_trait_expertise_particles
-						is_specialist_society = yes
-					}
+					NOT = { has_trait = leader_trait_expertise_particles }
+					is_specialist_society = no
 				}
 			}
 			anomaly_event = obsessions_mod_minor.30
@@ -498,6 +496,86 @@ obsessions_mod_category_molten_1 = {
 				}
 			}
 			anomaly_event = obsessions_mod_minor.31
+		}
+	}
+}
+
+obsessions_mod_category_molten_2 = {
+
+	# All obsessions anomalies are human only.
+	# This is the default setting, but it's listed here so that I comment on it.
+	should_ai_use = no
+	
+	# *_desc is the default.
+	desc = "obsessions_mod_category_molten_2_desc"
+
+	picture = GFX_evt_molten
+	level = 3
+
+	max_once = no # default NO, if true will spawn category only once per empire
+	max_once_global = no # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_molten
+		}
+	}
+
+	on_success = {
+		# You sent an expert on new worlds/terraforming
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					OR = {
+						has_trait = leader_trait_expertise_new_worlds
+						has_trait = leader_trait_curator
+						has_trait = leader_trait_scientist_erudite
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.32
+		}
+		# You sent a different social scientist or genius
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_particles }
+					OR = {
+						is_specialist_engineer = yes
+						is_research_genius = yes
+					}
+				}
+			}
+			anomaly_event = obsessions_mod_minor.33
+		}
+		# You sent an engineer or non-specialized scientist
+		0 = {
+			modifier = {
+				add = 1
+				leader = {
+					NOT = { has_trait = leader_trait_expertise_particles }
+					is_specialist_engineer =  no
+				}
+			}
+			anomaly_event = obsessions_mod_minor.34
+		}
+		# You sent an engineer
+		0 = {
+			modifier = {
+				add = 10
+				leader = {
+					is_specialist_engineer = yes
+					is_specialist_society = no
+				}
+			}
+			anomaly_event = obsessions_mod_minor.35
 		}
 	}
 }
