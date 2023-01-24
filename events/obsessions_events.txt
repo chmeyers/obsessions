@@ -1861,7 +1861,7 @@ ship_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = obsessions_mod_minor.100.a
+		name = obsessions_mod.100.a
 		owner = {
 			add_resource = { minor_artifacts = 3 }
 			add_monthly_resource_mult = {
@@ -1888,7 +1888,7 @@ ship_event = {
 	is_triggered_only = yes
 	
 	option = {
-		name = obsessions_mod_minor.101.a
+		name = obsessions_mod.101.a
 		owner = {
 			add_resource = { minor_artifacts = 2 }
 			add_monthly_resource_mult = {
@@ -1911,10 +1911,12 @@ ship_event = {
 					}
 				}
 				add_trait = leader_trait_obsessed_1
-				set_leader_flag = obsession_obsessed
-				set_variable = { which = obsession_level value = 1 }
-				from = {
-					save_global_event_target_as = obsessions_planet_target
+				hidden_effect = {
+					set_leader_flag = obsession_obsessed
+					set_variable = { which = obsession_level value = 1 }
+					from = {
+						save_global_event_target_as = obsessions_planet_target
+					}
 				}
 			}
 		}

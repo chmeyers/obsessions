@@ -989,11 +989,13 @@ ship_event = {
 
 	option = {
 		name = obsessions_mod_minor.33.a
-		add_monthly_resource_mult = {
-			resource = society_research
-			value = @tier2researchreward
-			min = @tier2researchmin
-			max = @tier2researchmax
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
 		}
 		leader = {
 			add_experience = 200
@@ -1127,23 +1129,25 @@ ship_event = {
 	
 	option = {
 		name = obsessions_mod_minor.40.a
-		add_monthly_resource_mult = {
-			resource = society_research
-			value = @tier4researchreward
-			min = @tier4researchmin
-			max = @tier4researchmax
-		}
-		add_monthly_resource_mult = {
-			resource = engineering_research
-			value = @tier4researchreward
-			min = @tier4researchmin
-			max = @tier4researchmax
-		}
-		add_monthly_resource_mult = {
-			resource = physics_research
-			value = @tier5researchreward
-			min = @tier5researchmin
-			max = @tier5researchmax
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier5researchreward
+				min = @tier5researchmin
+				max = @tier5researchmax
+			}
 		}
 		leader = {
 			add_experience = 1000
@@ -1162,23 +1166,25 @@ ship_event = {
 	
 	option = {
 		name = obsessions_mod_minor.41.a
-		add_monthly_resource_mult = {
-			resource = society_research
-			value = @tier2researchreward
-			min = @tier2researchmin
-			max = @tier2researchmax
-		}
-		add_monthly_resource_mult = {
-			resource = engineering_research
-			value = @tier2researchreward
-			min = @tier2researchmin
-			max = @tier2researchmax
-		}
-		add_monthly_resource_mult = {
-			resource = physics_research
-			value = @tier2researchreward
-			min = @tier2researchmin
-			max = @tier2researchmax
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
 		}
 		leader = {
 			add_experience = 200
@@ -1198,11 +1204,13 @@ ship_event = {
 	
 	option = {
 		name = obsessions_mod_minor.42.a
-		add_monthly_resource_mult = {
-			resource = physics_research
-			value = @tier1researchreward
-			min = @tier1researchmin
-			max = @tier1researchmax
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
 		}
 		leader = {
 			add_experience = 100

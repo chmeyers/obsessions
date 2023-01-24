@@ -86,3 +86,140 @@ give_next_alloys_tech_effect = {
 		}
 	}
 }
+
+create_obsessed_pirate_king = {
+	event_target:obsessions_planet_target = {
+		save_event_target_as = pirate_home
+		create_country = {
+			name = "NAME_Obsession"
+			type = pirate
+			species = event_target:obsessed_scientist_species
+			name_list = "PRT1"
+			flag = {
+				background = {
+					category = "backgrounds"
+					file = "00_solid.dds"
+				}
+				colors ={
+					"black"
+					"black"
+					"null"
+					"null"
+				}
+			}
+			effect = {
+				save_event_target_as = pirate_band
+			}
+		}
+		event_target:pirate_band = {
+			set_name = random
+			randomize_flag_symbol = "pirate"
+			assign_leader = event_target:obsessed_scientist_breakdown
+			every_country = {
+				establish_communications_no_message = prev
+			}
+			create_fleet = {
+				name = "NAME_Obsession"
+				effect = {
+					set_owner = event_target:pirate_band
+					create_privateer_ships_10 = yes
+					assign_leader = event_target:obsessed_scientist_breakdown
+					set_location = event_target:obsessions_planet_target
+					set_fleet_stance = aggressive
+					set_aggro_range_measure_from = self
+					set_aggro_range = 800
+				}
+			}
+		}
+	}
+}
+
+create_obsessed_country = {
+	if = {
+		limit = {
+			NOT = {
+				any_country = {
+					is_country_type = adversary
+					has_country_flag = obsession_country
+				}
+			}
+		}
+		create_country = {
+			name = "NAME_Obsession"
+			species = event_target:obsessed_scientist_species
+			type = adversary
+			ethos = random
+			origin = origin_default
+			auto_delete = no
+			
+			effect = {
+				set_country_flag = obsession_country
+				set_leader = event_target:obsessed_scientist_breakdown
+				establish_contact = {
+					who = event_target:obsession_source_country location = event_target:obsessions_planet_target
+				}
+				establish_communications_no_message = event_target:obsession_source_country
+				save_global_event_target_as = obsession_created_country
+				add_resource = { influence = 200 }
+				add_resource = { energy = 15000 }
+				add_resource = { food = 15000 }
+				add_resource = { minerals = 15000 }
+				add_resource = { alloys = 5000 }
+				add_resource = { consumer_goods = 5000 }
+				add_resource = { unity = 15000 }
+			}
+		}
+	}
+}
+
+obsessed_take_system = {
+	solar_system = {
+		if = {
+			limit = { exists = starbase }
+			starbase = {
+				set_owner = event_target:obsession_created_country
+			}
+		}
+		else = {
+			create_starbase = {
+				size = starbase_outpost
+				owner = event_target:obsession_created_country
+			}
+		}
+	}
+}
+
+obsessed_take_planet = {
+	set_owner = event_target:obsession_created_country
+	if = {
+		limit = {
+			is_colony = no
+		}
+		create_colony = {
+			owner = event_target:obsession_created_country
+			species = event_target:obsessed_scientist_species
+		}
+	}
+	while = {
+		count = 5
+		create_pop = {
+			species = event_target:obsessed_scientist_species
+		}
+	}
+}
+
+create_obsessed_fleet = {
+	event_target:obsessions_planet_target = {
+		create_fleet = {
+			name = "NAME_Obsession"
+			effect = {
+				set_owner = event_target:obsession_created_country
+				create_privateer_ships_9 = yes
+				set_location = event_target:obsessions_planet_target
+				set_fleet_stance = aggressive
+				set_aggro_range_measure_from = self
+				set_aggro_range = 800
+			}
+		}
+	}
+}

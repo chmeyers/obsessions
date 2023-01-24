@@ -229,8 +229,8 @@ obsessions_mod_minor.35.desc:0 "For some reason you sent an engineer to gather t
 obsessions_mod_minor.35.a:0 "Oops."
 
 # Molten materials event
-obsessions_mod_category_molten_2:0 "Molten metal"
-obsessions_mod_category_molten_2_desc:0 "Scans indicate that the surface of this molten world is entirely composed of metallic compounds. They don't appear to be immediately exploitable, but an expert on alloys might be able to investigate further."
+obsessions_mod_category_molten_3:0 "Molten metal"
+obsessions_mod_category_molten_3_desc:0 "Scans indicate that the surface of this molten world is entirely composed of metallic compounds. They don't appear to be immediately exploitable, but an expert on alloys might be able to investigate further."
 
 # Sent an expert
 obsessions_mod_minor.36.name:0 "Molten alloys"
