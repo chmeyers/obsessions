@@ -89,14 +89,13 @@ country_event = {
 
 	immediate = {
 		save_global_event_target_as = obsession_source_country
+
 		# Firing them always causes them to break immediately.
 		# Firing kills them, so we create a new one with the same name and exile them.
 		from = {
 			set_variable = { which = obsession_level value = @obsession_breaking_point }
 			set_variable = { which = obsession_break_reason value = @breaking_reason_fired }
-			exile_leader_as = obsessed_scientist_breakdown
-			save_global_event_target_as = obsessed_scientist_breakdown
-			leader_event = { id = obsessions_mod_scientist.6 days = 1 }
+			leader_event = { id = obsessions_mod_scientist.6 }
 		}
 	}
 }
@@ -115,10 +114,10 @@ country_event = {
 		save_global_event_target_as = obsession_source_country
 		# If an obsessed leader dies, a junior scientist usually "finds their notes" after their funeral
 		from = {
-			exile_leader_as = obsessed_scientist_dead
 			save_global_event_target_as = obsessed_scientist_dead
-			leader_event = { id = obsessions_mod_scientist.7 days = 30 }
+			exile_leader_as = obsessed_scientist_dead
 		}
+		country_event = { id = obsessions_mod_scientist.7 days = 30 }
 	}
 }
 
@@ -149,7 +148,7 @@ leader_event = {
 			event_target:obsessions_planet_target = {
 				planet_event = {
 					id = obsessions_mod_scientist.13
-					days = 60
+					days = 60 # TODO(chmeyers): make this longer
 					scopes = { from = event_target:obsessed_scientist_breakdown }
 				}
 			}
@@ -157,28 +156,26 @@ leader_event = {
 	}
 }
 
-# This = dead scientist
-leader_event = {
+# Post funeral event transferring obsession
+country_event = {
 	id = obsessions_mod_scientist.7
 	is_triggered_only = yes
 	hide_window = yes
 
 	immediate = {
-		owner = {
-			random_owned_leader = {
-				limit = {
-					leader_class = scientist
-					has_skill <= 4
-					leader_age <= 60
-					NOT = { has_leader_flag = obsession_obsessed }
-				}
-				# This scientist found their notes and will inherit the dead leader's obsession
-				save_event_target_as = inheriting_scientist
+		random_owned_leader = {
+			limit = {
+				leader_class = scientist
+				has_skill <= 4
+				leader_age <= 60
+				NOT = { has_leader_flag = obsession_obsessed }
 			}
-			country_event = {
-				id = obsessions_mod_scientist.8
-				scopes = { from = event_target:inheriting_scientist fromfrom = root }
-			}
+			# This scientist found their notes and will inherit the dead leader's obsession
+			save_event_target_as = inheriting_scientist
+		}
+		country_event = {
+			id = obsessions_mod_scientist.8
+			scopes = { from = event_target:inheriting_scientist fromfrom = event_target:obsessed_scientist_dead }
 		}
 	}
 }
@@ -198,16 +195,11 @@ country_event = {
 		from = {
 			add_trait = leader_trait_obsessed_1
 			set_leader_flag = obsession_obsessed
-			set_variable = { which = obsession_level value = fromfrom.obsession_level }
+			set_variable = { which = obsession_level value = 3 }
 			add_experience = 1000
 			if = {
 				limit = { is_idle = yes }
 				change_variable = { which = obsession_level value = 1 }
-			}
-			if = {
-				limit = { check_variable = { which = obsession_level value >= @obsession_breaking_point } }
-				# Don't immediately break a new scientist.
-				set_variable = { which = obsession_level value = @obsession_near_breaking_point }
 			}
 		}
 	}
@@ -416,4 +408,46 @@ planet_event = {
 		
 	}
 	
+}
+
+#TODO(chmeyers): Remove these
+# Debug events
+country_event = {
+	id = obsessions_mod_scientist.50
+	is_triggered_only = yes
+	title = "Obsessed Leader Fired"
+	
+	picture = GFX_evt_worrying_signal
+	show_sound = event_conversation
+
+	desc = { text = "Obsessed Leader Fired: [from.GetName]" }
+
+	option = {
+		name = "Okay"
+	}
+}
+
+leader_event = {
+	id = obsessions_mod_scientist.51
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		owner = { country_event = { id = obsessions_mod_scientist.52 } }
+	}
+}
+
+country_event = {
+	id = obsessions_mod_scientist.52
+	is_triggered_only = yes
+	title = "Obsessed Leader Fired 2"
+	
+	picture = GFX_evt_worrying_signal
+	show_sound = event_conversation
+
+	desc = { text = "Obsessed Leader Fired 2: [from.GetName]" }
+
+	option = {
+		name = "Okay"
+	}
 }

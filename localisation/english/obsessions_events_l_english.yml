@@ -9,7 +9,7 @@ leader_trait_obsession_fulfilled:0 "Obsession Fulfilled"
 leader_trait_obsession_fulfilled_desc:0 "This scientist has fulfilled their obsession and is better for it. Their singular focus has led to great skill."
 
 obsessions_mod_scientist.8.name:0 "Lifetime of Research"
-obsessions_mod_scientist.8.desc:0 "It seems that after the funeral of [FROMFROM.GetName], their obsessive notes were discovered by [FROM.GetName], who delved into the research. They have learned a lot, but seem to have taken up the obsession themself."
+obsessions_mod_scientist.8.desc:0 "It seems that after the funeral of our Obsessed Scientist, their obsessive notes were discovered by [FROM.GetName], who delved into the research. They have learned a lot, but seem to have taken up the obsession themself."
 obsessions_mod_scientist.8.a:0 "It's not over?"
 
 OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT:0 "Fulfilling an Obsession"
