@@ -235,3 +235,32 @@ special_project = {
 		ship_event = { id = obsessions_mod.31 }
 	}
 }
+
+special_project = {
+	key = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT"
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	cost = 0
+	days_to_research = 360
+	timelimit = 3600
+
+	picture = GFX_evt_cover_blown
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod_scientist.10 }
+	}
+
+	on_fail = {
+		owner = {
+			country_event = { id = obsessions_mod_scientist.11 }
+		}
+	}
+}

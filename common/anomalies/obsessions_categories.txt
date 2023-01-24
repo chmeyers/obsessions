@@ -821,7 +821,6 @@ obsessions_mod_category_barren_2 = {
 }
 
 obsessions_mod_category_barren_3 = {
-
 	# All obsessions anomalies are human only.
 	# This is the default setting, but it's listed here so that I comment on it.
 	should_ai_use = no
@@ -902,7 +901,54 @@ obsessions_mod_category_barren_3 = {
 	}
 }
 
-# Planet Classes
+#####################################
+# Major Obsession Causing Anomalies #
+# Always occur on habitable planets #
+#####################################
+obsessions_mod_category_alpine_1 = {
+	should_ai_use = no
+	
+	desc = "obsessions_mod_category_alpine_1_desc"
+
+	picture = GFX_evt_alpine_city
+	level = 8
+
+	max_once = yes # default NO, if true will spawn category only once per empire
+	max_once_global = no # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_alpine
+		}
+	}
+
+	on_success = {
+		# You sent a high level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill >= 6 }
+			}
+			anomaly_event = obsessions_mod.100
+		}
+		# You sent a low level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill <= 5 }
+			}
+			anomaly_event = obsessions_mod.101
+		}
+	}
+}
+
+
+# Planet Classes with no categories:
 # pc_cold_barren GFX_evt_cold_barren
 # pc_frozen GFX_evt_frozen
 # Habitables

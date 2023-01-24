@@ -1,0 +1,44 @@
+
+
+
+# Executed as a leader has died
+# This = Country
+# From = Leader
+on_leader_death = {
+	events = {
+		obsessions_mod_scientist.5 # Trigger obsession death notice
+	}
+}
+
+# Executed as a leader has been fired
+# This = Country
+# From = Leader
+on_leader_fired = {
+	events = {
+		obsessions_mod_scientist.4 # Trigger obsession crisis
+	}
+}
+
+# A leader leveled up.
+# Scope = Country
+# From = Leader
+on_leader_level_up = {
+	events = {
+		obsessions_mod_scientist.3 # Check for breakthrough on obsession
+	}
+}
+
+# Scope: Leader (after assignment)
+on_leader_assigned = {
+	events = {
+		obsessions_mod_scientist.2 # decrease obsession level
+	}
+}
+
+# Scope: Leader (just before unassignment)
+# Fires if a leader is unassigned from their position for any reason (including being assigned elsewhere)
+on_leader_unassigned = {
+	events = {
+		obsessions_mod_scientist.1 # increase obsession level
+	}
+}

@@ -1843,3 +1843,80 @@ country_event = {
 }
 
 # obsessions_mod.35 is used above.
+
+#####################################
+# Major Obsession Causing Anomalies #
+# Always occur on habitable planets #
+#####################################
+
+# Alpine Obsession events
+# Success Event... boring and end of chain.
+ship_event = {
+	id = obsessions_mod.100
+	title = "obsessions_mod.100.name"
+	desc = "obsessions_mod.100.desc"
+	picture = GFX_evt_alpine_city
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod_minor.100.a
+		owner = {
+			add_resource = { minor_artifacts = 3 }
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+		leader = {
+			add_experience = 200
+		}
+	}
+}
+
+# Failure event. Similar outcome except the become obsessed.
+ship_event = {
+	id = obsessions_mod.101
+	title = "obsessions_mod.101.name"
+	desc = "obsessions_mod.101.desc"
+	picture = GFX_evt_alpine_city
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod_minor.101.a
+		owner = {
+			add_resource = { minor_artifacts = 2 }
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		leader = {
+			add_experience = 200
+			if = {
+				limit ={
+					NOT = {
+						this.owner = {
+							any_owned_leader = {
+								has_leader_flag = obsession_obsessed
+							}
+						}
+					}
+				}
+				add_trait = leader_trait_obsessed_1
+				set_leader_flag = obsession_obsessed
+				set_variable = { which = obsession_level value = 1 }
+				from = {
+					save_global_event_target_as = obsessions_planet_target
+				}
+			}
+		}
+	}
+}

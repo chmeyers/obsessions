@@ -1,5 +1,36 @@
 ﻿l_english:
 
+leader_trait_obsessed_1:0 "Obsessed"
+leader_trait_obsessed_1_desc:0 "This scientist is dangerously obsessed with a previous failure and devotes an unhealthy amount of their time endlessly rehashing their past research."
+
+leader_trait_obsession_fulfilled:0 "Obsession Fulfilled"
+leader_trait_obsession_fulfilled_desc:0 "This scientist has fulfilled their obsession and is better for it. Their singular focus has led to great skill."
+
+obsessions_mod_scientist.8.name:0 "Lifetime of Research"
+obsessions_mod_scientist.8.desc:0 "It seems that after the funeral of [FROMFROM.GetName], their obsessive notes were discovered by [FROM.GetName], who delved into the research. They have learned a lot, but seem to have taken up the obsession themself."
+obsessions_mod_scientist.8.a:0 "It's not over?"
+
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT:0 "Fulfilling an Obsession"
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_DESC:0 "One of our scientists has obsessed for years over their previous failure and is finally ready to correct their previous mistakes."
+
+obsessions_mod_scientist.9.name:0 "Fulfillment"
+obsessions_mod_scientist.9.desc:0 "The obsessed scientist [from.GetName] has published a research outline indicating a breakthrough on their long running obsession. Nobody else can make sense of the research, but they wish to return to the original site and correct the problems that they have discovered."
+obsessions_mod_scientist.9.a:0 "Very well."
+obsessions_mod_scientist.9.b:0 "We won't engage in their obsession."
+
+obsessions_mod_scientist.10.name:0 "Fulfillment"
+obsessions_mod_scientist.10.desc:0 "After all their work and preperation, [leader.GetName] didn't even find the project to be that much of a challenge. They attempt to explain exactly what the problem was this whole time, but it's too esoteric for anyone else to understand. They seem fulfilled and are now confident that they can take on any problem."
+obsessions_mod_scientist.10.a:0 "Back to work then."
+
+obsessions_mod_scientist.12.name:0 "Missing Scientist"
+obsessions_mod_scientist.12.desc_job:0 "Scientist [obsessed_scientist_breakdown.GetName] has not been seen in several days. It seems that the stress of being removed from their previous job caused their obsessions to deepen and they have abandoned all other work and disappeared."
+obsessions_mod_scientist.12.desc_fired:0 "After being fired, scientist [obsessed_scientist_breakdown.GetName] appears to have collected all of their research notes on their obsession, stolen a civilian vessel, and escaped. A search is being conducted."
+obsessions_mod_scientist.12.desc_denied:0 "After their request was denied, scientist [obsessed_scientist_breakdown.GetName] appears to have stolen a civilian vessel and escaped. A search is being conducted."
+obsessions_mod_scientist.12.desc_timeout:0 "Frustrated with continuous delays in the requested special project, scientist [obsessed_scientist_breakdown.GetName] seems to have disappeared. Those familiar with their obsession believe that they are likely somewhere on that planet."
+obsessions_mod_scientist.12.desc:0 "Scientist [obsessed_scientist_breakdown.GetName] has disappeared without warning. Our other scientists believe it may have something to do with their obsession."
+obsessions_mod_scientist.12.a:0 "Oh dear."
+
+
  ####################################
  # Anomaly Categories
  ####################################
@@ -233,3 +264,21 @@ obsessions_mod.33.desc:0 "$NAME_Obsessions_Mod_Rocko$ has been colonized for a w
 obsessions_mod.33.a:0 "This is going to keep happening, isn't it?"
 d_rocko_delicious_rocks_deposit:0 "Delicious Rocks"
 d_rocko_delicious_rocks_deposit_desc:0 "$NAME_Obsessions_Mod_Rocko$ has delicious rocks, which have a strange effect on the population."
+
+
+#####################################
+# Major Obsession Causing Anomalies #
+# Always occur on habitable planets #
+#####################################
+
+obsessions_mod_category_alpine_1:0 "Abandoned city"
+obsessions_mod_category_alpine_1_desc:0 "Scans of this alpine planet have shown evidence of prior occupation. It is unknown what caused it to be abandoned."
+
+# Sent an expert
+obsessions_mod.100.name:0 "Abandoned city"
+obsessions_mod.100.desc:0 "[leader.GetName] easily decoded the language used by the former inhabitants of the city from scraps found throughout the ruins. It seems they abandoned the planet because they found it too cold and there is no danger in our species occupying it. They found several interesting artifacts."
+obsessions_mod.100.a:0 "The benefits of an experienced scientist."
+
+obsessions_mod.101.name:0 "Abandoned city"
+obsessions_mod.101.desc:0 "[leader.GetName] has found several interesting artifacts and various scraps of written language from the former inhabitants of the city throughout the ruins. They have so far failed to decode most of it. There is no indication of why the city and the planet was abandoned. The expedition has finished their work with no obvious conclusion.  Compatibility tests have so far shown no issues, but [leader.GetName] insists there may be a danger without any evidence."
+obsessions_mod.101.a:0 "They might not have been up to the job."

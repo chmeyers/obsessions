@@ -1,0 +1,391 @@
+# Events for managing scientists who are currently obsessed.
+namespace = obsessions_mod_scientist
+
+@obsession_end_level = 7
+@obsession_breaking_point = 5
+@obsession_near_breaking_point = 4
+@breaking_reason_none = 0
+@breaking_reason_job_change = 1
+@breaking_reason_fired = 2
+@breaking_reason_denied = 3
+@breaking_reason_timeout = 4
+
+#TODO(chmeyers): Set up events/situations to progress their obsession_level
+
+# Unassigned from their job. Obsession increases one level.
+# If they are immediately reassigned, it will go back down.
+# Scope: Leader (just before unassignment)
+leader_event = {
+	id = obsessions_mod_scientist.1
+	hide_window = yes
+	is_triggered_only = yes
+
+	# Check the flag, not the trait, in case the trait has been hidden.
+	trigger = { has_leader_flag = obsession_obsessed }
+
+	immediate = {
+		# Increase by one and check whether that is their breaking point.
+		change_variable = { which = obsession_level value = 1 }
+		if = {
+			limit = { check_variable = { which = obsession_level value >= @obsession_breaking_point } }
+			set_variable = { which = obsession_break_reason value = @breaking_reason_job_change }
+			leader_event = { id = obsessions_mod_scientist.6 days = 30 }
+		}
+	}
+}
+
+# Assigned to a job
+# Scope: Leader (after assignment)
+leader_event = {
+	id = obsessions_mod_scientist.2
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { has_leader_flag = obsession_obsessed }
+
+	immediate = {
+		# Decrease obsession level by one
+		change_variable = { which = obsession_level value = -1 }
+	}
+}
+
+# A leader leveled up.
+# Scope = Country
+# From = Leader
+country_event = {
+	id = obsessions_mod_scientist.3
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { from = { has_leader_flag = obsession_obsessed } }
+
+	immediate = {
+		from = {
+			if = {
+				limit = {
+					has_skill >= @obsession_end_level
+				}
+				owner ={
+					# Their obsession is ready to come to an end, issue the special project.
+					country_event = { id = obsessions_mod_scientist.9 scopes = { from = from } }
+				}
+			}
+		}
+	}
+}
+
+# A leader fired.
+# Scope = Country
+# From = Leader
+country_event = {
+	id = obsessions_mod_scientist.4
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { from = { has_leader_flag = obsession_obsessed } }
+
+	immediate = {
+		# Firing them always causes them to break immediately.
+		from = {
+			set_variable = { which = obsession_level value = @obsession_breaking_point }
+			set_variable = { which = obsession_break_reason value = @breaking_reason_fired }
+			leader_event = { id = obsessions_mod_scientist.6 days = 1 }
+		}
+	}
+}
+
+# A leader died.
+# Scope = Country
+# From = Leader
+country_event = {
+	id = obsessions_mod_scientist.5
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { from = { has_leader_flag = obsession_obsessed } }
+
+	immediate = {
+		# If an obsessed leader dies, a junior scientist usually "finds their notes" after their funeral
+		from = {
+			leader_event = { id = obsessions_mod_scientist.7 days = 30 }
+		}
+	}
+}
+
+# Breaking point!
+leader_event = {
+	id = obsessions_mod_scientist.6
+	hide_window = yes
+	is_triggered_only = yes
+
+	# Check to make sure they are still a scientist. We don't break scientists if they have
+	# become the country ruler.
+	immediate = {
+		if = {
+			limit = {
+				leader_class = scientist
+			}
+			species = {
+				save_global_event_target_as = obsessed_scientist_species
+			}
+			owner = {
+				# Inform the owner of their disappearance.
+				country_event = { id = obsession_mod_scientist.12 days = 1 }
+			}
+			remove_leader_flag = obsession_obsessed
+			set_leader_flag = obsession_breakdown
+			exile_leader_as = obsessed_scientist_breakdown
+			save_global_event_target_as = obsessed_scientist_breakdown
+			# TODO(chmeyers): Fire off an event to do something about it.
+			event_target:obsessions_planet_target = {
+				planet_event = {
+					id = obsessions_mod_scientist.13
+					days = 60
+					scopes = { from = event_target:obsessed_scientist_breakdown }
+				}
+			}
+		}
+	}
+}
+
+# This = dead scientist
+leader_event = {
+	id = obsessions_mod_scientist.7
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		owner = {
+			random_owned_leader = {
+				limit = {
+					leader_class = scientist
+					has_skill <= 4
+					leader_age <= 60
+					NOT = { has_leader_flag = obsession_obsessed }
+				}
+				# This scientist found their notes and will inherit the dead leader's obsession
+				save_event_target_as = inheriting_scientist
+			}
+			country_event = {
+				id = obsessions_mod_scientist.8
+				scopes = { from = event_target:inheriting_scientist fromfrom = root }
+			}
+		}
+	}
+}
+
+# A new leader found the notes and got obsessed.
+# from = inheriting scientist
+# fromfrom = dead scientist
+country_event = {
+	id = obsessions_mod_scientist.8
+	is_triggered_only = yes
+	title = "obsessions_mod_scientist.8.name"
+	desc = "obsessions_mod_scientist.8.desc"
+	picture = GFX_evt_space_funeral
+	show_sound = event_life_support_fail
+
+	immediate = {
+		from = {
+			add_trait = leader_trait_obsessed_1
+			set_leader_flag = obsession_obsessed
+			set_variable = { which = obsession_level value = fromfrom.obsession_level }
+			add_experience = 1000
+			if = {
+				limit = { is_idle = yes }
+				change_variable = { which = obsession_level value = 1 }
+			}
+			if = {
+				limit = { check_variable = { which = obsession_level value >= @obsession_breaking_point } }
+				# Don't immediately break a new scientist.
+				set_variable = { which = obsession_level value = @obsession_near_breaking_point }
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.8.a
+		# We already gave them the trait above, but show it in the tooltip.
+		tooltip = {
+			from = {
+				add_trait = leader_trait_obsessed_1
+			}
+		}
+	}
+}
+
+# An obsessed leader has reached the skill level necessary to end their obsession.
+# from = obsessed scientist
+country_event = {
+	id = obsessions_mod_scientist.9
+	is_triggered_only = yes
+	title = "obsessions_mod_scientist.9.name"
+	desc = "obsessions_mod_scientist.9.desc"
+	picture = GFX_evt_bribery
+	show_sound = event_conversation
+
+
+	option = {
+		name = obsessions_mod_scientist.9.a
+		add_resource = { energy = -1000 }
+		enable_special_project = {
+			name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT"
+			location = event_target:obsessions_planet_target
+			owner = root.owner
+		}
+		hidden_effect = {
+			from = {
+				# Zero out any pending breaks and make it hard to hit a new break while the project is active.
+				set_variable = { which = obsession_level value = 0 }
+				set_variable = { which = obsession_break_reason value = 0 }
+			}
+		}
+	}
+
+	# Reject the Special Project. Bad idea...
+	option = {
+		name = obsessions_mod_scientist.9.b
+		hidden_effect = {
+			from = {
+				set_variable = { which = obsession_level value = @obsession_breaking_point }
+				set_variable = { which = obsession_break_reason value = @breaking_reason_denied }
+				leader_event = { id = obsessions_mod_scientist.6 days = 1 }
+			}
+		}
+	}
+}
+
+# Special Project completed.
+ship_event = {
+	id = obsessions_mod_scientist.10
+	title = "obsessions_mod_scientist.10.name"
+	desc = "obsessions_mod_scientist.10.desc"
+	picture = GFX_evt_grand_speech
+	show_sound = event_conversation
+	location = event_target:obsessions_planet_target
+	is_triggered_only = yes
+	auto_opens = yes
+	
+	immediate = {
+		leader = {
+			remove_leader_flag = obsession_obsessed
+			set_variable = { which = obsession_level value = 0 }
+			set_variable = { which = obsession_break_reason value = 0 }
+		}
+	}
+
+	# It's finally over, Mr. Frodo.
+	option = {
+		name = obsessions_mod_scientist.10.a
+		leader = {
+			add_experience = 1000
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+	}
+
+}
+
+# Special Project timed out!
+# Scope = Country
+country_event = {
+	id = obsessions_mod_scientist.11
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = { from = { has_leader_flag = obsession_obsessed } }
+
+	immediate = {
+		# Project timeout always causes them to break immediately.
+		random_owned_leader = {
+			limit = { has_leader_flag = obsession_obsessed }
+			set_variable = { which = obsession_level value = @obsession_breaking_point }
+			set_variable = { which = obsession_break_reason value = @breaking_reason_timeout }
+			leader_event = { id = obsessions_mod_scientist.6 days = 1 }
+		}
+	}
+}
+
+# An obsessed leader has disappeared
+country_event = {
+	id = obsessions_mod_scientist.12
+	is_triggered_only = yes
+	title = "obsessions_mod_scientist.12.name"
+	
+	picture = GFX_evt_worrying_signal
+	show_sound = event_conversation
+
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				check_variable = {
+					which = obsession_break_reason
+					value = @breaking_reason_job_change
+				}
+			}
+		}
+		text = "obsessions_mod_scientist.12.desc_job"
+	}
+
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				check_variable = {
+					which = obsession_break_reason
+					value = @breaking_reason_fired
+				}
+			}
+		}
+		text = "obsessions_mod_scientist.12.desc_fired"
+	}
+
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				check_variable = {
+					which = obsession_break_reason
+					value = @breaking_reason_denied
+				}
+			}
+		}
+		text = "obsessions_mod_scientist.12.desc_denied"
+	}
+
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				check_variable = {
+					which = obsession_break_reason
+					value = @breaking_reason_timeout
+				}
+			}
+		}
+		text = "obsessions_mod_scientist.12.desc_timeout"
+	}
+
+	desc = { text = "obsessions_mod_scientist.12.desc_default" }
+
+	option = {
+		name = obsessions_mod_scientist.12.a
+	}
+}
+
+# Punishment event. The player failed to contain the scientist's obsession and they have
+# escaped and gone to the planet.
+planet_event = {
+	hide_window = yes
+	is_triggered_only = yes
+	id = obsessions_mod_scientist.13
+
+	# TODO(chmeyers): Do this.
+	# Check to ensure the planet is habitable. It should be since obsession planets always are,
+	# but something might have happened to render it uninhabitable. If that happened, spawn a pirate
+	# fleet with the obsessed scientist as the admiral.
+
+	# 1) If the system is unclaimed.
+	# 2) If the system is claimed by ai and the planet uncolonized.
+	# 3) If the system is claimed by ai and the planet colonized.
+	# 4) If the system is claimed by human and the planet uncolonized.
+	# 5) If the system is claimed by human and the planet colonized.
+	
+}
