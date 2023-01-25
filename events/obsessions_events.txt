@@ -1877,7 +1877,7 @@ ship_event = {
 	}
 }
 
-# Failure event. Similar outcome except the become obsessed.
+# Failure event. Similar outcome except they become obsessed.
 ship_event = {
 	id = obsessions_mod.101
 	title = "obsessions_mod.101.name"
@@ -1900,6 +1900,536 @@ ship_event = {
 		}
 		leader = {
 			add_experience = 200
+			if = {
+				limit ={
+					NOT = {
+						this.owner = {
+							any_owned_leader = {
+								has_leader_flag = obsession_obsessed
+							}
+						}
+					}
+				}
+				add_trait = leader_trait_obsessed_1
+				hidden_effect = {
+					set_leader_flag = obsession_obsessed
+					set_variable = { which = obsession_level value = 1 }
+					from = {
+						save_global_event_target_as = obsessions_planet_target
+					}
+				}
+			}
+		}
+	}
+}
+
+# Arctic Obsession events
+# Success Event.
+ship_event = {
+	id = obsessions_mod.102
+	title = "obsessions_mod.102.name"
+	desc = "obsessions_mod.102.desc"
+	picture = GFX_evt_arctic
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.102.a
+		from = {
+			add_deposit = d_lichen_fields
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+		leader = {
+			add_experience = 200
+		}
+	}
+}
+
+# Failure event. Worse outcome and they become obsessed.
+ship_event = {
+	id = obsessions_mod.103
+	title = "obsessions_mod.103.name"
+	desc = "obsessions_mod.103.desc"
+	picture = GFX_evt_arctic
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.103.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+		leader = {
+			add_experience = 200
+			if = {
+				limit ={
+					NOT = {
+						this.owner = {
+							any_owned_leader = {
+								has_leader_flag = obsession_obsessed
+							}
+						}
+					}
+				}
+				add_trait = leader_trait_obsessed_1
+				hidden_effect = {
+					set_leader_flag = obsession_obsessed
+					set_variable = { which = obsession_level value = 1 }
+					from = {
+						save_global_event_target_as = obsessions_planet_target
+					}
+				}
+			}
+		}
+	}
+}
+
+# Tundra Obsession events
+# Success Event.
+ship_event = {
+	id = obsessions_mod.104
+	title = "obsessions_mod.104.name"
+	desc = "obsessions_mod.104.desc"
+	picture = GFX_evt_tundra
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.104.a
+		from = {
+			add_deposit = d_geothermal_vent
+			add_deposit = d_forgiving_tundra
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+		leader = {
+			add_experience = 200
+		}
+	}
+}
+
+# Failure event. Worse outcome and they become obsessed.
+ship_event = {
+	id = obsessions_mod.105
+	title = "obsessions_mod.105.name"
+	desc = "obsessions_mod.105.desc"
+	picture = GFX_evt_tundra
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.105.a
+		from = {
+			add_deposit = d_geothermal_vent
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+		leader = {
+			add_experience = 200
+			if = {
+				limit ={
+					NOT = {
+						this.owner = {
+							any_owned_leader = {
+								has_leader_flag = obsession_obsessed
+							}
+						}
+					}
+				}
+				add_trait = leader_trait_obsessed_1
+				hidden_effect = {
+					set_leader_flag = obsession_obsessed
+					set_variable = { which = obsession_level value = 1 }
+					from = {
+						save_global_event_target_as = obsessions_planet_target
+					}
+				}
+			}
+		}
+	}
+}
+
+# Ocean Obsession events
+# Success Event.
+ship_event = {
+	id = obsessions_mod.106
+	title = "obsessions_mod.106.name"
+	desc = "obsessions_mod.106.desc"
+	picture = GFX_evt_ocean
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.106.a
+		from = {
+			add_deposit = d_submerged_ore_veins
+			add_deposit = d_submerged_ore_veins
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+		leader = {
+			add_experience = 200
+		}
+	}
+}
+
+# Failure event. Worse outcome and they become obsessed.
+ship_event = {
+	id = obsessions_mod.107
+	title = "obsessions_mod.107.name"
+	desc = "obsessions_mod.107.desc"
+	picture = GFX_evt_ocean
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.107.a
+		from = {
+			add_deposit = d_submerged_ore_veins
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+		leader = {
+			add_experience = 200
+			if = {
+				limit ={
+					NOT = {
+						this.owner = {
+							any_owned_leader = {
+								has_leader_flag = obsession_obsessed
+							}
+						}
+					}
+				}
+				add_trait = leader_trait_obsessed_1
+				hidden_effect = {
+					set_leader_flag = obsession_obsessed
+					set_variable = { which = obsession_level value = 1 }
+					from = {
+						save_global_event_target_as = obsessions_planet_target
+					}
+				}
+			}
+		}
+	}
+}
+
+# Continental Obsession events
+# Success Event.
+ship_event = {
+	id = obsessions_mod.108
+	title = "obsessions_mod.108.name"
+	desc = "obsessions_mod.108.desc"
+	picture = GFX_evt_continental
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.108.a
+		from = {
+			add_deposit = d_tempestous_mountain
+			add_deposit = d_tempestous_mountain
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+		leader = {
+			add_experience = 200
+		}
+	}
+}
+
+# Failure event. Worse outcome and they become obsessed.
+ship_event = {
+	id = obsessions_mod.109
+	title = "obsessions_mod.109.name"
+	desc = "obsessions_mod.109.desc"
+	picture = GFX_evt_continental
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.109.a
+		from = {
+			add_deposit = d_tempestous_mountain
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+		leader = {
+			add_experience = 200
+			if = {
+				limit ={
+					NOT = {
+						this.owner = {
+							any_owned_leader = {
+								has_leader_flag = obsession_obsessed
+							}
+						}
+					}
+				}
+				add_trait = leader_trait_obsessed_1
+				hidden_effect = {
+					set_leader_flag = obsession_obsessed
+					set_variable = { which = obsession_level value = 1 }
+					from = {
+						save_global_event_target_as = obsessions_planet_target
+					}
+				}
+			}
+		}
+	}
+}
+
+# Savannah Obsession events
+# Success Event.
+ship_event = {
+	id = obsessions_mod.110
+	title = "obsessions_mod.110.name"
+	desc = "obsessions_mod.110.desc"
+	picture = GFX_evt_savannah
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.110.a
+		owner = {
+			add_resource = { minor_artifacts = 3 }
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier4unityreward
+				min = @tier4unitymin
+				max = @tier4unitymax
+			}
+		}
+		leader = {
+			add_experience = 200
+		}
+	}
+}
+
+# Failure event. Worse outcome and they become obsessed.
+ship_event = {
+	id = obsessions_mod.111
+	title = "obsessions_mod.111.name"
+	desc = "obsessions_mod.111.desc"
+	picture = GFX_evt_savannah
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.111.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier2unityreward
+				min = @tier2unitymin
+				max = @tier2unitymax
+			}
+		}
+		leader = {
+			add_experience = 100
+			if = {
+				limit ={
+					NOT = {
+						this.owner = {
+							any_owned_leader = {
+								has_leader_flag = obsession_obsessed
+							}
+						}
+					}
+				}
+				add_trait = leader_trait_obsessed_1
+				hidden_effect = {
+					set_leader_flag = obsession_obsessed
+					set_variable = { which = obsession_level value = 1 }
+					from = {
+						save_global_event_target_as = obsessions_planet_target
+					}
+				}
+			}
+		}
+	}
+}
+
+# Arid Obsession events
+# Success Event.
+ship_event = {
+	id = obsessions_mod.112
+	title = "obsessions_mod.112.name"
+	desc = "obsessions_mod.112.desc"
+	picture = GFX_evt_arid
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.112.a
+		from = {
+			add_deposit = d_mineral_monuments_deposit
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+		leader = {
+			add_experience = 200
+		}
+	}
+}
+
+# Failure event. Worse outcome and they become obsessed.
+ship_event = {
+	id = obsessions_mod.113
+	title = "obsessions_mod.113.name"
+	desc = "obsessions_mod.113.desc"
+	picture = GFX_evt_savannah
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.113.a
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+		leader = {
+			add_experience = 100
+			if = {
+				limit ={
+					NOT = {
+						this.owner = {
+							any_owned_leader = {
+								has_leader_flag = obsession_obsessed
+							}
+						}
+					}
+				}
+				add_trait = leader_trait_obsessed_1
+				hidden_effect = {
+					set_leader_flag = obsession_obsessed
+					set_variable = { which = obsession_level value = 1 }
+					from = {
+						save_global_event_target_as = obsessions_planet_target
+					}
+				}
+			}
+		}
+	}
+}
+
+# Desert Obsession events
+# Success Event.
+ship_event = {
+	id = obsessions_mod.114
+	title = "obsessions_mod.114.name"
+	desc = "obsessions_mod.114.desc"
+	picture = GFX_evt_desert
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.114.a
+		from = {
+			add_deposit = d_candy_sand_deposit
+			add_modifier = {
+				modifier = "candy_sands_modifier"
+				days = -1
+			}
+		}
+		leader = {
+			add_experience = 200
+		}
+	}
+}
+
+# Failure event. Worse outcome and they become obsessed.
+ship_event = {
+	id = obsessions_mod.115
+	title = "obsessions_mod.115.name"
+	desc = "obsessions_mod.115.desc"
+	picture = GFX_evt_desert
+	show_sound = event_administrative_work
+	location = FROM
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.115.a
+		from = {
+			add_deposit = d_candy_sand_deposit
+			add_modifier = {
+				modifier = "candy_sands_modifier"
+				days = -1
+			}
+		}
+		leader = {
+			add_experience = 100
 			if = {
 				limit ={
 					NOT = {

@@ -914,7 +914,7 @@ obsessions_mod_category_alpine_1 = {
 	level = 8
 
 	max_once = yes # default NO, if true will spawn category only once per empire
-	max_once_global = no # default NO, if true will spawn category only once per game
+	max_once_global = yes # default NO, if true will spawn category only once per game
 
 	on_spawn = {
 		clear_deposits = yes 
@@ -923,7 +923,7 @@ obsessions_mod_category_alpine_1 = {
 	spawn_chance = {
 		modifier = {
 			add = @obsessions_mod_spawn_modifier
-			#is_planet_class = pc_alpine #TODO(chmeyers): Add this back
+			is_planet_class = pc_alpine
 		}
 	}
 
@@ -947,19 +947,304 @@ obsessions_mod_category_alpine_1 = {
 	}
 }
 
+obsessions_mod_category_arctic_1 = {
+	should_ai_use = no
+	
+	desc = "obsessions_mod_category_arctic_1_desc"
+
+	picture = GFX_evt_arctic
+	level = 8
+
+	max_once = yes # default NO, if true will spawn category only once per empire
+	max_once_global = yes # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_arctic
+		}
+	}
+
+	on_success = {
+		# You sent a high level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill >= 6 }
+			}
+			anomaly_event = obsessions_mod.102
+		}
+		# You sent a low level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill <= 5 }
+			}
+			anomaly_event = obsessions_mod.103
+		}
+	}
+}
+
+obsessions_mod_category_tundra_1 = {
+	should_ai_use = no
+	
+	desc = "obsessions_mod_category_tundra_1_desc"
+
+	picture = GFX_evt_tundra
+	level = 8
+
+	max_once = yes # default NO, if true will spawn category only once per empire
+	max_once_global = yes # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_tundra
+		}
+	}
+
+	on_success = {
+		# You sent a high level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill >= 6 }
+			}
+			anomaly_event = obsessions_mod.104
+		}
+		# You sent a low level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill <= 5 }
+			}
+			anomaly_event = obsessions_mod.105
+		}
+	}
+}
+
+obsessions_mod_category_ocean_1 = {
+	should_ai_use = no
+	
+	desc = "obsessions_mod_category_ocean_1_desc"
+
+	picture = GFX_evt_ocean
+	level = 8
+
+	max_once = yes # default NO, if true will spawn category only once per empire
+	max_once_global = yes # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_ocean
+		}
+	}
+
+	on_success = {
+		# You sent a high level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill >= 6 }
+			}
+			anomaly_event = obsessions_mod.106
+		}
+		# You sent a low level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill <= 5 }
+			}
+			anomaly_event = obsessions_mod.107
+		}
+	}
+}
+
+obsessions_mod_category_continental_1 = {
+	should_ai_use = no
+	
+	desc = "obsessions_mod_category_continental_1_desc"
+
+	picture = GFX_evt_continental
+	level = 8
+
+	max_once = yes # default NO, if true will spawn category only once per empire
+	max_once_global = yes # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_continental
+		}
+	}
+
+	on_success = {
+		# You sent a high level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill >= 6 }
+			}
+			anomaly_event = obsessions_mod.108
+		}
+		# You sent a low level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill <= 5 }
+			}
+			anomaly_event = obsessions_mod.109
+		}
+	}
+}
+
+obsessions_mod_category_savannah_1 = {
+	should_ai_use = no
+	
+	desc = "obsessions_mod_category_savannah_1_desc"
+
+	picture = GFX_evt_savannah
+	level = 8
+
+	max_once = yes # default NO, if true will spawn category only once per empire
+	max_once_global = yes # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_savannah
+		}
+	}
+
+	on_success = {
+		# You sent a high level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill >= 6 }
+			}
+			anomaly_event = obsessions_mod.110
+		}
+		# You sent a low level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill <= 5 }
+			}
+			anomaly_event = obsessions_mod.111
+		}
+	}
+}
+
+obsessions_mod_category_arid_1 = {
+	should_ai_use = no
+	
+	desc = "obsessions_mod_category_arid_1_desc"
+
+	picture = GFX_evt_arid
+	level = 8
+
+	max_once = yes # default NO, if true will spawn category only once per empire
+	max_once_global = yes # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_arid
+		}
+	}
+
+	on_success = {
+		# You sent a high level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill >= 6 }
+			}
+			anomaly_event = obsessions_mod.112
+		}
+		# You sent a low level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill <= 5 }
+			}
+			anomaly_event = obsessions_mod.113
+		}
+	}
+}
+
+obsessions_mod_category_desert_1 = {
+	should_ai_use = no
+	
+	desc = "obsessions_mod_category_desert_1_desc"
+
+	picture = GFX_evt_desert
+	level = 8
+
+	max_once = yes # default NO, if true will spawn category only once per empire
+	max_once_global = yes # default NO, if true will spawn category only once per game
+
+	on_spawn = {
+		clear_deposits = yes 
+	}
+
+	spawn_chance = {
+		modifier = {
+			add = @obsessions_mod_spawn_modifier
+			is_planet_class = pc_desert
+		}
+	}
+
+	on_success = {
+		# You sent a high level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill >= 6 }
+			}
+			anomaly_event = obsessions_mod.114
+		}
+		# You sent a low level scientist
+		0 = {
+			modifier = {
+				add = 10
+				leader = { has_skill <= 5 }
+			}
+			anomaly_event = obsessions_mod.115
+		}
+	}
+}
 
 # Planet Classes with no categories:
 # pc_cold_barren GFX_evt_cold_barren
 # pc_frozen GFX_evt_frozen
 # Habitables
-# pc_alpine
-# pc_arctic
-# pc_tundra
-# pc_ocean
-# pc_continental
-# pc_temperate
-# pc_savannah
-# pc_arid
 # pc_desert
 # pc_gaia
 # pc_nuked

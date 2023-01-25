@@ -445,6 +445,7 @@ country_event = {
 		# Pick a ramp up situation.
 		from = {
 			random_list = {
+				# TODO(chmeyers): Maybe one that silently increases the level IFF they are idle?
 				1 = {
 					# Silently increase their level.
 					country_event = { id = obsession_mod_scientist.16 scopes = { from = from } }

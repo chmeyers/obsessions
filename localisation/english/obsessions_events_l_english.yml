@@ -295,3 +295,88 @@ obsessions_mod.100.a:0 "The benefits of an experienced scientist."
 obsessions_mod.101.name:0 "Abandoned city"
 obsessions_mod.101.desc:0 "[leader.GetName] has found several interesting artifacts and various scraps of written language from the former inhabitants of the city throughout the ruins. They have so far failed to decode most of it. There is no indication of why the city and the planet was abandoned. The expedition has finished their work with no obvious conclusion.  Compatibility tests have so far shown no issues, but [leader.GetName] insists there may be a danger without any evidence."
 obsessions_mod.101.a:0 "They might not have been up to the job."
+
+obsessions_mod_category_arctic_1:0 "Under the Snow"
+obsessions_mod_category_arctic_1_desc:0 "This planet quickly stands out to our scans due to the unusual lights visible on the dark side of the planet. No signs of civilization are evident, but the pulsing continent-wide light show is somewhat unnerving."
+
+obsessions_mod.102.name:0 "Under the Snow"
+obsessions_mod.102.desc:0 "[leader.GetName] quickly determined that the pulsing lights were due to a unique species of bioluminescent bacteria present under the snow. After thorough testing they determined that the bacteria posed no harm to potential colonists."
+obsessions_mod.102.a:0 "Excellent work."
+
+obsessions_mod.103.name:0 "Under the Snow"
+obsessions_mod.103.desc:0 "[leader.GetName] was able to determine that the pulsing lights were caused by a species of bioluminescent bacteria present under the snow. Tests have so far shown no issues, but [leader.GetName] insists the bacteria may pose some unknown danger. The expedition has finished its work with no final conclusion."
+obsessions_mod.103.a:0 "Disappointing work."
+
+obsessions_mod_category_tundra_1:0 "A Bay of Green"
+obsessions_mod_category_tundra_1_desc:0 "This planet is mostly made up of mostly made up of frozen tundra with sparse plant life, but a single green bay near the equator stands out for quite verdant."
+
+obsessions_mod.104.name:0 "A Bay of Green"
+obsessions_mod.104.desc:0 "[leader.GetName] was able to find and map a series of geothermal vents that supplied warm water to the green bay. They should provide any colony here with additional energy as well as making general colonization easier."
+obsessions_mod.104.a:0 "Excellent work."
+
+obsessions_mod.105.name:0 "A Bay of Green"
+obsessions_mod.105.desc:0 "Most of the crew believes that the green bay is caused by a series of geothermal vents, but [leader.GetName] insists that it may be due to the native wildlife playing some sort of game on the frozen tundra. The expedition has finished its work with no final conclusion."
+obsessions_mod.105.a:0 "Unfortunate."
+
+obsessions_mod_category_ocean_1:0 "The Seven Seas"
+obsessions_mod_category_ocean_1_desc:0 "Despite being almost entirely covered with water, this ocean world is divided into seven isolated oceans by narrow mountain ranges jutting out of the water in a seemingly geometric pattern. The survey team wonders whether they are a natural phenomenon."
+
+obsessions_mod.106.name:0 "The Seven Seas"
+obsessions_mod.106.desc:0 "The rocky coasts and wild weather made the research difficult, but [leader.GetName] has concluded that the geometric mountain ranges were produced by a single massive collision by a small moon several billion years ago. The mountains were originally much higher but have weathered to their present condition. The planet is safe to colonize and the strike has left an enormous amount of underwater mineral deposits."
+obsessions_mod.106.a:0 "Perfect."
+
+obsessions_mod.107.name:0 "The Seven Seas"
+obsessions_mod.107.desc:0 "There is some evidence that the mountains were caused by an ancient cosmic collision, but [leader.GetName] insists the patterns are evidence of intelligent design. The expedition has finished its work with no final conclusion."
+obsessions_mod.107.a:0 "What?"
+
+obsessions_mod_category_continental_1:0 "Unusual Lightning Formations"
+obsessions_mod_category_continental_1_desc:0 "This planet's atmosphere appears to generate an unusual amount of lightning, which cannot be explained by our existing weather models."
+
+obsessions_mod.108.name:0 "Unusual Lightning Formations"
+obsessions_mod.108.desc:0 "[leader.GetName] has concluded that lightning is caused by excess atmospheric ionization due to the exceptionally tall mountains present on this planet. This should not block colonization and may be to our advantage."
+obsessions_mod.108.a:0 "Great."
+
+obsessions_mod.109.name:0 "A Storm in the Heavens"
+obsessions_mod.109.desc:0 "Most of the crew believes that the lightning has something to do with the planet's tall mountains, but [leader.GetName] has spent most of the expedition searching for godlike beings that they believe might be generating the energy."
+obsessions_mod.109.a:0 "Really?"
+
+obsessions_mod_category_savannah_1:0 "A Historic Replica"
+obsessions_mod_category_savannah_1_desc:0 "Our survey crew was shocked to discover a well preserved set of ruins on this planet whose layout exactly matches the historical record for our capital city from several hundred years ago."
+
+obsessions_mod.110.name:0 "Ideal Colonization Site"
+obsessions_mod.110.desc:0 "[leader.GetName] has concluded that the similarities between the site and our own capital city are purely coincidental. The site is several million years old and while the architectural style is similar, the similarities in layout are due only to both using the same underlying mathematical equations to generate an ideal city structure. A few artifacts of the builders remain."
+obsessions_mod.110.a:0 "Our cities are timeless."
+
+obsessions_mod.111.name:0 "Clearing the Way"
+obsessions_mod.111.desc:0 "[leader.GetName] had begun to reach conclusions that the site was actually built by aliens who had observed our civilization when the entire site was destroyed over night by a series of explosions. None of the crew will admit was happened."
+obsessions_mod.111.a:0 "Perhaps it's for the best."
+
+obsessions_mod_category_arid_1:0 "Mysterious Monoliths"
+obsessions_mod_category_arid_1_desc:0 "The largest continent on this planet is covered in a large number of monoliths made up of purified minerals. They are of all shapes and sizes, but do not appear to be natural."
+
+obsessions_mod.112.name:0 "Bacterial Monoliths"
+obsessions_mod.112.desc:0 "[leader.GetName] has discovered that the monoliths are indeed natural, built up over time by a native bacterium. If the planet is colonized they would allow additional mining opportunities."
+obsessions_mod.112.a:0 "They could be useful."
+
+obsessions_mod.113.name:0 "Bacterial Monoliths"
+obsessions_mod.113.desc:0 "[leader.GetName] has discovered that the monoliths are created by a local strain of bacteria. Despite no evidence, they insist that the bacterium was designed by unknown entities. Nobody else believes their theories."
+obsessions_mod.113.a:0 "Sounds farfetched."
+
+d_mineral_monuments_deposit:0 "Mineral Monuments"
+d_mineral_monuments_deposit_desc:0 "This planet is covered in spires of minerals, generated by a native bacterium."
+
+obsessions_mod_category_desert_1:0 "Dessert Planet"
+obsessions_mod_category_desert_1_desc:0 "The survey team has announced that for some reason everything they ate while on this planet was delicious, even the meals they had brought with them."
+
+obsessions_mod.114.name:0 "Dessert Planet"
+obsessions_mod.114.desc:0 "[leader.GetName] has discovered that the deliciousness of the meals consumed on this planet is due to the everything getting covered in the local sand, which is very tasty."
+obsessions_mod.114.a:0 "Yum."
+
+obsessions_mod.115.name:0 "Dessert Planet"
+obsessions_mod.115.desc:0 "[leader.GetName] has discovered that the deliciousness of the meals consumed on this planet is due to the everything getting covered in the local sand, which is very tasty. They believe the planet may be cream-filled. Nobody else believes their theories."
+obsessions_mod.115.a:0 "Yum."
+
+candy_sands_modifier:0 "Candy Sands"
+candy_sands_modifier_desc:0 "This planet is covered in delicious sand."
+d_candy_sand_deposit:0 "Candy Sands"
+d_candy_sand_deposit_desc:0 "This planet is covered in delicious sand."
