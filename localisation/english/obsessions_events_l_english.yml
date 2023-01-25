@@ -100,7 +100,7 @@ OBSESSIONS_MOD_ASTEROID_VIEWING_PROJECT:0 "View the Rock"
 OBSESSIONS_MOD_ASTEROID_VIEWING_PROJECT_DESC:0 "People are clamoring to see [From.GetName] for themselves. While all scientific evidence points to it just being a rock, many think it may hold deeper spiritual meaning."
 
 obsessions_mod.5.name:0 "Everyone agrees that it is indeed a Rock"
-obsessions_mod.5.desc:0 "The viewing of [FromFrom.GetName] has finished. For half a day everything was calm. Then they all started arguing about the exact spritual significance of it all."
+obsessions_mod.5.desc:0 "The viewing of $NAME_Obsessions_Mod_Rocko$ has finished. For half a day everything was calm. Then they all started arguing about the exact spritual significance of it all."
 obsessions_mod.5.a:0 "That's over, right?"
 obsessions_mod.5.a.tooltip:0 "Somehow, this doesn't seem like the last you'll hear about this dumb rock."
 obsessions_mod.5.b:0 "This ends right here."
