@@ -1,7 +1,7 @@
 # Events for managing scientists who are currently obsessed.
 namespace = obsessions_mod_scientist
 
-@obsession_end_level = 7
+@obsession_end_level = 6
 @obsession_breaking_point = 5
 @obsession_near_breaking_point = 4
 @breaking_reason_none = 0
@@ -9,8 +9,9 @@ namespace = obsessions_mod_scientist
 @breaking_reason_fired = 2
 @breaking_reason_denied = 3
 @breaking_reason_timeout = 4
+@breaking_reason_lifetime = 5
+@breaking_reason_retraining = 6
 
-#TODO(chmeyers): Set up events/situations to progress their obsession_level
 
 # Unassigned from their job. Obsession increases one level.
 # If they are immediately reassigned, it will go back down.
@@ -133,6 +134,7 @@ leader_event = {
 		if = {
 			limit = {
 				leader_class = scientist
+				NOT = { check_variable = { which = obsession_break_reason value = @breaking_reason_none } }
 			}
 			species = {
 				save_global_event_target_as = obsessed_scientist_species
@@ -201,6 +203,7 @@ country_event = {
 				limit = { is_idle = yes }
 				change_variable = { which = obsession_level value = 1 }
 			}
+			# TODO(chmeyers): Trigger their loop
 		}
 	}
 
@@ -225,6 +228,13 @@ country_event = {
 	picture = GFX_evt_bribery
 	show_sound = event_conversation
 
+	immediate = {
+		from = {
+			# Zero out any pending breaks and make it hard to hit a new break while the project is active.
+			set_variable = { which = obsession_level value = 0 }
+			set_variable = { which = obsession_break_reason value = @breaking_reason_none }
+		}
+	}
 
 	option = {
 		name = obsessions_mod_scientist.9.a
@@ -233,13 +243,6 @@ country_event = {
 			name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT"
 			location = event_target:obsessions_planet_target
 			owner = root.owner
-		}
-		hidden_effect = {
-			from = {
-				# Zero out any pending breaks and make it hard to hit a new break while the project is active.
-				set_variable = { which = obsession_level value = 0 }
-				set_variable = { which = obsession_break_reason value = 0 }
-			}
 		}
 	}
 
@@ -410,44 +413,191 @@ planet_event = {
 	
 }
 
-#TODO(chmeyers): Remove these
-# Debug events
+# Looping event to ramp up a scientists's obsession level
+# from = scientist
 country_event = {
-	id = obsessions_mod_scientist.50
-	is_triggered_only = yes
-	title = "Obsessed Leader Fired"
-	
-	picture = GFX_evt_worrying_signal
-	show_sound = event_conversation
-
-	desc = { text = "Obsessed Leader Fired: [from.GetName]" }
-
-	option = {
-		name = "Okay"
-	}
-}
-
-leader_event = {
-	id = obsessions_mod_scientist.51
+	id = obsessions_mod_scientist.14
 	is_triggered_only = yes
 	hide_window = yes
 
 	immediate = {
-		owner = { country_event = { id = obsessions_mod_scientist.52 } }
+		if = {
+			limit = {
+				exists = from
+				from.has_leader_flag = obsession_obsessed
+				NOT = { from.has_trait = leader_trait_obsession_fulfilled }
+				check_variable = { which = obsession_level value < @obsession_breaking_point }
+				check_variable = { which = obsession_level value > 0 }
+				check_variable = { which = obsession_break_reason value > @breaking_reason_none }
+			}
+			country_event = { id = obsession_mod_scientist.14 days = 1800 scopes = { from = from } }
+			country_event = { id = obsession_mod_scientist.15 scopes = { from = from } }
+		}
 	}
 }
 
 country_event = {
-	id = obsessions_mod_scientist.52
+	id = obsessions_mod_scientist.15
 	is_triggered_only = yes
-	title = "Obsessed Leader Fired 2"
-	
-	picture = GFX_evt_worrying_signal
+	hide_window = yes
+
+	immediate = {
+		# Pick a ramp up situation.
+		from = {
+			random_list = {
+				1 = {
+					# Silently increase their level.
+					country_event = { id = obsession_mod_scientist.16 scopes = { from = from } }
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						OR = {
+							has_trait = leader_trait_custom_AI_assistant
+							has_trait = leader_trait_sapient_AI_assistant
+							owner = {
+								OR = {
+									has_authority = "auth_hive_mind"
+									has_authority = "auth_machine_intelligence"
+									has_policy_flag = ai_outlawed
+								}
+							}
+						}
+					}
+					# Give them an AI assistant
+					country_event = { id = obsession_mod_scientist.17 scopes = { from = from } }
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						has_leader_flag = obsession_retrained
+					}
+					# Send them for retraining
+					country_event = { id = obsession_mod_scientist.18 scopes = { from = from } }
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_mod_scientist.16
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		from = {
+			add_experience = 500
+			change_variable = { which = obsession_level value = 1 }
+			if = {
+				limit = { check_variable = { which = obsession_level value >= @obsession_breaking_point } }
+				owner = {
+					save_global_event_target_as = obsession_source_country
+				}
+				set_variable = { which = obsession_break_reason value = @breaking_reason_job_lifetime }
+				leader_event = { id = obsessions_mod_scientist.6 days = 30 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_mod_scientist.17
+	is_triggered_only = yes
+	title = "obsessions_mod_scientist.17.name"
+	desc = "obsessions_mod_scientist.17.desc"
+	picture = GFX_evt_bribery
 	show_sound = event_conversation
 
-	desc = { text = "Obsessed Leader Fired 2: [from.GetName]" }
 
+	# Give them an assistant
 	option = {
-		name = "Okay"
+		name = obsessions_mod_scientist.17.a
+		add_resource = { energy = -1000 }
+		from = {
+			add_trait = leader_trait_custom_AI_assistant
+			add_experience = 500
+		}
+	}
+
+	# Reject the idea.
+	option = {
+		name = obsessions_mod_scientist.17.b
+		hidden_effect = {
+			from = {
+				change_variable = { which = obsession_level value = 1 }
+				if = {
+					limit = { check_variable = { which = obsession_level value >= @obsession_breaking_point } }
+					owner = {
+						save_global_event_target_as = obsession_source_country
+					}
+					set_variable = { which = obsession_break_reason value = @breaking_reason_job_lifetime }
+					leader_event = { id = obsessions_mod_scientist.6 days = 30 }
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_mod_scientist.18
+	is_triggered_only = yes
+	title = "obsessions_mod_scientist.18.name"
+	desc = "obsessions_mod_scientist.18.desc"
+	picture = GFX_evt_bribery
+	show_sound = event_conversation
+
+	immediate = {
+		from = {
+			set_leader_flag = obsession_retrained
+		}
+	}
+
+	# Send them for retraining, actually a bad idea.
+	option = {
+		trigger = {
+			is_egalitarian = no
+		}
+		name = obsessions_mod_scientist.18.a
+		add_resource = { energy = -1000 }
+		hidden_effect = {
+			from = {
+				add_experience = 1000
+				change_variable = { which = obsession_level value = 1 }
+				if = {
+					limit = { check_variable = { which = obsession_level value >= @obsession_breaking_point } }
+					owner = {
+						save_global_event_target_as = obsession_source_country
+					}
+					set_variable = { which = obsession_break_reason value = @breaking_reason_job_retraining }
+					leader_event = { id = obsessions_mod_scientist.6 days = 30 }
+				}
+			}
+		}
+		}
+	}
+
+	# Egalitarian option
+	option = {
+		trigger = {
+			is_egalitarian = yes
+		}
+		name = obsessions_mod_scientist.18.b
+		add_resource = { energy = -1000 }
+		hidden_effect = {
+			from = {
+				add_experience = 1000
+			}
+		}
+	}
+
+	# Reject the idea.
+	option = {
+		name = obsessions_mod_scientist.18.c
+		hidden_effect = {
+			from = {
+				add_experience = 500
+			}
+		}
 	}
 }

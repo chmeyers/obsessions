@@ -32,6 +32,17 @@ obsessions_mod_scientist.12.desc_timeout:0 "Frustrated with continuous delays in
 obsessions_mod_scientist.12.desc:0 "Scientist [obsessed_scientist_breakdown.GetName] has disappeared without warning. Our other scientists believe it may have something to do with their obsession."
 obsessions_mod_scientist.12.a:0 "Oh dear."
 
+obsessions_mod_scientist.17.name:0 "In Need of Assistance"
+obsessions_mod_scientist.17.desc:0 "The obsessed scientist [from.GetName] has been struggling to complete their research work due to time taken off to work on researching their obsession. Assigning them an AI assistant will offset some of their deficit."
+obsessions_mod_scientist.17.a:0 "If truly necessary."
+obsessions_mod_scientist.17.b:0 "We won't engage in their obsession."
+
+obsessions_mod_scientist.18.name:0 "Unhealthy obsession"
+obsessions_mod_scientist.18.desc:0 "The condition of the obsessed scientist [from.GetName] has been worsening. Some of their collegues have suggested that they might benefit from some thorough retraining."
+obsessions_mod_scientist.18.a:0 "We will be very thorough."
+obsessions_mod_scientist.18.b:0 "We can't force them to perhaps a nudge."
+obsessions_mod_scientist.18.c:0 "Leave them be."
+
 
  ####################################
  # Anomaly Categories
