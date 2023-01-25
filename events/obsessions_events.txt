@@ -1917,6 +1917,9 @@ ship_event = {
 					from = {
 						save_global_event_target_as = obsessions_planet_target
 					}
+					owner = {
+						country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = prev } }
+					}
 				}
 			}
 		}
@@ -1991,6 +1994,9 @@ ship_event = {
 					set_variable = { which = obsession_level value = 1 }
 					from = {
 						save_global_event_target_as = obsessions_planet_target
+					}
+					owner = {
+						country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = prev } }
 					}
 				}
 			}
@@ -2071,6 +2077,9 @@ ship_event = {
 					from = {
 						save_global_event_target_as = obsessions_planet_target
 					}
+					owner = {
+						country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = prev } }
+					}
 				}
 			}
 		}
@@ -2149,6 +2158,9 @@ ship_event = {
 					set_variable = { which = obsession_level value = 1 }
 					from = {
 						save_global_event_target_as = obsessions_planet_target
+					}
+					owner = {
+						country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = prev } }
 					}
 				}
 			}
@@ -2229,6 +2241,9 @@ ship_event = {
 					from = {
 						save_global_event_target_as = obsessions_planet_target
 					}
+					owner = {
+						country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = prev } }
+					}
 				}
 			}
 		}
@@ -2301,6 +2316,9 @@ ship_event = {
 					set_variable = { which = obsession_level value = 1 }
 					from = {
 						save_global_event_target_as = obsessions_planet_target
+					}
+					owner = {
+						country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = prev } }
 					}
 				}
 			}
@@ -2377,6 +2395,9 @@ ship_event = {
 					from = {
 						save_global_event_target_as = obsessions_planet_target
 					}
+					owner = {
+						country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = prev } }
+					}
 				}
 			}
 		}
@@ -2446,6 +2467,9 @@ ship_event = {
 					set_variable = { which = obsession_level value = 1 }
 					from = {
 						save_global_event_target_as = obsessions_planet_target
+					}
+					owner = {
+						country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = prev } }
 					}
 				}
 			}

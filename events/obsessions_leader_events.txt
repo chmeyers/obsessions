@@ -150,7 +150,7 @@ leader_event = {
 			event_target:obsessions_planet_target = {
 				planet_event = {
 					id = obsessions_mod_scientist.13
-					days = 60 # TODO(chmeyers): make this longer
+					days = 720
 					scopes = { from = event_target:obsessed_scientist_breakdown }
 				}
 			}
@@ -197,13 +197,15 @@ country_event = {
 		from = {
 			add_trait = leader_trait_obsessed_1
 			set_leader_flag = obsession_obsessed
-			set_variable = { which = obsession_level value = 3 }
+			set_variable = { which = obsession_level value = 1 }
 			add_experience = 1000
 			if = {
 				limit = { is_idle = yes }
 				change_variable = { which = obsession_level value = 1 }
 			}
-			# TODO(chmeyers): Trigger their loop
+			owner = {
+				country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = from } }
+			}
 		}
 	}
 
@@ -430,8 +432,8 @@ country_event = {
 				check_variable = { which = obsession_level value > 0 }
 				check_variable = { which = obsession_break_reason value > @breaking_reason_none }
 			}
-			country_event = { id = obsession_mod_scientist.14 days = 1800 scopes = { from = from } }
-			country_event = { id = obsession_mod_scientist.15 scopes = { from = from } }
+			country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = from } }
+			country_event = { id = obsessions_mod_scientist.15 scopes = { from = from } }
 		}
 	}
 }
@@ -448,7 +450,7 @@ country_event = {
 				# TODO(chmeyers): Maybe one that silently increases the level IFF they are idle?
 				1 = {
 					# Silently increase their level.
-					country_event = { id = obsession_mod_scientist.16 scopes = { from = from } }
+					country_event = { id = obsessions_mod_scientist.16 scopes = { from = from } }
 				}
 				10 = {
 					modifier = {
@@ -466,7 +468,7 @@ country_event = {
 						}
 					}
 					# Give them an AI assistant
-					country_event = { id = obsession_mod_scientist.17 scopes = { from = from } }
+					country_event = { id = obsessions_mod_scientist.17 scopes = { from = from } }
 				}
 				10 = {
 					modifier = {
@@ -474,7 +476,7 @@ country_event = {
 						has_leader_flag = obsession_retrained
 					}
 					# Send them for retraining
-					country_event = { id = obsession_mod_scientist.18 scopes = { from = from } }
+					country_event = { id = obsessions_mod_scientist.18 scopes = { from = from } }
 				}
 			}
 		}
