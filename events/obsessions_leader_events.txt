@@ -426,8 +426,10 @@ country_event = {
 		if = {
 			limit = {
 				exists = from
-				from.has_leader_flag = obsession_obsessed
-				NOT = { from.has_trait = leader_trait_obsession_fulfilled }
+				from ={
+					has_leader_flag = obsession_obsessed
+					NOT = { has_trait = leader_trait_obsession_fulfilled }
+				}
 				check_variable = { which = obsession_level value < @obsession_breaking_point }
 				check_variable = { which = obsession_level value > 0 }
 				check_variable = { which = obsession_break_reason value > @breaking_reason_none }
@@ -497,7 +499,7 @@ country_event = {
 				owner = {
 					save_global_event_target_as = obsession_source_country
 				}
-				set_variable = { which = obsession_break_reason value = @breaking_reason_job_lifetime }
+				set_variable = { which = obsession_break_reason value = @breaking_reason_lifetime }
 				leader_event = { id = obsessions_mod_scientist.6 days = 30 }
 			}
 		}
@@ -534,7 +536,7 @@ country_event = {
 					owner = {
 						save_global_event_target_as = obsession_source_country
 					}
-					set_variable = { which = obsession_break_reason value = @breaking_reason_job_lifetime }
+					set_variable = { which = obsession_break_reason value = @breaking_reason_lifetime }
 					leader_event = { id = obsessions_mod_scientist.6 days = 30 }
 				}
 			}
@@ -572,11 +574,10 @@ country_event = {
 					owner = {
 						save_global_event_target_as = obsession_source_country
 					}
-					set_variable = { which = obsession_break_reason value = @breaking_reason_job_retraining }
+					set_variable = { which = obsession_break_reason value = @breaking_reason_retraining }
 					leader_event = { id = obsessions_mod_scientist.6 days = 30 }
 				}
 			}
-		}
 		}
 	}
 
