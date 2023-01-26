@@ -3,9 +3,9 @@
 
 
 # For Alpha/Beta testing, make them very common
-@obsessions_mod_spawn_base = 100
-@obsessions_mod_spawn_modifier = 100
-@obsessions_mod_spawn_rocko = 1000
+@obsessions_mod_spawn_base = 10
+@obsessions_mod_spawn_modifier = 10
+@obsessions_mod_spawn_rocko = 10
 
 
 # The Rocko anomaly
