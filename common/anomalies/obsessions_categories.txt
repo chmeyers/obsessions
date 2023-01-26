@@ -858,7 +858,7 @@ obsessions_mod_category_barren_3 = {
 					}
 				}
 			}
-			anomaly_event = obsessions_mod_minor.44
+			anomaly_event = obsessions_mod_minor.48
 		}
 		# You sent a near-expert or genius
 		0 = {
@@ -872,7 +872,7 @@ obsessions_mod_category_barren_3 = {
 					}
 				}
 			}
-			anomaly_event = obsessions_mod_minor.45
+			anomaly_event = obsessions_mod_minor.49
 		}
 		# You sent an okay or non-specialized scientist
 		0 = {
@@ -883,7 +883,7 @@ obsessions_mod_category_barren_3 = {
 					is_specialist_engineer = no
 				}
 			}
-			anomaly_event = obsessions_mod_minor.46
+			anomaly_event = obsessions_mod_minor.50
 		}
 		# You sent a poor choice
 		0 = {
@@ -896,7 +896,7 @@ obsessions_mod_category_barren_3 = {
 					}
 				}
 			}
-			anomaly_event = obsessions_mod_minor.47
+			anomaly_event = obsessions_mod_minor.51
 		}
 	}
 }
