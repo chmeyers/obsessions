@@ -10,7 +10,7 @@ d_rocko_unity_deposit = {
 	resources = {
 		category = orbital_research_deposits
 		produces = {
-			unity = 5
+			unity = 10
 		}
 	}
 	station = shipclass_research_station
@@ -22,7 +22,7 @@ d_rocko_anniversity_unity_deposit = {
 	resources = {
 		category = orbital_research_deposits
 		produces = {
-			unity = 50
+			unity = 100
 		}
 	}
 	station = shipclass_research_station

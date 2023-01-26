@@ -25,7 +25,7 @@ special_project = {
 	key = "OBSESSIONS_MOD_ASTEROID_RETRIEVAL_PROJECT"
 	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
 	cost = {
-		base = 6000
+		base = 3000
 		modifier = {
 			# It's cheaper if you already have tech_experimental_subspace_navigation since you won't get it
 			# as an extra reward.
