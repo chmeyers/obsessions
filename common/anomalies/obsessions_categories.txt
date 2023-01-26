@@ -6,6 +6,7 @@
 @obsessions_mod_spawn_base = 10
 @obsessions_mod_spawn_modifier = 10
 @obsessions_mod_spawn_rocko = 10
+@obsessions_mod_spawn_obsession = 100
 
 
 # The Rocko anomaly
@@ -917,13 +918,19 @@ obsessions_mod_category_alpine_1 = {
 	max_once_global = yes # default NO, if true will spawn category only once per game
 
 	on_spawn = {
-		clear_deposits = yes 
+		clear_deposits = yes
+		set_global_flag = obsessions_mod_spawned_obsession
 	}
 
 	spawn_chance = {
 		modifier = {
-			add = @obsessions_mod_spawn_modifier
+			add = @obsessions_mod_spawn_obsession
 			is_planet_class = pc_alpine
+		}
+		modifier = {
+			# Only ever spawn one Obsession
+			factor = 0
+			has_global_flag = obsessions_mod_spawned_obsession
 		}
 	}
 
@@ -959,13 +966,19 @@ obsessions_mod_category_arctic_1 = {
 	max_once_global = yes # default NO, if true will spawn category only once per game
 
 	on_spawn = {
-		clear_deposits = yes 
+		clear_deposits = yes
+		set_global_flag = obsessions_mod_spawned_obsession
 	}
 
 	spawn_chance = {
 		modifier = {
-			add = @obsessions_mod_spawn_modifier
+			add = @obsessions_mod_spawn_obsession
 			is_planet_class = pc_arctic
+		}
+		modifier = {
+			# Only ever spawn one Obsession
+			factor = 0
+			has_global_flag = obsessions_mod_spawned_obsession
 		}
 	}
 
@@ -1001,13 +1014,19 @@ obsessions_mod_category_tundra_1 = {
 	max_once_global = yes # default NO, if true will spawn category only once per game
 
 	on_spawn = {
-		clear_deposits = yes 
+		clear_deposits = yes
+		set_global_flag = obsessions_mod_spawned_obsession
 	}
 
 	spawn_chance = {
 		modifier = {
-			add = @obsessions_mod_spawn_modifier
+			add = @obsessions_mod_spawn_obsession
 			is_planet_class = pc_tundra
+		}
+		modifier = {
+			# Only ever spawn one Obsession
+			factor = 0
+			has_global_flag = obsessions_mod_spawned_obsession
 		}
 	}
 
@@ -1043,13 +1062,19 @@ obsessions_mod_category_ocean_1 = {
 	max_once_global = yes # default NO, if true will spawn category only once per game
 
 	on_spawn = {
-		clear_deposits = yes 
+		clear_deposits = yes
+		set_global_flag = obsessions_mod_spawned_obsession
 	}
 
 	spawn_chance = {
 		modifier = {
-			add = @obsessions_mod_spawn_modifier
+			add = @obsessions_mod_spawn_obsession
 			is_planet_class = pc_ocean
+		}
+		modifier = {
+			# Only ever spawn one Obsession
+			factor = 0
+			has_global_flag = obsessions_mod_spawned_obsession
 		}
 	}
 
@@ -1085,13 +1110,19 @@ obsessions_mod_category_continental_1 = {
 	max_once_global = yes # default NO, if true will spawn category only once per game
 
 	on_spawn = {
-		clear_deposits = yes 
+		clear_deposits = yes
+		set_global_flag = obsessions_mod_spawned_obsession
 	}
 
 	spawn_chance = {
 		modifier = {
-			add = @obsessions_mod_spawn_modifier
+			add = @obsessions_mod_spawn_obsession
 			is_planet_class = pc_continental
+		}
+		modifier = {
+			# Only ever spawn one Obsession
+			factor = 0
+			has_global_flag = obsessions_mod_spawned_obsession
 		}
 	}
 
@@ -1127,13 +1158,19 @@ obsessions_mod_category_savannah_1 = {
 	max_once_global = yes # default NO, if true will spawn category only once per game
 
 	on_spawn = {
-		clear_deposits = yes 
+		clear_deposits = yes
+		set_global_flag = obsessions_mod_spawned_obsession
 	}
 
 	spawn_chance = {
 		modifier = {
-			add = @obsessions_mod_spawn_modifier
+			add = @obsessions_mod_spawn_obsession
 			is_planet_class = pc_savannah
+		}
+		modifier = {
+			# Only ever spawn one Obsession
+			factor = 0
+			has_global_flag = obsessions_mod_spawned_obsession
 		}
 	}
 
@@ -1169,13 +1206,19 @@ obsessions_mod_category_arid_1 = {
 	max_once_global = yes # default NO, if true will spawn category only once per game
 
 	on_spawn = {
-		clear_deposits = yes 
+		clear_deposits = yes
+		set_global_flag = obsessions_mod_spawned_obsession
 	}
 
 	spawn_chance = {
 		modifier = {
-			add = @obsessions_mod_spawn_modifier
+			add = @obsessions_mod_spawn_obsession
 			is_planet_class = pc_arid
+		}
+		modifier = {
+			# Only ever spawn one Obsession
+			factor = 0
+			has_global_flag = obsessions_mod_spawned_obsession
 		}
 	}
 
@@ -1211,13 +1254,19 @@ obsessions_mod_category_desert_1 = {
 	max_once_global = yes # default NO, if true will spawn category only once per game
 
 	on_spawn = {
-		clear_deposits = yes 
+		clear_deposits = yes
+		set_global_flag = obsessions_mod_spawned_obsession
 	}
 
 	spawn_chance = {
 		modifier = {
-			add = @obsessions_mod_spawn_modifier
+			add = @obsessions_mod_spawn_obsession
 			is_planet_class = pc_desert
+		}
+		modifier = {
+			# Only ever spawn one Obsession
+			factor = 0
+			has_global_flag = obsessions_mod_spawned_obsession
 		}
 	}
 
