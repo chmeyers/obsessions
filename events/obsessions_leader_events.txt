@@ -240,6 +240,12 @@ country_event = {
 
 	option = {
 		name = obsessions_mod_scientist.9.a
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+		}
 		add_resource = { energy = -1000 }
 		enable_special_project = {
 			name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT"
@@ -518,6 +524,12 @@ country_event = {
 	# Give them an assistant
 	option = {
 		name = obsessions_mod_scientist.17.a
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+		}
 		add_resource = { energy = -1000 }
 		from = {
 			add_trait = leader_trait_custom_AI_assistant
@@ -564,6 +576,12 @@ country_event = {
 			is_egalitarian = no
 		}
 		name = obsessions_mod_scientist.18.a
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+		}
 		add_resource = { energy = -1000 }
 		hidden_effect = {
 			from = {
@@ -587,6 +605,12 @@ country_event = {
 			is_egalitarian = yes
 		}
 		name = obsessions_mod_scientist.18.b
+		allow = {
+			resource_stockpile_compare = {
+				resource = energy
+				value >= 1000
+			}
+		}
 		add_resource = { energy = -1000 }
 		hidden_effect = {
 			from = {

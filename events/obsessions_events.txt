@@ -66,6 +66,14 @@ ship_event = {
 	option = {
 		name = obsessions_mod.2.c
 		# Everyone can try the fallback path, but they have to pay.
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 2000
+				}
+			}
+		}
 		owner = {
 			add_resource = {
 				energy = -2000
@@ -305,6 +313,14 @@ country_event = {
 	# Suppress it. Ends the chain.
 	option = {
 		name = obsessions_mod.4.b
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = influence
+					value >= 25
+				}
+			}
+		}
 		owner = {
 			add_resource = {
 				influence = -25
@@ -345,6 +361,14 @@ country_event = {
 			}
 		}
 		name = obsessions_mod.4.d
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = unity
+					value >= 500
+				}
+			}
+		}
 		owner = {
 			add_resource = {
 				unity = -500
@@ -591,12 +615,18 @@ country_event = {
 				is_artificial = yes
 			}
 		}
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 5000
+				}
+			}
+		}
 		name = obsessions_mod.7.d
 		owner = {
-			owner = {
-				add_resource = {
-					energy = -5000
-				}
+			add_resource = {
+				energy = -5000
 			}
 			add_monthly_resource_mult = {
 				resource = physics_research
@@ -693,6 +723,16 @@ country_event = {
 	auto_opens = yes
 	option = {
 		name = obsessions_mod.9.a
+		allow = {
+			resource_stockpile_compare = {
+				resource = alloys
+				value >= 50
+			}
+			resource_stockpile_compare = {
+				resource = energy
+				value = 200
+			}
+		}
 		add_resource = {
 			alloys = -50
 		}
@@ -754,6 +794,14 @@ ship_event = {
 	# Put some weapons on it.
 	option = {
 		name = obsessions_mod.10.a
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= 200
+				}
+			}
+		}
 		owner = {
 			add_resource = {
 				alloys = -200
@@ -1010,6 +1058,14 @@ country_event = {
 	auto_opens = yes
 	option = {
 		name = obsessions_mod.13.a
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= 200
+				}
+			}
+		}
 		add_resource = {
 			alloys = -200
 		}
@@ -1038,6 +1094,14 @@ country_event = {
 	is_triggered_only = yes
 	auto_opens = yes
 	option = {
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= 400
+				}
+			}
+		}
 		name = obsessions_mod.14.a
 		add_resource = {
 			alloys = -400
@@ -1068,6 +1132,14 @@ country_event = {
 	auto_opens = yes
 	option = {
 		name = obsessions_mod.15.a
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= 800
+				}
+			}
+		}
 		add_resource = {
 			alloys = -800
 		}
@@ -1097,6 +1169,14 @@ country_event = {
 	auto_opens = yes
 	option = {
 		name = obsessions_mod.16.a
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= 1600
+				}
+			}
+		}
 		add_resource = {
 			alloys = -1600
 		}
@@ -1126,6 +1206,14 @@ country_event = {
 	auto_opens = yes
 	option = {
 		name = obsessions_mod.17.a
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= 3200
+				}
+			}
+		}
 		add_resource = {
 			alloys = -3200
 		}
@@ -1155,6 +1243,14 @@ country_event = {
 	auto_opens = yes
 	option = {
 		name = obsessions_mod.18.a
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= 4800
+				}
+			}
+		}
 		add_resource = {
 			alloys = -4800
 		}
@@ -1184,6 +1280,14 @@ country_event = {
 	auto_opens = yes
 	option = {
 		name = obsessions_mod.19.a
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = alloys
+					value >= 6400
+				}
+			}
+		}
 		add_resource = {
 			alloys = -6400
 		}
