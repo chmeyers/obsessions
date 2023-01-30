@@ -549,7 +549,7 @@ obsessions_mod_category_molten_2 = {
 				leader = {
 					NOT = { has_trait = leader_trait_expertise_new_worlds }
 					OR = {
-						is_specialist_engineer = yes
+						is_specialist_society = yes
 						is_research_genius = yes
 					}
 				}
