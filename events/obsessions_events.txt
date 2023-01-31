@@ -863,8 +863,8 @@ country_event = {
 								resource_stockpile_compare = { resource = alloys value >= 400 }
 								has_technology = tech_destroyers
 								has_technology = tech_starbase_3
-								calc_true_if = { # Has at least 5 of the weapons techs needed.
-									amount >= 5
+								calc_true_if = { # Has at least 4 of the weapons techs needed.
+									amount >= 4
 									has_technology = tech_mass_drivers_2
 									has_technology = tech_lasers_2
 									has_technology = tech_autocannons_1
