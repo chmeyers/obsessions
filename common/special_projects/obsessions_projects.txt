@@ -27,6 +27,7 @@ special_project = {
 	cost = {
 		base = 3000
 		modifier = {
+			desc = "" # Just so that the error log doesn't complain
 			# It's cheaper if you already have tech_experimental_subspace_navigation since you won't get it
 			# as an extra reward.
 			factor = 0.25
@@ -215,6 +216,7 @@ special_project = {
 	cost = {
 		base = 6000
 		modifier = {
+			desc = "" # Just so that the error log doesn't complain
 			# It's cheaper if you already have tech_habitat_1 since you won't get it
 			# as an extra reward.
 			factor = 0.25
@@ -256,6 +258,267 @@ special_project = {
 
 	on_success = {
 		ship_event = { id = obsessions_mod_scientist.10 }
+	}
+
+	on_fail = {
+		owner = {
+			country_event = { id = obsessions_mod_scientist.11 }
+		}
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ALPINE"
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	cost = 0
+	days_to_research = 360
+	timelimit = 3600
+
+	picture = GFX_evt_cover_blown
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod_scientist.200 }
+	}
+
+	on_fail = {
+		owner = {
+			country_event = { id = obsessions_mod_scientist.11 }
+		}
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ARCTIC"
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	cost = 0
+	days_to_research = 360
+	timelimit = 3600
+
+	picture = GFX_evt_cover_blown
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod_scientist.201 }
+	}
+
+	on_fail = {
+		owner = {
+			country_event = { id = obsessions_mod_scientist.11 }
+		}
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TUNDRA"
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	cost = 0
+	days_to_research = 360
+	timelimit = 3600
+
+	picture = GFX_evt_cover_blown
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod_scientist.202 }
+	}
+
+	on_fail = {
+		owner = {
+			country_event = { id = obsessions_mod_scientist.11 }
+		}
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_OCEAN"
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	cost = 0
+	days_to_research = 360
+	timelimit = 3600
+
+	picture = GFX_evt_cover_blown
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod_scientist.203 }
+	}
+
+	on_fail = {
+		owner = {
+			country_event = { id = obsessions_mod_scientist.11 }
+		}
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_CONTINENTAL"
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	cost = 0
+	days_to_research = 360
+	timelimit = 3600
+
+	picture = GFX_evt_cover_blown
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod_scientist.204 }
+	}
+
+	on_fail = {
+		owner = {
+			country_event = { id = obsessions_mod_scientist.11 }
+		}
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TROPICAL"
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	cost = 0
+	days_to_research = 360
+	timelimit = 3600
+
+	picture = GFX_evt_cover_blown
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod_scientist.205 }
+	}
+
+	on_fail = {
+		owner = {
+			country_event = { id = obsessions_mod_scientist.11 }
+		}
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_SAVANNAH"
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	cost = 0
+	days_to_research = 360
+	timelimit = 3600
+
+	picture = GFX_evt_cover_blown
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod_scientist.206 }
+	}
+
+	on_fail = {
+		owner = {
+			country_event = { id = obsessions_mod_scientist.11 }
+		}
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ARID"
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	cost = 0
+	days_to_research = 360
+	timelimit = 3600
+
+	picture = GFX_evt_cover_blown
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod_scientist.207 }
+	}
+
+	on_fail = {
+		owner = {
+			country_event = { id = obsessions_mod_scientist.11 }
+		}
+	}
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_DESERT"
+	icon = "gfx/interface/icons/situation_log/situation_log_quest.dds"
+	cost = 0
+	days_to_research = 360
+	timelimit = 3600
+
+	picture = GFX_evt_cover_blown
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = {
+		ship_event = { id = obsessions_mod_scientist.208 }
 	}
 
 	on_fail = {

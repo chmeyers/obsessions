@@ -114,7 +114,6 @@ create_obsessed_pirate_king = {
 		event_target:pirate_band = {
 			set_name = random
 			randomize_flag_symbol = "pirate"
-			assign_leader = event_target:obsessed_scientist_breakdown
 			every_country = {
 				establish_communications_no_message = prev
 			}
@@ -123,7 +122,7 @@ create_obsessed_pirate_king = {
 				effect = {
 					set_owner = event_target:pirate_band
 					create_privateer_ships_5 = yes
-					assign_leader = event_target:obsessed_scientist_breakdown
+					set_leader = obsessed_scientist_breakdown
 					set_location = event_target:obsessions_planet_target
 					set_fleet_stance = aggressive
 					set_aggro_range_measure_from = self
@@ -154,7 +153,7 @@ create_obsessed_country = {
 			
 			effect = {
 				set_country_flag = obsession_country
-				set_leader = event_target:obsessed_scientist_breakdown
+				set_leader = obsessed_scientist_breakdown
 				establish_contact = {
 					who = event_target:obsession_source_country location = event_target:obsessions_planet_target
 				}

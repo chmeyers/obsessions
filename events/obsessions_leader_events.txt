@@ -247,10 +247,85 @@ country_event = {
 			}
 		}
 		add_resource = { energy = -1000 }
-		enable_special_project = {
-			name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT"
-			location = event_target:obsessions_planet_target
-			owner = root.owner
+		if = {
+			limit = { from = { has_leader_flag = obsession_alpine } }
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ALPINE"
+				location = event_target:obsessions_planet_target
+				owner = root.owner
+			}
+		}
+		else_if = {
+			limit = { from = { has_leader_flag = obsession_arctic } }
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ARCTIC"
+				location = event_target:obsessions_planet_target
+				owner = root.owner
+			}
+		}
+		else_if = {
+			limit = { from = { has_leader_flag = obsession_tundra } }
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TUNDRA"
+				location = event_target:obsessions_planet_target
+				owner = root.owner
+			}
+		}
+		else_if = {
+			limit = { from = { has_leader_flag = obsession_ocean } }
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_OCEAN"
+				location = event_target:obsessions_planet_target
+				owner = root.owner
+			}
+		}
+		else_if = {
+			limit = { from = { has_leader_flag = obsession_continental } }
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_CONTINENTAL"
+				location = event_target:obsessions_planet_target
+				owner = root.owner
+			}
+		}
+		else_if = {
+			limit = { from = { has_leader_flag = obsession_tropical } }
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TROPICAL"
+				location = event_target:obsessions_planet_target
+				owner = root.owner
+			}
+		}
+		else_if = {
+			limit = { from = { has_leader_flag = obsession_savannah } }
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_SAVANNAH"
+				location = event_target:obsessions_planet_target
+				owner = root.owner
+			}
+		}
+		else_if = {
+			limit = { from = { has_leader_flag = obsession_arid } }
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ARID"
+				location = event_target:obsessions_planet_target
+				owner = root.owner
+			}
+		}
+		else_if = {
+			limit = { from = { has_leader_flag = obsession_desert } }
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_DESERT"
+				location = event_target:obsessions_planet_target
+				owner = root.owner
+			}
+		}
+		else = {
+			# Nothing should hit the generic one anymore, but leave it as a fallback.
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT"
+				location = event_target:obsessions_planet_target
+				owner = root.owner
+			}
 		}
 	}
 
@@ -454,10 +529,13 @@ country_event = {
 		# Pick a ramp up situation.
 		from = {
 			random_list = {
-				# TODO(chmeyers): Maybe one that silently increases the level IFF they are idle?
 				1 = {
 					# Silently increase their level.
 					country_event = { id = obsessions_mod_scientist.16 scopes = { from = from } }
+				}
+				2 = {
+					# Silently increase their level if they are idle.
+					country_event = { id = obsessions_mod_scientist.19 scopes = { from = from } }
 				}
 				10 = {
 					modifier = {
@@ -624,6 +702,30 @@ country_event = {
 		hidden_effect = {
 			from = {
 				add_experience = 500
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_mod_scientist.19
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		from = {
+			add_experience = 500
+			if = {
+				limit = { is_idle = yes }
+				change_variable = { which = obsession_level value = 1 }
+			}
+			if = {
+				limit = { check_variable = { which = obsession_level value >= @obsession_breaking_point } }
+				owner = {
+					save_global_event_target_as = obsession_source_country
+				}
+				set_variable = { which = obsession_break_reason value = @breaking_reason_lifetime }
+				leader_event = { id = obsessions_mod_scientist.6 days = 30 }
 			}
 		}
 	}
