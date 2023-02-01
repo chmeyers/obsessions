@@ -438,10 +438,9 @@ country_event = {
 				}
 				check_variable = { which = obsession_level value < @obsession_breaking_point }
 				check_variable = { which = obsession_level value > 0 }
-				check_variable = { which = obsession_break_reason value > @breaking_reason_none }
 			}
-			country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = from } }
 			country_event = { id = obsessions_mod_scientist.15 scopes = { from = from } }
+			country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = from } }
 		}
 	}
 }
