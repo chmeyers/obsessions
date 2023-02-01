@@ -1,0 +1,11 @@
+rocko_supreme_limit = {
+	ship_types = { 
+		obsessions_rocko_supreme
+	}
+	
+	base = 16 # 1 * rocko supreme's size_multiplier
+	show = {
+		is_scope_valid = yes
+		is_rocko_supreme_country = yes
+	}
+}

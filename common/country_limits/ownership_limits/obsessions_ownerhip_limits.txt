@@ -1,0 +1,19 @@
+
+# Limit the number of Rocko Supremes that a player can add to a fleet.
+# They can't build any, but without this they can try to add an unlimited amount when
+# designing a fleet.
+
+# It seems that this can only be done by overwriting the default behavior,
+# and so could be non-compatible with other mods and changes to the base game.
+# For this reason, I've commented it out, as I would rather have compatibility.
+
+# default = {
+# 	ship_of_size_limits = {
+# 		progenitor_ships_limit
+# 		titan_ships_limit
+# 		colossus_ships_limit
+# 		juggernaut_ships_limit
+# 		space_dragon_origin_babies_limit
+# 		rocko_supreme_limit
+# 	}
+# }
