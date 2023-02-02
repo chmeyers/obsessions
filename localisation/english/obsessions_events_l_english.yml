@@ -368,7 +368,7 @@ NAME_Green_Bay_Packers:0 "Packers"
 obsessions_mod.252.name:0 "Touchdown"
 obsessions_mod.252.desc:0 "The pre-sapient wildlife finishes its game. The yellow and green ones appear to have won. Our scientist is satisfied. We'll have to decide what to do with the wildlife now."
 obsessions_mod.252.a:0 "Leave them be."
-obsessions_mod.252.a:0 "Study them further."
+obsessions_mod.252.b:0 "Study them further."
 obsessions_mod.252.c:0 "Send them for processing."
 
 obsessions_mod_category_ocean_1:0 "The Seven Seas"

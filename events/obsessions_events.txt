@@ -3040,7 +3040,7 @@ country_event = {
 		name = obsessions_mod.252.a
 		event_target:obsessions_planet_target = {
 			while = {
-				count = 2
+				count = 3
 				create_pop = {
 					species = event_target:obsession_packers
 				}
@@ -3065,7 +3065,7 @@ country_event = {
 		name = obsessions_mod.252.a
 		event_target:obsessions_planet_target = {
 			while = {
-				count = 2
+				count = 3
 				create_pop = {
 					species = event_target:obsession_packers
 				}
