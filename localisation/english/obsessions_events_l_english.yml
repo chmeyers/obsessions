@@ -379,16 +379,18 @@ obsessions_mod.106.desc:0 "The rocky coasts and wild weather made the research d
 obsessions_mod.106.a:0 "Perfect."
 
 obsessions_mod.107.name:0 "The Seven Seas"
-obsessions_mod.107.desc:0 "There is some evidence that the mountains were caused by an ancient cosmic collision, but [leader.GetName] insists the patterns are evidence of intelligent design. The expedition has finished its work with no final conclusion."
-obsessions_mod.107.a:0 "What?"
+obsessions_mod.107.desc:0 "There is some evidence that the mountains were caused by an ancient cosmic collision, but [leader.GetName] seems hesitant to leave the planet. The expedition has finished its work with no final conclusion."
+obsessions_mod.107.a:0 "Move along."
 
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_OCEAN:0 "TODO(chmeyers)."
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_OCEAN_DESC:0 "TODO(chmeyers)."
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_OCEAN:0 "The Seven Seas"
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_OCEAN_DESC:0 "Our scientist cannot stop thinking about this planet's seven seas. They insist on returning to finish some vague but important sounding project. For some reason they are bringing along a large quantity of plant-based construction material and heavy cloth."
 
-obsessions_mod.203.name:0 "TODO(chmeyers)"
-# TODO(chmeyers): Change this to match the rewards.
-obsessions_mod.203.desc:0 "TODO(chmeyers)"
-obsessions_mod.203.a:0 "TODO(chmeyers)"
+obsessions_mod.203.name:0 "Sail the Seven Seas"
+obsessions_mod.203.desc:0 "[leader.GetName] has built a ship. Not a space ship. A wooden ship with sails that floats on water. Everyone had assumed that their obsession was science related, but it seems they just really wanted a boat. Everyone else seems to think it looks fun."
+obsessions_mod.203.a:0 "They know our Science Vessels float, right?"
+
+nautical_traditions_modifier:0 "Nautical Traditions"
+nautical_traditions_modifier_desc:0 "The Seven Seas of this planet are perfect for sailing."
 
 obsessions_mod_category_continental_1:0 "Unusual Lightning Formations"
 obsessions_mod_category_continental_1_desc:0 "This planet's atmosphere appears to generate an unusual amount of lightning, which cannot be explained by our existing weather models."

@@ -3142,11 +3142,16 @@ ship_event = {
 		}
 	}
 
-	# It's finally over, Mr. Frodo.
+	# They just wanted a boat.
 	option = {
 		name = obsessions_mod.203.a
+		event_target:obsessions_planet_target = {
+			add_modifier = {
+				modifier = nautical_traditions_modifier
+				days = -1
+			}
+		}
 		leader = {
-			# TODO(chmeyers): Add rewards/planet deposits
 			add_experience = 1000
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled
