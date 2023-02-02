@@ -344,6 +344,7 @@ country_event = {
 		hidden_effect = {
 			while = {
 				count = 10
+				# TODO(chmeyers): Check for Gestalt
 				random_owned_pop = {
 					wipe_pop_ethos = yes
 					pop_change_ethic = ethic_spiritualist
@@ -604,10 +605,6 @@ country_event = {
 				}
 			}
 		}
-		event_target:obsessions_mod_rocko = {
-			remove_planet = yes
-		}
-		clear_global_event_target = obsessions_mod_rocko
 	}
 	# Option D if their capital is an artificial planet and they can pay the extra cost.
 	option = {
@@ -641,7 +638,6 @@ country_event = {
 				spawn_planet = {
 					class = pc_asteroid
 					location = this
-					orbit_location = yes
 					orbit_distance_offset = 100
 					orbit_angle_offset = 5
 					size = 2
@@ -657,10 +653,6 @@ country_event = {
 				}
 			}
 			root.owner = { country_event = { id = obsessions_mod.27 days = 18000 } }
-			event_target:obsessions_mod_rocko = {
-				remove_planet = yes
-			}
-			clear_global_event_target = obsessions_mod_rocko
 		}
 	}
 }
@@ -2797,7 +2789,7 @@ country_event = {
 		trigger = {
 			event_target:obsessions_planet_target = {
 				is_colony = yes
-				planet_owner = root.owner
+				planet_owner = { is_same_value = root.owner }
 			}
 		}
 		name = obsessions_mod.250.b
@@ -2815,7 +2807,7 @@ country_event = {
 		trigger = {
 			event_target:obsessions_planet_target = {
 				is_colony = yes
-				NOT = { planet_owner = root.owner }
+				NOT = { planet_owner = { is_same_value = root.owner } }
 			}
 		}
 		name = obsessions_mod.250.e
