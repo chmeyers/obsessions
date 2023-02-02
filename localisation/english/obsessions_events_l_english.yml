@@ -354,13 +354,22 @@ obsessions_mod.105.name:0 "A Bay of Green"
 obsessions_mod.105.desc:0 "Most of the crew believes that the green bay is caused by a series of geothermal vents, but [leader.GetName] insists that it may be due to the native wildlife playing some sort of game on the frozen tundra. The expedition has finished its work with no final conclusion."
 obsessions_mod.105.a:0 "Unfortunate."
 
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TUNDRA:0 "TODO(chmeyers)."
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TUNDRA_DESC:0 "TODO(chmeyers)."
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TUNDRA:0 "The Frozen Tundra in the Green Bay"
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TUNDRA_DESC:0 "One of our scientists has obsessed for years over the failure to properly investigate the native wildlife's interaction with the geothermal vents on this planet."
 
-obsessions_mod.202.name:0 "TODO(chmeyers)"
-# TODO(chmeyers): Change this to match the rewards.
-obsessions_mod.202.desc:0 "TODO(chmeyers)"
-obsessions_mod.202.a:0 "TODO(chmeyers)"
+obsessions_mod.202.name:0 "A Game in the Green Bay"
+obsessions_mod.202.desc:0 "[leader.GetName] has continued to watch the odd behavior of the native wildlife playing on the frozen tundra next to the green bay. Their observations have shown that the wildlife, while not sapient, does exhibit pre-sapient tendencies. They have even somehow fashioned a sort of protective armor for themselves. [leader.GetName] does not want to stop watching."
+obsessions_mod.202.a:0 "Orbital Bombardment will solve the issue."
+obsessions_mod.202.b:0 "Let them watch."
+
+NAME_Green_Bay_Packer:0 "Packer"
+NAME_Green_Bay_Packers:0 "Packers"
+
+obsessions_mod.252.name:0 "Touchdown"
+obsessions_mod.252.desc:0 "The pre-sapient wildlife finishes its game. The yellow and green ones appear to have won. Our scientist is satisfied. We'll have to decide what to do with the wildlife now."
+obsessions_mod.252.a:0 "Leave them be."
+obsessions_mod.252.a:0 "Study them further."
+obsessions_mod.252.c:0 "Send them for processing."
 
 obsessions_mod_category_ocean_1:0 "The Seven Seas"
 obsessions_mod_category_ocean_1_desc:0 "Despite being almost entirely covered with water, this ocean world is divided into seven isolated oceans by narrow mountain ranges jutting out of the water in a seemingly geometric pattern. The survey team wonders whether they are a natural phenomenon."

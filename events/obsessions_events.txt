@@ -2705,7 +2705,7 @@ country_event = {
 	
 	immediate = {
 		IF = {
-			LIMIT = {
+			limit = {
 				NOR = {
 					exists = event_target:obsession_alpine_proles
 					owner = { species_portrait = mam4 }
@@ -2729,8 +2729,8 @@ country_event = {
 				}
 			}
 		}
-		ELSE_IF = {
-			LIMIT = {
+		else_if = {
+			limit = {
 				NOT = {
 					exists = event_target:obsession_alpine_proles
 				}
@@ -2954,11 +2954,168 @@ ship_event = {
 		}
 	}
 
-	# It's finally over, Mr. Frodo.
 	option = {
 		name = obsessions_mod.202.a
 		leader = {
-			# TODO(chmeyers): Add rewards/planet deposits
+			hidden_effect = {
+				remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			}
+			kill_leader = { show_notification = no }
+		}
+	}
+
+	option = {
+		name = obsessions_mod.202.b
+		
+		owner = { country_event = { id = obsessions_mod.251 scopes = { from = leader } } }
+	}
+}
+
+country_event = {
+	id = obsessions_mod.252
+	title = "obsessions_mod.252.name"
+	desc = "obsessions_mod.252.desc"
+	picture = GFX_evt_hidden_door
+	show_sound = event_scanner
+	location = event_target:obsessions_planet_target
+	is_triggered_only = yes
+	auto_opens = yes
+	
+	immediate = {
+		IF = {
+			limit = {
+				NOR = {
+					exists = event_target:obsession_packers
+					owner = { species_portrait = rep14 }
+				}
+			}
+			create_species = {
+				name = "NAME_Green_Bay_Packer"
+				plural = "NAME_Green_Bay_Packers"
+				class = "PRE_REP"
+				portrait = rep14
+				namelist = "REP2"
+				traits = {
+					trait = "trait_presapient_earthbound"
+					trait = "trait_very_strong"
+					trait = "trait_resilient"
+					trait = "trait_agrarian"
+					trait = "trait_unruly"
+					trait = "trait_pc_tundra_preference"
+				}
+				effect = {
+					save_global_event_target_as = obsession_packers
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = {
+					exists = event_target:obsession_packers
+				}
+				owner = { species_portrait = rep14 }
+			}
+			create_species = {
+				name = "NAME_Green_Bay_Packer"
+				plural = "NAME_Green_Bay_Packers"
+				class = "PRE_MAM"
+				portrait = mam9
+				namelist = "MAM2"
+				traits = {
+					trait = "trait_presapient_earthbound"
+					trait = "trait_very_strong"
+					trait = "trait_resilient"
+					trait = "trait_agrarian"
+					trait = "trait_unruly"
+					trait = "trait_pc_tundra_preference"
+				}
+				effect = {
+					save_global_event_target_as = obsession_packers
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = obsessions_mod.252.a
+		event_target:obsessions_planet_target = {
+			while = {
+				count = 2
+				create_pop = {
+					species = event_target:obsession_packers
+				}
+			}
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+		from = {
+			add_experience = 1000
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+	}
+
+	option = {
+		name = obsessions_mod.252.a
+		event_target:obsessions_planet_target = {
+			while = {
+				count = 2
+				create_pop = {
+					species = event_target:obsession_packers
+				}
+			}
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier3researchreward
+				min = @tier3researchmin
+				max = @tier3researchmax
+			}
+		}
+		from = {
+			add_experience = 1000
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+	}
+
+	# No Xenos!
+	option = {
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_fanatic_authoritarian
+					has_ethic = ethic_fanatic_xenophobe
+					has_ethic = ethic_xenophobe
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_machine_terminator
+				}
+			}
+		}
+		name = obsessions_mod.252.c
+		owner = {
+			add_monthly_resource_mult = {
+				resource = food
+				value = @tier4materialreward
+				min = @tier4materialmin
+				max = @tier4materialmax
+			}
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier1unityreward
+				min = @tier1unitymin
+				max = @tier1unitymax
+			}
+		}
+		from = {
 			add_experience = 1000
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled
