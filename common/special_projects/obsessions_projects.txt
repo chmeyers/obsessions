@@ -286,7 +286,7 @@ special_project = {
 	}
 
 	on_success = {
-		ship_event = { id = obsessions_mod_scientist.200 }
+		ship_event = { id = obsessions_mod.200 }
 	}
 
 	on_fail = {
@@ -315,7 +315,7 @@ special_project = {
 	}
 
 	on_success = {
-		ship_event = { id = obsessions_mod_scientist.201 }
+		ship_event = { id = obsessions_mod.201 }
 	}
 
 	on_fail = {
@@ -344,7 +344,7 @@ special_project = {
 	}
 
 	on_success = {
-		ship_event = { id = obsessions_mod_scientist.202 }
+		ship_event = { id = obsessions_mod.202 }
 	}
 
 	on_fail = {
@@ -373,7 +373,7 @@ special_project = {
 	}
 
 	on_success = {
-		ship_event = { id = obsessions_mod_scientist.203 }
+		ship_event = { id = obsessions_mod.203 }
 	}
 
 	on_fail = {
@@ -402,7 +402,7 @@ special_project = {
 	}
 
 	on_success = {
-		ship_event = { id = obsessions_mod_scientist.204 }
+		ship_event = { id = obsessions_mod.204 }
 	}
 
 	on_fail = {
@@ -431,7 +431,7 @@ special_project = {
 	}
 
 	on_success = {
-		ship_event = { id = obsessions_mod_scientist.205 }
+		ship_event = { id = obsessions_mod.205 }
 	}
 
 	on_fail = {
@@ -460,7 +460,7 @@ special_project = {
 	}
 
 	on_success = {
-		ship_event = { id = obsessions_mod_scientist.206 }
+		ship_event = { id = obsessions_mod.206 }
 	}
 
 	on_fail = {
@@ -489,7 +489,7 @@ special_project = {
 	}
 
 	on_success = {
-		ship_event = { id = obsessions_mod_scientist.207 }
+		ship_event = { id = obsessions_mod.207 }
 	}
 
 	on_fail = {
@@ -518,7 +518,7 @@ special_project = {
 	}
 
 	on_success = {
-		ship_event = { id = obsessions_mod_scientist.208 }
+		ship_event = { id = obsessions_mod.208 }
 	}
 
 	on_fail = {

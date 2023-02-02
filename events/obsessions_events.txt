@@ -177,6 +177,7 @@ ship_event = {
 			owner = {
 				OR = {
 					OR = {
+						has_origin = origin_void_dwellers
 						has_ethic = ethic_fanatic_pacifist
 						has_ethic = ethic_pacifist
 						has_ethic = ethic_fanatic_egalitarian
@@ -2667,7 +2668,7 @@ ship_event = {
 	id = obsessions_mod.200
 	title = "obsessions_mod.200.name"
 	desc = "obsessions_mod.200.desc"
-	picture = GFX_evt_grand_speech
+	picture = GFX_evt_cover_blown
 	show_sound = event_conversation
 	location = event_target:obsessions_planet_target
 	is_triggered_only = yes
@@ -2681,14 +2682,201 @@ ship_event = {
 		}
 	}
 
-	# It's finally over, Mr. Frodo.
+	# Stop them from yodeling
 	option = {
 		name = obsessions_mod.200.a
 		leader = {
-			# TODO(chmeyers): Add rewards/planet deposits
+			hidden_effect = {
+				remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			}
+			kill_leader = { show_notification = no }
+		}
+	}
+
+	# Yodel away.
+	option = {
+		name = obsessions_mod.200.b
+		leader = {
 			add_experience = 1000
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled
+		}
+		owner = { country_event = { id = obsessions_mod.250 scopes = { from = leader } } }
+	}
+}
+
+country_event = {
+	id = obsessions_mod.250
+	title = "obsessions_mod.250.name"
+	desc = "obsessions_mod.250.desc"
+	picture = GFX_evt_hidden_door
+	show_sound = event_scanner
+	location = event_target:obsessions_planet_target
+	is_triggered_only = yes
+	auto_opens = yes
+	
+	immediate = {
+		IF = {
+			LIMIT = {
+				NOR = {
+					exists = event_target:obsession_alpine_proles
+					owner = { species_portrait = mam4 }
+				}
+			}
+			create_species = {
+				name = "NAME_Alpine_Prole"
+				plural = "NAME_Alpine_Proles"
+				class = "MAM"
+				portrait = mam4
+				namelist = "MAM2"
+				traits = {
+					trait = "trait_presapient_earthbound"
+					trait = "trait_very_strong"
+					trait = "trait_communal"
+					trait = "trait_nerve_stapled"
+					trait = "trait_pc_alpine_preference"
+				}
+				effect = {
+					save_global_event_target_as = obsession_alpine_proles
+				}
+			}
+		}
+		ELSE_IF = {
+			LIMIT = {
+				NOT = {
+					exists = event_target:obsession_alpine_proles
+				}
+				owner = { species_portrait = mam4 }
+			}
+			create_species = {
+				name = "NAME_Alpine_Prole"
+				plural = "NAME_Alpine_Proles"
+				class = "REP"
+				portrait = rep11
+				namelist = "REP2"
+				traits = {
+					trait = "trait_presapient_earthbound"
+					trait = "trait_very_strong"
+					trait = "trait_communal"
+					trait = "trait_nerve_stapled"
+					trait = "trait_pc_alpine_preference"
+				}
+				effect = {
+					save_global_event_target_as = obsession_alpine_proles
+				}
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod.250.a
+		owner = {
+			random_owned_planet = {
+				weights = {
+					base = 1
+					modifier = {
+						add = 5
+						free_housing > 0
+					}
+					modifier = {
+						add = 100
+						is_planet_class = pc_alpine
+					}
+				}
+				while = {
+					count = 2
+					create_pop = {
+						species = event_target:obsession_alpine_proles
+					}
+				}
+			}
+		}
+	}
+	
+	option = {
+		trigger = {
+			event_target:obsessions_planet_target = {
+				is_colony = yes
+				planet_owner = root.owner
+			}
+		}
+		name = obsessions_mod.250.b
+		event_target:obsessions_planet_target = {
+			while = {
+				count = 2
+				create_pop = {
+					species = event_target:obsession_alpine_proles
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessions_planet_target = {
+				is_colony = yes
+				NOT = { planet_owner = root.owner }
+			}
+		}
+		name = obsessions_mod.250.e
+		event_target:obsessions_planet_target = {
+			while = {
+				count = 2
+				create_pop = {
+					species = event_target:obsession_alpine_proles
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_ethic = ethic_fanatic_xenophile
+					has_ethic = ethic_xenophile
+				}
+			}
+		}
+		name = obsessions_mod.250.c
+		owner = {
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier3unityreward
+				min = @tier3unitymin
+				max = @tier3unitymax
+			}
+		}
+	}
+
+	# No Xenos!
+	option = {
+		trigger = {
+			owner = {
+				OR = {
+					has_ethic = ethic_fanatic_authoritarian
+					has_ethic = ethic_fanatic_xenophobe
+					has_ethic = ethic_xenophobe
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_machine_terminator
+				}
+			}
+		}
+		name = obsessions_mod.250.d
+		owner = {
+			add_monthly_resource_mult = {
+				resource = food
+				value = @tier4materialreward
+				min = @tier4materialmin
+				max = @tier4materialmax
+			}
+			add_monthly_resource_mult = {
+				resource = unity
+				value = @tier1unityreward
+				min = @tier1unitymin
+				max = @tier1unitymax
+			}
 		}
 	}
 }
