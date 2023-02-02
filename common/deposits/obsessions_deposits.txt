@@ -79,3 +79,14 @@ d_tasty_plants_deposit = {
 	potential = { always = no }
 	drop_weight = { weight = 0 }
 }
+
+d_electric_lichen_deposit = {
+	icon = d_lichen_fields
+	category = deposit_cat_rare
+	is_for_colonizable = yes
+	planet_modifier = {
+		district_generator_max = 4
+	}
+	potential = { always = no }
+	drop_weight = { weight = 0 }
+}

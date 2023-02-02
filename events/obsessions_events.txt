@@ -2874,7 +2874,7 @@ ship_event = {
 	id = obsessions_mod.201
 	title = "obsessions_mod.201.name"
 	desc = "obsessions_mod.201.desc"
-	picture = GFX_evt_grand_speech
+	picture = GFX_evt_microscopic_life
 	show_sound = event_conversation
 	location = event_target:obsessions_planet_target
 	is_triggered_only = yes
@@ -2888,16 +2888,51 @@ ship_event = {
 		}
 	}
 
-	# It's finally over, Mr. Frodo.
 	option = {
 		name = obsessions_mod.201.a
 		leader = {
-			# TODO(chmeyers): Add rewards/planet deposits
+			hidden_effect = {
+				remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			}
+			kill_leader = { show_notification = no }
+		}
+	}
+
+	option = {
+		name = obsessions_mod.201.b
+		leader = {
 			add_experience = 1000
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled
 		}
+		owner = { country_event = { id = obsessions_mod.251 scopes = { from = leader } } }
 	}
+}
+
+country_event = {
+	id = obsessions_mod.251
+	title = "obsessions_mod.251.name"
+	desc = "obsessions_mod.251.desc"
+	picture = GFX_evt_outpost
+	show_sound = event_scanner
+	location = event_target:obsessions_planet_target
+	is_triggered_only = yes
+	auto_opens = yes
+
+	option = {
+		name = obsessions_mod.251.a
+		from = {
+			add_trait = leader_trait_expertise_biology
+		}
+		event_target:obsessions_planet_target = {
+			add_deposit = d_electric_lichen_deposit
+			add_modifier = {
+				modifier = electric_lichen_modifier
+				days = -1
+			}
+		}
+	}
+	
 }
 
 # Special Project complete tundra

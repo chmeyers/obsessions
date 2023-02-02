@@ -67,6 +67,8 @@ country_event = {
 		from = {
 			if = {
 				limit = {
+					# Note that this event doesn't get called if the leader leveled up with add_skill,
+					# only when it happens with experience, so this may not happen until @obsession_end_level+1, etc.
 					has_skill >= @obsession_end_level
 				}
 				owner ={
