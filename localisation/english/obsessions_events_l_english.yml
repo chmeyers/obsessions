@@ -460,7 +460,7 @@ obsessions_mod.258.name:0 "Do you feel different?"
 obsessions_mod.258.desc:0 "We did it. We converted everyone we could find into a Replica. If anything, we are slightly more productive than the originals. What should we do now?"
 obsessions_mod.258.a:0 "Carry on as we were."
 obsessions_mod.258.b:0 "Stop acting weird."
-obsessions_mod.255.b.tooltip:0 "The $trait_obsession_pod_person$ will be removed from every owned £pops£ Pop."
+obsessions_mod.255.b.tooltip:0 "The $trait_obsession_pod_person$ trait will be removed from every owned £pops£ Pop."
 
 obsessions_mod_category_arid_1:0 "Mysterious Monoliths"
 obsessions_mod_category_arid_1_desc:0 "The largest continent on this planet is covered in a large number of monoliths made up of purified minerals. They are of all shapes and sizes, but do not appear to be natural."
