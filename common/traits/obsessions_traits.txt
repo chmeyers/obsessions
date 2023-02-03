@@ -49,3 +49,54 @@ leader_trait_obsession_fulfilled = {
 		survey
 	}
 }
+
+leader_trait_obsession_pod_person = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/leader_traits/trait_pod_person.dds"
+	self_modifier = {
+		leader_age = 20
+	}
+	leader_trait = all
+	leader_class = { admiral scientist general governor }
+	initial = no
+	randomized = no
+
+	ai_categories = {
+		engineering
+		physics
+		society
+		survey
+	}
+
+	ai_weight = {
+		weight = 40
+	}
+}
+
+trait_obsession_pod_person = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/leader_traits/trait_pod_person.dds"
+	
+	initial = no
+	randomized = no
+
+	species_potential_add = {
+		always = no
+	}
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+	modifier = {
+		pop_government_ethic_attraction = 0.025
+		species_empire_size_mult = -0.025
+		planet_jobs_worker_produces_mult = 0.01
+	}
+
+	allowed_archetypes = { BIOLOGICAL LITHOID ROBOT MACHINE }
+
+	modifier = {
+	}
+}

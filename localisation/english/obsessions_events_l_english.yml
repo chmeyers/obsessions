@@ -431,13 +431,36 @@ obsessions_mod.111.name:0 "Clearing the Way"
 obsessions_mod.111.desc:0 "[leader.GetName] had begun to reach conclusions that the site was actually built by aliens who had observed our civilization when the entire site was destroyed over night by a series of explosions. None of the crew will admit was happened."
 obsessions_mod.111.a:0 "Perhaps it's for the best."
 
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_SAVANNAH:0 "TODO(chmeyers)."
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_SAVANNAH_DESC:0 "TODO(chmeyers)."
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_SAVANNAH:0 "Replica Colony."
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_SAVANNAH_DESC:0 "Ever since the replica colony on this planet was destroyed mysteriously, one of our scientists has been obsessing over what really happened there. They wish to return to the scene and finish their investigation."
 
-obsessions_mod.206.name:0 "TODO(chmeyers)"
-# TODO(chmeyers): Change this to match the rewards.
-obsessions_mod.206.desc:0 "TODO(chmeyers)"
-obsessions_mod.206.a:0 "TODO(chmeyers)"
+obsessions_mod.206.name:0 "Replica Colony"
+obsessions_mod.206.desc:0 "[leader.GetName] has delved deep into the ruins. For months they insisted that there was something there. They make one final expedition alone into the ruins deepest layers and when they come back they seem satisfied that nothing is hidden. They announce that the investigation is over."
+obsessions_mod.206.a:0 "They seem different..."
+obsessions_mod.206.a:0 "I'm sure it's fine."
+
+leader_trait_obsession_pod_person:0 "Prime Replica"
+leader_trait_obsession_pod_person_desc:0 "This leader is the source of a plague of Replica replacements. Their behavior is a little odd, but mostly the same aside from producing more Replicas."
+
+trait_obsession_pod_person:0 "Replica"
+trait_obsession_pod_person_desc:0 "This Pop has been replaced by an identical Replica. Their behavior is a little odd, but mostly the same."
+
+obsessions_mod.255.name:0 "Pod People"
+obsessions_mod.255.desc:0 "Widespread reports from our capital are indicating strange behavior among our population. They were initially discounted but recent discoveries of discarded husks seem to indicate that some of our population is being replaced by identical replicas, replacing all organic and inorganic components exactly. The replicas retain all the memories of the originals but act a little strangely. If anything, they are slightly more productive than the originals."
+obsessions_mod.255.a:0 "Find the source."
+obsessions_mod.255.b:0 "Contain the outbreak."
+
+obsessions_mod.256.name:0 "Pod People"
+obsessions_mod.256.desc:0 "The source of the Replicas has been revealed. It seems that sometime during their expedition on [event_target:obsessions_planet_target], [from.GetName] was replaced with a Replica of themself. They have since been replacing additional members of the population. When confronted they insisted that they had no memory of doing so."
+obsessions_mod.256.desc_dead:0 "The source of the Replicas has been revealed. It seems that sometime during their expedition on [event_target:obsessions_planet_target], our scientist was replaced with a Replica of themself. They have since died, but the Replicas they created before their death have continued to spread."
+obsessions_mod.256.a:0 "Let it run its course."
+obsessions_mod.256.b:0 "Make sure they are all destroyed."
+
+obsessions_mod.258.name:0 "Do you feel different?"
+obsessions_mod.258.desc:0 "We did it. We converted everyone we could find into a Replica. If anything, we are slightly more productive than the originals. What should we do now?"
+obsessions_mod.258.a:0 "Carry on as we were."
+obsessions_mod.258.b:0 "Stop acting weird."
+obsessions_mod.255.b.tooltip:0 "The $trait_obsession_pod_person$ will be removed from every owned £pops£ Pop."
 
 obsessions_mod_category_arid_1:0 "Mysterious Monoliths"
 obsessions_mod_category_arid_1_desc:0 "The largest continent on this planet is covered in a large number of monoliths made up of purified minerals. They are of all shapes and sizes, but do not appear to be natural."
