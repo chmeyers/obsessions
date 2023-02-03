@@ -403,13 +403,22 @@ obsessions_mod.109.name:0 "A Storm in the Heavens"
 obsessions_mod.109.desc:0 "Most of the crew believes that the lightning has something to do with the planet's tall mountains, but [leader.GetName] has spent most of the expedition searching for godlike beings that they believe might be generating the energy."
 obsessions_mod.109.a:0 "Really?"
 
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_CONTINENTAL:0 "TODO(chmeyers)."
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_CONTINENTAL_DESC:0 "TODO(chmeyers)."
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_CONTINENTAL:0 "Mount Olympus"
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_CONTINENTAL_DESC:0 "Our Scientist has been obsessed with the idea that there are godlike beings hiding on this planet and generating it's unusual lightning. After years of fringe research, they believe that they can find them."
 
-obsessions_mod.204.name:0 "TODO(chmeyers)"
-# TODO(chmeyers): Change this to match the rewards.
-obsessions_mod.204.desc:0 "TODO(chmeyers)"
-obsessions_mod.204.a:0 "TODO(chmeyers)"
+obsessions_mod.204.name:0 "Mount Olympus"
+obsessions_mod.204.desc:0 "[leader.GetName] climbed the tallest mountain on the planet and found an ancient structure. They didn't seem surprised to see it, though it didn't show up on any of the scans. Inside a machine stood silent, though apparently scarred from eons of lightning strikes. [leader.GetName] thinks they can get it working. In fact, they insist on doing so."
+obsessions_mod.204.a:0 "Prevent the activation."
+obsessions_mod.204.c:0 "Go ahead."
+
+obsessions_mod.254.name:0 "The Spark of Life"
+obsessions_mod.254.desc:0 "The machine lurks into motion, gyroscopic rings begin to spin around it's central core, throwing sparks across the room. [from.GetName] is not fazed. They feel vindicated by their discovery and are willing to stop here, but there is on more button they could push. They are not sure what it will do. They have translated the label as 'vluur'."
+obsessions_mod.254.a:0 "Let's stop here."
+obsessions_mod.254.b:0 "Vluur?"
+
+obsessions_mod.253.name:0 "Vluur?"
+obsessions_mod.253.desc:0 "Huh. Nothing happened."
+obsessions_mod.253.a:0 "I'm sure it's safe."
 
 obsessions_mod_category_savannah_1:0 "A Historic Replica"
 obsessions_mod_category_savannah_1_desc:0 "Our survey crew was shocked to discover a well preserved set of ruins on this planet whose layout exactly matches the historical record for our capital city from several hundred years ago."

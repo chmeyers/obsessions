@@ -2940,7 +2940,7 @@ ship_event = {
 	id = obsessions_mod.202
 	title = "obsessions_mod.202.name"
 	desc = "obsessions_mod.202.desc"
-	picture = GFX_evt_grand_speech
+	picture = GFX_evt_arena
 	show_sound = event_conversation
 	location = event_target:obsessions_planet_target
 	is_triggered_only = yes
@@ -2962,6 +2962,11 @@ ship_event = {
 			}
 			kill_leader = { show_notification = no }
 		}
+		event_target:obsessions_planet_target = {
+			add_blocker = {
+				type = d_crater
+			}
+		}
 	}
 
 	option = {
@@ -2975,7 +2980,7 @@ country_event = {
 	id = obsessions_mod.252
 	title = "obsessions_mod.252.name"
 	desc = "obsessions_mod.252.desc"
-	picture = GFX_evt_hidden_door
+	picture = GFX_evt_shroudwalker_teacher
 	show_sound = event_scanner
 	location = event_target:obsessions_planet_target
 	is_triggered_only = yes
@@ -3062,7 +3067,7 @@ country_event = {
 	}
 
 	option = {
-		name = obsessions_mod.252.a
+		name = obsessions_mod.252.b
 		event_target:obsessions_planet_target = {
 			while = {
 				count = 3
@@ -3164,7 +3169,7 @@ ship_event = {
 	id = obsessions_mod.204
 	title = "obsessions_mod.204.name"
 	desc = "obsessions_mod.204.desc"
-	picture = GFX_evt_grand_speech
+	picture = GFX_evt_shroudwalker_enclave
 	show_sound = event_conversation
 	location = event_target:obsessions_planet_target
 	is_triggered_only = yes
@@ -3178,15 +3183,89 @@ ship_event = {
 		}
 	}
 
-	# It's finally over, Mr. Frodo.
 	option = {
 		name = obsessions_mod.204.a
 		leader = {
-			# TODO(chmeyers): Add rewards/planet deposits
+			hidden_effect = {
+				remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			}
+			kill_leader = { show_notification = no }
+		}
+	}
+
+	option = {
+		name = obsessions_mod.204.b
+		
+		owner = { country_event = { id = obsessions_mod.254 scopes = { from = leader } } }
+	}
+}
+
+country_event = {
+	id = obsessions_mod.254
+	title = "obsessions_mod.254.name"
+	desc = "obsessions_mod.254.desc"
+	picture = GFX_evt_shroudwalker_enclave
+	location = event_target:obsessions_planet_target
+	is_triggered_only = yes
+	auto_opens = yes
+	
+	option = {
+		name = obsessions_mod.254.a
+		event_target:obsessions_planet_target = {
+			add_deposit = d_tempestous_mountain
+		}
+		from = {
 			add_experience = 1000
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled
 		}
+	}
+
+	option = {
+		name = obsessions_mod.254.b
+		event_target:obsessions_planet_target = {
+			add_deposit = d_tempestous_mountain
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+		from = {
+			add_experience = 1000
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		# Have VLUUR target this system.
+		hidden_effect = {
+			owner = { country_event = { id = obsessions_mod.254 scopes = { from = leader } } }
+			any_country = {
+				limit = { is_country_type = vluur }
+				any_owned_fleet = {
+					auto_move_to_planet = {
+						target = event_target:obsessions_planet_target
+						clear_auto_move_on_arrival = no # And stay there!
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_mod.253
+	title = "obsessions_mod.253.name"
+	desc = "obsessions_mod.253.desc"
+	picture = GFX_evt_shroudwalker_enclave
+	location = event_target:obsessions_planet_target
+	is_triggered_only = yes
+	auto_opens = yes
+	
+	option = {
+		name = obsessions_mod.253.a
 	}
 }
 
