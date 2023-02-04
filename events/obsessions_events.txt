@@ -3547,12 +3547,19 @@ ship_event = {
 ship_event = {
 	id = obsessions_mod.208
 	title = "obsessions_mod.208.name"
-	desc = "obsessions_mod.208.desc"
 	picture = GFX_evt_grand_speech
 	show_sound = event_conversation
 	location = event_target:obsessions_planet_target
 	is_triggered_only = yes
 	auto_opens = yes
+
+	desc = {
+		exclusive_trigger = {
+			owner = { has_country_flag = vultaum_1 }
+		}
+		text = "obsessions_mod.208.desc_precursor"
+	}
+	desc = "obsessions_mod.208.desc"
 	
 	immediate = {
 		leader = {
@@ -3562,14 +3569,70 @@ ship_event = {
 		}
 	}
 
-	# It's finally over, Mr. Frodo.
+	
 	option = {
 		name = obsessions_mod.208.a
 		leader = {
-			# TODO(chmeyers): Add rewards/planet deposits
 			add_experience = 1000
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled
+		}
+		hidden_effect = {
+			owner = { country_event = { id = obsessions_mod.259 scopes = { from = leader } } }
+		}
+	}
+
+	option = {
+		name = obsessions_mod.208.b
+		leader = {
+			kill_leader = { show_notification = no }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_mod.259
+	title = "obsessions_mod.259.name"
+	desc = "obsessions_mod.259.desc"
+	picture = GFX_evt_candy_planet
+	location = event_target:obsessions_planet_target
+	is_triggered_only = yes
+	
+	option = {
+		name = obsessions_mod.259.a
+		from = {
+			add_experience = 1000
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		event_target:obsessions_planet_target = {
+			set_name = NAME_Obsessions_Candy_Planet
+
+			change_pc = pc_gaia
+			hidden_effect = { reroll_planet = yes }
+			hidden_effect = {
+				switch = {
+					trigger = has_modifier
+					mineral_poor = { remove_modifier = mineral_poor }
+					ultra_rich = { remove_modifier = ultra_rich }
+					titanic_life = { remove_modifier = titanic_life }
+					dangerous_wildlife = { remove_modifier = dangerous_wildlife }
+				}
+				every_deposit = {
+					limit = { is_blocker = yes }
+					clear_blocker = yes
+				}
+				add_deposit = d_candy_sand_deposit
+			}
+			
+			add_deposit = d_big_rock_candy_deposit
+			add_deposit = d_gumdrop_valley_deposit
+			add_deposit = d_chocolate_river_deposit
+			
+			add_modifier = {
+				modifier = candy_planet_modifier
+				days = -1
+			}
 		}
 	}
 }

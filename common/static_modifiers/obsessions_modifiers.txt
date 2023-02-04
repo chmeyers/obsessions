@@ -7,6 +7,14 @@ candy_sands_modifier = {
 	lithoid_pop_happiness = 0.15
 }
 
+candy_planet_modifier = {
+	icon = "gfx/interface/icons/planet_modifiers/pm_atmospheric_aphrodisiac.dds"
+	planet_immigration_pull_add = 25
+	pop_happiness = 0.25
+	lithoid_pop_happiness = 0.25
+	planet_jobs_food_produces_mult = 0.50
+}
+
 tasty_plants_modifier = {
 	icon = "gfx/interface/icons/planet_modifiers/pm_natural_beauty.dds"
 	planet_immigration_pull_add = 5

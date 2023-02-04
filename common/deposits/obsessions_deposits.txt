@@ -68,6 +68,41 @@ d_candy_sand_deposit = {
 	drop_weight = { weight = 0 }
 }
 
+d_big_rock_candy_deposit = {
+	icon = d_trained_snowcaps_blocker
+	category = deposit_cat_rare
+	is_for_colonizable = yes
+	planet_modifier = {
+		district_farming_max = 2
+		pop_happiness = 0.10
+		lithoid_pop_happiness = 0.10
+	}
+	potential = { always = no }
+	drop_weight = { weight = 0 }
+}
+
+d_gumdrop_valley_deposit = {
+	icon = d_veiny_cliffs
+	category = deposit_cat_rare
+	is_for_colonizable = yes
+	planet_modifier = {
+		district_farming_max = 3
+	}
+	potential = { always = no }
+	drop_weight = { weight = 0 }
+}
+
+d_chocolate_river_deposit = {
+	icon = d_great_river
+	category = deposit_cat_rare
+	is_for_colonizable = yes
+	planet_modifier = {
+		district_farming_max = 3
+	}
+	potential = { always = no }
+	drop_weight = { weight = 0 }
+}
+
 d_tasty_plants_deposit = {
 	icon = d_dense_jungle
 	category = deposit_cat_rare

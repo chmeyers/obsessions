@@ -503,8 +503,25 @@ OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_DESERT:0 "Dessert Planet"
 OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_DESERT_DESC:0 "One of our scientists has obsessed over the Candy Sands on this planet for years. They wish to return to the planet and drill towards what they believe is the cream-filling."
 
 obsessions_mod.208.name:0 "Dessert Planet"
-obsessions_mod.208.desc:0 "TODO(chmeyers)"
-obsessions_mod.208.a:0 "TODO(chmeyers)"
+obsessions_mod.208.desc:0 "[leader.GetName] has explained to anyone who would listen that the Candy Sands on this planet are just a symptom of a larger transformation done by some forgotten species called the Vultaum Star Assembly. [leader.GetName] believes that the Vultaum altered reality in some way to turn the planet into a giant edible orb. They have begun drilling into the core of the planet."
+obsessions_mod.208.desc_precursor:0 "[leader.GetName] has explained to anyone who would listen that the Candy Sands on this planet are just a symptom of a larger transformation done by our precursors, the Vultaum Star Assembly. [leader.GetName] believes that the Vultaum altered reality in some way to turn the planet into a giant edible orb. They have begun drilling into the core of the planet."
+obsessions_mod.208.a:0 "That is highly improbable."
+obsessions_mod.208.b:0 "That's insane. Fire the scientist."
+
+obsessions_mod.259.name:0 "Wait... What?"
+obsessions_mod.259.desc:0 "Somehow, however improbable, [From.GetName] was right. The center of this planet was composed entirely of molten cream and chocolate. The borehole that [From.GetName] has drilled is allowing the molten confection to bubble to the surface of the planet and has begun to transform the climate, dramatically altering the biosphere."
+obsessions_mod.259.a:0 "Yum?"
+
+NAME_Obsessions_Candy_Planet:0 "Candy Planet"
+candy_planet_modifier:0 "Candy Planet"
+candy_planet_modifier_desc:0 "This planet is actually a gigantic confection."
+d_big_rock_candy_deposit:0 "Big Rock Candy Mountain"
+d_big_rock_candy_deposit_desc:0 "The lemonade springs where the bluebird sings."
+d_gumdrop_valley_deposit:0 "Gumdrop Valley"
+d_gumdrop_valley_deposit_desc:0 "Perfect for gumdrop farming."
+d_chocolate_river_deposit:0 "Chocolate River"
+d_chocolate_river_deposit_desc:0 "Don't fall in, it's hot."
+
 
 obsessions_mod_category_tropical_1:0 "Unusual Plant Life"
 obsessions_mod_category_tropical_1_desc:0 "Some of the plant life on this planet appears to be unrelated to the native species."
