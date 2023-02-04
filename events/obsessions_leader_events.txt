@@ -61,7 +61,12 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 
-	trigger = { from = { has_leader_flag = obsession_obsessed } }
+	trigger = {
+		from = {
+			has_leader_flag = obsession_obsessed
+			NOT = { has_leader_flag = obsession_issued_project }
+		}
+	}
 
 	immediate = {
 		from = {
@@ -111,7 +116,14 @@ country_event = {
 	hide_window = yes
 	is_triggered_only = yes
 
-	trigger = { from = { has_leader_flag = obsession_obsessed } }
+	trigger = {
+		from = {
+			has_leader_flag = obsession_obsessed
+			# If they die after their special project is issued, too bad.
+			# Nobody will take up their obsession, so the project will time out.
+			NOT = { has_leader_flag = obsession_issued_project }
+		}
+	}
 
 	immediate = {
 		save_global_event_target_as = obsession_source_country
@@ -231,12 +243,14 @@ country_event = {
 	desc = "obsessions_mod_scientist.9.desc"
 	picture = GFX_evt_bribery
 	show_sound = event_conversation
+	
 
 	immediate = {
 		from = {
 			# Zero out any pending breaks and make it hard to hit a new break while the project is active.
 			set_variable = { which = obsession_level value = 0 }
 			set_variable = { which = obsession_break_reason value = @breaking_reason_none }
+			set_leader_flag = obsession_issued_project
 		}
 	}
 
@@ -250,7 +264,7 @@ country_event = {
 		}
 		add_resource = { energy = -1000 }
 		if = {
-			limit = { from = { has_leader_flag = obsession_alpine } }
+			limit = { event_target:obsessions_planet_target = { has_planet_flag = obsession_alpine } }
 			enable_special_project = {
 				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ALPINE"
 				location = event_target:obsessions_planet_target
@@ -258,7 +272,7 @@ country_event = {
 			}
 		}
 		else_if = {
-			limit = { from = { has_leader_flag = obsession_arctic } }
+			limit = { event_target:obsessions_planet_target = { has_planet_flag = obsession_arctic } }
 			enable_special_project = {
 				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ARCTIC"
 				location = event_target:obsessions_planet_target
@@ -266,7 +280,7 @@ country_event = {
 			}
 		}
 		else_if = {
-			limit = { from = { has_leader_flag = obsession_tundra } }
+			limit = { event_target:obsessions_planet_target = { has_planet_flag = obsession_tundra } }
 			enable_special_project = {
 				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TUNDRA"
 				location = event_target:obsessions_planet_target
@@ -274,7 +288,7 @@ country_event = {
 			}
 		}
 		else_if = {
-			limit = { from = { has_leader_flag = obsession_ocean } }
+			limit = { event_target:obsessions_planet_target = { has_planet_flag = obsession_ocean } }
 			enable_special_project = {
 				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_OCEAN"
 				location = event_target:obsessions_planet_target
@@ -282,7 +296,7 @@ country_event = {
 			}
 		}
 		else_if = {
-			limit = { from = { has_leader_flag = obsession_continental } }
+			limit = { event_target:obsessions_planet_target = { has_planet_flag = obsession_continental } }
 			enable_special_project = {
 				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_CONTINENTAL"
 				location = event_target:obsessions_planet_target
@@ -290,7 +304,7 @@ country_event = {
 			}
 		}
 		else_if = {
-			limit = { from = { has_leader_flag = obsession_tropical } }
+			limit = { event_target:obsessions_planet_target = { has_planet_flag = obsession_tropical } }
 			enable_special_project = {
 				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TROPICAL"
 				location = event_target:obsessions_planet_target
@@ -298,7 +312,7 @@ country_event = {
 			}
 		}
 		else_if = {
-			limit = { from = { has_leader_flag = obsession_savannah } }
+			limit = { event_target:obsessions_planet_target = { has_planet_flag = obsession_savannah } }
 			enable_special_project = {
 				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_SAVANNAH"
 				location = event_target:obsessions_planet_target
@@ -306,7 +320,7 @@ country_event = {
 			}
 		}
 		else_if = {
-			limit = { from = { has_leader_flag = obsession_arid } }
+			limit = { event_target:obsessions_planet_target = { has_planet_flag = obsession_arid } }
 			enable_special_project = {
 				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ARID"
 				location = event_target:obsessions_planet_target
@@ -314,7 +328,7 @@ country_event = {
 			}
 		}
 		else_if = {
-			limit = { from = { has_leader_flag = obsession_desert } }
+			limit = { event_target:obsessions_planet_target = { has_planet_flag = obsession_desert } }
 			enable_special_project = {
 				name = "OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_DESERT"
 				location = event_target:obsessions_planet_target

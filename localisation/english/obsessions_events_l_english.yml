@@ -40,7 +40,7 @@ obsessions_mod_scientist.17.b:0 "We won't engage in their obsession."
 obsessions_mod_scientist.18.name:0 "Unhealthy obsession"
 obsessions_mod_scientist.18.desc:0 "The condition of the obsessed scientist [from.GetName] has been worsening. Some of their collegues have suggested that they might benefit from some thorough retraining."
 obsessions_mod_scientist.18.a:0 "We will be very thorough."
-obsessions_mod_scientist.18.b:0 "We can't force them to perhaps a nudge."
+obsessions_mod_scientist.18.b:0 "We can't force them but perhaps a nudge."
 obsessions_mod_scientist.18.c:0 "Leave them be."
 
 
@@ -183,13 +183,13 @@ OBSESSIONS_MOD_ROCKO_LEVEL_2_PROJECT_DESC:0 "$NAME_Obsessions_Mod_Rocko$ can mov
 OBSESSIONS_MOD_ROCKO_LEVEL_3_PROJECT:0 "More like a Pebble"
 OBSESSIONS_MOD_ROCKO_LEVEL_3_PROJECT_DESC:0 "The technology on $NAME_Obsessions_Mod_Rocko$ is woefully outdated. Our engineers think that they can add an enhanced weapons cluster and some basic shielding."
 OBSESSIONS_MOD_ROCKO_LEVEL_4_PROJECT:0 "No Stone left Unturned"
-OBSESSIONS_MOD_ROCKO_LEVEL_4_PROJECT_DESC:0 "The superstructure of $NAME_Obsessions_Mod_Rocko$ is showing it's age. Our engineers think that they can enlarge the weapons cluster and give the crew of $NAME_Obsessions_Mod_Rocko$ some ability to repair the ship in the field."
+OBSESSIONS_MOD_ROCKO_LEVEL_4_PROJECT_DESC:0 "The superstructure of $NAME_Obsessions_Mod_Rocko$ is showing its age. Our engineers think that they can enlarge the weapons cluster and give the crew of $NAME_Obsessions_Mod_Rocko$ some ability to repair the ship in the field."
 OBSESSIONS_MOD_ROCKO_LEVEL_5_PROJECT:0 "Throwing Stones in Glass Houses"
-OBSESSIONS_MOD_ROCKO_LEVEL_5_PROJECT_DESC:0 "The capabilities of $NAME_Obsessions_Mod_Rocko$ are outclassed by our newer battleship designs. Our engineers believe that $NAME_Obsessions_Mod_Rocko$ is large enough to host a fleet of strike craft, as well as upgrading it's other systems."
+OBSESSIONS_MOD_ROCKO_LEVEL_5_PROJECT_DESC:0 "The capabilities of $NAME_Obsessions_Mod_Rocko$ are outclassed by our newer battleship designs. Our engineers believe that $NAME_Obsessions_Mod_Rocko$ is large enough to host a fleet of strike craft, as well as upgrading its other systems."
 OBSESSIONS_MOD_ROCKO_LEVEL_6_PROJECT:0 "The Stone Giant"
 OBSESSIONS_MOD_ROCKO_LEVEL_6_PROJECT_DESC:0 "The size of $NAME_Obsessions_Mod_Rocko$ allows us to add a large energy lance. Our engineers will also upgrade it's other systems."
 OBSESSIONS_MOD_ROCKO_LEVEL_7_PROJECT:0 "Not Just a Rock"
-OBSESSIONS_MOD_ROCKO_LEVEL_7_PROJECT_DESC:0 "Our titan technology can be applied to $NAME_Obsessions_Mod_Rocko$. Our engineers believe they can enlarge it's weapon mounts to support our newer weapons technology. In addition, they have plans to add a jump drive."
+OBSESSIONS_MOD_ROCKO_LEVEL_7_PROJECT_DESC:0 "Our titan technology can be applied to $NAME_Obsessions_Mod_Rocko$. Our engineers believe they can enlarge its weapon mounts to support our newer weapons technology. In addition, they have plans to add a jump drive."
 OBSESSIONS_MOD_ROCKO_SUPREME_PROJECT:0 "$obsessions_rocko_supreme$"
 OBSESSIONS_MOD_ROCKO_SUPREME_PROJECT_DESC:0 "Our technology has advanced to such a point where it no longer makes sense to manage $NAME_Obsessions_Mod_Rocko$ seperately from the rest of our fleet. Our engineers will make a final set of hull enhancments and allow $NAME_Obsessions_Mod_Rocko$ to be integrated into our normal command structure."
 
@@ -344,7 +344,7 @@ obsessions_mod.251.desc:0 "The bacteria feeding off of the lichen all grow brigh
 obsessions_mod.251.a:0 "Perfect."
 
 obsessions_mod_category_tundra_1:0 "A Bay of Green"
-obsessions_mod_category_tundra_1_desc:0 "This planet is mostly made up of mostly made up of frozen tundra with sparse plant life, but a single green bay near the equator stands out for quite verdant."
+obsessions_mod_category_tundra_1_desc:0 "This planet is mostly made up of mostly made up of frozen tundra with sparse plant life, but a single green bay near the equator stands out for being quite verdant."
 
 obsessions_mod.104.name:0 "A Bay of Green"
 obsessions_mod.104.desc:0 "[leader.GetName] was able to find and map a series of geothermal vents that supplied warm water to the green bay. They should provide any colony here with additional energy as well as making general colonization easier."
@@ -404,15 +404,15 @@ obsessions_mod.109.desc:0 "Most of the crew believes that the lightning has some
 obsessions_mod.109.a:0 "Really?"
 
 OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_CONTINENTAL:0 "Mount Olympus"
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_CONTINENTAL_DESC:0 "Our Scientist has been obsessed with the idea that there are godlike beings hiding on this planet and generating it's unusual lightning. After years of fringe research, they believe that they can find them."
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_CONTINENTAL_DESC:0 "Our Scientist has been obsessed with the idea that there are godlike beings hiding on this planet and generating its unusual lightning. After years of fringe research, they believe that they can find them."
 
 obsessions_mod.204.name:0 "Mount Olympus"
 obsessions_mod.204.desc:0 "[leader.GetName] climbed the tallest mountain on the planet and found an ancient structure. They didn't seem surprised to see it, though it didn't show up on any of the scans. Inside a machine stood silent, though apparently scarred from eons of lightning strikes. [leader.GetName] thinks they can get it working. In fact, they insist on doing so."
 obsessions_mod.204.a:0 "Prevent the activation."
-obsessions_mod.204.c:0 "Go ahead."
+obsessions_mod.204.b:0 "Go ahead."
 
 obsessions_mod.254.name:0 "The Spark of Life"
-obsessions_mod.254.desc:0 "The machine lurks into motion, gyroscopic rings begin to spin around it's central core, throwing sparks across the room. [from.GetName] is not fazed. They feel vindicated by their discovery and are willing to stop here, but there is on more button they could push. They are not sure what it will do. They have translated the label as 'vluur'."
+obsessions_mod.254.desc:0 "The machine lurks into motion, gyroscopic rings begin to spin around its central core, throwing sparks across the room. [from.GetName] is not fazed. They feel vindicated by their discovery and are willing to stop here, but there is on more button they could push. They are not sure what it will do. They have translated the label as 'vluur'."
 obsessions_mod.254.a:0 "Let's stop here."
 obsessions_mod.254.b:0 "Vluur?"
 
@@ -431,13 +431,13 @@ obsessions_mod.111.name:0 "Clearing the Way"
 obsessions_mod.111.desc:0 "[leader.GetName] had begun to reach conclusions that the site was actually built by aliens who had observed our civilization when the entire site was destroyed over night by a series of explosions. None of the crew will admit was happened."
 obsessions_mod.111.a:0 "Perhaps it's for the best."
 
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_SAVANNAH:0 "Replica Colony."
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_SAVANNAH:0 "Replica Colony"
 OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_SAVANNAH_DESC:0 "Ever since the replica colony on this planet was destroyed mysteriously, one of our scientists has been obsessing over what really happened there. They wish to return to the scene and finish their investigation."
 
 obsessions_mod.206.name:0 "Replica Colony"
-obsessions_mod.206.desc:0 "[leader.GetName] has delved deep into the ruins. For months they insisted that there was something there. They make one final expedition alone into the ruins deepest layers and when they come back they seem satisfied that nothing is hidden. They announce that the investigation is over."
+obsessions_mod.206.desc:0 "[leader.GetName] has delved deep into the ruins. For months they insisted that there was something there. They made one final expedition alone into the ruin's deepest layers and when they came back they seem satisfied that nothing is hidden. They announce that the investigation is over."
 obsessions_mod.206.a:0 "They seem different..."
-obsessions_mod.206.a:0 "I'm sure it's fine."
+obsessions_mod.206.b:0 "I'm sure it's fine."
 
 leader_trait_obsession_pod_person:0 "Prime Replica"
 leader_trait_obsession_pod_person_desc:0 "This leader is the source of a plague of Replica replacements. Their behavior is a little odd, but mostly the same aside from producing more Replicas."
@@ -477,11 +477,13 @@ d_mineral_monuments_deposit:0 "Mineral Monuments"
 d_mineral_monuments_deposit_desc:0 "This planet is covered in spires of minerals, generated by a native bacterium."
 
 OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ARID:0 "Bacterial Monoliths"
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ARID_DESC:0 "Our scientist wishes to return to this planet to finish their study of the bacterial monoliths on it's surface."
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_ARID_DESC:0 "Our scientist wishes to return to this planet to finish their study of the bacterial monoliths on its surface."
 
 obsessions_mod.207.name:0 "Nanite Monoliths"
 obsessions_mod.207.desc:0 "[leader.GetName] is ecstatic. Their theories were correct and the so-called bacteria that were creating the mineral monoliths on this planet are in fact sophisticated Nanites. There is no evidence of the intelligence that created them, but [leader.GetName] is satisifed with their work."
 obsessions_mod.207.a:0 "Useful."
+
+d_nanites_deposit_desc:0 "Nanites"
 
 obsessions_mod_category_desert_1:0 "Dessert Planet"
 obsessions_mod_category_desert_1_desc:0 "The survey team has announced that for some reason everything they ate while on this planet was delicious, even the meals they had brought with them."

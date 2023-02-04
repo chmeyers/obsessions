@@ -69,7 +69,7 @@ d_candy_sand_deposit = {
 }
 
 d_big_rock_candy_deposit = {
-	icon = d_trained_snowcaps_blocker
+	icon = d_tainted_snowcaps_blocker
 	category = deposit_cat_rare
 	is_for_colonizable = yes
 	planet_modifier = {

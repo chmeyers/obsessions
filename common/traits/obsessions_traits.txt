@@ -96,7 +96,4 @@ trait_obsession_pod_person = {
 	}
 
 	allowed_archetypes = { BIOLOGICAL LITHOID ROBOT MACHINE }
-
-	modifier = {
-	}
 }

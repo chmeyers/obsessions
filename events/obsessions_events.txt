@@ -2006,9 +2006,9 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_leader_flag = obsession_alpine
 					set_variable = { which = obsession_level value = 1 }
 					from = {
+						set_planet_flag = obsession_alpine
 						save_global_event_target_as = obsessions_planet_target
 					}
 					owner = {
@@ -2085,9 +2085,9 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_leader_flag = obsession_arctic
 					set_variable = { which = obsession_level value = 1 }
 					from = {
+						set_planet_flag = obsession_arctic
 						save_global_event_target_as = obsessions_planet_target
 					}
 					owner = {
@@ -2168,9 +2168,9 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_leader_flag = obsession_tundra
 					set_variable = { which = obsession_level value = 1 }
 					from = {
+						set_planet_flag = obsession_tundra
 						save_global_event_target_as = obsessions_planet_target
 					}
 					owner = {
@@ -2251,9 +2251,9 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_leader_flag = obsession_ocean
 					set_variable = { which = obsession_level value = 1 }
 					from = {
+						set_planet_flag = obsession_ocean
 						save_global_event_target_as = obsessions_planet_target
 					}
 					owner = {
@@ -2334,9 +2334,9 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_leader_flag = obsession_continental
 					set_variable = { which = obsession_level value = 1 }
 					from = {
+						set_planet_flag = obsession_continental
 						save_global_event_target_as = obsessions_planet_target
 					}
 					owner = {
@@ -2411,9 +2411,9 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_leader_flag = obsession_savannah
 					set_variable = { which = obsession_level value = 1 }
 					from = {
+						set_planet_flag = obsession_savannah
 						save_global_event_target_as = obsessions_planet_target
 					}
 					owner = {
@@ -2489,9 +2489,9 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_leader_flag = obsession_arid
 					set_variable = { which = obsession_level value = 1 }
 					from = {
+						set_planet_flag = obsession_arid
 						save_global_event_target_as = obsessions_planet_target
 					}
 					owner = {
@@ -2563,9 +2563,9 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_leader_flag = obsession_desert
 					set_variable = { which = obsession_level value = 1 }
 					from = {
+						set_planet_flag = obsession_desert
 						save_global_event_target_as = obsessions_planet_target
 					}
 					owner = {
@@ -2589,6 +2589,7 @@ ship_event = {
 	is_triggered_only = yes
 	
 	option = {
+		#TODO(chmeyers): Change all this!
 		name = obsessions_mod.116.a
 		from = {
 			add_deposit = d_candy_sand_deposit
@@ -2637,9 +2638,9 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_leader_flag = obsession_tropical
 					set_variable = { which = obsession_level value = 1 }
 					from = {
+						set_planet_flag = obsession_tropical
 						save_global_event_target_as = obsessions_planet_target
 					}
 					owner = {
@@ -2689,7 +2690,7 @@ ship_event = {
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled
 		}
-		owner = { country_event = { id = obsessions_mod.250 scopes = { from = leader } } }
+		owner = { country_event = { id = obsessions_mod.250 scopes = { from = root.leader } } }
 	}
 }
 
@@ -2905,7 +2906,7 @@ ship_event = {
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled
 		}
-		owner = { country_event = { id = obsessions_mod.251 scopes = { from = leader } } }
+		owner = { country_event = { id = obsessions_mod.251 scopes = { from = root.leader } } }
 	}
 }
 
@@ -2972,7 +2973,7 @@ ship_event = {
 	option = {
 		name = obsessions_mod.202.b
 		
-		owner = { country_event = { id = obsessions_mod.251 scopes = { from = leader } } }
+		owner = { country_event = { id = obsessions_mod.252 scopes = { from = root.leader } } }
 	}
 }
 
@@ -2980,7 +2981,7 @@ country_event = {
 	id = obsessions_mod.252
 	title = "obsessions_mod.252.name"
 	desc = "obsessions_mod.252.desc"
-	picture = GFX_evt_shroudwalker_teacher
+	picture = GFX_evt_shroudwalker_teachers
 	show_sound = event_scanner
 	location = event_target:obsessions_planet_target
 	is_triggered_only = yes
@@ -3196,7 +3197,7 @@ ship_event = {
 	option = {
 		name = obsessions_mod.204.b
 		
-		owner = { country_event = { id = obsessions_mod.254 scopes = { from = leader } } }
+		owner = { country_event = { id = obsessions_mod.254 scopes = { from = root.leader } } }
 	}
 }
 
@@ -3241,16 +3242,7 @@ country_event = {
 		}
 		# Have VLUUR target this system.
 		hidden_effect = {
-			owner = { country_event = { id = obsessions_mod.254 scopes = { from = leader } } }
-			any_country = {
-				limit = { is_country_type = vluur }
-				any_owned_fleet = {
-					auto_move_to_planet = {
-						target = event_target:obsessions_planet_target
-						clear_auto_move_on_arrival = no # And stay there!
-					}
-				}
-			}
+			owner = { country_event = { id = obsessions_mod.253 scopes = { from = from } } }
 		}
 	}
 }
@@ -3264,6 +3256,18 @@ country_event = {
 	is_triggered_only = yes
 	auto_opens = yes
 	
+	immediate = {
+		every_country = {
+			limit = { is_country_type = vluur }
+			every_owned_fleet = {
+				auto_move_to_planet = {
+					target = event_target:obsessions_planet_target
+					clear_auto_move_on_arrival = no # And stay there!
+				}
+			}
+		}
+	}
+
 	option = {
 		name = obsessions_mod.253.a
 	}
@@ -3328,7 +3332,7 @@ ship_event = {
 			add_trait = leader_trait_obsession_fulfilled
 		}
 		hidden_effect = {
-			owner = { country_event = { id = obsessions_mod.255 scopes = { from = leader } days = 90 } }
+			owner = { country_event = { id = obsessions_mod.255 scopes = { from = root.leader } days = 90 } }
 		}
 	}
 
@@ -3340,7 +3344,7 @@ ship_event = {
 			add_trait = leader_trait_obsession_fulfilled
 		}
 		hidden_effect = {
-			owner = { country_event = { id = obsessions_mod.255 scopes = { from = leader } days = 90 } }
+			owner = { country_event = { id = obsessions_mod.255 scopes = { from = root.leader } days = 90 } }
 		}
 	}
 }
@@ -3440,7 +3444,9 @@ country_event = {
 		name = obsessions_mod.256.b
 		if = {
 			limit = { exists = from }
-			kill_leader = { show_notification = no }
+			from = {
+				kill_leader = { show_notification = no }
+			}
 		}
 		every_owned_pop = {
 			limit = { has_trait = trait_obsession_pod_person }
@@ -3466,7 +3472,7 @@ country_event = {
 				}
 			}
 			while = {
-				count = 5
+				count = 3
 				random_owned_pop = {
 					limit = { NOT = { has_trait = trait_obsession_pod_person } }
 					modify_species = {
@@ -3476,7 +3482,7 @@ country_event = {
 					}
 				}
 			}
-			country_event = { id = obsessions_mod.257 days = 90 }
+			country_event = { id = obsessions_mod.257 days = 120 }
 		}
 		else = {
 			# Everybody is a pod person!
@@ -3500,11 +3506,13 @@ country_event = {
 	option = {
 		name = obsessions_mod.258.b
 		custom_tooltip = obsessions_mod.255.b.tooltip
-		every_owned_pop = {
-			limit = { has_trait = trait_obsession_pod_person }
-			modify_species = {
-				species = this
-				remove_trait = trait_obsession_pod_person
+		hidden_effect = {
+			every_owned_pop = {
+				limit = { has_trait = trait_obsession_pod_person }
+				modify_species = {
+					species = this
+					remove_trait = trait_obsession_pod_person
+				}
 			}
 		}
 	}
@@ -3578,7 +3586,7 @@ ship_event = {
 			add_trait = leader_trait_obsession_fulfilled
 		}
 		hidden_effect = {
-			owner = { country_event = { id = obsessions_mod.259 scopes = { from = leader } } }
+			owner = { country_event = { id = obsessions_mod.259 scopes = { from = root.leader } } }
 		}
 	}
 
@@ -3622,6 +3630,7 @@ country_event = {
 					limit = { is_blocker = yes }
 					clear_blocker = yes
 				}
+				remove_modifier = candy_sands_modifier
 				add_deposit = d_candy_sand_deposit
 			}
 			
