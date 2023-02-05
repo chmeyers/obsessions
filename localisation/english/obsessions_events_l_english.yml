@@ -451,8 +451,8 @@ obsessions_mod.255.a:0 "Find the source."
 obsessions_mod.255.b:0 "Contain the outbreak."
 
 obsessions_mod.256.name:0 "Pod People"
-obsessions_mod.256.desc:0 "The source of the Replicas has been revealed. It seems that sometime during their expedition on [event_target:obsessions_planet_target], [from.GetName] was replaced with a Replica of themself. They have since been replacing additional members of the population. When confronted they insisted that they had no memory of doing so."
-obsessions_mod.256.desc_dead:0 "The source of the Replicas has been revealed. It seems that sometime during their expedition on [event_target:obsessions_planet_target], our scientist was replaced with a Replica of themself. They have since died, but the Replicas they created before their death have continued to spread."
+obsessions_mod.256.desc:0 "The source of the Replicas has been revealed. It seems that sometime during their expedition on [event_target:obsessions_planet_target.GetName], [from.GetName] was replaced with a Replica of themself. They have since been replacing additional members of the population. When confronted they insisted that they had no memory of doing so."
+obsessions_mod.256.desc_dead:0 "The source of the Replicas has been revealed. It seems that sometime during their expedition on [event_target:obsessions_planet_target.GetName], our scientist was replaced with a Replica of themself. They have since died, but the Replicas they created before their death have continued to spread."
 obsessions_mod.256.a:0 "Let it run its course."
 obsessions_mod.256.b:0 "Make sure they are all destroyed."
 
@@ -529,11 +529,11 @@ obsessions_mod_category_tropical_1:0 "Unusual Plant Life"
 obsessions_mod_category_tropical_1_desc:0 "Some of the plant life on this planet appears to be unrelated to the native species."
 
 obsessions_mod.116.name:0 "Tasty Plant Life"
-obsessions_mod.116.desc:0 "[leader.GetName] has discovered that the unusual plants are in fact native to the planet, but are the last surviving example of a nearly extinct clade. The crew finds them quite tasty and believes they could be cultivated."
+obsessions_mod.116.desc:0 "[leader.GetName] has discovered that the unusual plants are in fact native to the planet, but are the last surviving example of a nearly extinct clade. Scans have shown them to be both nutrious and tasty to organic lifeforms."
 obsessions_mod.116.a:0 "Farming it is."
 
 obsessions_mod.117.name:0 "Creepy Plants"
-obsessions_mod.117.desc:0 "Further investigation has shown fossil records indicating the unusual plants are native but of a species that diverged from the rest of the biome several billion years ago. The crew finds them quite tasty and believes they could be cultivated. [leader.GetName] swears that they saw one of the plants move."
+obsessions_mod.117.desc:0 "Further investigation has shown fossil records indicating the unusual plants are native but of a species that diverged from the rest of the biome several billion years ago. Scans have shown them to be both nutrious and tasty to organic lifeforms and the crew believes they could be cultivated. [leader.GetName] swears that they saw one of the plants move."
 obsessions_mod.117.a:0 "I'm sure it's fine."
 
 tasty_plants_modifier:0 "Tasty Plants"
@@ -541,10 +541,84 @@ tasty_plants_modifier_desc:0 "This planet is covered in tasty plants."
 d_tasty_plants_deposit:0 "Tasty Plants"
 d_tasty_plants_deposit_desc:0 "This planet is covered in tasty plants."
 
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TROPICAL:0 "TODO(chmeyers)."
-OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TROPICAL_DESC:0 "TODO(chmeyers)."
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TROPICAL:0 "Creepy Plants."
+OBSESSIONS_MOD_FULFILL_OBSESSION_PROJECT_TROPICAL_DESC:0 "Our scientist has obsessed over the tasty plants on this world. They still swear that they saw one of them move. This wish to return to the planet and finish their investigation."
 
-obsessions_mod.205.name:0 "TODO(chmeyers)"
-# TODO(chmeyers): Change this to match the rewards.
-obsessions_mod.205.desc:0 "TODO(chmeyers)"
-obsessions_mod.205.a:0 "TODO(chmeyers)"
+obsessions_mod.205.name:0 "Soylent Green is..."
+obsessions_mod.205.desc:0 "[leader.GetName] has discovered that the tasty plants on [event_target:obsessions_planet_target.GetName] are in fact sapient. Their distributed neural structure means that they think extremely slowly, has decoded the chemical system that they use as language. They wish to communicate with them."
+obsessions_mod.205.a:0 "Suppress the findings."
+obsessions_mod.205.b:0 "Try communicating."
+
+obsessions_mod.260.name:0 "After the Entmoot"
+obsessions_mod.260.desc:0 "Our scientist was able to have an intelligent conversation with a group of the native plants, lasting several weeks. The fact that we have been eating them this whole time was not brought up. They hadn't seemed to notice."
+obsessions_mod.260.a:0 "Continue as we were."
+obsessions_mod.260.a.tooltip:0 "Keep farming on this planet as usual."
+obsessions_mod.260.e:0 "Stop farming them."
+obsessions_mod.260.b:0 "Apologize and welcome them."
+obsessions_mod.260.c:0 "They will make excellent livestock."
+obsessions_mod.260.d:0 "They can join the matrix."
+
+dont_farm_natives_modifier:0 "Don't Farm the Natives"
+dont_farm_natives_modifier_desc:0 "The native plants here are sapient, and we don't farm them."
+
+NAME_ENT_OBSESSION:0 "Kudzu Ent"
+NAME_ENT_OBSESSIONS:0 "Kudzu Ents"
+
+trait_obsession_slow_worker:0 "Slow Worker"
+trait_obsession_slow_worker_desc:0 "This species has extremely slow movement and slow thinking speed, making them poor workers in most professions."
+obsession_slow_worker_tooltip:0 "The unique neural structure of this species produces unity when plugged into the matrix."
+
+trait_obsession_invasive_species:0 "Invasive Species"
+trait_obsession_invasive_species_desc:0 "This species is invasive and will reproduce uncontrollably."
+# TODO(chmeyers): Remove this? Does it even work?
+mod_planet_technician_unity_produces_add:0 "Neural Unity"
+mod_planet_technician_unity_produces_add:0 "The unique neural structure of this species produces unity when plugged into the matrix."
+
+obsessions_mod.261.name:0 "$NAME_ENT_OBSESSION$ Slaves"
+obsessions_mod.261.desc:0 "We have transported several $NAME_ENT_OBSESSION$ to our capital. They are ready to work."
+obsessions_mod.261.a:0 "Only useful for one thing."
+
+obsessions_mod.262.name:0 "No Need To Apologize"
+obsessions_mod.262.desc:0 "The plant species that we have named the $NAME_ENT_OBSESSION$ were surprisingly forgiving about previously being used as a food source. In their opinion, eating their fruit is just a way to help them reproduce. Their enthusiasm for it actually made our envoys uncomfortable after a time. They look forward to settling some of their people in our capital and would appreciate being used for food production. Their slow thinking makes them unsuitable for most other work."
+obsessions_mod.262.a:0 "Welcome."
+
+obsessions_mod.263.name:0 "Slow Worker, Fast Breeder"
+obsessions_mod.263.desc:0 "The $NAME_ENT_OBSESSIONS$ have been breeding uncontrollably on our planets. Their numbers seemed to have increased quite quickly."
+obsessions_mod.263.a:0 "Better keep an eye on it."
+
+obsessions_mod.264.name:0 "Slow Worker, Fast Breeder"
+obsessions_mod.264.desc:0 "The population of $NAME_ENT_OBSESSIONS$ have been breeding uncontrollably on our planets. Their numbers seemed to have increased quite quickly."
+obsessions_mod.264.a:0 "Better keep an eye on it."
+
+obsessions_mod.265.name:0 "Perhaps a Machete"
+obsessions_mod.265.desc:0 "The population of $NAME_ENT_OBSESSIONS$ have been breeding uncontrollably on our planets. No population control mechanisms have seemed to help. Some of our scientists have privately suggested that a targeted virus could be created to deal with the issue."
+obsessions_mod.265.a:0 "Let them be."
+obsessions_mod.265.a.tooltip:0 "Surely there won't be further consequences."
+obsessions_mod.265.b:0 "Kill them all."
+obsessions_mod.265.b.tooltip:0 "All the $NAME_ENT_OBSESSIONS$ will die, and we will be blamed for the genocide."
+obsessions_mod.265.c:0 "Deal with it discretely."
+obsessions_mod.265.c.tooltip:0 "All the $NAME_ENT_OBSESSIONS$ will die."
+obsessions_mod.265.d:0 "Genetically engineer some birth control."
+obsessions_mod.265.d.tooltip:0 "The $NAME_ENT_OBSESSIONS$ will lose their uncontrollable growth traits and have their population reduced."
+obsessions_mod.265.e:0 "Perhaps... we could eat them."
+obsessions_mod.265.e.tooltip:0 "Shifts the empire ethics towards xenophobe and makes the $NAME_ENT_OBSESSIONS$ into livestock. They will lose their uncontrollable growth traits. Many will not survive the transition."
+
+obsessions_mod.266.name:0 "Into Their Own Hands"
+obsessions_mod.266.desc:0 "Someone has gotten tired of the rapidly reproducing $NAME_ENT_OBSESSIONS$ and must have decided to do something about it. A bioengineered virus is rapidly spreading through their population. It is too late to save most of them, and even if we try, the ones remaining will never be the same."
+obsessions_mod.266.a:0 "Survival of the fittest."
+obsessions_mod.266.a.tooltip:0 "All $NAME_ENT_OBSESSIONS$ die."
+obsessions_mod.266.b:0 "Save those we can."
+obsessions_mod.266.b.tooltip:0 "A few $NAME_ENT_OBSESSIONS$ will survive, but lose their invasive growth traits."
+
+obsessions_mod.267.name:0 "Failed Assimilation"
+obsessions_mod.267.desc:0 "The species of $NAME_ENT_OBSESSIONS$ seems to have taken poorly to our attempts to assimilate them. An unknown contagen has spread through the population, leaving no survivors."
+obsessions_mod.267.a:0 "Too bad."
+obsessions_mod.267.a.tooltip:0 "All $NAME_ENT_OBSESSIONS$ die."
+
+obsessions_mod.268.name:0 "Reap What Was Sown"
+obsessions_mod.268.desc:0 "Our bioengineered virus was successful. The species of $NAME_ENT_OBSESSIONS$ has been completely eliminated, every root and twig."
+obsessions_mod.268.a:0 "Let's eat."
+
+obsessions_mod.270.name:0 "Reap What Was Sown"
+obsessions_mod.270.desc:0 "The release of our bioengineered virus was successful. The species of $NAME_ENT_OBSESSIONS$ has been completely eliminated, and nobody was able to pinpoint us as the source of the plague."
+obsessions_mod.270.a:0 "Unfortunate, but necessary."

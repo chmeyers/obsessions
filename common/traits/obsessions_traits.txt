@@ -97,3 +97,71 @@ trait_obsession_pod_person = {
 
 	allowed_archetypes = { BIOLOGICAL LITHOID ROBOT MACHINE }
 }
+
+trait_obsession_slow_worker = {
+	cost = 0
+	initial = no
+	sapient = no
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+	icon = "gfx/interface/icons/traits/trait_primitive.dds"
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		planet_livestock_food_produces_add = 2
+		planet_jobs_food_produces_mult = 2.0
+		planet_jobs_produces_mult = -2.0
+		pop_job_trade_mult = -0.50
+		planet_pops_upkeep_mult = -0.95
+		species_leader_exp_gain = -0.95
+		army_damage_mult = -0.95
+	}
+	custom_tooltip_with_modifiers = obsession_slow_worker_tooltip
+	triggered_pop_modifier = {
+		potential = {
+			has_slavery_type = {
+				type = slavery_matrix
+			}
+		}
+		planet_livestock_unity_produces_add = 0.5
+		planet_jobs_energy_produces_mult = 2.0
+	}
+	triggered_pop_modifier = {
+		potential = {
+			has_slavery_type = {
+				type = slavery_livestock
+			}
+		}
+		planet_jobs_food_produces_mult = 1.5
+	}
+}
+
+trait_obsession_invasive_species = {
+	cost = 0
+	initial = no
+	sapient = no
+	species_possible_remove = {
+		always = no
+	}
+	species_possible_merge_remove = {
+		always = yes
+	}
+	species_possible_merge_add = {
+		always = no
+	}
+	icon = "gfx/interface/icons/traits/trait_rapid_breeders.dds"
+	allowed_archetypes = { BIOLOGICAL }
+	modifier = {
+		pop_growth_speed = 10.0
+		pop_environment_tolerance = 0.50
+		pop_housing_usage_add = -0.9
+		pop_amenities_usage_add = -0.95
+		pop_growth_from_immigration = 0.1
+	}
+}

@@ -332,6 +332,7 @@ country_event = {
 				NOR = {
 					has_ethic = ethic_fanatic_spiritualist
 					has_ethic = ethic_spiritualist
+					has_ethic = ethic_gestalt_consciousness
 				}
 			}
 		}
@@ -348,6 +349,15 @@ country_event = {
 			}
 			clear_global_event_target = obsessions_mod_rocko
 		}
+	}
+	option = {
+		trigger = {
+			owner = {
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}
+		# Gestalts can say no with no downsides.
+		name = obsessions_mod.4.c
 	}
 	option = {
 		trigger = {
@@ -2589,12 +2599,11 @@ ship_event = {
 	is_triggered_only = yes
 	
 	option = {
-		#TODO(chmeyers): Change all this!
 		name = obsessions_mod.116.a
 		from = {
-			add_deposit = d_candy_sand_deposit
+			add_deposit = d_tasty_plants_deposit
 			add_modifier = {
-				modifier = "candy_sands_modifier"
+				modifier = "tasty_plants_modifier"
 				days = -1
 			}
 		}
@@ -2617,9 +2626,9 @@ ship_event = {
 	option = {
 		name = obsessions_mod.117.a
 		from = {
-			add_deposit = d_candy_sand_deposit
+			add_deposit = d_tasty_plants_deposit
 			add_modifier = {
-				modifier = "candy_sands_modifier"
+				modifier = "tasty_plants_modifier"
 				days = -1
 			}
 		}
@@ -3278,7 +3287,7 @@ ship_event = {
 	id = obsessions_mod.205
 	title = "obsessions_mod.205.name"
 	desc = "obsessions_mod.205.desc"
-	picture = GFX_evt_grand_speech
+	picture = GFX_evt_aggressive_flora
 	show_sound = event_conversation
 	location = event_target:obsessions_planet_target
 	is_triggered_only = yes
@@ -3292,15 +3301,765 @@ ship_event = {
 		}
 	}
 
-	# It's finally over, Mr. Frodo.
 	option = {
 		name = obsessions_mod.205.a
 		leader = {
-			# TODO(chmeyers): Add rewards/planet deposits
+			kill_leader = { show_notification = no }
+		}
+	}
+
+	option = {
+		name = obsessions_mod.205.b
+		leader = {
 			add_experience = 1000
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled
 		}
+		owner = { country_event = { id = obsessions_mod.260 scopes = { from = root.leader } days = 30 } }
+	}
+}
+
+country_event = {
+	id = obsessions_mod.260
+	title = "obsessions_mod.260.name"
+	desc = "obsessions_mod.260.desc"
+	picture = GFX_evt_baol_devolved
+	location = event_target:obsessions_planet_target
+	is_triggered_only = yes
+	auto_opens = yes
+
+	option = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_ethic = ethic_fanatic_spiritualist
+					has_ethic = ethic_fanatic_egalitarian
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_xenophile
+					has_ethic = ethic_xenophile
+				}
+			}
+		}
+		name = obsessions_mod.260.a
+		custom_tooltip = obsessions_mod.260.a.tooltip
+	}
+
+	option = {
+		# Everyone is allowed to just stop farming them.
+		name = obsessions_mod.260.e
+		event_target:obsessions_planet_target = {
+			remove_modifier = tasty_plants_modifier
+			add_modifier = {
+				modifier = dont_farm_natives_modifier
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+				}
+			}
+		}
+		name = obsessions_mod.260.b
+		country_event = { id = obsessions_mod.262 days = 30 }
+	}
+
+	option = {
+		trigger = {
+			owner = {
+				NOT = { has_authority = auth_machine_intelligence }
+				OR = {
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_xenophobe
+					has_ethic = ethic_gestalt_consciousness
+				}
+			}
+		}
+		name = obsessions_mod.260.c
+		country_event = { id = obsessions_mod.261 days = 30 }
+	}
+
+	option = {
+		trigger = {
+			owner = {
+				has_authority = auth_machine_intelligence
+			}
+		}
+		name = obsessions_mod.260.d
+		country_event = { id = obsessions_mod.261 days = 30 }
+	}
+}
+
+country_event = {
+	id = obsessions_mod.261
+	title = "obsessions_mod.261.name"
+	desc = "obsessions_mod.261.desc"
+	picture = GFX_evt_baol_devolved
+	location = event_target:obsessions_planet_target
+	is_triggered_only = yes
+	auto_opens = yes
+	
+	immediate = {
+		IF = {
+			limit = {
+				NOR = {
+					exists = event_target:obsession_ent_slaves
+					owner = { species_portrait = pla9 }
+				}
+			}
+			create_species = {
+				name = "NAME_ENT_OBSESSION"
+				plural = "NAME_ENT_OBSESSIONS"
+				class = "PLANT"
+				portrait = pla9
+				namelist = "PLANT2"
+				traits = {
+					trait = "trait_pc_tropical_preference"
+					trait = "trait_obsession_slow_worker"
+					trait = "trait_nerve_stapled"
+					trait = "trait_delicious"
+				}
+				effect = {
+					save_global_event_target_as = obsession_ent_slaves
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = {
+					exists = event_target:obsession_ent_slaves
+				}
+				owner = { species_portrait = pla9 }
+			}
+			create_species = {
+				name = "NAME_ENT_OBSESSION"
+				plural = "NAME_ENT_OBSESSIONS"
+				class = "PLANT"
+				portrait = pla14
+				namelist = "PLANT2"
+				traits = {
+					trait = "trait_pc_tropical_preference"
+					trait = "trait_obsession_slow_worker"
+					trait = "trait_nerve_stapled"
+					trait = "trait_delicious"
+				}
+				effect = {
+					save_global_event_target_as = obsession_ent_slaves
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = obsessions_mod.261.a
+		capital_scope = {
+			while = {
+				count = 3
+				create_pop = {
+					species = event_target:obsession_ent_slaves
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_mod.262
+	title = "obsessions_mod.262.name"
+	desc = "obsessions_mod.262.desc"
+	picture = GFX_evt_baol_devolved
+	location = event_target:obsessions_planet_target
+	is_triggered_only = yes
+	auto_opens = yes
+	
+	immediate = {
+		IF = {
+			limit = {
+				NOR = {
+					exists = event_target:obsession_ent_invasive
+					owner = { species_portrait = pla9 }
+				}
+			}
+			create_species = {
+				name = "NAME_ENT_OBSESSION"
+				plural = "NAME_ENT_OBSESSIONS"
+				class = "PLANT"
+				portrait = pla9
+				namelist = "PLANT2"
+				traits = {
+					trait = "trait_pc_tropical_preference"
+					trait = "trait_obsession_slow_worker"
+					trait = "trait_obsession_invasive_species"
+					trait = "trait_nerve_stapled"
+					trait = "trait_delicious"
+				}
+				effect = {
+					save_global_event_target_as = obsession_ent_invasive
+				}
+			}
+		}
+		else_if = {
+			limit = {
+				NOT = {
+					exists = event_target:obsession_ent_invasive
+				}
+				owner = { species_portrait = pla9 }
+			}
+			create_species = {
+				name = "NAME_ENT_OBSESSION"
+				plural = "NAME_ENT_OBSESSIONS"
+				class = "PLANT"
+				portrait = pla14
+				namelist = "PLANT2"
+				traits = {
+					trait = "trait_pc_tropical_preference"
+					trait = "trait_obsession_slow_worker"
+					trait = "trait_obsession_invasive_species"
+					trait = "trait_nerve_stapled"
+					trait = "trait_delicious"
+				}
+				effect = {
+					save_global_event_target_as = obsession_ent_invasive
+				}
+			}
+		}
+	}
+	
+	option = {
+		name = obsessions_mod.262.a
+		capital_scope = {
+			while = {
+				count = 3
+				create_pop = {
+					species = event_target:obsession_ent_invasive
+				}
+			}
+		}
+		hidden_effect = {
+			country_event = { id = obsessions_mod.263 days = 400 }
+		}
+	}
+}
+
+# The Kudzu reproduce uncontrollably
+country_event = {
+	id = obsessions_mod.263
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		# If they are being assimilated, they all die.
+		if = {
+			limit = {
+				any_owned_species = {
+					is_same_species = event_target:obsession_ent_invasive
+					has_citizenship_type = { type = citizenship_assimilation country = root }
+				}
+			}
+			country_event = { id = obsessions_mod.267 }
+		}
+		else = {
+			# Count the number of Kudzu and store in a variable. We don't use count_species_pop
+			# because we want to compare multiple times.
+			event_target:obsession_ent_invasive = {
+				
+				set_variable = { which = num_kudzu value = 0 }
+				every_species_pop = {
+					prev = { change_variable = { which = num_kudzu value = 1 } }
+				}
+				if = {
+					limit = {
+						check_variable = {
+							which = num_kudzu
+							value > 200
+						}
+					}
+					# Too many kudzu! Somebody else genocides them.
+					root = { country_event = { id = obsessions_mod.266 } }
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							which = num_kudzu
+							value > 75
+						}
+						NOT = { has_species_flag = obsession_kudzu_can_live }
+					}
+					#TODO(chmeyers): Make sure this only triggers once.
+					# Too many kudzu! Let the player kill them all or save them.
+					root = {
+						if = {
+							limit = {
+								any_owned_pop = {
+									has_trait = trait_obsession_invasive_species
+								}
+							}
+							country_event = { id = obsessions_mod.265 }
+						}
+					}
+				}
+				else_if = {
+					limit = {
+						check_variable = {
+							which = num_kudzu
+							value = 0
+						}
+					}
+					# They are all dead! End of chain.
+				}
+				else = {
+					# Spawn more kudzu and loop back
+					root = {
+						# One for every player planet that has them, plus one for every five that exist.
+						every_planet_within_border = {
+							limit = {
+								is_colony = yes
+								count_species = {
+									limit = {
+										has_trait = trait_obsession_invasive_species
+									}
+									count > 0
+								}
+							}
+							create_pop = {
+								species = event_target:obsession_ent_invasive
+							}
+							# This doesn't seem like the most efficient way to do this, but I couldn't
+							# find a function that easily counted the number of a particular species on a planet
+							# in the docs.
+							every_owned_pop = {
+								limit = {
+									is_same_species = event_target:obsession_ent_invasive
+								}
+								random_list = {
+									4 = {}
+									1 = {
+										prev = {
+											create_pop = { species = event_target:obsession_ent_invasive}
+										}
+									}
+								}
+							}
+						}
+						country_event = { id = obsessions_mod.263 days = 400 }
+						country_event = { id = obsessions_mod.264 days = 1 }
+					}
+				}
+			}
+		}
+	}
+}
+
+# Initial announcement that the Kudzu are breeding uncontrollably.
+country_event = {
+	id = obsessions_mod.264
+	title = "obsessions_mod.264.name"
+	desc = "obsessions_mod.264.desc"
+	picture = GFX_evt_baol_devolved
+	show_sound = event_planetary_riot
+	is_triggered_only = yes
+	auto_opens = yes
+	# Only do the announcement once.
+	fire_only_once = yes
+	
+	option = {
+		name = obsessions_mod.264.a
+	}
+}
+
+# 100 Kudzu, a chance for the player to do something about it.
+country_event = {
+	id = obsessions_mod.265
+	title = "obsessions_mod.265.name"
+	desc = "obsessions_mod.265.desc"
+	picture = GFX_evt_baol_devolved
+	show_sound = event_planetary_riot
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		event_target:obsession_ent_invasive = {
+			set_species_flag = obsession_kudzu_can_live
+		}
+	}
+	
+	# Let things keep going
+	option = {
+		name = obsessions_mod.265.a
+		custom_tooltip = obsessions_mod.265.a.tooltip
+		# Call the loop.
+		hidden_effect = {
+			country_event = { id = obsessions_mod.263 days = 400 }
+		}
+	}
+
+	# Kill them all
+	option = {
+		name = obsessions_mod.265.b
+		custom_tooltip = obsessions_mod.265.b.tooltip
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 1000
+				}
+				# Have to have one of these
+				OR = {
+					has_ethic = ethic_fanatic_authoritarian
+					has_ethic = ethic_authoritarian
+					has_ethic = ethic_fanatic_xenophobe
+					has_ethic = ethic_xenophobe
+					has_ethic = ethic_fanatic_militarist
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_machine_terminator
+					has_valid_civic = civic_slaver_guilds
+					has_valid_civic = civic_police_state
+					has_valid_civic = civic_barbaric_despoilers
+					has_valid_civic = civic_death_cult
+					has_valid_civic = civic_pompous_purists
+					has_valid_civic = civic_environmentalist
+				}
+				# Can't have one of these
+				NOR = {
+					has_ethic = ethic_fanatic_spiritualist
+					has_ethic = ethic_fanatic_egalitarian
+					has_ethic = ethic_egalitarian
+					has_ethic = ethic_fanatic_xenophile
+					has_ethic = ethic_xenophile
+					has_valid_civic = civic_beacon_of_liberty
+					has_valid_civic = civic_free_haven
+					has_valid_civic = civic_agrarian_idyll
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -1000
+			}
+			add_resource = {
+				food = 2500
+			}
+		}
+		hidden_effect = {
+			# Kill half now and half in a month.
+			event_target:obsession_ent_invasive = {
+				every_species_pop = {
+					random_list = {
+						1 = {}
+						1 = {
+							# Trigger Genocide opinion modifiers.
+							planet = {
+								planet_event = { id = action.21 scopes = { fromfrom = prev from = root } }
+							}
+							kill_pop = yes
+						}
+					}
+				}
+			}
+			root = { country_event = { id = obsessions_mod.268 days = 30 } }
+		}
+	}
+
+	# Kill them all secretly
+	option = {
+		name = obsessions_mod.265.c
+		custom_tooltip = obsessions_mod.265.c.tooltip
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = unity
+					value >= 5000
+				}
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 1000
+				}
+				NOR = {
+					has_ethic = ethic_fanatic_egalitarian
+					has_ethic = ethic_fanatic_xenophile
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = -5000
+			}
+			add_resource = {
+				energy = -1000
+			}
+		}
+		hidden_effect = {
+			root = { country_event = { id = obsessions_mod.269 days = 15 } }
+		}
+	}
+
+	# Neuter them
+	option = {
+		name = obsessions_mod.265.d
+		custom_tooltip = obsessions_mod.265.d.tooltip
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 1000
+				}
+			}
+			# Spiritualists are against birth control...
+			NOR = {
+				has_ethic = ethic_fanatic_spiritualist
+				has_ethic = ethic_spiritualist
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -1000
+			}
+		}
+		hidden_effect = {
+			event_target:obsession_ent_invasive = {
+				every_species_pop = {
+					random_list = {
+						# Half die, half lose their growth trait.
+						1 = {
+							modify_species = {
+								species = this
+								remove_trait = trait_obsession_invasive_species
+							}
+						}
+						1 = {
+							kill_pop = yes
+						}
+					}
+				}
+			}
+		}
+	}
+
+	# Make them livestock.
+	option = {
+		name = obsessions_mod.265.e
+		custom_tooltip = obsessions_mod.265.e.tooltip
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = unity
+					value >= 1000
+				}
+			}
+			NOR = {
+				has_ethic = ethic_fanatic_xenophobe
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}
+		owner = {
+			add_resource = {
+				unity = -1000
+			}
+		}
+		hidden_effect = {
+			shift_ethic = "ethic_xenophobe"
+			random_owned_pop = { pop_change_ethic = "ethic_xenophobe" }
+			event_target:obsession_ent_invasive = {
+				set_citizenship_type = { type = citizenship_slavery country = prev }
+				set_slavery_type = { type = slavery_livestock country = prev }
+				every_species_pop = {
+					# Half die, half lose their growth trait.
+					random_list = {
+						1 = {
+							modify_species = {
+								species = this
+								remove_trait = trait_obsession_invasive_species
+							}
+						}
+						1 = {
+							kill_pop = yes
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+# 250 Kudzu. Somebody else kills them. :(
+country_event = {
+	id = obsessions_mod.266
+	title = "obsessions_mod.266.name"
+	desc = "obsessions_mod.266.desc"
+	picture = GFX_evt_baol_devolved
+	show_sound = event_planetary_riot
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		event_target:obsession_ent_invasive = {
+			every_species_pop = {
+				random_list = {
+					1 = {}
+					9 = {
+						kill_pop = yes
+					}
+				}
+			}
+		}
+	}
+	
+	# Oh, well.
+	option = {
+		name = obsessions_mod.266.a
+		custom_tooltip = obsessions_mod.266.a.tooltip
+		hidden_effect = {
+			event_target:obsession_ent_invasive = {
+				every_species_pop = {
+					kill_pop = yes
+				}
+			}
+		}
+		add_resource = {
+			food = 5000
+		}
+	}
+
+	# Try to save some of them.
+	option = {
+		name = obsessions_mod.266.b
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 1000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -1000
+			}
+		}
+		hidden_effect = {
+			event_target:obsession_ent_invasive = {
+				every_species_pop = {
+					modify_species = {
+						species = this
+						remove_trait = trait_obsession_invasive_species
+					}
+				}
+			}
+		}
+	}
+}
+
+# Tried to assimilate the Kudzu. They die
+country_event = {
+	id = obsessions_mod.267
+	title = "obsessions_mod.267.name"
+	desc = "obsessions_mod.267.desc"
+	picture = GFX_evt_baol_devolved
+	show_sound = event_planetary_riot
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		event_target:obsession_ent_invasive = {
+			every_species_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+	
+	# They don't like being assimilated.
+	option = {
+		name = obsessions_mod.267.a
+		custom_tooltip = obsessions_mod.267.a.tooltip
+		add_resource = {
+			food = 5000
+		}
+	}
+}
+
+# Murdered all the Kudzu
+country_event = {
+	id = obsessions_mod.268
+	title = "obsessions_mod.268.name"
+	desc = "obsessions_mod.268.desc"
+	picture = GFX_evt_baol_devolved
+	show_sound = event_planetary_riot
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		event_target:obsession_ent_invasive = {
+			every_species_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+	
+	option = {
+		name = obsessions_mod.268.a
+		add_resource = {
+			food = 2500
+		}
+	}
+}
+
+# Murdered all the Kudzu slowly
+country_event = {
+	id = obsessions_mod.269
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		event_target:obsession_ent_invasive = {
+			if = {
+				limit = {
+					count_species_pop = {
+						count < 5
+					}
+				}
+				# Finish them off.
+				every_species_pop = {
+					kill_pop =  yes
+				}
+				root = { country_event = { id = obsessions_mod.270 days = 1 } }
+			}
+			else = {
+				# Kill one today and loop back tomorrow.
+				random_species_pop = {
+					kill_pop = yes
+				}
+				root = { country_event = { id = obsessions_mod.269 days = 1 } }
+			}
+		}
+	}
+}
+
+# Murdered all the Kudzu
+country_event = {
+	id = obsessions_mod.270
+	title = "obsessions_mod.270.name"
+	desc = "obsessions_mod.270.desc"
+	picture = GFX_evt_baol_devolved
+	show_sound = event_planetary_riot
+	is_triggered_only = yes
+	auto_opens = yes
+
+	immediate = {
+		event_target:obsession_ent_invasive = {
+			every_species_pop = {
+				kill_pop = yes
+			}
+		}
+	}
+	
+	option = {
+		name = obsessions_mod.270.a
 	}
 }
 
