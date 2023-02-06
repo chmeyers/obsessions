@@ -341,7 +341,6 @@ country_event = {
 		hidden_effect = {
 			while = {
 				count = 10
-				# TODO(chmeyers): Check for Gestalt
 				random_owned_pop = {
 					wipe_pop_ethos = yes
 					pop_change_ethic = ethic_spiritualist
@@ -3589,7 +3588,6 @@ country_event = {
 						}
 						NOT = { has_species_flag = obsession_kudzu_can_live }
 					}
-					#TODO(chmeyers): Make sure this only triggers once.
 					# Too many kudzu! Let the player kill them all or save them.
 					root = {
 						if = {

@@ -570,7 +570,6 @@ obsession_slow_worker_tooltip:0 "The unique neural structure of this species pro
 
 trait_obsession_invasive_species:0 "Invasive Species"
 trait_obsession_invasive_species_desc:0 "This species is invasive and will reproduce uncontrollably."
-# TODO(chmeyers): Remove this? Does it even work?
 mod_planet_technician_unity_produces_add:0 "Neural Unity"
 mod_planet_technician_unity_produces_add:0 "The unique neural structure of this species produces unity when plugged into the matrix."
 
