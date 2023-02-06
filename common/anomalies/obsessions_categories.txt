@@ -6,7 +6,7 @@
 @obsessions_mod_spawn_base = 10
 @obsessions_mod_spawn_modifier = 10
 @obsessions_mod_spawn_rocko = 10
-@obsessions_mod_spawn_obsession = 150
+@obsessions_mod_spawn_obsession = 250
 
 
 # The Rocko anomaly
