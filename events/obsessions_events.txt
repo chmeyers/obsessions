@@ -1920,7 +1920,7 @@ country_event = {
 				random_owned_pop = {
 					limit = {
 						is_lithoid = yes
-						NOT = { has_trait = trait_delicious }
+						NOT = { pop_has_trait = trait_delicious }
 					}
 					modify_species = {
 						species = this
@@ -3593,7 +3593,7 @@ country_event = {
 						if = {
 							limit = {
 								any_owned_pop = {
-									has_trait = trait_obsession_invasive_species
+									pop_has_trait = trait_obsession_invasive_species
 								}
 							}
 							country_event = { id = obsessions_mod.265 }
@@ -4114,8 +4114,7 @@ country_event = {
 	show_sound = event_planetary_riot
 	is_triggered_only = yes
 	
-	option = {
-		name = obsessions_mod.255.a
+	immediate = {
 		owner.capital_scope = {
 			random_owned_pop = {
 				modify_species = {
@@ -4125,24 +4124,51 @@ country_event = {
 				}
 			}
 		}
-		hidden_effect = {
-			owner = { country_event = { id = obsessions_mod.256 scopes = { from = from } days = 45 } }
+		start_situation = {
+			type = obsessions_situation_pod_people
+			target = root
+			effect = {
+				save_event_target_as = new_situation
+				set_situation_approach = obsessions_pod_people_quarantine
+			}
 		}
+		from = {
+			save_global_event_target_as = obsessions_prime_replica
+		}
+		
+	}
+
+	option = {
+		name = obsessions_mod.255.a
+		event_target:new_situation = {
+			set_situation_approach = obsessions_pod_people_investigate
+		}
+		
 	}
 
 	option = {
 		name = obsessions_mod.255.b
+		event_target:new_situation = {
+			set_situation_approach = obsessions_pod_people_quarantine
+		}
+	}
+
+	option = {
+		name = obsessions_mod.255.c
 		owner.capital_scope = {
 			random_owned_pop = {
+				limit = { pop_has_trait = trait_obsession_pod_person }
 				kill_pop = yes
 			}
 		}
-		hidden_effect = {
-			owner = { country_event = { id = obsessions_mod.256 scopes = { from = from } days = 90 } }
+		event_target:new_situation = {
+			set_situation_approach = obsessions_pod_people_destroy
 		}
 	}
 }
 
+# Old event to convert scientist to prime replica
+# Replaced by the situation but kept to gracefully support saved games.
 country_event = {
 	id = obsessions_mod.256
 	title = "obsessions_mod.256.name"
@@ -4206,12 +4232,15 @@ country_event = {
 			}
 		}
 		every_owned_pop = {
-			limit = { has_trait = trait_obsession_pod_person }
+			limit = { pop_has_trait = trait_obsession_pod_person }
 			kill_pop = yes
 		}
 	}
 }
 
+# Old event loop to convert people to pod people
+# Replaced by the situation monthly pulse, but kept for now
+# to gracefully support saved games.
 country_event = {
 	id = obsessions_mod.257
 	hide_window = yes
@@ -4222,7 +4251,7 @@ country_event = {
 			limit = {
 				count_owned_pop = {
 					limit = {
-						NOT = { has_trait = trait_obsession_pod_person }
+						NOT = { pop_has_trait = trait_obsession_pod_person }
 						is_sapient = yes
 					}
 					count > 0
@@ -4231,7 +4260,7 @@ country_event = {
 			while = {
 				count = 3
 				random_owned_pop = {
-					limit = { NOT = { has_trait = trait_obsession_pod_person } }
+					limit = { NOT = { pop_has_trait = trait_obsession_pod_person } }
 					modify_species = {
 						species = this
 						add_trait = trait_obsession_pod_person
@@ -4258,6 +4287,12 @@ country_event = {
 	
 	option = {
 		name = obsessions_mod.258.a
+		add_monthly_resource_mult = {
+			resource = unity
+			value = @tier4unityreward
+			min = @tier4unitymin
+			max = @tier4unitymax
+		}
 	}
 
 	option = {
@@ -4265,13 +4300,280 @@ country_event = {
 		custom_tooltip = obsessions_mod.255.b.tooltip
 		hidden_effect = {
 			every_owned_pop = {
-				limit = { has_trait = trait_obsession_pod_person }
+				limit = { pop_has_trait = trait_obsession_pod_person }
 				modify_species = {
 					species = this
 					remove_trait = trait_obsession_pod_person
 				}
 			}
 		}
+	}
+}
+
+# Pod people all destroyed/cured
+# The scientist is dealt with last.
+situation_event = {
+	id = obsessions_mod.271
+	title = "obsessions_mod.271.name"
+	picture = GFX_evt_disease_outbreak
+	is_triggered_only = yes
+	situation = this
+
+	desc = {
+		exclusive_trigger = {
+			NOT = { exists = event_target:obsessions_prime_replica }
+		}
+		text = "obsessions_mod.271.desc_dead"
+	}
+	desc = "obsessions_mod.271.desc"
+
+	immediate = {
+		set_situation_locked = yes
+	}
+	after = {
+		set_situation_locked = no
+		destroy_situation = this
+	}
+
+	option = {
+		trigger = { has_situation_flag = cure_developed }
+		name = obsessions_mod.271.a
+
+		event_target:obsessions_prime_replica = {
+			remove_trait = leader_trait_obsession_pod_person
+		}
+	}
+
+	option = {
+		name = obsessions_mod.271.b
+
+		target.owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+
+	option = {
+		trigger = { NOT = { has_situation_flag = cure_developed } }
+		name = obsessions_mod.271.c
+
+		event_target:obsessions_prime_replica = {
+			kill_leader = { show_notification = no }
+		}
+	}
+
+	option = {
+		# Scientist is already dead
+		exclusive_trigger = {
+			NOT = { exists = event_target:obsessions_prime_replica }
+		}
+		name = obsessions_mod.271.d
+	}
+}
+
+# Everyone converted to pod person.
+# Just call obsessions_mod.258 from this situation_event
+situation_event = {
+	id = obsessions_mod.273
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		target.owner = { country_event = { id = obsessions_mod.258 } }
+	}
+	after = {
+		destroy_situation = this
+	}
+}
+
+# Monthly Situation Event for Pod Person
+situation_event = {
+	id = obsessions_mod.274
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# monthly effects depend on current approach
+		if = {
+			limit = { current_situation_approach = obsessions_pod_people_destroy }
+			target.owner = {
+				random_owned_pop = {
+					limit = { pop_has_trait = trait_obsession_pod_person }
+					kill_pop = yes
+				}
+			}
+		}
+		else_if = {
+			limit = { current_situation_approach = obsessions_pod_people_cure }
+			target.owner = {
+				random_owned_pop = {
+					limit = { pop_has_trait = trait_obsession_pod_person }
+					modify_species = {
+						species = this
+						remove_trait = trait_obsession_pod_person
+					}
+				}
+			}
+		}
+		else_if = {
+			limit = { current_situation_approach = obsessions_pod_people_quarantine }
+			random_list = {
+				5 = {}
+				1 = {
+					target.owner = {
+						random_owned_pop = {
+							limit = { NOT = { pop_has_trait = trait_obsession_pod_person } }
+							modify_species = {
+								species = this
+								add_trait = trait_obsession_pod_person
+							}
+						}
+					}
+				}
+			}
+		}
+		else = {
+			target.owner = {
+				while = {
+					count = 2
+					random_owned_pop = {
+						limit = { NOT = { pop_has_trait = trait_obsession_pod_person } }
+						modify_species = {
+							species = this
+							add_trait = trait_obsession_pod_person
+						}
+					}
+				}
+			}
+		}
+
+		if = {
+			limit = {
+				current_stage = stage_2
+				target.owner = { any_owned_pop = { pop_has_trait = trait_obsession_pod_person } }
+			}
+			# Don't allow progress until everybody is destroyed.
+			add_situation_progress = 4
+		}
+		else_if = {
+			limit = {
+				current_stage = stage_4
+				target.owner = { any_owned_pop = { NOT = { pop_has_trait = trait_obsession_pod_person } } }
+			}
+			# Don't allow progress until everybody is converted.
+			add_situation_progress = -4
+		}
+	}
+}
+
+# Discover source
+situation_event = {
+	id = obsessions_mod.275
+	title = "obsessions_mod.275.name"
+	picture = GFX_evt_disease_outbreak
+	is_triggered_only = yes
+	situation = this
+
+	desc = {
+		exclusive_trigger = {
+			NOT = { exists = event_target:obsessions_prime_replica }
+		}
+		text = "obsessions_mod.275.desc_dead"
+	}
+	desc = "obsessions_mod.275.desc"
+
+	immediate = {
+		set_situation_locked = yes
+		set_situation_flag = investigation_done
+		if = {
+			limit = { exists = event_target:obsessions_prime_replica }
+			event_target:obsessions_prime_replica = {
+				add_trait = leader_trait_obsession_pod_person
+			}
+		}
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = {
+		name = obsessions_mod.275.a
+	}
+
+	option = {
+		name = obsessions_mod.275.b
+
+		set_situation_approach = obsessions_pod_people_investigate
+	}
+
+	option = {
+		name = obsessions_mod.275.c
+
+		event_target:obsessions_prime_replica = {
+			kill_leader = { show_notification = no }
+		}
+		if = {
+			limit = {
+				NOT = { current_situation_approach = obsessions_pod_people_destroy }
+				NOT = { current_stage = stage_2 }
+				NOT = { current_stage = stage_1 }
+			}
+			add_situation_progress = -25
+			set_situation_approach = obsessions_pod_people_destroy
+		}
+		
+	}
+
+	option = {
+		# Scientist is already dead, get the cure for free!
+		exclusive_trigger = {
+			NOT = { exists = event_target:obsessions_prime_replica }
+		}
+		name = obsessions_mod.275.d
+		set_situation_flag = cure_developed
+		set_situation_approach = obsessions_pod_people_cure
+	}
+}
+
+# Discover cure
+situation_event = {
+	id = obsessions_mod.276
+	title = "obsessions_mod.276.name"
+	desc = "obsessions_mod.276.desc"
+	picture = GFX_evt_disease_outbreak
+	is_triggered_only = yes
+	situation = this
+
+	immediate = {
+		set_situation_locked = yes
+		set_situation_flag = cure_developed
+		set_situation_approach = obsessions_pod_people_cure
+	}
+	after = {
+		set_situation_locked = no
+	}
+
+	option = {
+		name = obsessions_mod.276.a
+
+		add_situation_progress = 10
+		set_situation_approach = obsessions_pod_people_encourage
+	}
+
+	option = {
+		name = obsessions_mod.276.b
+
+		set_situation_approach = obsessions_pod_people_ignore
+	}
+
+	option = {
+		name = obsessions_mod.276.c
+
+		set_situation_approach = obsessions_pod_people_cure
 	}
 }
 

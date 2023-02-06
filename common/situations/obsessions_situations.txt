@@ -1,0 +1,250 @@
+obsessions_situation_pod_people = {
+	picture = GFX_evt_disease_outbreak
+	start_value = 25
+	progress_direction = bidirectional
+	complete_icon_frame = GFX_situation_outcome_frame_blue
+	complete_icon = GFX_situation_outcome_unknown
+	fail_icon_frame = GFX_situation_outcome_frame_blue
+	fail_icon = GFX_situation_outcome_unknown
+	on_start = {
+		set_situation_locked = no
+	}
+	monthly_progress = {
+		modifier = {
+			desc = string_current_approach
+			OR = {
+				current_situation_approach = obsessions_pod_people_investigate
+				current_situation_approach = obsessions_pod_people_ignore
+			}
+			add = 2.5
+		}
+		modifier = {
+			desc = string_current_approach
+			current_situation_approach = obsessions_pod_people_encourage
+			add = 4.0
+		}
+		modifier = {
+			desc = string_current_approach
+			current_situation_approach = obsessions_pod_people_quarantine
+			add = 0.5
+		}
+		modifier = {
+			desc = string_current_approach
+			OR = {
+				current_situation_approach = obsessions_pod_people_destroy
+				current_situation_approach = obsessions_pod_people_cure
+			}
+			subtract = 4.0
+		}
+	}
+	on_monthly = {
+		events = {
+			# Destroy, cure, or infect as appropriate for the current approach
+			obsessions_mod.274
+		}
+	}
+	approach = {
+		name = obsessions_pod_people_investigate
+		icon = GFX_situation_approach_research
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_pod_people_investigate_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				society_research = 10
+			}
+		}
+		potential = {
+			NOT = { has_situation_flag = cure_developed }
+		}
+	}
+	approach = {
+		name = obsessions_pod_people_ignore
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_pod_people_ignore_tooltip
+		}
+	}
+	approach = {
+		name = obsessions_pod_people_encourage
+		icon = GFX_situation_approach_heart
+		icon_background = GFX_situation_approach_bg_red
+		on_select = {
+			custom_tooltip = obsessions_pod_people_encourage_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				unity = 10
+			}
+		}
+		potential = {
+			has_situation_flag = cure_developed
+		}
+	}
+	approach = {
+		name = obsessions_pod_people_quarantine
+		icon = GFX_situation_approach_suspicious
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_pod_people_quarantine_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 10
+			}
+		}
+		potential = {
+			NOT = { has_situation_flag = cure_developed }
+		}
+	}
+	approach = {
+		name = obsessions_pod_people_cure
+		icon = GFX_situation_approach_research
+		icon_background = GFX_situation_approach_bg_green
+		on_select = {
+			custom_tooltip = obsessions_pod_people_cure_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				society_research = 10
+			}
+		}
+		potential = {
+			has_situation_flag = cure_developed
+		}
+	}
+	approach = {
+		name = obsessions_pod_people_destroy
+		icon = GFX_situation_approach_this_is_fine
+		icon_background = GFX_situation_approach_bg_red
+		on_select = {
+			custom_tooltip = obsessions_pod_people_destroy_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 10
+				unity = 10
+			}
+		}
+		potential = {
+			NOT = { has_situation_flag = cure_developed }
+		}
+	}
+	on_fail = {
+		custom_tooltip = obsessions_pod_people_gone_outcome
+		hidden_effect = {
+			# Cleanup to ensure nobody got missed.
+			target.owner = {
+				every_owned_pop = {
+					limit = { pop_has_trait = trait_obsession_pod_person }
+					modify_species = {
+						species = this
+						remove_trait = trait_obsession_pod_person
+					}
+				}
+			}
+			situation_event = { id = obsessions_mod.271 }
+		}
+	}
+	stages = {
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_red
+			end = 5
+			on_first_enter = {
+				if = {
+					limit = { NOT = { has_situation_flag = investigation_done } }
+					# They've been destroying without first investigating.
+					# Find out the source now.
+					situation_event = { id = obsessions_mod.275 }
+				}
+			}
+			custom_tooltip = stage_unknown_effects
+		}
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 40
+		}
+		stage_2_alt = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 75
+			on_first_enter = {
+				if = {
+					# Discover the source
+					limit = {
+						OR = {
+							current_situation_approach = obsessions_pod_people_investigate
+							current_situation_approach = obsessions_pod_people_quarantine
+						}
+						NOT = { has_situation_flag = investigation_done }
+					}
+					situation_event = { id = obsessions_mod.275 }
+				}
+			}
+			custom_tooltip = stage_unknown_effects
+		}
+		stage_3_alt = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 95
+			on_first_enter = {
+				if = {
+					limit = { NOT = { has_situation_flag = investigation_done } }
+					# They haven't been investigating.
+					# Find out the source now.
+					situation_event = { id = obsessions_mod.275 }
+				}
+				else_if = {
+					limit = {
+						OR = {
+							current_situation_approach = obsessions_pod_people_investigate
+							current_situation_approach = obsessions_pod_people_quarantine
+						}
+						NOT = { has_situation_flag = cure_developed }
+					}
+					# If they already discovered the source before, they discover the cure now.
+					situation_event = { id = obsessions_mod.276 }
+				}
+			}
+			custom_tooltip = stage_unknown_effects
+		}
+		stage_4 = {
+			icon = GFX_situation_stage_4
+			icon_background = GFX_situation_stage_frame_blue
+			end = 100
+			custom_tooltip = stage_unknown_effects
+		}
+	}
+	on_progress_complete = {
+		custom_tooltip = obsessions_pod_people_all_outcome
+		# Cleanup to ensure nobody got missed.
+		hidden_effect = {
+			target.owner = {
+				every_owned_pop = {
+					limit = { NOT = { pop_has_trait = trait_obsession_pod_person } }
+					modify_species = {
+						species = this
+						add_trait = trait_obsession_pod_person
+					}
+				}
+			}
+			situation_event = { id = obsessions_mod.273 }
+		}
+	}
+
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+		}
+	}
+}

@@ -449,6 +449,7 @@ obsessions_mod.255.name:0 "Pod People"
 obsessions_mod.255.desc:0 "Widespread reports from our capital are indicating strange behavior among our population. They were initially discounted but recent discoveries of discarded husks seem to indicate that some of our population is being replaced by identical replicas, replacing all organic and inorganic components exactly. The replicas retain all the memories of the originals but act a little strangely. If anything, they are slightly more productive than the originals."
 obsessions_mod.255.a:0 "Find the source."
 obsessions_mod.255.b:0 "Contain the outbreak."
+obsessions_mod.255.c:0 "Destory the infected."
 
 obsessions_mod.256.name:0 "Pod People"
 obsessions_mod.256.desc:0 "The source of the Replicas has been revealed. It seems that sometime during their expedition on [event_target:obsessions_planet_target.GetName], [from.GetName] was replaced with a Replica of themself. They have since been replacing additional members of the population. When confronted they insisted that they had no memory of doing so."
@@ -456,10 +457,59 @@ obsessions_mod.256.desc_dead:0 "The source of the Replicas has been revealed. It
 obsessions_mod.256.a:0 "Let it run its course."
 obsessions_mod.256.b:0 "Make sure they are all destroyed."
 
+obsessions_situation_pod_people:0 "Invasion of the Replicas"
+obsessions_situation_pod_people_type:0 "Replica Invasion"
+obsessions_situation_pod_people_desc:0 "Our Pops are being replaced by identical replicas. They have the same appearance and memories as the originals, but are slightly better workers and act a little weird."
+obsessions_situation_pod_people_fail_tooltip:0 "The replicas will be eliminated."
+obsessions_situation_pod_people_finish_tooltip:0 "Everyone will be a replica."
+obsessions_situation_pod_people_monthly_change_tooltip:0 "The progress of this §YSituation§! depends on our ability to find a cure, our willingness to destroy useful population, or our willingness to embrace the replicas."
+
+obsessions_pod_people_gone_outcome:0 "The Replicas will be eliminated."
+obsessions_pod_people_all_outcome:0 "We will all be Replicas."
+obsessions_pod_people_investigate:0 "Investigate"
+obsessions_pod_people_investigate_tooltip:0 "Investigate the Replicas and attempt to find a cure."
+obsessions_pod_people_ignore:0 "Ignore"
+obsessions_pod_people_ignore_tooltip:0 "Ignore the problem. Maybe it will go away."
+obsessions_pod_people_encourage:0 "Encourage"
+obsessions_pod_people_encourage_tooltip:0 "Encourage the replication."
+obsessions_pod_people_quarantine:0 "Quarantine"
+obsessions_pod_people_quarantine_tooltip:0 "Quarantine those affected until we can cure them."
+obsessions_pod_people_cure:0 "Cure"
+obsessions_pod_people_cure_tooltip:0 "Cure those affected."
+obsessions_pod_people_destroy:0 "Destroy"
+obsessions_pod_people_destroy_tooltip:0 "Destroy those affected."
+
+# Pod people all destroyed
+#obsessions_mod.271
+obsessions_mod.271.name:0 "The Last Replica"
+obsessions_mod.271.desc:0 "The last remaining replica is the original scientist that started it all. We could deal with them like the others, or we could let them remain at their post as they are and monitor them for scientific purposes."
+obsessions_mod.271.desc_dead:0 "The last remaining replica is dealt with. Our people are free once more."
+obsessions_mod.271.a:0 "Cure them."
+obsessions_mod.271.b:0 "Watch them closely."
+obsessions_mod.271.c:0 "Destroy them."
+obsessions_mod.271.d:0 "Do you feel different?"
+
+# Discover source
+obsessions_mod.275.name:0 "The Prime Replica"
+obsessions_mod.275.desc:0 "The source of the replica problem has been discovered. Our Obsessed Scientist [event_target:obsessions_prime_replica.GetName] must have been replaced while investigating the strange ruins on [event_target:obsessions_planet_target.GetName]."
+obsessions_mod.275.desc_dead:0 "The source of the replica problem has been discovered. Our Obsessed Scientist must have been replaced while investigating the strange ruins on [event_target:obsessions_planet_target.GetName]. Fortunately they are dead. We have been able to use their remains to determine a cure."
+obsessions_mod.275.a:0 "Monitor them."
+obsessions_mod.275.b:0 "Try to find a cure."
+obsessions_mod.275.c:0 "Eliminate them."
+obsessions_mod.275.d:0 "Excellent."
+
+# Discover cure
+obsessions_mod.276.name:0 "A Cure!"
+obsessions_mod.276.desc:0 "A cure for the replica problem has been discovered! It is a simple matter to undo the replication and return our population to the way they were. Technically their old bodies are destroyed and we are just making the replicas act less weird, but that's really something for philosophers to debate."
+obsessions_mod.276.a:0 "We don't need a cure."
+obsessions_mod.276.b:0 "We don't have time for this."
+obsessions_mod.276.c:0 "Implement the cure."
+
+
 obsessions_mod.258.name:0 "Do you feel different?"
 obsessions_mod.258.desc:0 "We did it. We converted everyone we could find into a Replica. If anything, we are slightly more productive than the originals. What should we do now?"
-obsessions_mod.258.a:0 "Carry on as we were."
-obsessions_mod.258.b:0 "Stop acting weird."
+obsessions_mod.258.a:0 "Keep acting weird."
+obsessions_mod.258.b:0 "Act more like the originals."
 obsessions_mod.255.b.tooltip:0 "The $trait_obsession_pod_person$ trait will be removed from every owned £pops£ Pop."
 
 obsessions_mod_category_arid_1:0 "Mysterious Monoliths"
