@@ -2015,7 +2015,7 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_variable = { which = obsession_level value = 1 }
+					set_variable = { which = obsession_level value = 3 }
 					from = {
 						set_planet_flag = obsession_alpine
 						save_global_event_target_as = obsessions_planet_target
@@ -2094,7 +2094,7 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_variable = { which = obsession_level value = 1 }
+					set_variable = { which = obsession_level value = 3 }
 					from = {
 						set_planet_flag = obsession_arctic
 						save_global_event_target_as = obsessions_planet_target
@@ -2177,7 +2177,7 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_variable = { which = obsession_level value = 1 }
+					set_variable = { which = obsession_level value = 3 }
 					from = {
 						set_planet_flag = obsession_tundra
 						save_global_event_target_as = obsessions_planet_target
@@ -2260,7 +2260,7 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_variable = { which = obsession_level value = 1 }
+					set_variable = { which = obsession_level value = 3 }
 					from = {
 						set_planet_flag = obsession_ocean
 						save_global_event_target_as = obsessions_planet_target
@@ -2343,7 +2343,7 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_variable = { which = obsession_level value = 1 }
+					set_variable = { which = obsession_level value = 3 }
 					from = {
 						set_planet_flag = obsession_continental
 						save_global_event_target_as = obsessions_planet_target
@@ -2420,7 +2420,7 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_variable = { which = obsession_level value = 1 }
+					set_variable = { which = obsession_level value = 3 }
 					from = {
 						set_planet_flag = obsession_savannah
 						save_global_event_target_as = obsessions_planet_target
@@ -2498,7 +2498,7 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_variable = { which = obsession_level value = 1 }
+					set_variable = { which = obsession_level value = 3 }
 					from = {
 						set_planet_flag = obsession_arid
 						save_global_event_target_as = obsessions_planet_target
@@ -2572,7 +2572,7 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_variable = { which = obsession_level value = 1 }
+					set_variable = { which = obsession_level value = 3 }
 					from = {
 						set_planet_flag = obsession_desert
 						save_global_event_target_as = obsessions_planet_target
@@ -2646,7 +2646,7 @@ ship_event = {
 				add_trait = leader_trait_obsessed_1
 				hidden_effect = {
 					set_leader_flag = obsession_obsessed
-					set_variable = { which = obsession_level value = 1 }
+					set_variable = { which = obsession_level value = 3 }
 					from = {
 						set_planet_flag = obsession_tropical
 						save_global_event_target_as = obsessions_planet_target

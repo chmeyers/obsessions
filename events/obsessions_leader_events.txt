@@ -1,7 +1,7 @@
 # Events for managing scientists who are currently obsessed.
 namespace = obsessions_mod_scientist
 
-@obsession_end_level = 6
+@obsession_end_level = 7
 @obsession_breaking_point = 5
 @obsession_near_breaking_point = 4
 @breaking_reason_none = 0
@@ -11,6 +11,11 @@ namespace = obsessions_mod_scientist
 @breaking_reason_timeout = 4
 @breaking_reason_lifetime = 5
 @breaking_reason_retraining = 6
+@breaking_reason_situation = 7
+
+@obsession_tiny_reward = 100
+@obsession_minor_reward = 200
+@obsession_major_reward = 500
 
 
 # Unassigned from their job. Obsession increases one level.
@@ -150,22 +155,38 @@ leader_event = {
 				leader_class = scientist
 				NOT = { check_variable = { which = obsession_break_reason value = @breaking_reason_none } }
 			}
-			species = {
-				save_global_event_target_as = obsessed_scientist_species
+			if = {
+				limit = {
+					OR = {
+						check_variable = { which = obsession_break_reason value = @breaking_reason_retraining }
+						check_variable = { which = obsession_break_reason value = @breaking_reason_job_change }
+						check_variable = { which = obsession_break_reason value = @breaking_reason_lifetime }
+					}
+				}
+				# Fixable with a Situation
+				event_target:obsession_source_country = {
+					country_event = { id = obsessions_mod_scientist.20 scopes = { from = this } }
+				}
 			}
-			event_target:obsession_source_country = {
-				# Inform the owner of their disappearance.
-				country_event = { id = obsessions_mod_scientist.12 days = 1 }
-			}
-			remove_leader_flag = obsession_obsessed
-			set_leader_flag = obsession_breakdown
-			exile_leader_as = obsessed_scientist_breakdown
-			save_global_event_target_as = obsessed_scientist_breakdown
-			event_target:obsessions_planet_target = {
-				planet_event = {
-					id = obsessions_mod_scientist.13
-					days = 720
-					scopes = { from = event_target:obsessed_scientist_breakdown }
+			else = {
+				# Final break
+				species = {
+					save_global_event_target_as = obsessed_scientist_species
+				}
+				event_target:obsession_source_country = {
+					# Inform the owner of their disappearance.
+					country_event = { id = obsessions_mod_scientist.12 days = 1 }
+				}
+				remove_leader_flag = obsession_obsessed
+				set_leader_flag = obsession_breakdown
+				exile_leader_as = obsessed_scientist_breakdown
+				save_global_event_target_as = obsessed_scientist_breakdown
+				event_target:obsessions_planet_target = {
+					planet_event = {
+						id = obsessions_mod_scientist.13
+						days = 720
+						scopes = { from = event_target:obsessed_scientist_breakdown }
+					}
 				}
 			}
 		}
@@ -212,7 +233,7 @@ country_event = {
 			add_trait = leader_trait_obsessed_1
 			set_leader_flag = obsession_obsessed
 			set_variable = { which = obsession_level value = 1 }
-			add_experience = 1000
+			add_experience = @obsession_major_reward
 			if = {
 				limit = { is_idle = yes }
 				change_variable = { which = obsession_level value = 1 }
@@ -382,7 +403,7 @@ ship_event = {
 	option = {
 		name = obsessions_mod_scientist.10.a
 		leader = {
-			add_experience = 1000
+			add_experience = @obsession_major_reward
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled
 		}
@@ -466,6 +487,18 @@ country_event = {
 			}
 		}
 		text = "obsessions_mod_scientist.12.desc_timeout"
+	}
+
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				check_variable = {
+					which = obsession_break_reason
+					value = @breaking_reason_situation
+				}
+			}
+		}
+		text = "obsessions_mod_scientist.12.desc_situation"
 	}
 
 	desc = { text = "obsessions_mod_scientist.12.desc" }
@@ -595,7 +628,7 @@ country_event = {
 
 	immediate = {
 		from = {
-			add_experience = 500
+			add_experience = @obsession_minor_reward
 			change_variable = { which = obsession_level value = 1 }
 			if = {
 				limit = { check_variable = { which = obsession_level value >= @obsession_breaking_point } }
@@ -630,7 +663,6 @@ country_event = {
 		add_resource = { energy = -1000 }
 		from = {
 			add_trait = leader_trait_custom_AI_assistant
-			add_experience = 500
 		}
 	}
 
@@ -682,7 +714,7 @@ country_event = {
 		add_resource = { energy = -1000 }
 		hidden_effect = {
 			from = {
-				add_experience = 1000
+				add_experience = @obsession_minor_reward
 				change_variable = { which = obsession_level value = 1 }
 				if = {
 					limit = { check_variable = { which = obsession_level value >= @obsession_breaking_point } }
@@ -711,7 +743,7 @@ country_event = {
 		add_resource = { energy = -1000 }
 		hidden_effect = {
 			from = {
-				add_experience = 1000
+				add_experience = @obsession_minor_reward
 			}
 		}
 	}
@@ -721,7 +753,7 @@ country_event = {
 		name = obsessions_mod_scientist.18.c
 		hidden_effect = {
 			from = {
-				add_experience = 500
+				add_experience = @obsession_tiny_reward
 			}
 		}
 	}
@@ -734,7 +766,7 @@ country_event = {
 
 	immediate = {
 		from = {
-			add_experience = 500
+			add_experience = @obsession_tiny_reward
 			if = {
 				limit = { is_idle = yes }
 				change_variable = { which = obsession_level value = 1 }
@@ -746,6 +778,414 @@ country_event = {
 				}
 				set_variable = { which = obsession_break_reason value = @breaking_reason_lifetime }
 				leader_event = { id = obsessions_mod_scientist.6 days = 30 }
+			}
+		}
+	}
+}
+
+# Start Situation
+country_event = {
+	id = obsessions_mod_scientist.20
+	hide_window = yes
+	is_triggered_only = yes
+	
+	immediate = {
+		start_situation = {
+			type = obsessions_situation_leader_break
+			target = from
+			effect = {
+				save_event_target_as = new_situation
+				set_situation_locked = yes # Unlocked after obsessions_mod_scientist.21
+			}
+		}
+		from = {
+			save_global_event_target_as = obsessions_breaking_scientist
+		}
+		event_target:new_situation = {
+			situation_event = { id = obsessions_mod_scientist.21 }
+		}
+	}
+}
+
+
+situation_event = {
+	id = obsessions_mod_scientist.21
+	title = "obsessions_mod_scientist.21.name"
+	desc = "obsessions_mod_scientist.21.desc"
+	picture = GFX_evt_acquire_asset
+	is_triggered_only = yes
+	situation = this
+
+	after = {
+		set_situation_locked = no
+	}
+	# This event is used as the base for the other two stages, so the options have to all exist
+	# here and be inheritable.
+	option = {
+		trigger = {
+			target.owner = { is_spiritualist = yes }
+			NOT = { has_situation_flag = spiritual_tried }
+		}
+		name = obsessions_mod_scientist.21.a
+		custom_tooltip = obsessions_leader_break_spiritual_tooltip
+		set_situation_approach = obsessions_leader_break_spiritual
+	}
+	option = {
+		trigger = {
+			target.owner = { is_materialist = yes }
+			NOT = { has_situation_flag = logical_tried }
+		}
+		name = obsessions_mod_scientist.21.b
+		custom_tooltip = obsessions_leader_break_logical_tooltip
+		set_situation_approach = obsessions_leader_break_logical
+	}
+	option = {
+		trigger = {
+			target.owner = { is_authoritarian = yes }
+			NOT = { has_situation_flag = authority_tried }
+		}
+		name = obsessions_mod_scientist.21.c
+		custom_tooltip = obsessions_leader_break_authority_tooltip
+		set_situation_approach = obsessions_leader_break_authority
+	}
+	option = {
+		trigger = {
+			target.owner = { is_egalitarian = yes }
+			NOT = { has_situation_flag = therapy_tried }
+		}
+		name = obsessions_mod_scientist.21.d
+		custom_tooltip = obsessions_leader_break_therapy_tooltip
+		set_situation_approach = obsessions_leader_break_therapy
+	}
+	option = {
+		trigger = {
+			target.owner = { is_pacifist = yes }
+			NOT = { has_situation_flag = meditation_tried }
+		}
+		name = obsessions_mod_scientist.21.e
+		custom_tooltip = obsessions_leader_break_meditation_tooltip
+		set_situation_approach = obsessions_leader_break_meditation
+	}
+	option = {
+		trigger = {
+			target.owner = { is_militarist = yes }
+			NOT = { has_situation_flag = training_tried }
+		}
+		name = obsessions_mod_scientist.21.f
+		custom_tooltip = obsessions_leader_break_training_tooltip
+		set_situation_approach = obsessions_leader_break_training
+	}
+	option = {
+		trigger = {
+			target.owner = { is_xenophile = yes }
+			NOT = { has_situation_flag = entertainment_tried }
+		}
+		name = obsessions_mod_scientist.21.g
+		custom_tooltip = obsessions_leader_break_entertainment_tooltip
+		set_situation_approach = obsessions_leader_break_entertainment
+	}
+	option = {
+		trigger = {
+			target.owner = { is_xenophobe = yes }
+			NOT = { has_situation_flag = companionship_tried }
+		}
+		name = obsessions_mod_scientist.21.h
+		custom_tooltip = obsessions_leader_break_companionship_tooltip
+		set_situation_approach = obsessions_leader_break_companionship
+	}
+	option = {
+		trigger = {
+			target.owner = { is_gestalt = yes }
+			NOT = { has_situation_flag = realignment_tried }
+		}
+		name = obsessions_mod_scientist.21.i
+		custom_tooltip = obsessions_leader_break_realignment_tooltip
+		set_situation_approach = obsessions_leader_break_realignment
+	}
+	option = {
+		trigger = {
+			target.owner = { is_gestalt = yes }
+			NOT = { has_situation_flag = synchronize_tried }
+		}
+		name = obsessions_mod_scientist.21.j
+		custom_tooltip = obsessions_leader_break_synchronize_tooltip
+		set_situation_approach = obsessions_leader_break_synchronize
+	}
+	option = {
+		name = obsessions_mod_scientist.21.k
+		custom_tooltip = obsessions_leader_break_shrug_tooltip
+		set_situation_approach = obsessions_leader_break_shrug
+	}
+	option = {
+		trigger = {
+			check_variable = {
+				which = failure_count
+				value >=2
+			}
+		}
+		name = obsessions_mod_scientist.21.l
+		custom_tooltip = obsessions_leader_break_research_tooltip
+		set_situation_approach = obsessions_leader_break_research
+	}
+}
+
+# Situation First Stage Complete
+situation_event = {
+	id = obsessions_mod_scientist.22
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		set_situation_locked = yes # Unlocked after obsessions_mod_scientist.23
+		check_obsession_break_success = yes
+		if = {
+			limit = { NOT = { has_situation_flag = just_succeeded } }
+			change_variable = { which = failure_count value = 1 }
+		}
+		situation_event = {
+			id = obsessions_mod_scientist.23
+		}
+	}
+}
+
+situation_event = {
+	id = obsessions_mod_scientist.23
+	base = obsessions_mod_scientist.21
+	title = "obsessions_mod_scientist.23.name"
+	desc_clear = yes
+	is_triggered_only = yes
+	situation = this
+
+	desc = {
+		exclusive_trigger = {
+			has_situation_flag = just_succeeded
+		}
+		text = "obsessions_mod_scientist.23.desc_success"
+	}
+	desc = "obsessions_mod_scientist.23.desc"
+
+	after = {
+		# We don't leave it locked, even though we probably should to avoid users
+		# cheesing the choices, because it nicer to let them change their mind.
+		set_situation_locked = no
+	}
+
+	# Options are all inherited.
+}
+
+# Situation Second Stage Complete
+situation_event = {
+	id = obsessions_mod_scientist.24
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		set_situation_locked = yes # Unlocked after obsessions_mod_scientist.25
+		check_obsession_break_success = yes
+		if = {
+			limit = { NOT = { has_situation_flag = just_succeeded } }
+			change_variable = { which = failure_count value = 1 }
+		}
+		situation_event = {
+			id = obsessions_mod_scientist.24
+		}
+	}
+}
+
+situation_event = {
+	id = obsessions_mod_scientist.25
+	base = obsessions_mod_scientist.21
+	title = "obsessions_mod_scientist.25.name"
+	desc_clear = yes
+	is_triggered_only = yes
+	situation = this
+
+	desc = {
+		exclusive_trigger = {
+			check_variable = {
+				which = failure_count
+				value >= 2
+			}
+		}
+		text = "obsessions_mod_scientist.25.desc_danger"
+	}
+	desc = {
+		exclusive_trigger = {
+			has_situation_flag = just_succeeded
+		}
+		text = "obsessions_mod_scientist.25.desc_success"
+	}
+	desc = "obsessions_mod_scientist.25.desc"
+
+	after = {
+		# We don't leave it locked, even though we probably should to avoid users
+		# cheesing the choices, because it nicer to let them change their mind.
+		set_situation_locked = no
+	}
+
+	# Options are all inherited.
+}
+
+# Situation Complete
+situation_event = {
+	id = obsessions_mod_scientist.26
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		check_obsession_break_success = yes
+		if = {
+			limit = { NOT = { has_situation_flag = just_succeeded } }
+			change_variable = { which = failure_count value = 1 }
+		}
+		situation_event = {
+			id = obsessions_mod_scientist.27
+		}
+	}
+}
+
+situation_event = {
+	id = obsessions_mod_scientist.27
+	title = "obsessions_mod_scientist.27.name"
+	is_triggered_only = yes
+	situation = this
+
+	desc = {
+		exclusive_trigger = {
+			check_variable = {
+				which = failure_count
+				value >= 3
+			}
+		}
+		text = "obsessions_mod_scientist.27.desc_fail"
+	}
+	desc = {
+		exclusive_trigger = {
+			check_variable = {
+				which = failure_count
+				value = 2
+			}
+		}
+		text = "obsessions_mod_scientist.27.desc_barely"
+	}
+	desc = {
+		exclusive_trigger = {
+			check_variable = {
+				which = failure_count
+				value = 1
+			}
+		}
+		text = "obsessions_mod_scientist.27.desc_decent"
+	}
+	desc = "obsessions_mod_scientist.27.desc"
+
+	immediate = {
+		if = {
+			limit = {
+				check_variable = {
+					which = failure_count
+					value >= 3
+				}
+			}
+			# They break!
+			target = {
+				owner = {
+					save_global_event_target_as = obsession_source_country
+				}
+				set_variable = { which = obsession_break_reason value = @breaking_reason_situation }
+				leader_event = { id = obsessions_mod_scientist.6 days = 30 }
+			}
+		}
+		else = {
+			# Reset their obsession level.
+			target = {
+				change_variable = { which = obsession_level value = -4 }
+			}
+		}
+	}
+	after = {
+		destroy_situation = this
+	}
+
+	option = {
+		exclusive_trigger = {
+			check_variable = {
+				which = failure_count
+				value >= 3
+			}
+		}
+		name = obsessions_mod_scientist.27.a
+	}
+
+	option = {
+		exclusive_trigger = {
+			check_variable = {
+				which = failure_count
+				value = 2
+			}
+		}
+		target = {
+			add_experience = @obsession_major_reward
+		}
+		name = obsessions_mod_scientist.27.b
+	}
+
+	option = {
+		exclusive_trigger = {
+			check_variable = {
+				which = failure_count
+				value = 1
+			}
+		}
+		target = {
+			add_experience = @obsession_major_reward
+		}
+		target.owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+		name = obsessions_mod_scientist.27.c
+	}
+
+	option = {
+		name = obsessions_mod_scientist.27.d
+		target = {
+			add_experience = @obsession_major_reward
+		}
+		target.owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = engineering_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
+			}
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier4researchreward
+				min = @tier4researchmin
+				max = @tier4researchmax
 			}
 		}
 	}

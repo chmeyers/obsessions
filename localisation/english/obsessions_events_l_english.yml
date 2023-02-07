@@ -29,6 +29,7 @@ obsessions_mod_scientist.12.desc_job:0 "Scientist [obsessed_scientist_breakdown.
 obsessions_mod_scientist.12.desc_fired:0 "After being fired, scientist [obsessed_scientist_breakdown.GetName] appears to have collected all of their research notes on their obsession, stolen a civilian vessel, and escaped. A search is being conducted."
 obsessions_mod_scientist.12.desc_denied:0 "After their request was denied, scientist [obsessed_scientist_breakdown.GetName] appears to have stolen a civilian vessel and escaped. A search is being conducted."
 obsessions_mod_scientist.12.desc_timeout:0 "Frustrated with continuous delays in the requested special project, scientist [obsessed_scientist_breakdown.GetName] seems to have disappeared. Those familiar with their obsession believe that they are likely somewhere on that planet."
+obsessions_mod_scientist.12.desc_situation:0 "After our failure to improve their condition, scientist [obsessed_scientist_breakdown.GetName] seems to have disappeared. They slipped past our surveillance and escaped in a civilian vessel. A search is being conducted."
 obsessions_mod_scientist.12.desc:0 "Scientist [obsessed_scientist_breakdown.GetName] has disappeared without warning. Our other scientists believe it may have something to do with their obsession."
 obsessions_mod_scientist.12.a:0 "Oh dear."
 
@@ -43,6 +44,76 @@ obsessions_mod_scientist.18.a:0 "We will be very thorough."
 obsessions_mod_scientist.18.b:0 "We can't force them but perhaps a nudge."
 obsessions_mod_scientist.18.c:0 "Leave them be."
 
+obsessions_situation_leader_break:0 "Dealing with Obsession"
+obsessions_situation_leader_break_type:0 "Dealing with Obsession"
+obsessions_leader_break_outcome:0 "Hopefully our scientist will be fine."
+
+obsessions_leader_break_spiritual:0 "Spiritual Advice"
+obsessions_leader_break_logical:0 "Try Logic"
+obsessions_leader_break_authority:0 "Assert Authority"
+obsessions_leader_break_therapy:0 "Provide Therapy"
+obsessions_leader_break_meditation:0 "Try Meditation"
+obsessions_leader_break_training:0 "Physical Training"
+obsessions_leader_break_entertainment:0 "Entertainment"
+obsessions_leader_break_companionship:0 "Companionship"
+obsessions_leader_break_realignment:0 "Realignment"
+obsessions_leader_break_synchronize:0 "Synchronization"
+obsessions_leader_break_shrug:0 "Try Anything"
+obsessions_leader_break_research:0 "Divert Research"
+
+obsessions_leader_break_spiritual_tooltip:0 "Works well for scientists interested in spiritual and social matters."
+obsessions_leader_break_logical_tooltip:0 "Works well for scientists interested in computers and electronics."
+obsessions_leader_break_authority_tooltip:0 "Works well for scientists with negative traits or diplomatic interests."
+obsessions_leader_break_therapy_tooltip:0 "Works well for scientists with negative traits or social interests."
+obsessions_leader_break_meditation_tooltip:0 "Works well for scientists who are thoughtful."
+obsessions_leader_break_training_tooltip:0 "Works well for scientists interested in physical things."
+obsessions_leader_break_entertainment_tooltip:0 "Works well for scientists who got an engineering degree."
+obsessions_leader_break_companionship_tooltip:0 "Good for those who are lonely."
+obsessions_leader_break_realignment_tooltip:0 "Excellent for members specializing in hard science."
+obsessions_leader_break_synchronize_tooltip:0 "Perfect for specialists in surveying and social science."
+obsessions_leader_break_shrug_tooltip:0 "There's a one in three chance this will work."
+obsessions_leader_break_research_tooltip:0 "Let them divert resources towards their obsession. This will always work."
+
+
+# Start Situation
+obsessions_mod_scientist.21.name:0 "Dealing with Obsession"
+obsessions_mod_scientist.21.desc:0 "Our obsessed scientist appears to be near a breaking point. If we don't do something to improve their behavior, they may become unstable."
+obsessions_mod_scientist.21.a:0 "Give spiritual advice"
+obsessions_mod_scientist.21.b:0 "Appeal to their logic"
+obsessions_mod_scientist.21.c:0 "Continuous surveillance"
+obsessions_mod_scientist.21.d:0 "Hire a therapist"
+obsessions_mod_scientist.21.e:0 "Suggest meditation"
+obsessions_mod_scientist.21.f:0 "Rigorous physical training"
+obsessions_mod_scientist.21.g:0 "Distract them with entertainment"
+obsessions_mod_scientist.21.h:0 "Provide a friend"
+obsessions_mod_scientist.21.i:0 "Realign them with the gestalt"
+obsessions_mod_scientist.21.j:0 "Synchronize them with the gestalt"
+obsessions_mod_scientist.21.k:0 "Maybe it will fix itself"
+obsessions_mod_scientist.21.l:0 "Allow them to divert research"
+
+
+# First stage complete
+obsessions_mod_scientist.23.name:0 "Making Progress"
+obsessions_mod_scientist.23.desc:0 "Our previous approach with our obsessed scientist does not seem to have worked. We should try something else."
+obsessions_mod_scientist.23.desc_success:0 "Our approach with our obsessed scientist appears to have worked. They have made improvements. Our experts no longer believe they are in danger of a breakdown, but they could improve further."
+
+# Second stage complete
+obsessions_mod_scientist.25.name:0 "A Critical Point"
+obsessions_mod_scientist.25.desc:0 "Our previous approach with our obsessed scientist does not seem to have worked well. They are not in danger of a breakdown due to our previous successes, but we should try something else to see if we can improve them further."
+obsessions_mod_scientist.25.desc_success:0 "Our last approach with our obsessed scientist appears to have worked. They have made improvements. Our experts no longer believe they are in danger of a breakdown, but they could improve further."
+obsessions_mod_scientist.25.desc_danger:0 "Our last two approaches with our obsessed scientist have both failed. It may be time to take desperate measures to ensure they don't have a breakdown."
+
+# Break situation complete
+#obsessions_mod_scientist.27
+obsessions_mod_scientist.27.name:0 "Dealing with an Obsession"
+obsessions_mod_scientist.27.desc_fail:0 "Our obsessed scientist has not seemed to improved at all. We should watch them closely."
+obsessions_mod_scientist.27.desc_barely:0 "Our obsessed scientist seems to have barely scraped through their crisis period, but they should be good for another couple decades."
+obsessions_mod_scientist.27.desc_decent:0 "While not perfect, our obsessed scientist has recovered decently. They are still obsessed, our efforts appear to have worked and they have produced some minor scientific progress."
+obsessions_mod_scientist.27.desc:0 "Our obsessed scientist has recovered quite well. While they are still obsessed, our efforts appear to have worked and they have produced some excellent scientific progress."
+obsessions_mod_scientist.27.a:0 "Oh no."
+obsessions_mod_scientist.27.b:0 "A relief."
+obsessions_mod_scientist.27.c:0 "Good enough."
+obsessions_mod_scientist.27.d:0 "Excellent."
 
  ####################################
  # Anomaly Categories

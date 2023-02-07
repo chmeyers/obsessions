@@ -1,3 +1,306 @@
+obsessions_situation_leader_break = {
+	picture = GFX_evt_acquire_asset
+	start_value = 0
+	progress_direction = monodirectional
+	complete_icon_frame = GFX_situation_outcome_frame_green
+	complete_icon = GFX_situation_outcome_positive
+	fail_icon_frame = GFX_situation_outcome_frame_red
+	fail_icon = GFX_situation_outcome_negative
+	on_start = {
+		set_situation_locked = no
+	}
+	#TODO(chmeyers): Update this
+	monthly_progress = {
+		modifier = {
+			desc = string_current_approach
+			NOT = {
+				current_situation_approach = obsessions_leader_break_research
+			}
+			add = 2.0
+		}
+		modifier = {
+			desc = string_current_approach
+			current_situation_approach = obsessions_leader_break_research
+			add = 5.0
+		}
+	}
+	# Of the first ten approaches, a player will only ever see up to 3 of them,
+	# as they are all gated on their ethics.
+	approach = {
+		name = obsessions_leader_break_spiritual
+		icon = GFX_situation_approach_kneel
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_leader_break_spiritual_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				unity = 10
+			}
+		}
+		potential = {
+			target.owner = {
+				is_spiritualist = yes
+			}
+			NOT = { has_situation_flag = spiritual_tried }
+		}
+	}
+	approach = {
+		name = obsessions_leader_break_logical
+		icon = GFX_situation_approach_balance_sheet
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_leader_break_logical_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				physics_research = 10
+			}
+		}
+		potential = {
+			target.owner = {
+				is_materialist = yes
+			}
+			NOT = { has_situation_flag = logical_tried }
+		}
+	}
+	approach = {
+		name = obsessions_leader_break_authority
+		icon = GFX_situation_approach_fist
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_leader_break_authority_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				consumer_goods = 10 # for the surveilance cameras
+			}
+		}
+		potential = {
+			target.owner = {
+				is_authoritarian = yes
+			}
+			NOT = { has_situation_flag = authority_tried }
+		}
+	}
+	approach = {
+		name = obsessions_leader_break_therapy
+		icon = GFX_situation_approach_scales
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_leader_break_therapy_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				society_research = 10
+			}
+		}
+		potential = {
+			target.owner = {
+				is_egalitarian = yes
+			}
+			NOT = { has_situation_flag = therapy_tried }
+		}
+	}
+	approach = {
+		name = obsessions_leader_break_meditation
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_leader_break_meditation_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				unity = 10
+			}
+		}
+		potential = {
+			target.owner = {
+				is_pacifist = yes
+			}
+			NOT = { has_situation_flag = meditation_tried }
+		}
+	}
+	approach = {
+		name = obsessions_leader_break_training
+		icon = GFX_situation_approach_sword
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_leader_break_training_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				alloys = 4
+			}
+		}
+		potential = {
+			target.owner = {
+				is_militarist = yes
+			}
+			NOT = { has_situation_flag = training_tried }
+		}
+	}
+	approach = {
+		name = obsessions_leader_break_entertainment
+		icon = GFX_situation_approach_amenities
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_leader_break_entertainment_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				consumer_goods = 10
+			}
+		}
+		potential = {
+			target.owner = {
+				is_xenophile = yes
+			}
+			NOT = { has_situation_flag = entertainment_tried }
+		}
+	}
+	approach = {
+		name = obsessions_leader_break_companionship
+		icon = GFX_situation_approach_heart
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_leader_break_companionship_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 10
+			}
+		}
+		potential = {
+			target.owner = {
+				is_xenophobe = yes
+			}
+			NOT = { has_situation_flag = companionship_tried }
+		}
+	}
+	approach = {
+		name = obsessions_leader_break_realignment
+		icon = GFX_situation_approach_pop
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_leader_break_realignment_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				energy = 10
+			}
+		}
+		potential = {
+			target.owner = {
+				is_gestalt = yes
+			}
+			NOT = { has_situation_flag = realignment_tried }
+		}
+	}
+	approach = {
+		name = obsessions_leader_break_synchronize
+		icon = GFX_situation_approach_unity
+		icon_background = GFX_situation_approach_bg_yellow
+		on_select = {
+			custom_tooltip = obsessions_leader_break_synchronize_tooltip
+		}
+		resources = {
+			category = situations
+			upkeep = {
+				unity = 10
+			}
+		}
+		potential = {
+			target.owner = {
+				is_gestalt = yes
+			}
+			NOT = { has_situation_flag = synchronize_tried }
+		}
+	}
+	# This approach is always available and has no cost, but doesn't often work.
+	approach = {
+		name = obsessions_leader_break_shrug
+		icon = GFX_situation_approach_shrug
+		icon_background = GFX_situation_approach_bg_yellow
+		default = yes
+		on_select = {
+			custom_tooltip = obsessions_leader_break_shrug_tooltip
+		}
+		resources = {
+			category = situations
+		}
+	}
+	# This approach always works, but is only available after they've had two failures
+	approach = {
+		name = obsessions_leader_break_research
+		icon = GFX_situation_approach_research
+		icon_background = GFX_situation_approach_bg_green
+		on_select = {
+			custom_tooltip = obsessions_leader_break_research_tooltip
+		}
+		modifier = {
+			# It will cost you 80% of all your research
+			country_society_research_produces_mult = -0.8
+			country_physics_research_produces_mult = -0.8
+			country_engineering_research_produces_mult = -0.8
+		}
+		potential = {
+			check_variable = { which = failure_count value >= 2 }
+		}
+	}
+
+	
+	stages = {
+		stage_1 = {
+			icon = GFX_situation_stage_1
+			icon_background = GFX_situation_stage_frame_blue
+			end = 33
+		}
+		stage_2 = {
+			icon = GFX_situation_stage_2
+			icon_background = GFX_situation_stage_frame_blue
+			end = 67
+			on_first_enter = {
+				situation_event = { id = obsessions_mod_scientist.22 }
+			}
+			custom_tooltip = stage_unknown_effects
+		}
+		stage_3 = {
+			icon = GFX_situation_stage_3
+			icon_background = GFX_situation_stage_frame_blue
+			end = 100
+			on_first_enter = {
+				situation_event = { id = obsessions_mod_scientist.24 }
+			}
+			custom_tooltip = stage_unknown_effects
+		}
+	}
+
+	on_progress_complete = {
+		custom_tooltip = obsessions_leader_break_outcome
+		hidden_effect = {
+			situation_event = { id = obsessions_mod_scientist.26 }
+		}
+	}
+
+	abort_trigger = {
+		OR = {
+			NOT = { exists = target }
+			NOT = { exists = target.owner }
+			target.owner = { NOT = { is_same_value = root.owner } }
+		}
+	}
+}
+
 obsessions_situation_pod_people = {
 	picture = GFX_evt_disease_outbreak
 	start_value = 25
