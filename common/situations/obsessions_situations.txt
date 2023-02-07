@@ -253,7 +253,21 @@ obsessions_situation_leader_break = {
 			country_engineering_research_produces_mult = -0.8
 		}
 		potential = {
-			check_variable = { which = failure_count value >= 2 }
+			# They have to have tried at least one non-shrug approach, otherwise we can't
+			# guarantee that there is a free slot.
+			OR = {
+				has_situation_flag = spiritual_tried
+				has_situation_flag = logical_tried
+				has_situation_flag = authority_tried
+				has_situation_flag = therapy_tried
+				has_situation_flag = meditation_tried
+				has_situation_flag = training_tried
+				has_situation_flag = entertainment_tried
+				has_situation_flag = companionship_tried
+				has_situation_flag = realignment_tried
+				has_situation_flag = synchronize_tried
+			}
+			current_stage = stage_3
 		}
 	}
 

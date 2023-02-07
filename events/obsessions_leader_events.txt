@@ -30,12 +30,11 @@ leader_event = {
 	trigger = { has_leader_flag = obsession_obsessed }
 
 	immediate = {
-		# Increase by one and check whether that is their breaking point.
-		change_variable = { which = obsession_level value = 1 }
+		# We don't increase their obsession here, but we will break if they are already near it.
 		if = {
 			limit = {
 				NOT = { owner = { country_has_situation = { SITUATION = obsessions_situation_leader_break } } }
-				check_variable = { which = obsession_level value >= @obsession_breaking_point }
+				check_variable = { which = obsession_level value >= @obsession_near_breaking_point }
 			}
 			owner = {
 				save_global_event_target_as = obsession_source_country
@@ -56,8 +55,20 @@ leader_event = {
 	trigger = { has_leader_flag = obsession_obsessed }
 
 	immediate = {
-		# Decrease obsession level by one
-		change_variable = { which = obsession_level value = -1 }
+		# We don't increase their obsession here, but we will break if they are already near it.
+		# Previously we would lower their obsession here, but that broke
+		# when they were assigned without first being unassigned.
+		if = {
+			limit = {
+				NOT = { owner = { country_has_situation = { SITUATION = obsessions_situation_leader_break } } }
+				check_variable = { which = obsession_level value >= @obsession_near_breaking_point }
+			}
+			owner = {
+				save_global_event_target_as = obsession_source_country
+			}
+			set_variable = { which = obsession_break_reason value = @breaking_reason_job_change }
+			leader_event = { id = obsessions_mod_scientist.6 days = 30 }
+		}
 	}
 }
 
@@ -165,19 +176,23 @@ leader_event = {
 						check_variable = { which = obsession_break_reason value = @breaking_reason_job_change }
 						check_variable = { which = obsession_break_reason value = @breaking_reason_lifetime }
 					}
-					NOT = { owner = { country_has_situation = { SITUATION = obsessions_situation_leader_break } } }
 				}
-				# Fixable with a Situation
-				event_target:obsession_source_country = {
-					country_event = { id = obsessions_mod_scientist.20 scopes = { from = this } }
+				# Fixable with a Situation. If they are already in the situation, don't fire a duplicate.
+				if = {
+					limit = { NOT = { owner = { country_has_situation = { SITUATION = obsessions_situation_leader_break } } } }
+					event_target:obsession_source_country = {
+						country_event = { id = obsessions_mod_scientist.20 scopes = { from = root } }
+					}
 				}
 			}
 			else = {
 				# Final break
 				# Abort the ongoing break situation if it exists.
-				every_situation = {
-					limit = { is_situation_type = obsessions_situation_leader_break }
-					abort_situation = yes
+				owner = {
+					every_situation = {
+						limit = { is_situation_type = obsessions_situation_leader_break }
+						abort_situation = this
+					}
 				}
 				species = {
 					save_global_event_target_as = obsessed_scientist_species
@@ -284,7 +299,7 @@ country_event = {
 		}
 		every_situation = {
 			limit = { is_situation_type = obsessions_situation_leader_break }
-			abort_situation = yes
+			abort_situation = this
 		}
 	}
 
@@ -935,10 +950,7 @@ situation_event = {
 	}
 	option = {
 		trigger = {
-			check_variable = {
-				which = failure_count
-				value >=2
-			}
+			current_stage = stage_3
 		}
 		name = obsessions_mod_scientist.21.l
 		custom_tooltip = obsessions_leader_break_research_tooltip
@@ -967,10 +979,10 @@ situation_event = {
 
 situation_event = {
 	id = obsessions_mod_scientist.23
-	base = obsessions_mod_scientist.21
-	title = "obsessions_mod_scientist.23.name"
-	desc_clear = yes
 	is_triggered_only = yes
+	base = obsessions_mod_scientist.21
+	desc_clear = yes
+	title = "obsessions_mod_scientist.23.name"
 	situation = this
 
 	desc = {
@@ -1011,10 +1023,10 @@ situation_event = {
 
 situation_event = {
 	id = obsessions_mod_scientist.25
-	base = obsessions_mod_scientist.21
-	title = "obsessions_mod_scientist.25.name"
-	desc_clear = yes
 	is_triggered_only = yes
+	base = obsessions_mod_scientist.21
+	desc_clear = yes
+	title = "obsessions_mod_scientist.25.name"
 	situation = this
 
 	desc = {
@@ -1064,6 +1076,7 @@ situation_event = {
 situation_event = {
 	id = obsessions_mod_scientist.27
 	title = "obsessions_mod_scientist.27.name"
+	picture = GFX_evt_acquire_asset
 	is_triggered_only = yes
 	situation = this
 
