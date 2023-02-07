@@ -33,7 +33,10 @@ leader_event = {
 		# Increase by one and check whether that is their breaking point.
 		change_variable = { which = obsession_level value = 1 }
 		if = {
-			limit = { check_variable = { which = obsession_level value >= @obsession_breaking_point } }
+			limit = {
+				NOT = { owner = { country_has_situation = { SITUATION = obsessions_situation_leader_break } } }
+				check_variable = { which = obsession_level value >= @obsession_breaking_point }
+			}
 			owner = {
 				save_global_event_target_as = obsession_source_country
 			}
@@ -162,6 +165,7 @@ leader_event = {
 						check_variable = { which = obsession_break_reason value = @breaking_reason_job_change }
 						check_variable = { which = obsession_break_reason value = @breaking_reason_lifetime }
 					}
+					NOT = { owner = { country_has_situation = { SITUATION = obsessions_situation_leader_break } } }
 				}
 				# Fixable with a Situation
 				event_target:obsession_source_country = {
@@ -170,6 +174,11 @@ leader_event = {
 			}
 			else = {
 				# Final break
+				# Abort the ongoing break situation if it exists.
+				every_situation = {
+					limit = { is_situation_type = obsessions_situation_leader_break }
+					abort_situation = yes
+				}
 				species = {
 					save_global_event_target_as = obsessed_scientist_species
 				}
@@ -272,6 +281,10 @@ country_event = {
 			set_variable = { which = obsession_level value = 0 }
 			set_variable = { which = obsession_break_reason value = @breaking_reason_none }
 			set_leader_flag = obsession_issued_project
+		}
+		every_situation = {
+			limit = { is_situation_type = obsessions_situation_leader_break }
+			abort_situation = yes
 		}
 	}
 
@@ -577,45 +590,49 @@ country_event = {
 	hide_window = yes
 
 	immediate = {
-		# Pick a ramp up situation.
-		random_list = {
-			1 = {
-				# Silently increase their level.
-				country_event = { id = obsessions_mod_scientist.16 scopes = { from = from } }
-			}
-			2 = {
-				# Silently increase their level if they are idle.
-				country_event = { id = obsessions_mod_scientist.19 scopes = { from = from } }
-			}
-			10 = {
-				modifier = {
-					factor = 0
-					from = {
-						OR = {
-							has_trait = leader_trait_custom_AI_assistant
-							has_trait = leader_trait_sapient_AI_assistant
-							owner = {
-								OR = {
-									has_authority = "auth_hive_mind"
-									has_authority = "auth_machine_intelligence"
-									has_policy_flag = ai_outlawed
+		# Only trigger one of these if they are not currently in a break situation.
+		if = {
+			limit = { NOT = { owner = { country_has_situation = { SITUATION = obsessions_situation_leader_break } } } }
+			# Pick a ramp up obsession level.
+			random_list = {
+				1 = {
+					# Silently increase their level.
+					country_event = { id = obsessions_mod_scientist.16 scopes = { from = from } }
+				}
+				2 = {
+					# Silently increase their level if they are idle.
+					country_event = { id = obsessions_mod_scientist.19 scopes = { from = from } }
+				}
+				10 = {
+					modifier = {
+						factor = 0
+						from = {
+							OR = {
+								has_trait = leader_trait_custom_AI_assistant
+								has_trait = leader_trait_sapient_AI_assistant
+								owner = {
+									OR = {
+										has_authority = "auth_hive_mind"
+										has_authority = "auth_machine_intelligence"
+										has_policy_flag = ai_outlawed
+									}
 								}
 							}
 						}
 					}
+					# Give them an AI assistant
+					country_event = { id = obsessions_mod_scientist.17 scopes = { from = from } }
 				}
-				# Give them an AI assistant
-				country_event = { id = obsessions_mod_scientist.17 scopes = { from = from } }
-			}
-			10 = {
-				modifier = {
-					factor = 0
-					from = {
-						has_leader_flag = obsession_retrained
+				10 = {
+					modifier = {
+						factor = 0
+						from = {
+							has_leader_flag = obsession_retrained
+						}
 					}
+					# Send them for retraining
+					country_event = { id = obsessions_mod_scientist.18 scopes = { from = from } }
 				}
-				# Send them for retraining
-				country_event = { id = obsessions_mod_scientist.18 scopes = { from = from } }
 			}
 		}
 	}
