@@ -987,7 +987,7 @@ situation_event = {
 			change_variable = { which = failure_count value = 1 }
 		}
 		situation_event = {
-			id = obsessions_mod_scientist.24
+			id = obsessions_mod_scientist.25
 		}
 	}
 }

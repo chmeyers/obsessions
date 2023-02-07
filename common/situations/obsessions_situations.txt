@@ -9,7 +9,6 @@ obsessions_situation_leader_break = {
 	on_start = {
 		set_situation_locked = no
 	}
-	#TODO(chmeyers): Update this
 	monthly_progress = {
 		modifier = {
 			desc = string_current_approach
