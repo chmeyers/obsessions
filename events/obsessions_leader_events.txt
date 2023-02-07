@@ -1170,24 +1170,52 @@ situation_event = {
 		target = {
 			add_experience = @obsession_major_reward
 		}
-		target.owner = {
-			add_monthly_resource_mult = {
-				resource = society_research
-				value = @tier2researchreward
-				min = @tier2researchmin
-				max = @tier2researchmax
+		# These multipliers are based off of last months numbers, which includes
+		# the debuff from the research approach, so we adjust the numbers for the debuff.
+		
+		if = {
+			limit = { current_situation_approach = obsessions_leader_break_research }
+			target.owner = {
+				add_monthly_resource_mult = {
+					resource = society_research
+					value = 30
+					min = @tier1researchmin
+					max = @tier1researchmax
+				}
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = 30
+					min = @tier1researchmin
+					max = @tier1researchmax
+				}
+				add_monthly_resource_mult = {
+					resource = physics_research
+					value = 30
+					min = @tier1researchmin
+					max = @tier1researchmax
+				}
 			}
-			add_monthly_resource_mult = {
-				resource = engineering_research
-				value = @tier2researchreward
-				min = @tier2researchmin
-				max = @tier2researchmax
-			}
-			add_monthly_resource_mult = {
-				resource = physics_research
-				value = @tier2researchreward
-				min = @tier2researchmin
-				max = @tier2researchmax
+		}
+		else = {
+			target.owner = {
+				add_monthly_resource_mult = {
+					resource = society_research
+					value = @tier1researchreward
+					min = @tier1researchmin
+					max = @tier1researchmax
+				}
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier1researchreward
+					min = @tier1researchmin
+					max = @tier1researchmax
+				}
+				add_monthly_resource_mult = {
+					resource = physics_research
+					value = @tier1researchreward
+					min = @tier1researchmin
+					max = @tier1researchmax
+				}
 			}
 		}
 		name = obsessions_mod_scientist.27.c
@@ -1198,24 +1226,52 @@ situation_event = {
 		target = {
 			add_experience = @obsession_major_reward
 		}
-		target.owner = {
-			add_monthly_resource_mult = {
-				resource = society_research
-				value = @tier4researchreward
-				min = @tier4researchmin
-				max = @tier4researchmax
+		
+		# These multipliers are based off of last months numbers, which includes
+		# the debuff from the research approach, so we adjust the numbers for the debuff.
+		if = {
+			limit = { current_situation_approach = obsessions_leader_break_research }
+			target.owner = {
+				add_monthly_resource_mult = {
+					resource = society_research
+					value = 120
+					min = @tier3researchmin
+					max = 25000
+				}
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = 120
+					min = @tier3researchmin
+					max = 25000
+				}
+				add_monthly_resource_mult = {
+					resource = physics_research
+					value = 120
+					min = @tier3researchmin
+					max = 25000
+				}
 			}
-			add_monthly_resource_mult = {
-				resource = engineering_research
-				value = @tier4researchreward
-				min = @tier4researchmin
-				max = @tier4researchmax
-			}
-			add_monthly_resource_mult = {
-				resource = physics_research
-				value = @tier4researchreward
-				min = @tier4researchmin
-				max = @tier4researchmax
+		}
+		else = {
+			target.owner = {
+				add_monthly_resource_mult = {
+					resource = society_research
+					value = @tier3researchreward
+					min = @tier3researchmin
+					max = @tier3researchmax
+				}
+				add_monthly_resource_mult = {
+					resource = engineering_research
+					value = @tier3researchreward
+					min = @tier3researchmin
+					max = @tier3researchmax
+				}
+				add_monthly_resource_mult = {
+					resource = physics_research
+					value = @tier3researchreward
+					min = @tier3researchmin
+					max = @tier3researchmax
+				}
 			}
 		}
 	}
