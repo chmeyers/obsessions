@@ -547,27 +547,28 @@ planet_event = {
 		# Check to ensure the planet is habitable. It should be since obsession planets always are,
 		# but something might have happened to render it uninhabitable. If that happened, spawn a pirate
 		# fleet with the obsessed scientist as the admiral.
-		if = {
-			limit = {
-				OR = {
-					is_a_planet = no
-					habitable_planet = no
-				}
-			}
-			create_obsessed_pirate_king = yes
-		}
-		# For all other cases we currently have the obsessed just take over the system/colony.
-		# 1) If the system is unclaimed.
-		# 2) If the system is claimed by ai and the planet uncolonized.
-		# 3) If the system is claimed by ai and the planet colonized.
-		# 4) If the system is claimed by human and the planet uncolonized.
-		# 5) If the system is claimed by human and the planet colonized.
-		else = {
-			create_obsessed_country = yes
-			obsessed_take_system = yes
-			obsessed_take_planet = yes
-			create_obsessed_fleet = yes
-		}
+		# TODO(chmeyers): Re-enable this.
+		# if = {
+		# 	limit = {
+		# 		OR = {
+		# 			is_a_planet = no
+		# 			habitable_planet = no
+		# 		}
+		# 	}
+		# 	create_obsessed_pirate_king = yes
+		# }
+		# # For all other cases we currently have the obsessed just take over the system/colony.
+		# # 1) If the system is unclaimed.
+		# # 2) If the system is claimed by ai and the planet uncolonized.
+		# # 3) If the system is claimed by ai and the planet colonized.
+		# # 4) If the system is claimed by human and the planet uncolonized.
+		# # 5) If the system is claimed by human and the planet colonized.
+		# else = {
+		# 	create_obsessed_country = yes
+		# 	obsessed_take_system = yes
+		# 	obsessed_take_planet = yes
+		# 	create_obsessed_fleet = yes
+		# }
 		
 	}
 	

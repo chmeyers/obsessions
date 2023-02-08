@@ -728,7 +728,7 @@ country_event = {
 			}
 			resource_stockpile_compare = {
 				resource = energy
-				value = 200
+				value >= 200
 			}
 		}
 		add_resource = {
@@ -2836,6 +2836,7 @@ country_event = {
 			}
 		}
 		name = obsessions_mod.250.c
+		custom_tooltip = obsessions_mod.250.c.tooltip
 		owner = {
 			add_monthly_resource_mult = {
 				resource = unity
@@ -2844,6 +2845,9 @@ country_event = {
 				max = @tier3unitymax
 			}
 		}
+		# hidden_effect = {
+		# 	country_event = { id = obsessions_mod.300 days = 15000 }
+		# }
 	}
 
 	# No Xenos!
@@ -2861,6 +2865,7 @@ country_event = {
 			}
 		}
 		name = obsessions_mod.250.d
+		custom_tooltip = obsessions_mod.250.d.tooltip
 		owner = {
 			add_monthly_resource_mult = {
 				resource = food
@@ -2874,6 +2879,62 @@ country_event = {
 				min = @tier1unitymin
 				max = @tier1unitymax
 			}
+		}
+		# hidden_effect = {
+		# 	country_event = { id = obsessions_mod.300 days = 15000 }
+		# }
+	}
+}
+
+# The return of the underground alpine proles
+country_event = {
+	id = obsessions_mod.300
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		if = {
+			limit = {
+				exists = event_target:obsession_alpine_proles
+				exists = event_target:obsessions_planet_target
+				event_target:obsessions_planet_target = {
+					is_colony = yes
+					planet_owner = { is_same_value = root.owner }
+				}
+			}
+			event_target:obsessions_planet_target = {
+				# The Underground proles are coming back.
+				create_country = {
+					name = "NAME_Alpine_Prole"
+					type = faction
+					effect = {
+						establish_communications_no_message = root
+					}
+				}
+				while = {
+					count = 10
+					create_army = {
+						name = "NAME_Alpine_Proles"
+						owner = last_created_country
+						species = event_target:obsession_alpine_proles
+						type = "assault_army"
+					}
+				}
+				create_pop = {
+					species = event_target:obsession_alpine_proles
+					effect = {
+						modify_species = {
+							species = this
+							remove_trait = trait_nerve_stapled
+						}
+					}
+				}
+				create_pop = {
+					species = event_target:obsession_alpine_proles
+				}
+			}
+			# TODO(chmeyers): Implement!
+			#country_event = { id = obsessions_mod.301 }
 		}
 	}
 }
