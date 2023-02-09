@@ -117,12 +117,23 @@ country_event = {
 	immediate = {
 		save_global_event_target_as = obsession_source_country
 
-		# Firing them always causes them to break immediately.
-		# Firing kills them, so we create a new one with the same name and exile them.
-		from = {
-			set_variable = { which = obsession_level value = @obsession_breaking_point }
-			set_variable = { which = obsession_break_reason value = @breaking_reason_fired }
-			leader_event = { id = obsessions_mod_scientist.6 }
+		if = {
+			limit = {
+				OR = {
+					owner = { country_has_situation = { SITUATION = obsessions_situation_leader_break } }
+					from = { has_leader_flag = second_chance }
+				}
+			}
+			# If they are fired during the situation or have already been given a second chance,
+			# then no recourse given and we go straight to the breakdown.
+			from = {
+				set_variable = { which = obsession_level value = @obsession_breaking_point }
+				set_variable = { which = obsession_break_reason value = @breaking_reason_fired }
+				leader_event = { id = obsessions_mod_scientist.6 }
+			}
+		}
+		else = {
+			country_event = { id = obsessions_mod_scientist.30 scopes = { from = from } }
 		}
 	}
 }
@@ -544,32 +555,10 @@ planet_event = {
 	id = obsessions_mod_scientist.13
 
 	immediate = {
-		# Check to ensure the planet is habitable. It should be since obsession planets always are,
-		# but something might have happened to render it uninhabitable. If that happened, spawn a pirate
-		# fleet with the obsessed scientist as the admiral.
-		# TODO(chmeyers): Re-enable this.
-		# if = {
-		# 	limit = {
-		# 		OR = {
-		# 			is_a_planet = no
-		# 			habitable_planet = no
-		# 		}
-		# 	}
-		# 	create_obsessed_pirate_king = yes
-		# }
-		# # For all other cases we currently have the obsessed just take over the system/colony.
-		# # 1) If the system is unclaimed.
-		# # 2) If the system is claimed by ai and the planet uncolonized.
-		# # 3) If the system is claimed by ai and the planet colonized.
-		# # 4) If the system is claimed by human and the planet uncolonized.
-		# # 5) If the system is claimed by human and the planet colonized.
-		# else = {
-		# 	create_obsessed_country = yes
-		# 	obsessed_take_system = yes
-		# 	obsessed_take_planet = yes
-		# 	create_obsessed_fleet = yes
-		# }
-		
+		# Give warning to the source country that something is coming.
+		event_target:obsession_source_country = {
+			country_event = { id = obsessions_mod_scientist.31 scopes = { from = root } }
+		}
 	}
 	
 }
@@ -1275,5 +1264,521 @@ situation_event = {
 				}
 			}
 		}
+	}
+}
+
+
+# A leader fired.
+# Scope = Country
+# From = Leader
+country_event = {
+	id = obsessions_mod_scientist.30
+	title = "obsessions_mod_scientist.30.name"
+	desc = "obsessions_mod_scientist.30.desc"
+	picture = GFX_evt_acquire_asset
+	is_triggered_only = yes
+
+	immediate = {
+		save_global_event_target_as = obsession_source_country
+	}
+
+	option = {
+		name = obsessions_mod_scientist.30.a
+		custom_tooltip = obsessions_mod_scientist.30.a.tooltip
+		add_resource = {
+			# A straight up bribe to the user to keep their obsessed scientist around,
+			# so they don't miss all the awesome content in this mod.
+			unity = 500
+		}
+		hidden_effect = {
+			clone_leader = {
+				target = from
+				effect = {
+					set_leader_flag = obsession_obsessed
+					set_leader_flag = second_chance
+					set_variable = { which = obsession_level value = 3 }
+					save_event_target_as = rehired_scientist
+				}
+			}
+			if = {
+				limit = { from = { has_leader_flag = obsession_retrained } }
+				event_target:rehired_scientist = { set_leader_flag = obsession_retrained }
+			}
+			owner = {
+				country_event = { id = obsessions_mod_scientist.14 days = 1800 scopes = { from = event_target:rehired_scientist } }
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.30.b
+		hidden_effect = {
+			from = {
+				set_variable = { which = obsession_level value = @obsession_breaking_point }
+				set_variable = { which = obsession_break_reason value = @breaking_reason_fired }
+				leader_event = { id = obsessions_mod_scientist.6 }
+			}
+		}
+	}
+}
+
+
+# From = Planet
+country_event = {
+	id = obsessions_mod_scientist.31
+	title = "obsessions_mod_scientist.31.name"
+	desc = "obsessions_mod_scientist.31.desc"
+	picture = GFX_evt_fleet_neutral
+	is_triggered_only = yes
+
+	option = {
+		name = obsessions_mod_scientist.31.a
+		country_event = { id = obsessions_mod_scientist.33 scopes = { from = from } }
+	}
+
+	option = {
+		name = obsessions_mod_scientist.31.b
+		hidden_effect = {
+			country_event = { id = obsessions_mod_scientist.32 days = 45 scopes = { from = from } }
+		}
+	}
+}
+
+
+
+country_event = {
+	id = obsessions_mod_scientist.32
+	hide_window = yes
+	is_triggered_only = yes
+
+	immediate = {
+		# Spawn Obsession country and set things up for communications with source country
+		# Choices will depend on whether they are stealing the sytem from the player or not.
+
+		# Check to ensure the planet is habitable. It should be since obsession planets always are,
+		# but something might have happened to render it uninhabitable. If that happened, spawn a pirate
+		# fleet with the obsessed scientist as the admiral.
+		# if = {
+		# 	limit = {
+		# 		OR = {
+		# 			is_a_planet = no
+		# 			habitable_planet = no
+		# 		}
+		# 	}
+		# 	create_obsessed_pirate_king = yes
+		# }
+		# For all other cases we currently have the obsessed just take over the system/colony.
+		# 1) If the system is unclaimed.
+		# 2) If the system is claimed by ai and the planet uncolonized.
+		# 3) If the system is claimed by ai and the planet colonized.
+		# 4) If the system is claimed by human and the planet uncolonized.
+		# 5) If the system is claimed by human and the planet colonized.
+		# else = {
+		# 	create_obsessed_country = yes
+		# 	obsessed_take_system = yes
+		# 	obsessed_take_planet = yes
+		# 	create_obsessed_fleet = yes
+		# }
+		
+		# trigger = {
+		# 	from = {
+		# 		NOT = { exists = solar_system.starbase }
+		# 	}
+		# }
+		# trigger = {
+		# 	from = {
+		# 		exists = solar_system.starbase
+		# 		NOT = { solar_system.starbase.owner = { is_same_value = root.owner } }
+		# 	}
+		# }
+	}
+}
+
+
+# From = Planet
+country_event = {
+	id = obsessions_mod_scientist.33
+	title = "obsessions_mod_scientist.33.name"
+	desc = "obsessions_mod_scientist.33.desc"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+
+	picture_event_data = {
+		portrait = event_target:obsessed_scientist_breakdown
+		room = "ethic_spaceship_room"
+	}
+
+	option = { # Who are you?
+		name = obsessions_mod_scientist.33.a
+		is_dialog_only = yes
+		response_text = obsessions_mod_scientist.33.a.response
+		hidden_effect = {
+			event_target:obsessed_scientist_breakdown = {
+				set_leader_flag = asked_who
+			}
+		}
+	}
+
+	option = { # Are you crazy?
+		name = obsessions_mod_scientist.33.b
+		is_dialog_only = yes
+		response_text = obsessions_mod_scientist.33.b.response
+		hidden_effect = {
+			event_target:obsessed_scientist_breakdown = {
+				set_leader_flag = asked_crazy
+			}
+		}
+	}
+
+	option = { # Glad to see you again
+		name = obsessions_mod_scientist.33.c
+		hidden_effect = {
+			event_target:obsessed_scientist_breakdown = {
+				set_leader_flag = asked_polite
+			}
+			country_event = { id = obsessions_mod_scientist.34 scopes = { from = from } }
+		}
+	}
+
+	option = { # What do you want.
+		name = obsessions_mod_scientist.33.d
+		hidden_effect = {
+			country_event = { id = obsessions_mod_scientist.34 scopes = { from = from } }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_mod_scientist.34
+	title = "obsessions_mod_scientist.34.name"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+
+	picture_event_data = {
+		portrait = event_target:obsessed_scientist_breakdown
+		room = "ethic_spaceship_room"
+	}
+
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_polite
+				has_leader_flag = asked_who
+				has_leader_flag = asked_crazy
+			}
+		}
+		text = "obsessions_mod_scientist.34.desc_polite_who_crazy"
+	}
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_polite
+				NOT = { has_leader_flag = asked_who }
+				has_leader_flag = asked_crazy
+			}
+		}
+		text = "obsessions_mod_scientist.34.desc_polite_crazy"
+	}
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_polite
+				has_leader_flag = asked_who
+				NOT = { has_leader_flag = asked_crazy }
+			}
+		}
+		text = "obsessions_mod_scientist.34.desc_polite_who"
+	}
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_polite
+				NOT = { has_leader_flag = asked_who }
+				NOT = { has_leader_flag = asked_crazy }
+			}
+		}
+		text = "obsessions_mod_scientist.34.desc_polite"
+	}
+	desc = "obsessions_mod_scientist.34.desc"
+
+	option = {
+		trigger = {
+			from = { is_colonizable = no }
+		}
+		name = obsessions_mod_scientist.34.a
+		hidden_effect = {
+			country_event = { id = obsessions_mod_scientist.35 scopes = { from = from } }
+		}
+	}
+
+	option = {
+		trigger = {
+			from = {
+				is_colonizable = yes
+				is_colony = no
+				exists = solar_system.starbase
+				solar_system.starbase.owner = { is_same_value = root.owner }
+			}
+		}
+		name = obsessions_mod_scientist.34.b
+		hidden_effect = {
+			country_event = { id = obsessions_mod_scientist.36 scopes = { from = from } }
+		}
+	}
+
+	option = {
+		trigger = {
+			from = {
+				is_colonizable = yes
+				is_colony = yes
+				exists = solar_system.starbase
+				solar_system.starbase.owner = { is_same_value = root.owner }
+			}
+		}
+		name = obsessions_mod_scientist.34.c
+		hidden_effect = {
+			country_event = { id = obsessions_mod_scientist.37 scopes = { from = from } }
+		}
+	}
+
+	option = {
+		trigger = {
+			from = {
+				is_colonizable = yes
+				is_colony = no
+				NOT = { exists = solar_system.starbase }
+			}
+		}
+		name = obsessions_mod_scientist.34.d
+		hidden_effect = {
+			country_event = { id = obsessions_mod_scientist.38 scopes = { from = from } }
+		}
+	}
+
+	option = {
+		trigger = {
+			from = {
+				is_colonizable = yes
+				is_colony = no
+				exists = solar_system.starbase
+				solar_system.starbase.owner = { NOT = { is_same_value = root.owner } }
+			}
+		}
+		name = obsessions_mod_scientist.34.e
+		hidden_effect = {
+			country_event = { id = obsessions_mod_scientist.39 scopes = { from = from } }
+		}
+	}
+
+	option = {
+		trigger = {
+			from = {
+				is_colonizable = yes
+				is_colony = yes
+				exists = solar_system.starbase
+				solar_system.starbase.owner = { NOT = { is_same_value = root.owner } }
+			}
+		}
+		name = obsessions_mod_scientist.34.f
+		hidden_effect = {
+			country_event = { id = obsessions_mod_scientist.40 scopes = { from = from } }
+		}
+	}
+
+	option = {
+		# Colony owned by someone different than the starbase
+		trigger = {
+			from = {
+				is_colonizable = yes
+				is_colony = yes
+				exists = solar_system.starbase
+				owner = { NOT = { is_same_value = solar_system.starbase.owner } }
+			}
+		}
+		name = obsessions_mod_scientist.34.g
+		hidden_effect = {
+			country_event = { id = obsessions_mod_scientist.41 scopes = { from = from } }
+		}
+	}
+}
+
+# Obsession is somehow uninhabitable
+country_event = {
+	id = obsessions_mod_scientist.35
+	title = "obsessions_mod_scientist.35.name"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+	desc = "obsessions_mod_scientist.35.desc"
+
+	picture_event_data = {
+		portrait = event_target:obsessed_scientist_breakdown
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessed_scientist_breakdown = { NOT = { has_leader_flag = asked_back } }
+		}
+		name = obsessions_mod_scientist.35.a
+		is_dialog_only = yes
+		response_text = obsessions_mod_scientist.35.a.response
+		hidden_effect = {
+			event_target:obsessed_scientist_breakdown = {
+				set_leader_flag = asked_back
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessed_scientist_breakdown = { has_leader_flag = asked_back }
+		}
+		name = obsessions_mod_scientist.35.b
+		custom_tooltip = obsessions_mod_scientist.35.b.tooltip
+		hidden_effect = {
+			clone_leader = {
+				target = event_target:obsessed_scientist_breakdown
+				class = admiral
+				skill = 5
+				traits = {
+					trait = leader_trait_engineer
+					trait = leader_trait_obsession_admiral_breakdown
+				}
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.35.c
+		custom_tooltip = obsessions_mod_scientist.35.c.tooltip
+		hidden_effect = {
+			create_obsessed_pirate_king = yes
+		}
+	}
+}
+
+# Obsession uncolonized and owned
+country_event = {
+	id = obsessions_mod_scientist.36
+	title = "obsessions_mod_scientist.36.name"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+	desc = "obsessions_mod_scientist.36.desc"
+
+	picture_event_data = {
+		portrait = event_target:obsessed_scientist_breakdown
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = obsessions_mod_scientist.36.a
+	}
+}
+
+# Obsession is our colony
+country_event = {
+	id = obsessions_mod_scientist.37
+	title = "obsessions_mod_scientist.37.name"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+	desc = "obsessions_mod_scientist.37.desc"
+
+	picture_event_data = {
+		portrait = event_target:obsessed_scientist_breakdown
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = obsessions_mod_scientist.37.a
+	}
+}
+
+# Obsession is unclaimed
+country_event = {
+	id = obsessions_mod_scientist.38
+	title = "obsessions_mod_scientist.38.name"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+	desc = "obsessions_mod_scientist.38.desc"
+
+	picture_event_data = {
+		portrait = event_target:obsessed_scientist_breakdown
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = obsessions_mod_scientist.38.a
+	}
+}
+
+# Obsession is uncolonized but owned by others
+country_event = {
+	id = obsessions_mod_scientist.39
+	title = "obsessions_mod_scientist.39.name"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+	desc = "obsessions_mod_scientist.39.desc"
+
+	picture_event_data = {
+		portrait = event_target:obsessed_scientist_breakdown
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = obsessions_mod_scientist.39.a
+	}
+}
+
+# Obsession is somebody else's colony
+country_event = {
+	id = obsessions_mod_scientist.40
+	title = "obsessions_mod_scientist.40.name"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+	desc = "obsessions_mod_scientist.40.desc"
+
+	picture_event_data = {
+		portrait = event_target:obsessed_scientist_breakdown
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = obsessions_mod_scientist.40.a
+	}
+}
+
+# Obsession is a mess, probably in the middle of a war
+country_event = {
+	id = obsessions_mod_scientist.41
+	title = "obsessions_mod_scientist.41.name"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+	desc = "obsessions_mod_scientist.41.desc"
+
+	picture_event_data = {
+		portrait = event_target:obsessed_scientist_breakdown
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		name = obsessions_mod_scientist.41.a
 	}
 }

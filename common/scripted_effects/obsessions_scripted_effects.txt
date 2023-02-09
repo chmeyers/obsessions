@@ -161,8 +161,8 @@ create_obsessed_country = {
 				save_global_event_target_as = obsession_created_country
 				add_resource = { influence = 200 }
 				add_resource = { energy = 15000 }
-				add_resource = { food = 15000 }
-				add_resource = { minerals = 15000 }
+				add_resource = { food = 5000 }
+				add_resource = { minerals = 5000 }
 				add_resource = { alloys = 5000 }
 				add_resource = { consumer_goods = 5000 }
 				add_resource = { unity = 15000 }

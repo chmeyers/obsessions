@@ -5,6 +5,9 @@ NAME_Obsession:0 "Obsession"
 leader_trait_obsessed_1:0 "Obsessed"
 leader_trait_obsessed_1_desc:0 "This scientist is dangerously obsessed with a previous failure and devotes an unhealthy amount of their time endlessly rehashing their past research."
 
+leader_trait_obsession_admiral_breakdown:0 "Obsessed"
+leader_trait_obsession_admiral_breakdown_desc:0 "This admiral used to be an insane scientist. Now all that is left is the insanity. They are amazing in battle, but refuse to retreat."
+
 leader_trait_obsession_fulfilled:0 "Obsession Fulfilled"
 leader_trait_obsession_fulfilled_desc:0 "This scientist has fulfilled their obsession and is better for it. Their singular focus has led to great skill."
 
@@ -116,6 +119,52 @@ obsessions_mod_scientist.27.a:0 "Oh no."
 obsessions_mod_scientist.27.b:0 "A relief."
 obsessions_mod_scientist.27.c:0 "Good enough."
 obsessions_mod_scientist.27.d:0 "Excellent."
+
+# Fired scientist second chance.
+obsessions_mod_scientist.30.name:0 "A Second Chance"
+obsessions_mod_scientist.30.desc:0 "The recently fired Obsessed Scientist [from.GetName] has come begging for a second chance. They insist that if given time and purpose they can work through their obsession and improve themself greatly. They wish you'd at least consider letting them assist planetary research."
+obsessions_mod_scientist.30.a:0 "One last chance"
+obsessions_mod_scientist.30.a.tooltip:0 "[from.GetName] is added back to the leader pool."
+obsessions_mod_scientist.30.b:0 "You're done"
+
+# Obsession Country warning
+obsessions_mod_scientist.31.name:0 "Obsession Returns"
+obsessions_mod_scientist.31.desc:0 "We are receiving communications from around the planet [from.GetName]. It appears to be our missing obsessed scientist [event_target:obsessed_scientist_breakdown.GetName]."
+obsessions_mod_scientist.31.a:0 "On Screen"
+obsessions_mod_scientist.31.b:0 "Ignore it."
+obsessions_mod_scientist.31.b.tooltip:0 "They'll probably go away politely and not cause trouble, right?."
+
+obsessions_mod_scientist.33.name:0 "Obsession Returns"
+obsessions_mod_scientist.33.desc:0 "It is I, [event_target:obsessed_scientist_breakdown.GetName], returned from the void. Yes, yes. Returned. All those who doubted should be afraid. My followers and I... yes, my followers, we have returned to see an end to what went wrong. An end to those that did wrong, perhaps. Hello. Where was I? Yes. It is I."
+obsessions_mod_scientist.33.a:0 "Who are you?"
+obsessions_mod_scientist.33.a.response:0 "Did I not already say that? You don't remember me. I thought perhaps that you cared, but you didn't even remember me. I am [event_target:obsessed_scientist_breakdown.GetName]. Surely you must remember the name. I am the scientist whom you mistreated. I have been gone for years, yes, but not so long that your memory of me should be gone as well."
+obsessions_mod_scientist.33.b:0 "Are you crazy?"
+obsessions_mod_scientist.33.b.response:0 "You think me crazy now? Or did you always think so? No, no. I was Obsessed. Obsessed with what went wrong. Only that. And perhaps a little crazy."
+obsessions_mod_scientist.33.c:0 "It's nice to see you again."
+obsessions_mod_scientist.33.d:0 "What do you want?"
+
+obsessions_mod_scientist.34.name:0 "Obsession Returns"
+obsessions_mod_scientist.34.desc:0 "What I want has to do with this planet, [event_target:obsessions_planet_target.GetName]. It always has."
+obsessions_mod_scientist.34.desc_polite:0 "Yes. Thank you. It is nice to see you again, too. I have begun to miss home. But perhaps I should get to the point. You may recall this planet, [event_target:obsessions_planet_target.GetName], as the target of my so-called obsession."
+obsessions_mod_scientist.34.desc_polite_who_crazy:0 "You say that it is nice to see me when a minute ago you didn't even remember who I was. You had to ask, remember? You even asked if I were crazy, too. Oh, this conversation is not going very well at all. I hoped you saved beforehand. But I never told you my theories about the Vultaum, did I? How this is all just a simulation. No. Perhaps I should get to the point. You may recall this planet, [event_target:obsessions_planet_target.GetName], as the target of my so-called obsession."
+obsessions_mod_scientist.34.desc_polite_who:0 "You say that it is nice to see me when a minute ago you didn't even remember who I was. You had to ask, remember? Perhaps I should get to the point. You may recall this planet, [event_target:obsessions_planet_target.GetName], as the target of my so-called obsession."
+obsessions_mod_scientist.34.desc_polite_crazy:0 "You say that it is nice to see me when a minute ago you were wondering whether I was crazy. Oh, this conversation is not going very well at all. I hoped you saved beforehand. Perhaps I should get to the point. You may recall this planet, [event_target:obsessions_planet_target.GetName], as the target of my so-called obsession."
+obsessions_mod_scientist.34.a:0 "An uninhabitable object."
+obsessions_mod_scientist.34.b:0 "An uncolonized planet in our space."
+obsessions_mod_scientist.34.c:0 "One of our colonies."
+obsessions_mod_scientist.34.d:0 "An uncolonized planet in unclaimed space."
+obsessions_mod_scientist.34.e:0 "An uncolonized planet beyond our borders."
+obsessions_mod_scientist.34.f:0 "A colony controlled by another empire."
+obsessions_mod_scientist.34.g:0 "That system is a mess right now."
+
+obsessions_mod_scientist.35.name:0 "Obsession Returns"
+obsessions_mod_scientist.35.desc:0 "Yes, I could have sworn that [event_target:obsessions_planet_target.GetName] was habitable at one point. I wouldn't have gotten obsessed with it otherwise. Something must have happened. Perhaps it was destroyed making way for an intergalactic highway. Those things happen. My followers and I are very disappointed, however.We are wondering what to do."
+obsessions_mod_scientist.35.a:0 "We can always use a scientist."
+obsessions_mod_scientist.35.a.response:0 "I'm afraid that I'm not much use for science anymore. That is all behind me. But I think I could command a fleet. I have learned much in my time in the dark corners of the galaxy. Our enemies would flee before me. Their vital fluids would flow and freeze in the cold of the void. The brief flash of their sapience would be for naught. All would tremble. Yes. Yes. I could be an admiral."
+obsessions_mod_scientist.35.b:0 "Alright."
+obsessions_mod_scientist.35.b.tooltip:0 "[event_target:obsessed_scientist_breakdown.GetName] joins as an experienced admiral, only slightly crazed."
+obsessions_mod_scientist.35.c:0 "You are on your own."
+obsessions_mod_scientist.35.c.tooltip:0 "You really think that they'll just go away if you go this route?"
 
  ####################################
  # Anomaly Categories

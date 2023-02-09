@@ -8,7 +8,7 @@ leader_trait_obsessed_1 = {
 	}
 	self_modifier = {
 		species_leader_exp_gain = 0.50
-		leader_age = 10
+		leader_age = 20
 		leader_skill_levels = 3
 	}
 	leader_trait = { scientist }
@@ -24,6 +24,27 @@ leader_trait_obsessed_1 = {
 	}
 }
 
+leader_trait_obsession_admiral_breakdown = {
+	cost = 0
+	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_obsessed.dds"
+	modifier = {
+		ship_fire_rate_mult = 0.1
+		ship_evasion_mult = 0.1
+		ship_weapon_damage = 0.2
+		ship_speed_mult = 0.2
+		ship_disengage_chance_mult = -1
+	}
+	self_modifier = {
+		species_leader_exp_gain = 0.25
+		leader_age = 60
+		leader_skill_levels = 5
+	}
+	leader_trait = { admiral }
+	leader_class = { admiral }
+	initial = no
+	randomized = no
+}
+
 leader_trait_obsession_fulfilled = {
 	cost = 0
 	icon = "gfx/interface/icons/traits/leader_traits/leader_trait_obsession_fulfilled.dds"
@@ -34,7 +55,7 @@ leader_trait_obsession_fulfilled = {
 	}
 	self_modifier = {
 		species_leader_exp_gain = 0.25
-		leader_age = 50
+		leader_age = 60
 		leader_skill_levels = 5
 	}
 	leader_trait = { scientist }
