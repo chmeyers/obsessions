@@ -121,7 +121,7 @@ create_obsessed_pirate_king = {
 				name = "NAME_Obsession"
 				effect = {
 					set_owner = event_target:pirate_band
-					create_privateer_ships_5 = yes
+					create_privateer_ships_3 = yes
 					set_leader = obsessed_scientist_breakdown
 					set_location = event_target:obsessions_planet_target
 					set_fleet_stance = aggressive
@@ -137,28 +137,21 @@ create_obsessed_country = {
 	if = {
 		limit = {
 			NOT = {
-				any_country = {
-					is_country_type = adversary
-					has_country_flag = obsession_country
-				}
+				exists = event_target:obsession_country
 			}
 		}
 		create_country = {
 			name = "NAME_Obsession"
 			species = event_target:obsessed_scientist_species
-			type = adversary
+			type = default
 			ethos = random
-			origin = origin_default
+			origin = origin_separatists
 			auto_delete = no
 			
 			effect = {
 				set_country_flag = obsession_country
 				set_leader = obsessed_scientist_breakdown
-				establish_contact = {
-					who = event_target:obsession_source_country location = event_target:obsessions_planet_target
-				}
 				establish_communications_no_message = event_target:obsession_source_country
-				save_global_event_target_as = obsession_created_country
 				add_resource = { influence = 200 }
 				add_resource = { energy = 15000 }
 				add_resource = { food = 5000 }
@@ -166,6 +159,7 @@ create_obsessed_country = {
 				add_resource = { alloys = 5000 }
 				add_resource = { consumer_goods = 5000 }
 				add_resource = { unity = 15000 }
+				save_global_event_target_as = obsession_country
 			}
 		}
 	}
@@ -176,26 +170,60 @@ obsessed_take_system = {
 		if = {
 			limit = { exists = starbase }
 			starbase = {
-				set_owner = event_target:obsession_created_country
+				owner = {
+					save_event_target_as = old_owner
+				}
+				set_owner = event_target:obsession_country
 			}
 		}
 		else = {
 			create_starbase = {
 				size = starbase_outpost
-				owner = event_target:obsession_created_country
+				owner = event_target:obsession_country
 			}
+		}
+		starbase = {
+			if = {
+				limit = { has_starbase_size = starbase_outpost }
+				set_starbase_size = starbase_starport
+				set_starbase_module = {
+					slot = 1
+					module = shipyard
+				}
+				set_starbase_module = {
+					slot = 2
+					module = shipyard
+				}
+			}
+			else_if = {
+				limit = {
+					NOT = { has_starbase_module = shipyard }
+				}
+				set_starbase_module = {
+					slot = 1
+					module = shipyard
+				}
+				set_starbase_module = {
+					slot = 2
+					module = shipyard
+				}
+			}
+		}
+		add_claims = {
+			who = event_target:old_owner
+			show_notification = no
 		}
 	}
 }
 
 obsessed_take_planet = {
-	set_owner = event_target:obsession_created_country
+	set_owner = event_target:obsession_country
 	if = {
 		limit = {
 			is_colony = no
 		}
 		create_colony = {
-			owner = event_target:obsession_created_country
+			owner = event_target:obsession_country
 			species = event_target:obsessed_scientist_species
 		}
 	}
@@ -209,12 +237,39 @@ create_obsessed_fleet = {
 		create_fleet = {
 			name = "NAME_Obsession"
 			effect = {
-				set_owner = event_target:obsession_created_country
+				set_owner = event_target:obsession_country
 				create_privateer_ships_3 = yes
 				set_location = event_target:obsessions_planet_target
 				set_fleet_stance = aggressive
 				set_aggro_range_measure_from = self
 				set_aggro_range = 800
+			}
+		}
+		create_fleet = {
+			name = "NAME_Obsession"
+			settings = { spawn_debris = no }
+			effect = {
+				set_owner = event_target:obsession_country
+				create_ship = {
+					name = "NAME_Unknown"
+					random_existing_design = colonizer
+					colonizer_species = event_target:obsessed_scientist_species
+					graphical_culture = event_target:obsessed_scientist_species
+				}
+				set_location = event_target:obsessions_planet_target
+			}
+		}
+		create_fleet = {
+			name = "NAME_Obsession"
+			settings = { spawn_debris = no }
+			effect = {
+				set_owner = event_target:obsession_country
+				create_ship = {
+					name = "NAME_Unknown"
+					random_existing_design = constructor
+					graphical_culture = event_target:obsessed_scientist_species
+				}
+				set_location = event_target:obsessions_planet_target
 			}
 		}
 	}

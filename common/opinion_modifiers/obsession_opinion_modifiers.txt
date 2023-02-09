@@ -1,0 +1,40 @@
+
+opinion_obsession_country_bad_start = {
+	opinion = {
+		base = -200
+	}
+
+	decay = {
+		base = 5
+	}
+}
+
+opinion_obsession_country_very_bad_start = {
+	opinion = {
+		base = -400
+	}
+
+	decay = {
+		base = 10
+	}
+}
+
+opinion_obsession_country_good_start = {
+	opinion = {
+		base = 200
+	}
+
+	decay = {
+		base = -5
+	}
+}
+
+opinion_obsession_country_very_good_start = {
+	opinion = {
+		base = 600
+	}
+
+	decay = {
+		base = -10
+	}
+}

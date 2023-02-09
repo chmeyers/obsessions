@@ -2906,7 +2906,7 @@ country_event = {
 				# The Underground proles are coming back.
 				create_country = {
 					name = "NAME_Alpine_Prole"
-					type = faction
+					type = faction # TODO(chmeyers): Choose the correct type
 					effect = {
 						establish_communications_no_message = root
 					}

@@ -212,10 +212,30 @@ leader_event = {
 					# Inform the owner of their disappearance.
 					country_event = { id = obsessions_mod_scientist.12 days = 1 }
 				}
+				# If they were fired, they'll be killed and garbage collected so we have
+				# to make a copy of them here. For simplicity we do this regardless of 
+				# how the scientist broke.
+				save_global_event_target_as = obsessed_scientist_breakdown_original
+				owner = {
+					clone_leader = {
+						target = event_target:obsessed_scientist_breakdown_original
+						effect = {
+							set_leader_flag = obsession_breakdown
+							set_variable = {
+								which = obsession_break_reason
+								value = event_target:obsessed_scientist_breakdown_original.obsession_break_reason
+							}
+							exile_leader_as = obsessed_scientist_breakdown
+							save_global_event_target_as = obsessed_scientist_breakdown
+						}
+					}
+				}
+
+				# We exile the original too, just for easier debugging.
 				remove_leader_flag = obsession_obsessed
 				set_leader_flag = obsession_breakdown
-				exile_leader_as = obsessed_scientist_breakdown
-				save_global_event_target_as = obsessed_scientist_breakdown
+				exile_leader_as = obsessed_scientist_breakdown_original
+
 				event_target:obsessions_planet_target = {
 					planet_event = {
 						id = obsessions_mod_scientist.13
@@ -1333,14 +1353,15 @@ country_event = {
 
 	option = {
 		name = obsessions_mod_scientist.31.a
-		country_event = { id = obsessions_mod_scientist.33 scopes = { from = from } }
+		custom_tooltip = obsessions_mod_scientist.31.a.tooltip
+		hidden_effect = {
+			country_event = { id = obsessions_mod_scientist.32 days = 45 scopes = { from = from } }
+		}
 	}
 
 	option = {
 		name = obsessions_mod_scientist.31.b
-		hidden_effect = {
-			country_event = { id = obsessions_mod_scientist.32 days = 45 scopes = { from = from } }
-		}
+		country_event = { id = obsessions_mod_scientist.33 scopes = { from = from } }
 	}
 }
 
@@ -1353,44 +1374,41 @@ country_event = {
 
 	immediate = {
 		# Spawn Obsession country and set things up for communications with source country
-		# Choices will depend on whether they are stealing the sytem from the player or not.
+		# This is the version that happens if the player ignores them.
 
 		# Check to ensure the planet is habitable. It should be since obsession planets always are,
 		# but something might have happened to render it uninhabitable. If that happened, spawn a pirate
 		# fleet with the obsessed scientist as the admiral.
-		# if = {
-		# 	limit = {
-		# 		OR = {
-		# 			is_a_planet = no
-		# 			habitable_planet = no
-		# 		}
-		# 	}
-		# 	create_obsessed_pirate_king = yes
-		# }
+		if = {
+			limit = {
+				from = { is_colonizable = no }
+			}
+			create_obsessed_pirate_king = yes
+		}
 		# For all other cases we currently have the obsessed just take over the system/colony.
-		# 1) If the system is unclaimed.
-		# 2) If the system is claimed by ai and the planet uncolonized.
-		# 3) If the system is claimed by ai and the planet colonized.
-		# 4) If the system is claimed by human and the planet uncolonized.
-		# 5) If the system is claimed by human and the planet colonized.
-		# else = {
-		# 	create_obsessed_country = yes
-		# 	obsessed_take_system = yes
-		# 	obsessed_take_planet = yes
-		# 	create_obsessed_fleet = yes
-		# }
-		
-		# trigger = {
-		# 	from = {
-		# 		NOT = { exists = solar_system.starbase }
-		# 	}
-		# }
-		# trigger = {
-		# 	from = {
-		# 		exists = solar_system.starbase
-		# 		NOT = { solar_system.starbase.owner = { is_same_value = root.owner } }
-		# 	}
-		# }
+		else = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				event_target:obsession_country = {
+					add_opinion_modifier = { who = root modifier = opinion_obsession_country_very_bad_start }
+					if = {
+						limit = {
+							exists = event_target:old_owner
+						}
+						declare_war = {
+							target = event_target:old_owner
+							name = {
+								key = "NAME_Obsession_War"
+							}
+							attacker_war_goal = "wg_independence"
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -1614,6 +1632,15 @@ country_event = {
 	is_triggered_only = yes
 	diplomatic = yes
 	diplomatic_title = BLANK_STRING
+
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_back
+			}
+		}
+		text = "obsessions_mod_scientist.35.a.response"
+	}
 	desc = "obsessions_mod_scientist.35.desc"
 
 	picture_event_data = {
@@ -1626,12 +1653,14 @@ country_event = {
 			event_target:obsessed_scientist_breakdown = { NOT = { has_leader_flag = asked_back } }
 		}
 		name = obsessions_mod_scientist.35.a
-		is_dialog_only = yes
-		response_text = obsessions_mod_scientist.35.a.response
 		hidden_effect = {
 			event_target:obsessed_scientist_breakdown = {
 				set_leader_flag = asked_back
 			}
+			# Reload the exact same dialog after setting the flag so that the options are 
+			# recalculated. We can't just use is_dialog_only for this as that won't show
+			# newly eligible options.
+			country_event = { id = obsessions_mod_scientist.35 scopes = { from = from } }
 		}
 	}
 
@@ -1671,6 +1700,23 @@ country_event = {
 	is_triggered_only = yes
 	diplomatic = yes
 	diplomatic_title = BLANK_STRING
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = admiral_join
+			}
+		}
+		text = "obsessions_mod_scientist.36.a.response"
+	}
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_back
+				NOT = { has_leader_flag = admiral_join }
+			}
+		}
+		text = "obsessions_mod_scientist.36.b.response_who"
+	}
 	desc = "obsessions_mod_scientist.36.desc"
 
 	picture_event_data = {
@@ -1679,7 +1725,123 @@ country_event = {
 	}
 
 	option = {
+		trigger = {
+			event_target:obsessed_scientist_breakdown = { NOT = { has_leader_flag = asked_back } }
+		}
 		name = obsessions_mod_scientist.36.a
+		hidden_effect = {
+			event_target:obsessed_scientist_breakdown = {
+				set_leader_flag = asked_back
+				set_leader_flag = admiral_join
+			}
+			# Reload the exact same dialog after setting the flag so that the options are 
+			# recalculated. We can't just use is_dialog_only for this as that won't show
+			# newly eligible options.
+			country_event = { id = obsessions_mod_scientist.36 scopes = { from = from } }
+		}
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessed_scientist_breakdown = { NOT = { has_leader_flag = asked_back } }
+		}
+		name = obsessions_mod_scientist.36.b
+		hidden_effect = {
+			event_target:obsessed_scientist_breakdown = {
+				set_leader_flag = asked_back
+				if = {
+					limit = { NOT = { has_leader_flag = asked_who } }
+					set_leader_flag = admiral_join
+				}
+			}
+			# Reload the exact same dialog after setting the flag so that the options are 
+			# recalculated. We can't just use is_dialog_only for this as that won't show
+			# newly eligible options.
+			country_event = { id = obsessions_mod_scientist.36 scopes = { from = from } }
+		}
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = admiral_join
+			}
+		}
+		name = obsessions_mod_scientist.36.c
+		custom_tooltip = obsessions_mod_scientist.36.c.tooltip
+		hidden_effect = {
+			clone_leader = {
+				target = event_target:obsessed_scientist_breakdown
+				class = admiral
+				skill = 5
+				traits = {
+					trait = leader_trait_engineer
+					trait = leader_trait_obsession_admiral_breakdown
+				}
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.36.d
+		custom_tooltip = obsessions_mod_scientist.36.d.tooltip
+		hidden_effect = {
+			from = {
+				create_colony = {
+					owner = root.owner
+					species = event_target:obsessed_scientist_species
+				}
+				create_pop = {
+					species = event_target:obsessed_scientist_species
+				}
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.36.e
+		response_text = obsessions_mod_scientist.36.e.response
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				event_target:obsession_country = {
+					add_opinion_modifier = { who = root modifier = opinion_obsession_country_very_bad_start }
+					declare_war = {
+						target = root
+						name = {
+							key = "NAME_Obsession_War"
+						}
+						attacker_war_goal = "wg_independence"
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.36.f
+		custom_tooltip = obsessions_mod_scientist.36.f.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				event_target:obsession_country = {
+					add_opinion_modifier = { who = root modifier = opinion_obsession_country_bad_start }
+					declare_war = {
+						target = root
+						name = {
+							key = "NAME_Obsession_War"
+						}
+						attacker_war_goal = "wg_independence"
+					}
+				}
+			}
+		}
 	}
 }
 

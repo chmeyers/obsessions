@@ -130,9 +130,9 @@ obsessions_mod_scientist.30.b:0 "You're done"
 # Obsession Country warning
 obsessions_mod_scientist.31.name:0 "Obsession Returns"
 obsessions_mod_scientist.31.desc:0 "We are receiving communications from around the planet [from.GetName]. It appears to be our missing obsessed scientist [event_target:obsessed_scientist_breakdown.GetName]."
-obsessions_mod_scientist.31.a:0 "On Screen"
-obsessions_mod_scientist.31.b:0 "Ignore it."
-obsessions_mod_scientist.31.b.tooltip:0 "They'll probably go away politely and not cause trouble, right?."
+obsessions_mod_scientist.31.a:0 "Ignore it."
+obsessions_mod_scientist.31.a.tooltip:0 "They'll probably go away politely and not cause trouble, right?."
+obsessions_mod_scientist.31.b:0 "On Screen"
 
 obsessions_mod_scientist.33.name:0 "Obsession Returns"
 obsessions_mod_scientist.33.desc:0 "It is I, [event_target:obsessed_scientist_breakdown.GetName], returned from the void. Yes, yes. Returned. All those who doubted should be afraid. My followers and I... yes, my followers, we have returned to see an end to what went wrong. An end to those that did wrong, perhaps. Hello. Where was I? Yes. It is I."
@@ -165,6 +165,28 @@ obsessions_mod_scientist.35.b:0 "Alright."
 obsessions_mod_scientist.35.b.tooltip:0 "[event_target:obsessed_scientist_breakdown.GetName] joins as an experienced admiral, only slightly crazed."
 obsessions_mod_scientist.35.c:0 "You are on your own."
 obsessions_mod_scientist.35.c.tooltip:0 "You really think that they'll just go away if you go this route?"
+
+NAME_Obsession_War:0 "Obsession War"
+opinion_obsession_country_bad_start:0 "Dealt poorly with their obsession."
+opinion_obsession_country_very_bad_start:0 "Dealt very poorly with their obsession."
+opinion_obsession_country_good_start:0 "Dealt well with their obsession."
+opinion_obsession_country_very_good_start:0 "Started off positively."
+
+obsessions_mod_scientist.36.name:0 "Obsession Returns"
+obsessions_mod_scientist.36.desc:0 "Yes, one would think that [event_target:obsessions_planet_target.GetName] was an excellent spot for a colony, yet here it remains untouched. Perhaps you did read my research reports after all. My reports were why you held off colonizing here, correct? My followers and I have been investigating the planet. My theories were right. I was right! I think. I have trouble remembering exactly what it was that was the problem. Things are better now. We took care of things. It's safe now. My followers seem to like it."
+obsessions_mod_scientist.36.a:0 "Come back, we can use a scientist."
+obsessions_mod_scientist.36.a.response:0 "$obsessions_mod_scientist.35.a.response$"
+obsessions_mod_scientist.36.b:0 "Come back, we need you."
+obsessions_mod_scientist.36.b.response_who:0 "Need me? You need me? Ha. A moment ago you didn't even remember who I was, you had to ask, and now you say that you need me. No, I am with my people now. We want this planet."
+obsessions_mod_scientist.36.c:0 "Alright."
+obsessions_mod_scientist.36.c.tooltip:0 "[event_target:obsessed_scientist_breakdown.GetName] joins as an experienced admiral, only slightly crazed."
+obsessions_mod_scientist.36.d:0 "You and your followers can have it."
+obsessions_mod_scientist.36.d.tooltip:0 "[event_target:obsessed_scientist_breakdown.GetName] will start a colony under our control."
+obsessions_mod_scientist.36.e:0 "You're crazy."
+obsessions_mod_scientist.36.e.response:0 "We'll see."
+obsessions_mod_scientist.36.f:0 "End Communications."
+obsessions_mod_scientist.36.f.tooltip:0 "You really think that they'll just go away if you go this route?"
+
 
  ####################################
  # Anomaly Categories
