@@ -38,3 +38,33 @@ opinion_obsession_country_very_good_start = {
 		base = -10
 	}
 }
+
+opinion_obsession_took_system = {
+	opinion = {
+		base = -200
+	}
+
+	decay = {
+		base = 5
+	}
+}
+
+opinion_obsession_took_colony = {
+	opinion = {
+		base = -200
+	}
+
+	decay = {
+		base = 5
+	}
+}
+
+opinion_obsession_refused_colony = {
+	opinion = {
+		base = 100
+	}
+
+	decay = {
+		base = -5
+	}
+}

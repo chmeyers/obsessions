@@ -1,3 +1,7 @@
+@breaking_reason_fired = 2
+@breaking_reason_denied = 3
+@breaking_reason_timeout = 4
+
 give_next_shield_tech_option_effect = {
 	if = {
 		limit = { NOT = { has_technology = tech_shields_2 }  }
@@ -152,11 +156,12 @@ create_obsessed_country = {
 				set_country_flag = obsession_country
 				set_leader = obsessed_scientist_breakdown
 				establish_communications_no_message = event_target:obsession_source_country
+				copy_techs_from = { target = event_target:obsession_source_country }
 				add_resource = { influence = 200 }
-				add_resource = { energy = 15000 }
+				add_resource = { energy = 10000 }
 				add_resource = { food = 5000 }
 				add_resource = { minerals = 5000 }
-				add_resource = { alloys = 5000 }
+				add_resource = { alloys = 2500 }
 				add_resource = { consumer_goods = 5000 }
 				add_resource = { unity = 15000 }
 				save_global_event_target_as = obsession_country
@@ -209,9 +214,101 @@ obsessed_take_system = {
 				}
 			}
 		}
-		add_claims = {
-			who = event_target:old_owner
-			show_notification = no
+		if = {
+			limit = { exists = event_target:old_owner }
+			event_target:obsession_country = {
+				establish_communications_no_message = event_target:old_owner
+			}
+			add_claims = {
+				who = event_target:old_owner
+				show_notification = no
+			}
+		}
+	}
+}
+
+obsessed_root_take_system = {
+	solar_system = {
+		if = {
+			limit = { exists = starbase }
+			starbase = {
+				owner = {
+					save_event_target_as = old_owner
+				}
+				set_owner = root
+			}
+		}
+		else = {
+			create_starbase = {
+				size = starbase_outpost
+				owner = root
+			}
+		}
+		if = {
+			limit = { exists = event_target:old_owner }
+			add_claims = {
+				who = event_target:old_owner
+				show_notification = no
+			}
+			event_target:old_owner = {
+				add_opinion_modifier = { who = root modifier = opinion_obsession_took_system }
+			}
+		}
+	}
+}
+
+obsessed_root_take_planet = {
+	set_owner = root
+	if = {
+		limit = {
+			is_colony = no
+		}
+		create_colony = {
+			owner = root
+			species = event_target:obsessed_scientist_species
+		}
+	}
+	if = {
+		limit = { exists = event_target:old_owner }
+		event_target:old_owner = {
+			add_opinion_modifier = { who = root modifier = opinion_obsession_took_colony }
+		}
+	}
+}
+
+obsessed_only_war = {
+	if = {
+		limit = {
+			exists = event_target:old_owner
+			NOT = { event_target:old_owner = { is_same_empire = event_target:obsession_source_country } }
+		}
+		event_target:obsession_country = {
+			declare_war = {
+				target = event_target:old_owner
+				name = {
+					key = "NAME_Obsession_War"
+				}
+				attacker_war_goal = "wg_independence"
+				effect = { save_event_target_as = obsession_war }
+			}
+		}
+	}
+}
+
+obsessed_root_war = {
+	if = {
+		limit = {
+			exists = event_target:old_owner
+			NOT = { event_target:old_owner = { is_same_empire = event_target:obsession_source_country } }
+		}
+		root = {
+			declare_war = {
+				target = event_target:old_owner
+				name = {
+					key = "NAME_Obsession_War"
+				}
+				attacker_war_goal = "wg_conquest"
+			}
 		}
 	}
 }
@@ -271,6 +368,74 @@ create_obsessed_fleet = {
 				}
 				set_location = event_target:obsessions_planet_target
 			}
+		}
+	}
+}
+
+set_obsessed_origin_opinion = {
+	if = {
+		limit = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = agreed_to_support
+			}
+		}
+		event_target:obsession_country = {
+			add_opinion_modifier = { who = root modifier = opinion_obsession_country_very_good_start }
+		}
+	}
+	else_if = {
+		limit = {
+			event_target:obsessed_scientist_breakdown = {
+				calc_true_if = {
+					amount >= 3
+					check_variable = { which = obsession_break_reason value = @breaking_reason_fired }
+					check_variable = { which = obsession_break_reason value = @breaking_reason_denied }
+					check_variable = { which = obsession_break_reason value = @breaking_reason_timeout }
+					has_leader_flag = asked_who
+					has_leader_flag = asked_crazy
+					NOT = { has_leader_flag = asked_polite }
+				}
+			}
+		}
+		event_target:obsession_country = {
+			add_opinion_modifier = { who = root modifier = opinion_obsession_country_very_bad_start }
+		}
+	}
+	else_if = {
+		limit = {
+			event_target:obsessed_scientist_breakdown = {
+				calc_true_if = {
+					amount >= 2
+					check_variable = { which = obsession_break_reason value = @breaking_reason_fired }
+					check_variable = { which = obsession_break_reason value = @breaking_reason_denied }
+					check_variable = { which = obsession_break_reason value = @breaking_reason_timeout }
+					has_leader_flag = asked_who
+					has_leader_flag = asked_crazy
+					NOT = { has_leader_flag = asked_polite }
+				}
+			}
+		}
+		event_target:obsession_country = {
+			add_opinion_modifier = { who = root modifier = opinion_obsession_country_bad_start }
+		}
+	}
+	# amount = 1 leads to the neutral start.
+	else_if = {
+		limit = {
+			event_target:obsessed_scientist_breakdown = {
+				calc_true_if = {
+					amount = 0
+					check_variable = { which = obsession_break_reason value = @breaking_reason_fired }
+					check_variable = { which = obsession_break_reason value = @breaking_reason_denied }
+					check_variable = { which = obsession_break_reason value = @breaking_reason_timeout }
+					has_leader_flag = asked_who
+					has_leader_flag = asked_crazy
+					NOT = { has_leader_flag = asked_polite }
+				}
+			}
+		}
+		event_target:obsession_country = {
+			add_opinion_modifier = { who = root modifier = opinion_obsession_country_good_start }
 		}
 	}
 }

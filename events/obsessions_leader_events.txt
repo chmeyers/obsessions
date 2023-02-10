@@ -1853,6 +1853,63 @@ country_event = {
 	is_triggered_only = yes
 	diplomatic = yes
 	diplomatic_title = BLANK_STRING
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = admiral_join
+			}
+		}
+		text = "obsessions_mod_scientist.37.a.response"
+	}
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_back
+				NOT = { has_leader_flag = admiral_join }
+			}
+		}
+		text = "obsessions_mod_scientist.37.b.response_who"
+	}
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_back
+				NOT = { has_leader_flag = admiral_join }
+				has_leader_flag = asked_crazy
+			}
+		}
+		text = "obsessions_mod_scientist.37.b.response_crazy"
+	}
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_back
+				NOT = { has_leader_flag = admiral_join }
+				check_variable = { which = obsession_break_reason value = @breaking_reason_fired }
+			}
+		}
+		text = "obsessions_mod_scientist.37.b.response_fired"
+	}
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_back
+				NOT = { has_leader_flag = admiral_join }
+				check_variable = { which = obsession_break_reason value = @breaking_reason_denied }
+			}
+		}
+		text = "obsessions_mod_scientist.37.b.response_denied"
+	}
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_back
+				NOT = { has_leader_flag = admiral_join }
+				check_variable = { which = obsession_break_reason value = @breaking_reason_timeout }
+			}
+		}
+		text = "obsessions_mod_scientist.37.b.response_timeout"
+	}
 	desc = "obsessions_mod_scientist.37.desc"
 
 	picture_event_data = {
@@ -1861,7 +1918,140 @@ country_event = {
 	}
 
 	option = {
+		trigger = {
+			event_target:obsessed_scientist_breakdown = { NOT = { has_leader_flag = asked_back } }
+		}
 		name = obsessions_mod_scientist.37.a
+		hidden_effect = {
+			event_target:obsessed_scientist_breakdown = {
+				set_leader_flag = asked_back
+				if = {
+					limit = {
+						NOT = { has_leader_flag = asked_crazy }
+						NOT = { check_variable = { which = obsession_break_reason value = @breaking_reason_fired } }
+						NOT = { check_variable = { which = obsession_break_reason value = @breaking_reason_denied } }
+						NOT = { check_variable = { which = obsession_break_reason value = @breaking_reason_timeout } }
+					}
+					set_leader_flag = admiral_join
+				}
+			}
+			# Reload the exact same dialog after setting the flag so that the options are 
+			# recalculated. We can't just use is_dialog_only for this as that won't show
+			# newly eligible options.
+			country_event = { id = obsessions_mod_scientist.37 scopes = { from = from } }
+		}
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessed_scientist_breakdown = { NOT = { has_leader_flag = asked_back } }
+		}
+		name = obsessions_mod_scientist.37.b
+		hidden_effect = {
+			event_target:obsessed_scientist_breakdown = {
+				set_leader_flag = asked_back
+				if = {
+					limit = {
+						NOT = { has_leader_flag = asked_who }
+						NOT = { check_variable = { which = obsession_break_reason value = @breaking_reason_fired } }
+						NOT = { check_variable = { which = obsession_break_reason value = @breaking_reason_denied } }
+						NOT = { check_variable = { which = obsession_break_reason value = @breaking_reason_timeout } }
+					}
+					set_leader_flag = admiral_join
+				}
+			}
+			# Reload the exact same dialog after setting the flag so that the options are 
+			# recalculated. We can't just use is_dialog_only for this as that won't show
+			# newly eligible options.
+			country_event = { id = obsessions_mod_scientist.37 scopes = { from = from } }
+		}
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = admiral_join
+			}
+		}
+		name = obsessions_mod_scientist.37.c
+		custom_tooltip = obsessions_mod_scientist.37.c.tooltip
+		hidden_effect = {
+			clone_leader = {
+				target = event_target:obsessed_scientist_breakdown
+				class = admiral
+				skill = 5
+				traits = {
+					trait = leader_trait_engineer
+					trait = leader_trait_obsession_admiral_breakdown
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessed_scientist_breakdown = {
+				has_leader_flag = asked_polite
+			}
+		}
+		name = obsessions_mod_scientist.37.d
+		custom_tooltip = obsessions_mod_scientist.37.d.tooltip
+		hidden_effect = {
+			from = {
+				create_pop = {
+					species = event_target:obsessed_scientist_species
+				}
+				every_owned_pop = {
+					pop_change_ethic = ethic_materialist
+				}
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.37.e
+		response_text = obsessions_mod_scientist.37.e.response
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				event_target:obsession_country = {
+					add_opinion_modifier = { who = root modifier = opinion_obsession_country_very_bad_start }
+					declare_war = {
+						target = root
+						name = {
+							key = "NAME_Obsession_War"
+						}
+						attacker_war_goal = "wg_independence"
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.37.f
+		custom_tooltip = obsessions_mod_scientist.37.f.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				event_target:obsession_country = {
+					add_opinion_modifier = { who = root modifier = opinion_obsession_country_bad_start }
+					declare_war = {
+						target = root
+						name = {
+							key = "NAME_Obsession_War"
+						}
+						attacker_war_goal = "wg_independence"
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -1881,7 +2071,59 @@ country_event = {
 	}
 
 	option = {
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = influence
+					value >= 50
+				}
+				resource_stockpile_compare = {
+					resource = unity
+					value >= 1000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				influence = -50
+			}
+			add_resource = {
+				unity = -1000
+			}
+		}
 		name = obsessions_mod_scientist.38.a
+		custom_tooltip = obsessions_mod_scientist.38.a.tooltip
+		hidden_effect = {
+			from = {
+				create_colony = {
+					owner = root.owner
+					species = event_target:obsessed_scientist_species
+				}
+				create_pop = {
+					species = event_target:obsessed_scientist_species
+				}
+				solar_system = {
+					create_starbase = {
+						size = starbase_outpost
+						owner = event_target:obsession_country
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.38.b
+		custom_tooltip = obsessions_mod_scientist.38.b.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				set_obsessed_origin_opinion = yes
+			}
+		}
 	}
 }
 
@@ -1901,7 +2143,154 @@ country_event = {
 	}
 
 	option = {
+		trigger = {
+			exists = from.solar_system.starbase
+			from.solar_system.starbase.owner = {
+				opinion_level = { who = root level <= neutral }
+				OR = {
+					is_subject = no
+					NOT = { overlord = { is_same_value = root } }
+				}
+				NOT = { is_overlord_to = root }
+				has_truce = root
+				is_in_federation_with = root
+				has_defensive_pact = root
+			}
+		}
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = influence
+					value >= 50
+				}
+				resource_stockpile_compare = {
+					resource = unity
+					value >= 1000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				influence = -50
+			}
+			add_resource = {
+				unity = -1000
+			}
+		}
 		name = obsessions_mod_scientist.39.a
+		custom_tooltip = obsessions_mod_scientist.39.a.tooltip
+		hidden_effect = {
+			from = {
+				create_colony = {
+					owner = root.owner
+					species = event_target:obsessed_scientist_species
+				}
+				create_pop = {
+					species = event_target:obsessed_scientist_species
+				}
+				obsessed_root_take_system = yes
+				obsessed_root_war = yes
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.39.b
+		custom_tooltip = obsessions_mod_scientist.39.b.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_only_war = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				set_obsessed_origin_opinion = yes
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			exists = from.solar_system.starbase
+			from.solar_system.starbase.owner = {
+				opinion_level = { who = root level >= neutral }
+			}
+		}
+		name = obsessions_mod_scientist.39.c
+		custom_tooltip = obsessions_mod_scientist.39.c.tooltip
+		hidden_effect = {
+			from = {
+				solar_system.starbase.owner = {
+					add_opinion_modifier = { who = root modifier = opinion_obsession_refused_colony }
+				}
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_only_war = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				set_obsessed_origin_opinion = yes
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			exists = from.solar_system.starbase
+			from.solar_system.starbase.owner = {
+				is_subject = yes
+				overlord = { is_same_value = root }
+				NOT = { is_at_war_with = root }
+			}
+		}
+		name = obsessions_mod_scientist.39.d
+		custom_tooltip = obsessions_mod_scientist.39.d.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_root_take_system = yes
+				# No war as we are taking it from a subject
+				create_colony = {
+					owner = root.owner
+					species = event_target:obsessed_scientist_species
+				}
+				create_pop = {
+					species = event_target:obsessed_scientist_species
+				}
+			}
+		}
+	}
+
+	option = {
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 5000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -5000
+			}
+		}
+		name = obsessions_mod_scientist.39.e
+		custom_tooltip = obsessions_mod_scientist.39.e.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_only_war = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				event_target:obsession_country = {
+					add_opinion_modifier = { who = root modifier = opinion_obsession_country_very_good_start }
+					add_resource = {
+						energy = 5000
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -1921,7 +2310,134 @@ country_event = {
 	}
 
 	option = {
+		trigger = {
+			exists = from.solar_system.starbase
+			from.solar_system.starbase.owner = {
+				OR = {
+					is_subject = no
+					NOT = { overlord = { is_same_value = root } }
+				}
+				NOT = { is_overlord_to = root }
+				has_truce = root
+				is_in_federation_with = root
+				has_defensive_pact = root
+			}
+		}
 		name = obsessions_mod_scientist.40.a
+		custom_tooltip = obsessions_mod_scientist.40.a.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_take_planet = yes
+				obsessed_only_war = yes
+				create_obsessed_fleet = yes
+				event_target:obsession_country = {
+					add_opinion_modifier = { who = root modifier = opinion_obsession_country_very_good_start }
+				}
+				# We join in the war
+				root = {
+					join_war_on_side = {
+						war = event_target:obsession_war
+						side = event_target:obsession_country
+					}
+				}
+			}
+		}
+	}
+
+	# The rest of the options copy text from obsessions_mod_scientist.39
+	option = {
+		name = obsessions_mod_scientist.39.b
+		custom_tooltip = obsessions_mod_scientist.39.b.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_only_war = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				set_obsessed_origin_opinion = yes
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			exists = from.solar_system.starbase
+			from.solar_system.starbase.owner = {
+				opinion_level = { who = root level >= neutral }
+			}
+		}
+		name = obsessions_mod_scientist.39.c
+		custom_tooltip = obsessions_mod_scientist.39.c.tooltip
+		hidden_effect = {
+			from = {
+				solar_system.starbase.owner = {
+					add_opinion_modifier = { who = root modifier = opinion_obsession_refused_colony }
+				}
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_only_war = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				set_obsessed_origin_opinion = yes
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			exists = from.solar_system.starbase
+			from.solar_system.starbase.owner = {
+				is_subject = yes
+				overlord = { is_same_value = root }
+				NOT = { is_at_war_with = root }
+			}
+		}
+		name = obsessions_mod_scientist.39.d
+		custom_tooltip = obsessions_mod_scientist.39.d.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_root_take_system = yes
+				obsessed_root_take_planet = yes
+				# No war as we are taking it from a subject
+			}
+		}
+	}
+
+	option = {
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 5000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -5000
+			}
+		}
+		name = obsessions_mod_scientist.39.e
+		custom_tooltip = obsessions_mod_scientist.39.e.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_only_war = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				event_target:obsession_country = {
+					add_opinion_modifier = { who = root modifier = opinion_obsession_country_very_good_start }
+					add_resource = {
+						energy = 5000
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -1941,6 +2457,79 @@ country_event = {
 	}
 
 	option = {
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 5000
+				}
+			}
+		}
+		owner = {
+			add_resource = {
+				energy = -5000
+			}
+		}
 		name = obsessions_mod_scientist.41.a
+		custom_tooltip = obsessions_mod_scientist.41.a.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_only_war = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				event_target:obsession_country = {
+					add_opinion_modifier = { who = root modifier = opinion_obsession_country_very_good_start }
+					add_resource = {
+						energy = 5000
+					}
+				}
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.41.b
+		custom_tooltip = obsessions_mod_scientist.41.b.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_only_war = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				set_obsessed_origin_opinion = yes
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_mod_scientist.41.c
+		custom_tooltip = obsessions_mod_scientist.41.c.tooltip
+		hidden_effect = {
+			from = {
+				create_obsessed_country = yes
+				obsessed_take_system = yes
+				obsessed_only_war = yes
+				obsessed_take_planet = yes
+				create_obsessed_fleet = yes
+				add_claims = {
+					who = root
+					show_notification = no
+				}
+			}
+			event_target:obsession_country = {
+				add_opinion_modifier = { who = root modifier = opinion_obsession_country_very_bad_start }
+				declare_war = {
+					target = root
+					name = {
+						key = "NAME_Obsession_War"
+					}
+					attacker_war_goal = "wg_independence"
+					effect = { save_event_target_as = obsession_war }
+				}
+			}
+		}
 	}
 }
