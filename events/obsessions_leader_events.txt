@@ -1525,7 +1525,10 @@ country_event = {
 
 	option = {
 		trigger = {
-			from = { is_colonizable = no }
+			from = {
+				habitable_planet = no
+				is_colony = no
+			}
 		}
 		name = obsessions_mod_scientist.34.a
 		hidden_effect = {
@@ -1536,7 +1539,7 @@ country_event = {
 	option = {
 		trigger = {
 			from = {
-				is_colonizable = yes
+				habitable_planet = yes
 				is_colony = no
 				exists = solar_system.starbase
 				solar_system.starbase.owner = { is_same_value = root.owner }
@@ -1551,7 +1554,6 @@ country_event = {
 	option = {
 		trigger = {
 			from = {
-				is_colonizable = yes
 				is_colony = yes
 				exists = solar_system.starbase
 				solar_system.starbase.owner = { is_same_value = root.owner }
@@ -1566,7 +1568,7 @@ country_event = {
 	option = {
 		trigger = {
 			from = {
-				is_colonizable = yes
+				habitable_planet = yes
 				is_colony = no
 				NOT = { exists = solar_system.starbase }
 			}
@@ -1580,7 +1582,7 @@ country_event = {
 	option = {
 		trigger = {
 			from = {
-				is_colonizable = yes
+				habitable_planet = yes
 				is_colony = no
 				exists = solar_system.starbase
 				solar_system.starbase.owner = { NOT = { is_same_value = root.owner } }
@@ -1595,7 +1597,6 @@ country_event = {
 	option = {
 		trigger = {
 			from = {
-				is_colonizable = yes
 				is_colony = yes
 				exists = solar_system.starbase
 				solar_system.starbase.owner = { NOT = { is_same_value = root.owner } }
@@ -1611,7 +1612,6 @@ country_event = {
 		# Colony owned by someone different than the starbase
 		trigger = {
 			from = {
-				is_colonizable = yes
 				is_colony = yes
 				exists = solar_system.starbase
 				owner = { NOT = { is_same_value = solar_system.starbase.owner } }
@@ -2105,7 +2105,7 @@ country_event = {
 				solar_system = {
 					create_starbase = {
 						size = starbase_outpost
-						owner = event_target:obsession_country
+						owner = root.owner
 					}
 				}
 			}
@@ -2261,6 +2261,20 @@ country_event = {
 	}
 
 	option = {
+		trigger = {
+			NOT = {
+				from.solar_system.starbase.owner = {
+					OR = {
+						is_subject = no
+						NOT = { overlord = { is_same_value = root } }
+					}
+					NOT = { is_overlord_to = root }
+					has_truce = root
+					is_in_federation_with = root
+					has_defensive_pact = root
+				}
+			}
+		}
 		allow = {
 			owner = {
 				resource_stockpile_compare = {
@@ -2408,6 +2422,20 @@ country_event = {
 	}
 
 	option = {
+		trigger = {
+			NOT = {
+				from.solar_system.starbase.owner = {
+					OR = {
+						is_subject = no
+						NOT = { overlord = { is_same_value = root } }
+					}
+					NOT = { is_overlord_to = root }
+					has_truce = root
+					is_in_federation_with = root
+					has_defensive_pact = root
+				}
+			}
+		}
 		allow = {
 			owner = {
 				resource_stockpile_compare = {
