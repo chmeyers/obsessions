@@ -2845,9 +2845,9 @@ country_event = {
 				max = @tier3unitymax
 			}
 		}
-		# hidden_effect = {
-		# 	country_event = { id = obsessions_mod.300 days = 15000 }
-		# }
+		hidden_effect = {
+			country_event = { id = obsessions_mod.300 days = 15000 }
+		}
 	}
 
 	# No Xenos!
@@ -2880,9 +2880,9 @@ country_event = {
 				max = @tier1unitymax
 			}
 		}
-		# hidden_effect = {
-		# 	country_event = { id = obsessions_mod.300 days = 15000 }
-		# }
+		hidden_effect = {
+			country_event = { id = obsessions_mod.300 days = 15000 }
+		}
 	}
 }
 
@@ -2906,9 +2906,10 @@ country_event = {
 				# The Underground proles are coming back.
 				create_country = {
 					name = "NAME_Alpine_Prole"
-					type = faction # TODO(chmeyers): Choose the correct type
+					type = default
 					effect = {
 						establish_communications_no_message = root
+						save_event_target_as = prole_country
 					}
 				}
 				while = {
@@ -2917,7 +2918,7 @@ country_event = {
 						name = "NAME_Alpine_Proles"
 						owner = last_created_country
 						species = event_target:obsession_alpine_proles
-						type = "assault_army"
+						type = "defense_army"
 					}
 				}
 				create_pop = {
@@ -2932,11 +2933,44 @@ country_event = {
 				create_pop = {
 					species = event_target:obsession_alpine_proles
 				}
+				event_target:prole_country = {
+					declare_war = {
+						target = root
+						name = {
+							key = "NAME_Alpine_Proles_War"
+						}
+						attacker_war_goal = "wg_independence"
+					}
+				}
+				solar_system = {
+					starbase = {
+						set_owner = event_target:prole_country
+					}
+					add_claims = {
+						who = root
+						show_notification = no
+					}
+				}
+				
 			}
-			# TODO(chmeyers): Implement!
-			#country_event = { id = obsessions_mod.301 }
+			country_event = { id = obsessions_mod.301 }
 		}
 	}
+}
+
+country_event = {
+	id = obsessions_mod.301
+	title = "obsessions_mod.301.name"
+	desc = "obsessions_mod.301.desc"
+	picture = GFX_evt_hidden_door
+	location = event_target:obsessions_planet_target
+	is_triggered_only = yes
+	auto_opens = yes
+
+	option = {
+		name = obsessions_mod.301.a
+	}
+	
 }
 
 # Special Project complete arctic
