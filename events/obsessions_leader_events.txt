@@ -260,6 +260,7 @@ country_event = {
 				leader_class = scientist
 				has_skill <= 4
 				leader_age <= 60
+				is_event_leader = no
 				NOT = { has_leader_flag = obsession_obsessed }
 			}
 			# This scientist found their notes and will inherit the dead leader's obsession

@@ -1,0 +1,23 @@
+﻿l_english:
+
+
+obsessions_midgame.fired:0 "We don't need idle scientists."
+obsessions_midgame.very_well:0 "Very well."
+
+
+black_hole_obsession_chain_title:0 "Black Hole Temporal Analysis"
+black_hole_obsession_chain_desc:0 "One of our scientists believes that a detailed comparative analysis of several black holes will provide insight into their temporal dilation effects. They insist that this isn't just an excuse for them to go traipsing around the galaxy."
+obsession_black_holes_analyzed:0 "Black Holes analyzed"
+OBSESSIONS_MIDGAME_BLACK_HOLE_PROJECT:0 "Black Hole Temporal Analysis"
+
+obsessions_midgame.201.name:0 "Idle Hands"
+obsessions_midgame.201.desc:0 "One of our idle scientists has been spending an inordinate amount of time analyzing the astronomical data of distant black holes. This seems to have become a bit of an obsession with them. They would like to begin an expedition to observe several black holes. They have put together a list of candidate systems that meet their needs."
+
+obsessions_midgame.401.name:0 "Black Hole analyzed"
+obsessions_midgame.401.desc:0 "[leader.GetName] has completed the temporal analysis of another black hole."
+obsessions_midgame.401.a:0 "Finally time for results."
+
+#TODO(chmeyers): Update these.
+obsessions_midgame.501.name:0 "Did you learn anything?"
+obsessions_midgame.501.desc:0 "[from.GetName] has finished analyzing the differing temporal signatures of the various black holes that they have investigated."
+obsessions_midgame.501.a:0 "Okay"

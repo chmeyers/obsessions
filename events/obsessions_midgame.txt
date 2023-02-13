@@ -1,0 +1,375 @@
+# Midgame obsessions events
+namespace = obsessions_midgame
+
+@obsessions_midgame_chance_spawn = 1
+@obsessions_midgame_chance_nospawn = 2
+
+country_event = {
+	id = obsessions_midgame.1
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		# Only trigger for a human in single player games that haven't already spawned
+		# a possible obsession anomaly by the midgame.
+		NOT = { has_global_flag = obsessions_mod_spawned_obsession }
+		is_multiplayer = no
+		is_ai = no
+	}
+
+	immediate = {
+		# One third chance of spawning when trigger met. Since this event fires at the midgame,
+		# wait a random time before triggering the actual event.
+		random_list = {
+			@obsessions_midgame_chance_spawn = {
+				country_event = { id = obsessions_midgame.2 days = 1000 random = 500 }
+			}
+			@obsessions_midgame_chance_nospawn = {}
+		}
+	}
+	
+}
+
+country_event = {
+	id = obsessions_midgame.2
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		# Check whether they have an eligible scientist for a midgame obsession
+		# The scientist must be skill level <=5, young-ish, and idle or assigned to assisting research.
+		random_owned_leader = {
+			limit = {
+				leader_class = scientist
+				has_skill <= 5
+				leader_age <= 80
+				is_event_leader = no
+				NOT = { has_leader_flag = obsession_obsessed }
+				OR = {
+					is_idle = yes
+					AND = {
+						exists = fleet
+						OR = {
+							fleet = { has_fleet_order = no }
+							fleet = { has_fleet_order = assist_research_order }
+						}
+					}
+				}
+			}
+			# Found an eligible scientist. Trigger an obsession on them.
+			set_global_flag = obsessions_mod_spawned_obsession
+			random_list = {
+				# Black Holes
+				1 = {
+					modifier = {
+						add = 10
+						is_specialist_physics = yes
+					}
+					modifier = {
+						add = 100
+						has_trait = leader_trait_expertise_computing
+					}
+					leader_event = { id = obsessions_midgame.101 }
+				}
+				# # Pulsars
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		is_specialist_physics = yes
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		has_trait = leader_trait_expertise_field_manipulation
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.102 }
+				# }
+				# # Neutron Stars
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		OR = {
+				# 			is_specialist_physics = yes
+				# 			is_specialist_engineer = yes
+				# 		}
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		OR = {
+				# 			has_trait = leader_trait_expertise_particles
+				# 			has_trait = leader_trait_expertise_propulsion
+				# 		}
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.103 }
+				# }
+				# # Tomb Worlds
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		is_specialist_society = yes
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		has_trait = leader_trait_expertise_new_worlds
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.104 }
+				# }
+				# # Gaia Worlds
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		is_specialist_society = yes
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		has_trait = leader_trait_expertise_biology
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.105 }
+				# }
+				# # Empire Capitals
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		is_specialist_society = yes
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		has_trait = leader_trait_expertise_statecraft
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.106 }
+				# }
+				# # Enclaves
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		is_specialist_society = yes
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		has_trait = leader_trait_expertise_military_theory
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.107 }
+				# }
+				# # Relic/Ecu Worlds
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		is_specialist_engineer = yes
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		has_trait = leader_trait_expertise_industry
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.108 }
+				# }
+				# # Megastructures
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		is_specialist_engineer = yes
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		has_trait = leader_trait_expertise_voidcraft
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.109 }
+				# }
+				# # L-Gates
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		is_specialist_engineer = yes
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		has_trait = leader_trait_expertise_materials
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.110 }
+				# }
+			}
+		}
+	}
+}
+
+# Black Holes
+# obsessions_midgame.101
+leader_event = {
+	id = obsessions_midgame.101
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		# Make sure there are enough of the right object to trigger on.
+		if = {
+			limit = {
+				count_system = {
+					limit = {
+						is_star_class = sc_black_hole
+						NOT = { has_star_flag = hostile_system }
+						NOT = { has_star_flag = marauder_system }
+						is_pirate_system = no
+					}
+					count >= 7
+				}
+			}
+			owner = { country_event = { id = obsessions_midgame.201 scopes = { from = root } } }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.201
+	title = "obsessions_midgame.201.name"
+	desc = "obsessions_midgame.201.desc"
+	picture = GFX_evt_black_hole
+	is_triggered_only = yes
+
+	immediate = {
+		# Create Obsessed scientist
+		from = {
+			set_leader_flag = obsession_obsessed_midgame
+			add_trait = leader_trait_obsessed_1
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.very_well"
+		begin_event_chain = {
+			event_chain = black_hole_obsession_chain
+			target = root
+		}
+		tooltip = { from = { add_trait = leader_trait_obsessed_1 } }
+		hidden_effect = { country_event = { id = obsessions_midgame.301 } }
+	}
+
+	option = {
+		name = "obsessions_midgame.fired"
+		from = { kill_leader = { show_notification = no } }
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.301
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		while = {
+			count = 10
+			random_system = {
+				limit = {
+					is_star_class = sc_black_hole
+					NOT = { has_star_flag = hostile_system }
+					NOT = { has_star_flag = marauder_system }
+					is_pirate_system = no
+					NOT = { has_star_flag = obsession_midgame_project }
+				}
+				set_star_flag = obsession_midgame_project
+				root = {
+					# TODO(chmeyers): Do these have to be unique names?
+					enable_special_project = {
+						name = "OBSESSIONS_MIDGAME_BLACK_HOLE_PROJECT"
+						location = prev.system_star
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_midgame.401
+	title = "obsessions_midgame.401.name"
+	desc = "obsessions_midgame.401.desc"
+	picture = GFX_evt_black_hole
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			add_event_chain_counter = {
+				event_chain = black_hole_obsession_chain
+				counter = obsession_black_holes_analyzed
+				amount = 1
+			}
+		}
+	}
+
+	option = {
+		# TODO(chmeyers): Trigger this one if there are no projects left for some reason.
+		trigger = {
+			owner = {
+				has_completed_event_chain_counter = {
+					event_chain = black_hole_obsession_chain
+					counter = obsession_black_holes_analyzed
+				}
+			}
+		}
+		name = obsessions_midgame.401.a
+		hidden_effect = {
+			owner = {
+				# TODO(chmeyers): Multiple projects?
+				if = {
+					limit = { has_special_project = OBSESSIONS_MIDGAME_BLACK_HOLE_PROJECT }
+					abort_special_project = { type = OBSESSIONS_MIDGAME_BLACK_HOLE_PROJECT }
+				}
+				country_event = { id = obsessions_midgame.501 scopes = { from = this.leader } }
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			owner = {
+				NOT = {
+					has_completed_event_chain_counter = {
+						event_chain = black_hole_obsession_chain
+						counter = obsession_black_holes_analyzed
+					}
+				}
+			}
+		}
+		name = OK
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.501
+	title = "obsessions_midgame.501.name"
+	desc = "obsessions_midgame.501.desc"
+	picture = GFX_evt_black_hole
+	is_triggered_only = yes
+
+	auto_opens = yes
+
+	option = {
+		name = obsessions_midgame.501.a
+		# TODO(chmeyers): More stuff and story
+		end_event_chain = black_hole_obsession_chain
+		from = {
+			add_experience = 1000
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+	}
+}
+
+# Pulsars
+# obsessions_midgame.102
+# Neutron Stars
+# obsessions_midgame.103
+# Tomb Worlds
+# obsessions_midgame.104
+# Gaia Worlds
+# obsessions_midgame.105
+# Empire Capitals
+# obsessions_midgame.106
+# Enclaves
+# obsessions_midgame.107
+# Relic/Ecu Worlds
+# obsessions_midgame.108
+# Megastructures
+# obsessions_midgame.109
+# L-Gates
+# obsessions_midgame.110

@@ -1,0 +1,99 @@
+black_hole_obsession_chain = {
+	picture = GFX_evt_black_hole
+	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
+	counter = {
+		obsession_black_holes_analyzed = {
+			max = 5
+		}
+	}
+}
+
+pulsar_obsession_chain = {
+	picture = GFX_evt_star_pulsar
+	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
+	counter = {
+		obsession_pulsars_analyzed = {
+			max = 5
+		}
+	}
+}
+
+neutron_obsession_chain = {
+	picture = GFX_evt_star_neutron
+	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
+	counter = {
+		obsession_neutrons_analyzed = {
+			max = 5
+		}
+	}
+}
+
+tomb_obsession_chain = {
+	picture = GFX_evt_tomb_world
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	counter = {
+		obsession_tombs_analyzed = {
+			max = 4
+		}
+	}
+}
+
+gaia_obsession_chain = {
+	picture = GFX_evt_gaia
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	counter = {
+		obsession_gaias_analyzed = {
+			max = 5
+		}
+	}
+}
+
+empire_obsession_chain = {
+	picture = GFX_evt_busy_spaceport
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	counter = {
+		obsession_capitals_analyzed = {
+			max = 5
+		}
+	}
+}
+
+enclave_obsession_chain = {
+	picture = GFX_evt_mercenary_enclave
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	counter = {
+		obsession_enclaves_analyzed = {
+			max = 4
+		}
+	}
+}
+
+relic_ecu_obsession_chain = {
+	picture = GFX_evt_city_planet
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
+	counter = {
+		obsession_relic_ecus_analyzed = {
+			max = 4
+		}
+	}
+}
+
+megastructure_obsession_chain = {
+	picture = GFX_evt_megastructure_construction
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
+	counter = {
+		obsession_megastructures_analyzed = {
+			max = 4
+		}
+	}
+}
+
+lgate_obsession_chain = {
+	picture = GFX_evt_l-gateway
+	icon = "gfx/interface/icons/situation_log/situation_log_engineering.dds"
+	counter = {
+		obsession_lgates_analyzed = {
+			max = 4
+		}
+	}
+}
