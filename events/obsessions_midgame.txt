@@ -1,9 +1,6 @@
 # Midgame obsessions events
 namespace = obsessions_midgame
 
-@obsessions_midgame_chance_spawn = 1
-@obsessions_midgame_chance_nospawn = 2
-
 country_event = {
 	id = obsessions_midgame.1
 	is_triggered_only = yes
@@ -21,10 +18,10 @@ country_event = {
 		# One third chance of spawning when trigger met. Since this event fires at the midgame,
 		# wait a random time before triggering the actual event.
 		random_list = {
-			@obsessions_midgame_chance_spawn = {
+			1 = {
 				country_event = { id = obsessions_midgame.2 days = 1000 random = 500 }
 			}
-			@obsessions_midgame_chance_nospawn = {}
+			2 = {} # 2/3 chance of nothing
 		}
 	}
 	
@@ -49,9 +46,15 @@ country_event = {
 					is_idle = yes
 					AND = {
 						exists = fleet
-						OR = {
-							fleet = { has_fleet_order = no }
-							fleet = { has_fleet_order = assist_research_order }
+						NOR = {
+							# assist_research_order is deliberately not listed here
+							fleet = { has_fleet_order = survey_planet_order }
+							fleet = { has_fleet_order = research_anomaly_order }
+							fleet = { has_fleet_order = evade_hostiles_order }
+							fleet = { has_fleet_order = auto_explore_order }
+							fleet = { has_fleet_order = explore_bypass_order }
+							fleet = { has_fleet_order = experimental_subspace_navigation_fleet_order }
+							fleet = { has_fleet_order = excavate_archaeological_site_fleet_order }
 						}
 					}
 				}
@@ -297,40 +300,43 @@ ship_event = {
 	}
 
 	option = {
-		# TODO(chmeyers): Trigger this one if there are no projects left for some reason.
-		trigger = {
-			owner = {
-				has_completed_event_chain_counter = {
-					event_chain = black_hole_obsession_chain
-					counter = obsession_black_holes_analyzed
+		name = obsessions_midgame.401.b
+		hidden_effect = {
+			if = {
+				limit = { leader = { leader_age <= 30 } }
+				# Too young!
+				owner = {
+					country_event = { id = obsessions_midgame.503 scopes = { from = this.leader } }
 				}
 			}
-		}
-		name = obsessions_midgame.401.a
-		hidden_effect = {
-			owner = {
-				# TODO(chmeyers): Multiple projects?
-				if = {
-					limit = { has_special_project = OBSESSIONS_MIDGAME_BLACK_HOLE_PROJECT }
-					abort_special_project = { type = OBSESSIONS_MIDGAME_BLACK_HOLE_PROJECT }
+			else = {
+				owner = {
+					country_event = { id = obsessions_midgame.501 scopes = { from = this.leader } }
 				}
-				country_event = { id = obsessions_midgame.501 scopes = { from = this.leader } }
 			}
 		}
 	}
 
 	option = {
-		trigger = {
-			owner = {
-				NOT = {
-					has_completed_event_chain_counter = {
-						event_chain = black_hole_obsession_chain
-						counter = obsession_black_holes_analyzed
+		name = obsessions_midgame.401.c
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						OR = {
+							has_completed_event_chain_counter = {
+								event_chain = black_hole_obsession_chain
+								counter = obsession_black_holes_analyzed
+							}
+							NOT = { has_special_project = OBSESSIONS_MIDGAME_BLACK_HOLE_PROJECT }
+						}
 					}
+				}
+				owner = {
+					country_event = { id = obsessions_midgame.502 scopes = { from = this.leader } }
 				}
 			}
 		}
-		name = OK
 	}
 }
 
@@ -343,15 +349,202 @@ country_event = {
 
 	auto_opens = yes
 
+	immediate = {
+		from = {
+			export_trigger_value_to_variable = {
+				trigger = leader_age
+				variable = obsession_previous_age
+			}
+			change_variable = {
+				which = obsession_previous_age
+				value = -20
+			}
+			set_age = obsession_previous_age
+			clear_variable = obsession_previous_age
+			change_variable = {
+				which = obsession_black_hole_flybys
+				value = 1
+			}
+		}
+	}
+
 	option = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_completed_event_chain_counter = {
+						event_chain = black_hole_obsession_chain
+						counter = obsession_black_holes_analyzed
+					}
+					NOT = { has_special_project = OBSESSIONS_MIDGAME_BLACK_HOLE_PROJECT }
+				}
+			}
+		}
 		name = obsessions_midgame.501.a
-		# TODO(chmeyers): More stuff and story
+	}
+
+	option = {
+		trigger = {
+			owner = {
+				OR = {
+					has_completed_event_chain_counter = {
+						event_chain = black_hole_obsession_chain
+						counter = obsession_black_holes_analyzed
+					}
+					NOT = { has_special_project = OBSESSIONS_MIDGAME_BLACK_HOLE_PROJECT }
+				}
+			}
+		}
+		name = obsessions_midgame.501.b
+		# Go to end of chain
+		owner = {
+			country_event = { id = obsessions_midgame.502 scopes = { from = from } }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.502
+	title = "obsessions_midgame.502.name"
+	picture = GFX_evt_black_hole
+	is_triggered_only = yes
+
+	auto_opens = yes
+
+	desc = {
+		exclusive_trigger = {
+			from = {
+				check_variable = {
+					which = obsession_black_hole_flybys
+					value <= 2
+				}
+			}
+		}
+		text = "obsessions_midgame.502.desc_more"
+	}
+	desc = "obsessions_midgame.502.desc"
+
+	# End of chain, give rewards.
+	option = {
+		trigger = {
+			owner = {
+				OR = {
+					has_completed_event_chain_counter = {
+						event_chain = black_hole_obsession_chain
+						counter = obsession_black_holes_analyzed
+					}
+					NOT = { has_special_project = OBSESSIONS_MIDGAME_BLACK_HOLE_PROJECT }
+				}
+			}
+		}
+		name = obsessions_midgame.502.a
 		end_event_chain = black_hole_obsession_chain
 		from = {
-			add_experience = 1000
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled
+			if = {
+				limit = { check_variable = { which = obsession_black_hole_flybys value <= 2 } }
+				add_experience = 200
+				owner = {
+					add_monthly_resource_mult = {
+						resource = physics_research
+						value = @tier2researchreward
+						min = @tier2researchmin
+						max = @tier2researchmax
+					}
+				}
+			}
+			else_if = {
+				limit = { check_variable = { which = obsession_black_hole_flybys value <= 4 } }
+				add_experience = 500
+				owner = {
+					add_monthly_resource_mult = {
+						resource = physics_research
+						value = @tier4researchreward
+						min = @tier4researchmin
+						max = @tier4researchmax
+					}
+				}
+			}
+			else = {
+				# They managed to do all 5, this took them at least 30 years...
+				add_experience = 1000
+				owner = {
+					add_monthly_resource_mult = {
+						resource = physics_research
+						value = @tier5researchreward
+						min = @tier5researchmin
+						max = @tier5researchmax
+					}
+				}
+			}
 		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.503
+	title = "obsessions_midgame.503.name"
+	desc = "obsessions_midgame.503.desc"
+	picture = GFX_evt_black_hole
+	is_triggered_only = yes
+
+	auto_opens = yes
+
+	# They were too young, so they died.
+	immediate = {
+		from = {
+			save_global_event_target_as = obsessed_scientist_blackhole
+			exile_leader_as = obsessed_scientist_blackhole
+		}
+	}
+
+	option = {
+		name = obsessions_midgame.503.a
+		end_event_chain = black_hole_obsession_chain
+		tooltip = {
+			from = { kill_leader = { show_notification = no } }
+		}
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = @tier1researchreward
+			min = @tier1researchmin
+			max = @tier1researchmax
+		}
+		hidden_effect = {
+			country_event = {
+				id = obsessions_midgame.504 days = 10 # TODO(chmeyers): Change this to 10800 (30 years)
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.504
+	title = "obsessions_midgame.504.name"
+	desc = "obsessions_midgame.504.desc"
+	picture = GFX_evt_black_hole
+	is_triggered_only = yes
+
+	auto_opens = yes
+
+	option = {
+		name = obsessions_midgame.504.a
+		custom_tooltip = obsessions_midgame.504.a.tooltip
+		hidden_effect = {
+			clone_leader = {
+				target = event_target:obsessed_scientist_blackhole
+				effect = {
+					set_age = 30
+					remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+					add_trait = leader_trait_obsession_fulfilled
+				}
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_midgame.504.b
 	}
 }
 
