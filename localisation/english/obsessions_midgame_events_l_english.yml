@@ -33,7 +33,7 @@ obsessions_midgame.501.a:0 "On to the next one."
 obsessions_midgame.501.b:0 "Did you learn anything?"
 
 obsessions_midgame.502.name:0 "Did you learn anything?"
-obsessions_midgame.502.desc:0 "[from.GetName] feels that the data from the flybys they conducted was crucial and has allowed them to extend their initiali theories extensively."
+obsessions_midgame.502.desc:0 "[from.GetName] feels that the data from the flybys they conducted was crucial and has allowed them to extend their initial theories extensively."
 obsessions_midgame.502.desc_more:0 "[from.GetName] feels they could have learned more if they had done more flybys of the event horizons, but they do have a solid set of data with which to work."
 obsessions_midgame.502.a:0 "Okay"
 
@@ -46,3 +46,42 @@ obsessions_midgame.504.desc:0 "A remarkable young scientist has just completed t
 obsessions_midgame.504.a:0 "Recruit them."
 obsessions_midgame.504.a.tooltip:0 "[event_target:obsessed_scientist_blackhole.GetName] will rejoin as a young scientist."
 obsessions_midgame.504.b:0 "Too Suspicious."
+
+
+pulsar_obsession_chain_title:0 "Pulsar Shield Analysis"
+pulsar_obsession_chain_desc:0 "One of our scientists believes that a detailed comparative analysis of several pulsars will provide insight into their shield nullification effects. They insist that this isn't just an excuse for them to take an extended galactic vacation."
+obsession_pulsars_analyzed:0 "Pulsars analyzed"
+OBSESSIONS_MIDGAME_PULSAR_PROJECT:0 "Pulsar Shield Nullification Analysis"
+
+obsessions_midgame.202.name:0 "Pulsing Obsession"
+obsessions_midgame.202.desc:0 "One of our idle scientists has been charting coordinates for distant pulsars. This seems to have become a bit of an obsession with them. They would like to begin an expedition to observe several pulsars throughout the galaxy and try to determine why they effect our shields in the way that they do. They have put together a list of candidate systems that meet their needs."
+
+obsessions_midgame.402.name:0 "Pulsar analyzed"
+obsessions_midgame.402.desc:0 "[leader.GetName] has completed the analysis of the pulsar's shield nullification effects. They believe there is value in doing a stress test of the science vessel's shields."
+obsessions_midgame.402.desc_closer:0 "[leader.GetName] has completed the analysis of the pulsar's shield nullification effects. They believe there is value in doing a further stress test of the science vessel's shields, and would like to get even closer to the pulsar this time."
+obsessions_midgame.402.b.1:0 "Go ahead."
+obsessions_midgame.402.b.2:0 "Deja vu..."
+obsessions_midgame.402.b.3:0 "It's perfectly safe."
+obsessions_midgame.402.b.4:0 "Mission Approved."
+obsessions_midgame.402.b.5:0 "I'm sure it'll be fine."
+obsessions_midgame.402.b.tooltip:0 "The ship will attempt a stress test of the ship's shields in the outer atmosphere of the pulsar."
+obsessions_midgame.402.c.1:0 "Leave it for the next one."
+obsessions_midgame.402.c.2:0 "Safety Protocols exist for a reason."
+obsessions_midgame.402.c.3:0 "Be cautious."
+obsessions_midgame.402.c.4:0 "Stay at a safe range."
+obsessions_midgame.402.c.5:0 "Move along."
+
+obsessions_midgame.505.name:0 "Did you learn anything?"
+obsessions_midgame.505.desc:0 "[from.GetName] feels that the data from the stress tests they conducted was crucial and has allowed them to get extensive insight."
+obsessions_midgame.505.desc_more:0 "[from.GetName] feels they could have learned more if they had done more stress testing of the shields, but they do have a solid set of data with which to work."
+obsessions_midgame.505.a:0 "Okay"
+
+obsessions_midgame.506.name:0 "Shield Failure"
+obsessions_midgame.506.desc:0 "It appears that our shield technology was not advanced enough to withstand the close pass to the pulsar. The ship and it's crew was lost."
+obsessions_midgame.506.a:0 "Unfortunate"
+
+obsessions_midgame.507.name:0 "Shields Holding"
+obsessions_midgame.507.desc:0 "[from.GetName] was able to modulate the ship's shields to survive the close approach to the pulsar. The shields didn't seem overly stressed, and they believe more data could be gathered by doing closer approaches in the future."
+obsessions_midgame.507.desc_close:0 "[from.GetName] was able to modulate the ship's shields to survive the close approach to the pulsar. Barely. Any closer and the shields likely would have failed. The data gathered was valuable."
+obsessions_midgame.507.a:0 "Excellent"
+obsessions_midgame.507.b:0 "Did you learn anything?"

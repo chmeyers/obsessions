@@ -16,3 +16,22 @@ special_project = {
 
 	on_success = { ship_event = { id = obsessions_midgame.401 } }
 }
+
+special_project = {
+	key = "OBSESSIONS_MIDGAME_PULSAR_PROJECT"
+	event_chain = "pulsar_obsession_chain"
+	cost = 0
+	days_to_research = 60
+	picture = GFX_evt_star_pulsar
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = { ship_event = { id = obsessions_midgame.402 } }
+}

@@ -8,15 +8,15 @@ black_hole_obsession_chain = {
 	}
 }
 
-# pulsar_obsession_chain = {
-# 	picture = GFX_evt_star_pulsar
-# 	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
-# 	counter = {
-# 		obsession_pulsars_analyzed = {
-# 			max = 5
-# 		}
-# 	}
-# }
+pulsar_obsession_chain = {
+	picture = GFX_evt_star_pulsar
+	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
+	counter = {
+		obsession_pulsars_analyzed = {
+			max = 5
+		}
+	}
+}
 
 # neutron_obsession_chain = {
 # 	picture = GFX_evt_star_neutron

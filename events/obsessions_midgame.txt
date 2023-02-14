@@ -74,18 +74,18 @@ country_event = {
 					}
 					leader_event = { id = obsessions_midgame.101 }
 				}
-				# # Pulsars
-				# 1 = {
-				# 	modifier = {
-				# 		add = 10
-				# 		is_specialist_physics = yes
-				# 	}
-				# 	modifier = {
-				# 		add = 100
-				# 		has_trait = leader_trait_expertise_field_manipulation
-				# 	}
-				# 	leader_event = { id = obsessions_midgame.102 }
-				# }
+				# Pulsars
+				1 = {
+					modifier = {
+						add = 10
+						is_specialist_physics = yes
+					}
+					modifier = {
+						add = 100
+						has_trait = leader_trait_expertise_field_manipulation
+					}
+					leader_event = { id = obsessions_midgame.102 }
+				}
 				# # Neutron Stars
 				# 1 = {
 				# 	modifier = {
@@ -433,17 +433,6 @@ country_event = {
 
 	# End of chain, give rewards.
 	option = {
-		trigger = {
-			owner = {
-				OR = {
-					has_completed_event_chain_counter = {
-						event_chain = black_hole_obsession_chain
-						counter = obsession_black_holes_analyzed
-					}
-					NOT = { has_special_project = OBSESSIONS_MIDGAME_BLACK_HOLE_PROJECT }
-				}
-			}
-		}
 		name = obsessions_midgame.502.a
 		end_event_chain = black_hole_obsession_chain
 		from = {
@@ -560,7 +549,324 @@ country_event = {
 }
 
 # Pulsars
-# obsessions_midgame.102
+leader_event = {
+	id = obsessions_midgame.102
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		# Make sure there are enough of the right object to trigger on.
+		if = {
+			limit = {
+				count_system = {
+					limit = {
+						is_star_class = sc_pulsar
+						NOT = { has_star_flag = hostile_system }
+						NOT = { has_star_flag = marauder_system }
+						is_pirate_system = no
+					}
+					count >= 7
+				}
+			}
+			owner = { country_event = { id = obsessions_midgame.202 scopes = { from = root } } }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.202
+	title = "obsessions_midgame.202.name"
+	desc = "obsessions_midgame.202.desc"
+	picture = GFX_evt_star_pulsar
+	is_triggered_only = yes
+
+	immediate = {
+		# Create Obsessed scientist
+		from = {
+			set_leader_flag = obsession_obsessed_midgame
+			add_trait = leader_trait_obsessed_1
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.very_well"
+		begin_event_chain = {
+			event_chain = pulsar_obsession_chain
+			target = root
+		}
+		tooltip = { from = { add_trait = leader_trait_obsessed_1 } }
+		hidden_effect = { country_event = { id = obsessions_midgame.302 } }
+	}
+
+	option = {
+		name = "obsessions_midgame.fired"
+		from = { kill_leader = { show_notification = no } }
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.302
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		while = {
+			count = 10
+			random_system = {
+				limit = {
+					is_star_class = sc_pulsar
+					NOT = { has_star_flag = hostile_system }
+					NOT = { has_star_flag = marauder_system }
+					is_pirate_system = no
+					NOT = { has_star_flag = obsession_midgame_project }
+				}
+				set_star_flag = obsession_midgame_project
+				root = {
+					enable_special_project = {
+						name = "OBSESSIONS_MIDGAME_PULSAR_PROJECT"
+						location = prev.system_star
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_midgame.402
+	title = "obsessions_midgame.402.name"
+	desc = "obsessions_midgame.402.desc"
+	picture = GFX_evt_star_pulsar
+	location = root
+
+	is_triggered_only = yes
+
+	immediate = {
+		owner = {
+			add_event_chain_counter = {
+				event_chain = pulsar_obsession_chain
+				counter = obsession_pulsars_analyzed
+				amount = 1
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_midgame.402.b.1
+		name = obsessions_midgame.402.b.2
+		name = obsessions_midgame.402.b.3
+		name = obsessions_midgame.402.b.4
+		name = obsessions_midgame.402.b.5
+		custom_tooltip = obsessions_midgame.402.b.tooltip
+		hidden_effect = {
+			leader = {
+				set_max_shield_level_variable = yes
+				subtract_variable = {
+					which = shield_level
+					value = obsession_pulsar_flybys
+				}
+			}
+			if = {
+				limit = { leader = { check_variable = { which = shield_level value < 0 } } }
+				owner = {
+					country_event = { id = obsessions_midgame.506 scopes = { from = root } }
+				}
+			}
+			else = {
+				owner = {
+					country_event = { id = obsessions_midgame.507 scopes = { from = root.leader } }
+				}
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_midgame.402.c.1
+		name = obsessions_midgame.402.c.2
+		name = obsessions_midgame.402.c.3
+		name = obsessions_midgame.402.c.4
+		name = obsessions_midgame.402.c.5
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						OR = {
+							has_completed_event_chain_counter = {
+								event_chain = pulsar_obsession_chain
+								counter = obsession_pulsars_analyzed
+							}
+							NOT = { has_special_project = OBSESSIONS_MIDGAME_PULSAR_PROJECT }
+						}
+					}
+				}
+				owner = {
+					country_event = { id = obsessions_midgame.505 scopes = { from = root.leader } }
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.505
+	title = "obsessions_midgame.505.name"
+	picture = GFX_evt_star_pulsar
+	is_triggered_only = yes
+
+	auto_opens = yes
+
+	desc = {
+		exclusive_trigger = {
+			from = {
+				check_variable = {
+					which = obsession_pulsar_flybys
+					value <= 2
+				}
+			}
+		}
+		text = "obsessions_midgame.505.desc_more"
+	}
+	desc = "obsessions_midgame.505.desc"
+
+	# End of chain, give rewards.
+	option = {
+		name = obsessions_midgame.505.a
+		end_event_chain = pulsar_obsession_chain
+		from = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+			if = {
+				limit = { check_variable = { which = obsession_pulsar_flybys value <= 2 } }
+				add_experience = 200
+				owner = {
+					add_monthly_resource_mult = {
+						resource = physics_research
+						value = @tier2researchreward
+						min = @tier2researchmin
+						max = @tier2researchmax
+					}
+				}
+			}
+			else_if = {
+				limit = { check_variable = { which = obsession_pulsar_flybys value <= 4 } }
+				add_experience = 500
+				owner = {
+					add_monthly_resource_mult = {
+						resource = physics_research
+						value = @tier4researchreward
+						min = @tier4researchmin
+						max = @tier4researchmax
+					}
+				}
+			}
+			else = {
+				add_experience = 1000
+				owner = {
+					add_monthly_resource_mult = {
+						resource = physics_research
+						value = @tier5researchreward
+						min = @tier5researchmin
+						max = @tier5researchmax
+					}
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.506
+	title = "obsessions_midgame.506.name"
+	desc = "obsessions_midgame.506.desc"
+	picture = GFX_evt_star_pulsar
+	is_triggered_only = yes
+
+	auto_opens = yes
+
+	# The shields weren't strong enough, so the ship was destroyed.
+	immediate = {
+		from = {
+			destroy_ship = this
+		}
+	}
+
+	option = {
+		name = obsessions_midgame.506.a
+		end_event_chain = pulsar_obsession_chain
+	}
+}
+
+
+country_event = {
+	id = obsessions_midgame.507
+	title = "obsessions_midgame.507.name"
+	picture = GFX_evt_star_pulsar
+	is_triggered_only = yes
+	auto_opens = yes
+
+	desc = {
+		exclusive_trigger = {
+			from = { check_variable = {
+				which = shield_level
+				value <= 0
+			} }
+		}
+		text = "obsessions_midgame.507.desc_close" 
+	}
+	desc = "obsessions_midgame.507.desc"
+
+	immediate = {
+		from = {
+			change_variable = {
+				which = obsession_pulsar_flybys
+				value = 1
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_completed_event_chain_counter = {
+						event_chain = pulsar_obsession_chain
+						counter = obsession_pulsars_analyzed
+					}
+					NOT = { has_special_project = OBSESSIONS_MIDGAME_PULSAR_PROJECT }
+				}
+			}
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = physics_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+		}
+		name = obsessions_midgame.507.a
+	}
+
+	option = {
+		trigger = {
+			owner = {
+				OR = {
+					has_completed_event_chain_counter = {
+						event_chain = pulsar_obsession_chain
+						counter = obsession_pulsars_analyzed
+					}
+					NOT = { has_special_project = OBSESSIONS_MIDGAME_PULSAR_PROJECT }
+				}
+			}
+		}
+		name = obsessions_midgame.507.b
+		# Go to end of chain
+		owner = {
+			country_event = { id = obsessions_midgame.505 scopes = { from = from } }
+		}
+	}
+}
 # Neutron Stars
 # obsessions_midgame.103
 # Tomb Worlds

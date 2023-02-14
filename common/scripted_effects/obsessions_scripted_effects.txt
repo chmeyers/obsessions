@@ -663,3 +663,30 @@ check_obsession_break_success = {
 		}
 	}
 }
+
+# this = leader
+set_max_shield_level_variable = {
+	if = {
+		limit = { owner = { has_technology = tech_dark_matter_deflector } }
+		set_variable = { which = shield_level value = 6 }
+	}
+	else_if = {
+		limit = { owner = { has_technology = tech_shields_5 } }
+		set_variable = { which = shield_level value = 5 }
+	}
+	else_if = {
+		limit = { owner = { has_technology = tech_shields_4 } }
+		set_variable = { which = shield_level value = 4 }
+	}
+	else_if = {
+		limit = { owner = { has_technology = tech_shields_3 } }
+		set_variable = { which = shield_level value = 3 }
+	}
+	else_if = {
+		limit = { owner = { has_technology = tech_shields_2 } }
+		set_variable = { which = shield_level value = 2 }
+	}
+	else = {
+		set_variable = { which = shield_level value = 1 }
+	}
+}
