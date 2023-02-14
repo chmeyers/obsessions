@@ -300,25 +300,34 @@ ship_event = {
 	}
 
 	option = {
-		name = obsessions_midgame.401.b
+		name = obsessions_midgame.401.b.1
+		name = obsessions_midgame.401.b.2
+		name = obsessions_midgame.401.b.3
+		name = obsessions_midgame.401.b.4
+		name = obsessions_midgame.401.b.5
+		custom_tooltip = obsessions_midgame.401.b.tooltip
 		hidden_effect = {
 			if = {
 				limit = { leader = { leader_age <= 30 } }
 				# Too young!
 				owner = {
-					country_event = { id = obsessions_midgame.503 scopes = { from = this.leader } }
+					country_event = { id = obsessions_midgame.503 scopes = { from = root.leader } }
 				}
 			}
 			else = {
 				owner = {
-					country_event = { id = obsessions_midgame.501 scopes = { from = this.leader } }
+					country_event = { id = obsessions_midgame.501 scopes = { from = root.leader } }
 				}
 			}
 		}
 	}
 
 	option = {
-		name = obsessions_midgame.401.c
+		name = obsessions_midgame.401.c.1
+		name = obsessions_midgame.401.c.2
+		name = obsessions_midgame.401.c.3
+		name = obsessions_midgame.401.c.4
+		name = obsessions_midgame.401.c.5
 		hidden_effect = {
 			if = {
 				limit = {
@@ -333,7 +342,7 @@ ship_event = {
 					}
 				}
 				owner = {
-					country_event = { id = obsessions_midgame.502 scopes = { from = this.leader } }
+					country_event = { id = obsessions_midgame.502 scopes = { from = root.leader } }
 				}
 			}
 		}
@@ -360,7 +369,6 @@ country_event = {
 				value = -20
 			}
 			set_age = obsession_previous_age
-			clear_variable = obsession_previous_age
 			change_variable = {
 				which = obsession_black_hole_flybys
 				value = 1
@@ -535,10 +543,14 @@ country_event = {
 			clone_leader = {
 				target = event_target:obsessed_scientist_blackhole
 				effect = {
-					set_age = 30
-					remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
-					add_trait = leader_trait_obsession_fulfilled
+					save_event_target_as = obsessed_scientist_blackhole_returns
 				}
+			}
+			# For some reason this didn't work when done inside the effect{} above.
+			event_target:obsessed_scientist_blackhole_returns = {
+				set_age = 30
+				remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+				add_trait = leader_trait_obsession_fulfilled
 			}
 		}
 	}
