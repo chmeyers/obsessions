@@ -1,6 +1,37 @@
 # Midgame obsessions events
 namespace = obsessions_midgame
 
+# A leader died or was fired.
+# Scope = Country
+# From = Leader
+country_event = {
+	id = obsessions_midgame.50
+	hide_window = yes
+	is_triggered_only = yes
+
+	trigger = {
+		from = {
+			has_leader_flag = obsession_obsessed_midgame
+		}
+	}
+
+	immediate = {
+		# If an obsessed leader dies, the event chain is cancelled.
+		if = {
+			limit = { has_event_chain = black_hole_obsession_chain }
+			end_event_chain = black_hole_obsession_chain
+		}
+		if = {
+			limit = { has_event_chain = pulsar_obsession_chain }
+			end_event_chain = pulsar_obsession_chain
+		}
+		if = {
+			limit = { has_event_chain = neutron_obsession_chain }
+			end_event_chain = neutron_obsession_chain
+		}
+	}
+}
+
 country_event = {
 	id = obsessions_midgame.1
 	is_triggered_only = yes
@@ -86,24 +117,24 @@ country_event = {
 					}
 					leader_event = { id = obsessions_midgame.102 }
 				}
-				# # Neutron Stars
-				# 1 = {
-				# 	modifier = {
-				# 		add = 10
-				# 		OR = {
-				# 			is_specialist_physics = yes
-				# 			is_specialist_engineer = yes
-				# 		}
-				# 	}
-				# 	modifier = {
-				# 		add = 100
-				# 		OR = {
-				# 			has_trait = leader_trait_expertise_particles
-				# 			has_trait = leader_trait_expertise_propulsion
-				# 		}
-				# 	}
-				# 	leader_event = { id = obsessions_midgame.103 }
-				# }
+				# Neutron Stars
+				1 = {
+					modifier = {
+						add = 10
+						OR = {
+							is_specialist_physics = yes
+							is_specialist_engineer = yes
+						}
+					}
+					modifier = {
+						add = 100
+						OR = {
+							has_trait = leader_trait_expertise_particles
+							has_trait = leader_trait_expertise_propulsion
+						}
+					}
+					leader_event = { id = obsessions_midgame.103 }
+				}
 				# # Tomb Worlds
 				# 1 = {
 				# 	modifier = {
@@ -636,11 +667,23 @@ country_event = {
 ship_event = {
 	id = obsessions_midgame.402
 	title = "obsessions_midgame.402.name"
-	desc = "obsessions_midgame.402.desc"
 	picture = GFX_evt_star_pulsar
 	location = root
 
 	is_triggered_only = yes
+
+	desc = {
+		exclusive_trigger = {
+			leader = {
+				check_variable = {
+					which = obsession_pulsar_flybys
+					value > 0
+				}
+			}
+		}
+		text = "obsessions_midgame.402.desc_closer"
+	}
+	desc = "obsessions_midgame.402.desc"
 
 	immediate = {
 		owner = {
@@ -668,7 +711,7 @@ ship_event = {
 				}
 			}
 			if = {
-				limit = { leader = { check_variable = { which = shield_level value < 0 } } }
+				limit = { leader = { check_variable = { which = shield_level value <= 0 } } }
 				owner = {
 					country_event = { id = obsessions_midgame.506 scopes = { from = root } }
 				}
@@ -752,23 +795,13 @@ country_event = {
 				limit = { check_variable = { which = obsession_pulsar_flybys value <= 4 } }
 				add_experience = 500
 				owner = {
-					add_monthly_resource_mult = {
-						resource = physics_research
-						value = @tier4researchreward
-						min = @tier4researchmin
-						max = @tier4researchmax
-					}
+					give_next_shield_tech_option_effect = yes
 				}
 			}
 			else = {
 				add_experience = 1000
 				owner = {
-					add_monthly_resource_mult = {
-						resource = physics_research
-						value = @tier5researchreward
-						min = @tier5researchmin
-						max = @tier5researchmax
-					}
+					give_next_shield_tech_option_effect = yes
 				}
 			}
 		}
@@ -809,7 +842,7 @@ country_event = {
 		exclusive_trigger = {
 			from = { check_variable = {
 				which = shield_level
-				value <= 0
+				value <= 1
 			} }
 		}
 		text = "obsessions_midgame.507.desc_close" 
@@ -867,8 +900,274 @@ country_event = {
 		}
 	}
 }
+
 # Neutron Stars
-# obsessions_midgame.103
+leader_event = {
+	id = obsessions_midgame.103
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		# Make sure there are enough of the right object to trigger on.
+		if = {
+			limit = {
+				count_system = {
+					limit = {
+						is_star_class = sc_neutron_star
+						NOT = { has_star_flag = hostile_system }
+						NOT = { has_star_flag = marauder_system }
+						is_pirate_system = no
+					}
+					count >= 7
+				}
+			}
+			owner = { country_event = { id = obsessions_midgame.203 scopes = { from = root } } }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.203
+	title = "obsessions_midgame.203.name"
+	desc = "obsessions_midgame.203.desc"
+	picture = GFX_evt_star_neutron
+	is_triggered_only = yes
+
+	immediate = {
+		# Create Obsessed scientist
+		from = {
+			set_leader_flag = obsession_obsessed_midgame
+			add_trait = leader_trait_obsessed_1
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.very_well"
+		begin_event_chain = {
+			event_chain = neutron_obsession_chain
+			target = root
+		}
+		tooltip = { from = { add_trait = leader_trait_obsessed_1 } }
+		hidden_effect = { country_event = { id = obsessions_midgame.303 } }
+	}
+
+	option = {
+		name = "obsessions_midgame.fired"
+		from = { kill_leader = { show_notification = no } }
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.303
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		while = {
+			count = 10
+			random_system = {
+				limit = {
+					is_star_class = sc_neutron_star
+					NOT = { has_star_flag = hostile_system }
+					NOT = { has_star_flag = marauder_system }
+					is_pirate_system = no
+					NOT = { has_star_flag = obsession_midgame_project }
+				}
+				set_star_flag = obsession_midgame_project
+				root = {
+					enable_special_project = {
+						name = "OBSESSIONS_MIDGAME_NEUTRON_PROJECT"
+						location = prev.system_star
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_midgame.403
+	title = "obsessions_midgame.403.name"
+	picture = GFX_evt_star_neutron
+	location = root
+
+	is_triggered_only = yes
+
+	desc = {
+		exclusive_trigger = {
+			leader = {
+				check_variable = {
+					which = obsession_neutron_flybys
+					value > 0
+				}
+			}
+		}
+		text = "obsessions_midgame.403.desc_closer"
+	}
+	desc = "obsessions_midgame.403.desc"
+
+	immediate = {
+		owner = {
+			add_event_chain_counter = {
+				event_chain = neutron_obsession_chain
+				counter = obsession_neutrons_analyzed
+				amount = 1
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_midgame.403.b.1
+		name = obsessions_midgame.403.b.2
+		name = obsessions_midgame.403.b.3
+		name = obsessions_midgame.403.b.4
+		name = obsessions_midgame.403.b.5
+		custom_tooltip = obsessions_midgame.403.b.tooltip
+		hidden_effect = {
+			owner = {
+				country_event = { id = obsessions_midgame.509 scopes = { from = root.leader } }
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_midgame.403.c.1
+		name = obsessions_midgame.403.c.2
+		name = obsessions_midgame.403.c.3
+		name = obsessions_midgame.403.c.4
+		name = obsessions_midgame.403.c.5
+		hidden_effect = {
+			if = {
+				limit = {
+					owner = {
+						OR = {
+							has_completed_event_chain_counter = {
+								event_chain = neutron_obsession_chain
+								counter = obsession_neutrons_analyzed
+							}
+							NOT = { has_special_project = OBSESSIONS_MIDGAME_NEUTRON_PROJECT }
+						}
+					}
+				}
+				owner = {
+					country_event = { id = obsessions_midgame.508 scopes = { from = root.leader } }
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.508
+	title = "obsessions_midgame.508.name"
+	picture = GFX_evt_star_neutron
+	is_triggered_only = yes
+
+	auto_opens = yes
+
+	desc = {
+		exclusive_trigger = {
+			from = {
+				check_variable = {
+					which = obsession_neutron_flybys
+					value <= 2
+				}
+			}
+		}
+		text = "obsessions_midgame.508.desc_more"
+	}
+	desc = "obsessions_midgame.508.desc"
+
+	# End of chain, give rewards.
+	option = {
+		name = obsessions_midgame.508.a
+		end_event_chain = neutron_obsession_chain
+		from = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+			if = {
+				limit = { check_variable = { which = obsession_neutron_flybys value <= 2 } }
+				add_experience = 200
+				owner = {
+					add_monthly_resource_mult = {
+						resource = physics_research
+						value = @tier2researchreward
+						min = @tier2researchmin
+						max = @tier2researchmax
+					}
+				}
+			}
+			else_if = {
+				limit = { check_variable = { which = obsession_neutron_flybys value <= 4 } }
+				add_experience = 500
+				owner = {
+					give_next_propulsion_tech_option_effect = yes
+				}
+			}
+			else = {
+				add_experience = 1000
+				owner = {
+					give_next_propulsion_tech_option_effect = yes
+				}
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.509
+	title = "obsessions_midgame.509.name"
+	picture = GFX_evt_star_neutron
+	is_triggered_only = yes
+	auto_opens = yes
+
+	desc = "obsessions_midgame.509.desc"
+
+	immediate = {
+		from = {
+			change_variable = {
+				which = obsession_neutron_flybys
+				value = 1
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			owner = {
+				NOR = {
+					has_completed_event_chain_counter = {
+						event_chain = neutron_obsession_chain
+						counter = obsession_neutrons_analyzed
+					}
+					NOT = { has_special_project = OBSESSIONS_MIDGAME_NEUTRON_PROJECT }
+				}
+			}
+		}
+		name = obsessions_midgame.509.a
+	}
+
+	option = {
+		trigger = {
+			owner = {
+				OR = {
+					has_completed_event_chain_counter = {
+						event_chain = neutron_obsession_chain
+						counter = obsession_neutrons_analyzed
+					}
+					NOT = { has_special_project = OBSESSIONS_MIDGAME_NEUTRON_PROJECT }
+				}
+			}
+		}
+		name = obsessions_midgame.509.b
+		# Go to end of chain
+		owner = {
+			country_event = { id = obsessions_midgame.508 scopes = { from = from } }
+		}
+	}
+}
+
 # Tomb Worlds
 # obsessions_midgame.104
 # Gaia Worlds

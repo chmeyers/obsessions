@@ -29,6 +29,32 @@ give_next_shield_tech_option_effect = {
 	}
 }
 
+give_next_propulsion_tech_option_effect = {
+	if = {
+		limit = { NOT = { has_technology = tech_thrusters_2 }  }
+		add_research_option = tech_thrusters_2
+		add_tech_progress = { tech = tech_thrusters_2 progress = 0.5 }
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_thrusters_3 } } 
+		add_research_option = tech_thrusters_3
+		add_tech_progress = { tech = tech_thrusters_3 progress = 0.5 }
+	}
+	else_if = {
+		limit = { NOT = { has_technology = tech_thrusters_4 } } 
+		add_research_option = tech_thrusters_4
+		add_tech_progress = { tech = tech_thrusters_4 progress = 0.5 }
+	}
+	else = {
+		add_monthly_resource_mult = {
+			resource = physics_research
+			value = @tier4researchreward
+			min = @tier4researchmin
+			max = @tier4researchmax
+		}
+	}
+}
+
 give_next_gene_tech_effect = {
 	if = {
 		limit = { NOT = { has_technology = tech_genome_mapping } } 

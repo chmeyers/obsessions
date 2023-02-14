@@ -18,15 +18,15 @@ pulsar_obsession_chain = {
 	}
 }
 
-# neutron_obsession_chain = {
-# 	picture = GFX_evt_star_neutron
-# 	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
-# 	counter = {
-# 		obsession_neutrons_analyzed = {
-# 			max = 5
-# 		}
-# 	}
-# }
+neutron_obsession_chain = {
+	picture = GFX_evt_star_neutron
+	icon = "gfx/interface/icons/situation_log/situation_log_physics.dds"
+	counter = {
+		obsession_neutrons_analyzed = {
+			max = 5
+		}
+	}
+}
 
 # tomb_obsession_chain = {
 # 	picture = GFX_evt_tomb_world
