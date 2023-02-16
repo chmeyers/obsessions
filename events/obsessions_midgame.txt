@@ -152,18 +152,18 @@ country_event = {
 					}
 					leader_event = { id = obsessions_midgame.104 }
 				}
-				# # Gaia Worlds
-				# 1 = {
-				# 	modifier = {
-				# 		add = 10
-				# 		is_specialist_society = yes
-				# 	}
-				# 	modifier = {
-				# 		add = 100
-				# 		has_trait = leader_trait_expertise_biology
-				# 	}
-				# 	leader_event = { id = obsessions_midgame.105 }
-				# }
+				# Gaia Worlds
+				1 = {
+					modifier = {
+						add = 10
+						is_specialist_society = yes
+					}
+					modifier = {
+						add = 100
+						has_trait = leader_trait_expertise_biology
+					}
+					leader_event = { id = obsessions_midgame.105 }
+				}
 				# # Empire Capitals
 				# 1 = {
 				# 	modifier = {
@@ -1898,7 +1898,702 @@ country_event = {
 }
 
 # Gaia Worlds
-# obsessions_midgame.105
+leader_event = {
+	id = obsessions_midgame.105
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		# Only trigger if the Spiritualist Fallen Empire exists and has holy worlds.
+		if = {
+			limit = {
+				count_galaxy_planet = {
+					limit = {
+						is_planet_class = pc_gaia
+					}
+					count >= 4
+				}
+				count_galaxy_planet = {
+					limit = {
+						is_planet_class = pc_gaia
+						OR = {
+							has_planet_flag = holy_world_1
+							has_planet_flag = holy_world_2
+							has_planet_flag = holy_world_3
+							has_planet_flag = holy_world_4
+						}
+					}
+					count >= 3
+				}
+				# Only trigger if they are not yet awakened, even though it's okay if they
+				# awaken in the middle of the chain.
+				any_country = { has_ai_personality = fallen_empire_spiritualist }
+			}
+			owner = { country_event = { id = obsessions_midgame.205 scopes = { from = root } } }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.205
+	title = "obsessions_midgame.205.name"
+	desc = "obsessions_midgame.205.desc"
+	picture = GFX_evt_gaia
+	is_triggered_only = yes
+
+	immediate = {
+		# Create Obsessed scientist
+		from = {
+			set_leader_flag = obsession_obsessed_midgame
+			add_trait = leader_trait_obsessed_1
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.very_well"
+		begin_event_chain = {
+			event_chain = gaia_obsession_chain
+			target = root
+		}
+		tooltip = { from = { add_trait = leader_trait_obsessed_1 } }
+		hidden_effect = { country_event = { id = obsessions_midgame.305 } }
+	}
+
+	option = {
+		name = "obsessions_midgame.fired"
+		from = { kill_leader = { show_notification = no } }
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.305
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		while = {
+			count = 4
+			random_galaxy_planet = {
+				limit = {
+					is_planet_class = pc_gaia
+					OR = {
+						has_planet_flag = holy_world_1
+						has_planet_flag = holy_world_2
+						has_planet_flag = holy_world_3
+						has_planet_flag = holy_world_4
+					}
+					NOT = { has_planet_flag = obsession_midgame_project }
+				}
+				set_planet_flag = obsession_midgame_project
+				root = {
+					enable_special_project = {
+						name = "OBSESSIONS_MIDGAME_GAIA_PROJECT"
+						location = prev
+						owner = root
+					}
+				}
+			}
+		}
+		# Pick up to two non-holy worlds
+		while = {
+			count = 2
+			random_galaxy_planet = {
+				limit = {
+					is_planet_class = pc_gaia
+					NOT = { has_planet_flag = obsession_midgame_project }
+				}
+				set_planet_flag = obsession_midgame_project
+				root = {
+					enable_special_project = {
+						name = "OBSESSIONS_MIDGAME_GAIA_PROJECT"
+						location = prev
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_midgame.405
+	title = "obsessions_midgame.405.name"
+	picture = GFX_evt_gaia
+	location = from # planet
+
+	is_triggered_only = yes
+
+	desc = {
+		exclusive_trigger = {
+			from = {
+				OR = {
+					has_planet_flag = holy_world_1
+					has_planet_flag = holy_world_2
+					has_planet_flag = holy_world_3
+					has_planet_flag = holy_world_4
+				}
+			}
+		}
+		text = "obsessions_midgame.405.desc_holy"
+	}
+	desc = "obsessions_midgame.405.desc"
+
+	immediate = {
+		owner = {
+			add_event_chain_counter = {
+				event_chain = gaia_obsession_chain
+				counter = obsession_gaias_analyzed
+				amount = 1
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_midgame.405.a
+		hidden_effect = {
+			random_country = {
+				limit = {
+					OR = {
+						has_ai_personality = awakened_fallen_empire_spiritualist
+						has_ai_personality = fallen_empire_spiritualist
+					}
+				}
+				save_global_event_target_as = outraged_FE
+			}
+			owner = { country_event = { id = obsessions_midgame.514 days = 5 } }
+		}
+	}
+
+	option = {
+		exclusive_trigger = {
+			owner = {
+				OR = {
+					has_completed_event_chain_counter = {
+						event_chain = gaia_obsession_chain
+						counter = obsession_gaias_analyzed
+					}
+					NOT = { has_special_project = OBSESSIONS_MIDGAME_GAIA_PROJECT }
+				}
+			}
+		}
+		name = obsessions_midgame.405.b
+		leader = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.514
+	title = "obsessions_midgame.514.name"
+	desc = "obsessions_midgame.514.desc"
+	show_sound = event_ship_bridge
+	location = event_target:outraged_FE.capital_scope
+	is_triggered_only = yes
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:outraged_FE
+		planet_background = event_target:outraged_FE
+		graphical_culture = event_target:outraged_FE
+		city_level = event_target:outraged_FE
+		room = event_target:outraged_FE.ruler
+	}
+
+	option = {
+		trigger = {
+			has_relic = r_severed_head
+		}
+		name = "obsessions_midgame.514.a"
+		custom_tooltip = "obsessions_midgame.514.a.tooltip"
+		hidden_effect = {
+			country_event = { id = obsessions_midgame.515 }
+		}
+	}
+
+	option = {
+		trigger = {
+			OR = {
+				has_ethic = ethic_fanatic_spiritualist
+				has_ethic = ethic_spiritualist
+				any_pop_faction = {
+					is_pop_faction_type = "traditionalist"
+				}
+			}
+		}
+		name = "obsessions_midgame.514.b"
+		custom_tooltip = "obsessions_midgame.514.b.tooltip"
+		hidden_effect = {
+			country_event = { id = obsessions_midgame.516 }
+		}
+	}
+
+	option = {
+		trigger = {
+			NOR = {
+				has_ethic = ethic_fanatic_spiritualist
+				has_ethic = ethic_spiritualist
+				any_pop_faction = {
+					is_pop_faction_type = "traditionalist"
+				}
+			}
+		}
+		name = "obsessions_midgame.514.b"
+		custom_tooltip = "obsessions_midgame.514.b.tooltip_lie"
+		hidden_effect = {
+			set_country_flag = obsessions_liar
+			country_event = { id = obsessions_midgame.516 }
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.514.c"
+		hidden_effect = {
+			country_event = { id = obsessions_midgame.517 }
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.514.d"
+		hidden_effect = {
+			country_event = { id = obsessions_midgame.518 }
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.514.e"
+		hidden_effect = {
+			country_event = { id = obsessions_midgame.519 }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.515
+	title = "obsessions_midgame.515.name"
+	desc = "obsessions_midgame.515.desc"
+	location = event_target:outraged_FE.capital_scope
+	is_triggered_only = yes
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:outraged_FE
+		planet_background = event_target:outraged_FE
+		graphical_culture = event_target:outraged_FE
+		city_level = event_target:outraged_FE
+		room = event_target:outraged_FE.ruler
+	}
+
+	option = {
+		name = "obsessions_midgame.515.a"
+		leader = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.516
+	title = "obsessions_midgame.516.name"
+	location = event_target:outraged_FE.capital_scope
+	is_triggered_only = yes
+
+	desc = {
+		exclusive_trigger = {
+			has_country_flag = obsessions_liar
+		}
+		text = "obsessions_midgame.516.desc.lie"
+	}
+	desc = "obsessions_midgame.516.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:outraged_FE
+		planet_background = event_target:outraged_FE
+		graphical_culture = event_target:outraged_FE
+		city_level = event_target:outraged_FE
+		room = event_target:outraged_FE.ruler
+	}
+
+	option = {
+		trigger = {
+			NOT = { has_country_flag = obsessions_liar }
+		}
+		name = "obsessions_midgame.516.a"
+		custom_tooltip = "obsessions_midgame.516.a.tooltip"
+		leader = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			event_target:outraged_FE = {
+				add_opinion_modifier = { who = root modifier = opinion_accepted_fallen_empire_request }
+			}
+			while = {
+				count = 100
+				random_owned_pop = {
+					limit = {
+						NOT = { has_ethic = "ethic_spiritualist" }
+					}
+					pop_change_ethic = "ethic_spiritualist"
+				}
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			NOT = { has_country_flag = obsessions_liar }
+			allow = {
+				NOR = {
+					has_ethic = ethic_fanatic_xenophobe
+					has_ethic = ethic_xenophobe
+					has_valid_civic = civic_fanatic_purifiers
+					has_valid_civic = civic_hive_devouring_swarm
+					has_valid_civic = civic_inwards_perfection
+					has_valid_civic = civic_machine_terminator
+				}
+			}
+		}
+		name = "obsessions_midgame.516.b"
+		custom_tooltip = "obsessions_midgame.516.b.tooltip"
+		leader = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			event_target:outraged_FE = {
+				add_opinion_modifier = { who = root modifier = opinion_refused_fallen_empire_request }
+			}
+		}
+	}
+	option = {
+		trigger = {
+			NOT = { has_country_flag = obsessions_liar }
+		}
+		allow = {
+			OR = {
+				has_ethic = ethic_fanatic_xenophobe
+				has_ethic = ethic_xenophobe
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_inwards_perfection
+				has_valid_civic = civic_machine_terminator
+			}
+		}
+		name = "obsessions_midgame.516.c"
+		custom_tooltip = "obsessions_midgame.516.c.tooltip"
+		leader = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			event_target:outraged_FE = {
+				add_opinion_modifier = { who = root modifier = opinion_refused_fallen_empire_demand }
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			has_country_flag = obsessions_liar
+		}
+		name = "obsessions_midgame.516.d"
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			event_target:outraged_FE = {
+				add_opinion_modifier = { who = root modifier = opinion_refused_fallen_empire_demand }
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			has_country_flag = obsessions_liar
+		}
+		name = "obsessions_midgame.516.e"
+		event_target:obsessions_midgame_scientist = { kill_leader = { show_notification = no } }
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			event_target:outraged_FE = {
+				add_opinion_modifier = { who = root modifier = encroaching_scientists }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.517
+	title = "obsessions_midgame.517.name"
+	location = event_target:outraged_FE.capital_scope
+	is_triggered_only = yes
+
+	desc = "obsessions_midgame.517.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:outraged_FE
+		planet_background = event_target:outraged_FE
+		graphical_culture = event_target:outraged_FE
+		city_level = event_target:outraged_FE
+		room = event_target:outraged_FE.ruler
+	}
+
+	option = {
+		name = "obsessions_midgame.517.a"
+		custom_tooltip = "obsessions_midgame.517.a.tooltip"
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			event_target:outraged_FE = {
+				add_opinion_modifier = { who = root modifier = opinion_refused_fallen_empire_demand }
+			}
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.517.b"
+		custom_tooltip = "obsessions_midgame.517.b.tooltip"
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			# They get a lesser trait, not fulfillment.
+			if = {
+				limit = { NOT = { has_trait = leader_trait_expertise_biology } }
+				add_trait = leader_trait_expertise_biology
+			}
+			else_if = {
+				limit = { NOT = { has_trait = leader_trait_adaptable } }
+				add_trait = leader_trait_adaptable
+			}
+			else = {
+				add_trait = leader_trait_resilient
+			}
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			event_target:outraged_FE = {
+				add_opinion_modifier = { who = root modifier = opinion_refused_fallen_empire_request }
+			}
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.517.c"
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			event_target:outraged_FE = {
+				add_opinion_modifier = { who = root modifier = encroaching_scientists }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.518
+	title = "obsessions_midgame.518.name"
+	location = event_target:outraged_FE.capital_scope
+	is_triggered_only = yes
+
+	desc = "obsessions_midgame.518.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:outraged_FE
+		planet_background = event_target:outraged_FE
+		graphical_culture = event_target:outraged_FE
+		city_level = event_target:outraged_FE
+		room = event_target:outraged_FE.ruler
+	}
+
+	option = {
+		name = "obsessions_midgame.518.a"
+		custom_tooltip = "obsessions_midgame.518.a.tooltip"
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			# Wake up FE and make it start a war
+			owner = {
+				save_event_target_as = FE_outrager
+			}
+			event_target:outraged_FE = {
+				add_opinion_modifier = { who = root modifier = opinion_refused_fallen_empire_demand }
+				set_country_flag = holy_world_killed # Not really killed, but this flag let's us wake it up.
+				country_event = { id = fallen_empires_awakening.1 }
+			}
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.518.b"
+		custom_tooltip = "obsessions_midgame.518.b.tooltip"
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			# They get a lesser trait, not fulfillment.
+			if = {
+				limit = { NOT = { has_trait = leader_trait_expertise_biology } }
+				add_trait = leader_trait_expertise_biology
+			}
+			else_if = {
+				limit = { NOT = { has_trait = leader_trait_adaptable } }
+				add_trait = leader_trait_adaptable
+			}
+			else = {
+				add_trait = leader_trait_resilient
+			}
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			event_target:outraged_FE = {
+				add_opinion_modifier = { who = root modifier = opinion_refused_fallen_empire_demand }
+			}
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.518.c"
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			event_target:outraged_FE = {
+				add_opinion_modifier = { who = root modifier = encroaching_scientists }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.519
+	title = "obsessions_midgame.519.name"
+	location = event_target:outraged_FE.capital_scope
+	is_triggered_only = yes
+
+	desc = "obsessions_midgame.519.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:outraged_FE
+		planet_background = event_target:outraged_FE
+		graphical_culture = event_target:outraged_FE
+		city_level = event_target:outraged_FE
+		room = event_target:outraged_FE.ruler
+	}
+
+	option = {
+		name = "obsessions_midgame.519.a"
+		custom_tooltip = "obsessions_midgame.519.a.tooltip"
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			# Wake up FE and make it start a war
+			owner = {
+				save_event_target_as = FE_outrager
+			}
+			event_target:outraged_FE = {
+				set_country_flag = holy_world_killed # Not really killed, but this flag let's us wake it up.
+				country_event = { id = fallen_empires_awakening.1 }
+			}
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.519.b"
+		custom_tooltip = "obsessions_midgame.519.b.tooltip"
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		owner = {
+			end_event_chain = gaia_obsession_chain
+		}
+		hidden_effect = {
+			# Pick an unfortunate neighbor as the punching bag.
+			owner = {
+				add_opinion_modifier = { who = root modifier = opinion_accepted_fallen_empire_request }
+			}
+			random_country = {
+				limit = {
+					is_ai = yes
+					is_neighbor_of = event_target:outraged_FE
+				}
+				save_event_target_as = FE_outrager
+			}
+			if = {
+				limit = { NOT = { exists = event_target:FE_outrager} }
+				# No neighbors. Pick a different punching bag based on robot pops
+				ordered_country = {
+					position = 0
+					order_by = owner.value:robot_pop_strength_proportion
+					limit = {
+						is_ai = yes
+					}
+					save_event_target_as = FE_outrager
+				}
+			}
+			
+			event_target:outraged_FE = {
+				set_country_flag = holy_world_killed # Not really killed, but this flag let's us wake it up.
+				country_event = { id = fallen_empires_awakening.1 }
+			}
+		}
+	}
+}
+
 # Empire Capitals
 # obsessions_midgame.106
 # Enclaves

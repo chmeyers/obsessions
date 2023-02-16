@@ -38,15 +38,15 @@ tomb_obsession_chain = {
 	}
 }
 
-# gaia_obsession_chain = {
-# 	picture = GFX_evt_gaia
-# 	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
-# 	counter = {
-# 		obsession_gaias_analyzed = {
-# 			max = 5
-# 		}
-# 	}
-# }
+gaia_obsession_chain = {
+	picture = GFX_evt_gaia
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	counter = {
+		obsession_gaias_analyzed = {
+			max = 5
+		}
+	}
+}
 
 # empire_obsession_chain = {
 # 	picture = GFX_evt_busy_spaceport

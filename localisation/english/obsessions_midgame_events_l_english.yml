@@ -193,3 +193,74 @@ obsessions_midgame.513.c:0 "We are dedicated to science."
 obsessions_midgame.513.c.response:0 "Science? You didn't even seem to care for my work."
 obsessions_midgame.513.d:0 "Nothing can convince you, then."
 obsessions_midgame.513.e:0 "There is a lot of work to do."
+
+
+gaia_obsession_chain_title:0 "Gaia World Species Collection"
+gaia_obsession_chain_desc:0 "One of our idle scientists has proposed a research project involving biological sample collection from a series of pristine paradise worlds."
+obsession_gaias_analyzed:0 "Gaia Worlds Sampled"
+OBSESSIONS_MIDGAME_GAIA_PROJECT:0 "Gaia World Species Collection"
+OBSESSIONS_MIDGAME_GAIA_PROJECT_DESC:0 "Our obsessed scientist will visit this gaia world to collect samples."
+
+obsessions_midgame.205.name:0 "Garden Obsession"
+obsessions_midgame.205.desc:0 "One of our idle scientists has proposed a research project involving the collection of biological samples from a series of pristine paradise worlds. They have searched our databases and chosen several candidates that they would like to visit. This seems to have become a bit of an obsession with them. They insist that this is not just an extended vacation to relaxing paradises."
+
+obsessions_midgame.405.name:0 "Gaia World Visited"
+obsessions_midgame.405.desc:0 "[leader.GetName] has completed a sample collection trip to the surface of a gaia world. They say that it was great and they had a wonderful time. And... science stuff happened, too."
+obsessions_midgame.405.desc_holy:0 "[leader.GetName] has completed a second sample collection trip to the surface of a gaia world. They say that it was great and they had a wonderful time, but they couldn't shake the feeling that the whole time they were being watched."
+obsessions_midgame.405.a:0 "On to the next one."
+obsessions_midgame.405.b:0 "That was the last one."
+obsessions_midgame.405.b.tooltip:0 "Wait... you managed to finish all of them? That's not supposed to happen. You didn't cheat, did you? Most of these gaias were supposed to be Fallen Empire holy worlds and you should have angered them at some point. But, well, here we are now. Have a cookie."
+
+obsessions_midgame.514.name:0 "Desecration"
+obsessions_midgame.514.desc:0 "Did you think that we would not notice your scientist desecrating one of our sanctified planets? We demand an explanation for your unholy behavior."
+obsessions_midgame.514.a:0 "Zarqlan said it was okay."
+obsessions_midgame.514.a.tooltip:0 "This option is available because you have the Head of Zarqlan."
+obsessions_midgame.514.b:0 "It is a holy pilgrimage."
+obsessions_midgame.514.b.tooltip:0 "This option is available because you have a spiritualism ethic or faction."
+obsessions_midgame.514.b.tooltip_lie:0 "This is a lie."
+obsessions_midgame.514.c:0 "Merely a scientific study."
+obsessions_midgame.514.d:0 "It's none of your business."
+obsessions_midgame.514.e:0 "Since when do you care?"
+
+# Zarqlan's Head
+obsessions_midgame.515.name:0 "The Will of Zarqlan"
+obsessions_midgame.515.desc:0 "Of course. As Zarqlan wills. We would be happy to provide you with additional biological specimens from our collection."
+obsessions_midgame.515.a:0 "Excellent"
+
+# Holy Pilgrimage
+obsessions_midgame.516.name:0 "The Pilgrimage"
+obsessions_midgame.516.desc:0 "A pilgrimage is a proper use for the holy worlds. Perhaps the shroud called out to them. Though we think your people could be a little more holy. We will send missionaries. They will be thorough. Very thorough."
+obsessions_midgame.516.desc.lie:0 "A single holy pilgrim from an empire of non-believers. [event_target:obsessions_midgame_scientist.GetName] will join us and we will see the truth of the matter. If they are truly holy, they will stay to learn what we have to teach."
+obsessions_midgame.516.a:0 "Your teachers are welcome."
+obsessions_midgame.516.a.tooltip:0 "Your population's ethics will shift towards spiritualism."
+obsessions_midgame.516.b:0 "Your priests are unnecessary."
+obsessions_midgame.516.b.tooltip:0 "They won't really like this."
+obsessions_midgame.516.c:0 "We will not allow outsiders."
+obsessions_midgame.516.c.tooltip:0 "They really won't like this."
+obsessions_midgame.516.d:0 "You cannot have [event_target:obsessions_midgame_scientist.GetName]."
+obsessions_midgame.516.e:0 "[event_target:obsessions_midgame_scientist.GetName] will join you."
+
+# Scientific Study
+obsessions_midgame.517.name:0 "A Scientific Study"
+obsessions_midgame.517.desc:0 "Our sanctified planets are not your laboratory. You will cease any further sample collection and return those you have taken."
+obsessions_midgame.517.a:0 "No"
+obsessions_midgame.517.a.tooltip:0 "Will they be mad? Yes."
+obsessions_midgame.517.b:0 "The samples have already been processed."
+obsessions_midgame.517.a.tooltip:0 "Will they be mad? Probably."
+obsessions_midgame.517.c:0 "As you wish."
+
+# None of your business
+obsessions_midgame.518.name:0 "Our Business"
+obsessions_midgame.518.desc:0 "None of our business? You young ones have no memory of what came before. Have we been quiet so long that you know nothing of the glory of the soul? We will give you one last chance. Surrender the interloper, return the samples you have taken, and cease any further collection or you will learn exactly what is our business."
+obsessions_midgame.518.a:0 "You don't scare us."
+obsessions_midgame.518.a.tooltip:0 "What can these old fools possibly do?"
+obsessions_midgame.518.b:0 "The samples have already been processed."
+obsessions_midgame.518.b.tooltip:0 "Will they be mad? Probably."
+obsessions_midgame.518.c:0 "As you wish."
+
+# Since when do you care?
+obsessions_midgame.519.name:0 "Out of Touch"
+obsessions_midgame.519.desc:0 "Since when? We have protected this galaxy from the unthinking and the soulless since before your people learned how to use fire. We have stood aloof from your petty intrigues. Does nobody remember our glory? Perhaps it is time for you to remember."
+obsessions_midgame.519.a:0 "We are better off without you."
+obsessions_midgame.519.a.tooltip:0 "What can these old fools possibly do?"
+obsessions_midgame.519.b:0 "The galaxy needs you."
