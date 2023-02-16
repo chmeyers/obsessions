@@ -5,7 +5,7 @@
 # For Alpha/Beta testing, make them very common
 @obsessions_mod_spawn_base = 10
 @obsessions_mod_spawn_modifier = 5
-@obsessions_mod_spawn_rocko = 10
+@obsessions_mod_spawn_rocko = 5
 @obsessions_mod_spawn_obsession = 250
 
 
@@ -13,7 +13,7 @@
 obsessions_mod_category_asteroid_rocko = {
 
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
@@ -44,7 +44,7 @@ obsessions_mod_category_asteroid_rocko = {
 obsessions_mod_category_asteroid_1 = {
 
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
@@ -112,7 +112,7 @@ obsessions_mod_category_asteroid_1 = {
 obsessions_mod_category_ice_asteroid_1 = {
 
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
@@ -180,7 +180,7 @@ obsessions_mod_category_ice_asteroid_1 = {
 obsessions_mod_category_gas_giant_1 = {
 
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
@@ -264,7 +264,7 @@ obsessions_mod_category_gas_giant_1 = {
 obsessions_mod_category_gas_giant_2 = {
 
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
@@ -343,7 +343,7 @@ obsessions_mod_category_gas_giant_2 = {
 obsessions_mod_category_gas_giant_3 = {
 
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
@@ -424,7 +424,7 @@ obsessions_mod_category_gas_giant_3 = {
 obsessions_mod_category_molten_1 = {
 
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
@@ -504,7 +504,7 @@ obsessions_mod_category_molten_1 = {
 obsessions_mod_category_molten_2 = {
 
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
@@ -584,7 +584,7 @@ obsessions_mod_category_molten_2 = {
 obsessions_mod_category_molten_3 = {
 
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
@@ -664,7 +664,7 @@ obsessions_mod_category_molten_3 = {
 obsessions_mod_category_barren_1 = {
 
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
@@ -744,7 +744,7 @@ obsessions_mod_category_barren_1 = {
 obsessions_mod_category_barren_2 = {
 
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
@@ -823,7 +823,7 @@ obsessions_mod_category_barren_2 = {
 
 obsessions_mod_category_barren_3 = {
 	# All obsessions anomalies are human only.
-	# This is the default setting, but it's listed here so that I comment on it.
+	# This is the default setting, but it's listed here so that I can comment on it.
 	should_ai_use = no
 	
 	# *_desc is the default.
