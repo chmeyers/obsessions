@@ -1268,19 +1268,19 @@ ship_event = {
 
 	desc = {
 		exclusive_trigger = {
-			leader = { check_variable = { which = obsession_tomb_flybys value = 1 } }
+			leader = { check_variable = { which = obsession_tomb_flybys value = 2 } }
 		}
 		text = "obsessions_midgame.404.desc_1"
 	}
 	desc = {
 		exclusive_trigger = {
-			leader = { check_variable = { which = obsession_tomb_flybys value = 2 } }
+			leader = { check_variable = { which = obsession_tomb_flybys value = 3 } }
 		}
 		text = "obsessions_midgame.404.desc_2"
 	}
 	desc = {
 		exclusive_trigger = {
-			leader = { check_variable = { which = obsession_tomb_flybys value = 3 } }
+			leader = { check_variable = { which = obsession_tomb_flybys value = 4 } }
 		}
 		text = "obsessions_midgame.404.desc_3"
 	}
@@ -1434,6 +1434,11 @@ country_event = {
 	}
 
 	option = {
+		allow = {
+			hidden_trigger = {
+				event_target:obsessions_midgame_scientist = { has_leader_flag = asked_cockroach }
+			}
+		}
 		name = obsessions_midgame.510.c
 		owner = {
 			enable_special_project = {
@@ -1451,6 +1456,11 @@ country_event = {
 
 	option = {
 		name = obsessions_midgame.510.d
+		allow = {
+			hidden_trigger = {
+				event_target:obsessions_midgame_scientist = { has_leader_flag = asked_cockroach }
+			}
+		}
 		owner = {
 			enable_special_project = {
 				name = "OBSESSIONS_MOD_FIX_GREGOR_PROJECT"
@@ -1760,9 +1770,9 @@ country_event = {
 				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_for_compassion } }
 			}
 		}
-		name = obsessions_midgame.512.b
+		name = obsessions_midgame.513.b
 		is_dialog_only = yes
-		response_text = obsessions_midgame.512.b.response
+		response_text = obsessions_midgame.513.b.response
 		hidden_effect = {
 			event_target:obsessions_midgame_scientist = {
 				set_leader_flag = obsessions_for_compassion
@@ -1783,9 +1793,9 @@ country_event = {
 				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_for_science } }
 			}
 		}
-		name = obsessions_midgame.512.c
+		name = obsessions_midgame.513.c
 		is_dialog_only = yes
-		response_text = obsessions_midgame.512.c.response
+		response_text = obsessions_midgame.513.c.response
 		hidden_effect = {
 			event_target:obsessions_midgame_scientist = {
 				set_leader_flag = obsessions_for_science
@@ -1806,7 +1816,7 @@ country_event = {
 				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_for_compassion } }
 			}
 		}
-		name = obsessions_midgame.512.b
+		name = obsessions_midgame.513.b
 		hidden_effect = {
 			event_target:obsessions_midgame_scientist = {
 				set_leader_flag = obsessions_rejoin
@@ -1829,7 +1839,7 @@ country_event = {
 				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_for_science } }
 			}
 		}
-		name = obsessions_midgame.512.c
+		name = obsessions_midgame.513.c
 		hidden_effect = {
 			event_target:obsessions_midgame_scientist = {
 				set_leader_flag = obsessions_rejoin
@@ -1851,7 +1861,7 @@ country_event = {
 				}
 			}
 		}
-		name = obsessions_midgame.512.d
+		name = obsessions_midgame.513.d
 		event_target:obsessions_midgame_scientist = {
 			kill_leader = { show_notification = no }
 		}
@@ -1862,7 +1872,7 @@ country_event = {
 		trigger = {
 			event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_rejoin }
 		}
-		name = obsessions_midgame.512.e
+		name = obsessions_midgame.513.e
 		event_target:obsessions_midgame_scientist = {
 			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
 			add_trait = leader_trait_obsession_fulfilled

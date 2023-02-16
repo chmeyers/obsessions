@@ -143,7 +143,7 @@ obsessions_midgame.404.a.4:0 "Open a channel."
 obsessions_midgame.404.b:0 "I'm sure they're fine."
 
 obsessions_midgame.510.name:0 "The Metamorphosis"
-obsessions_midgame.510.desc:0 "Hello. I am pleased to report that the trips to the tomb worlds have already provided significant insights. The number of high energy Beta particles are zero point zero zero three percentiles outside of the range that would be expected from our existing theories. The effect on the local lifeforms is also quite interesting."
+obsessions_midgame.510.desc:0 "Hello. I am pleased to report that the trips to the tomb worlds have already provided significant insights. The number of high energy Beta particles are zero point zero zero three percentiles outside of the range that would be expected from our existing theories. The effect on the local lifeforms and visitors is also quite interesting."
 obsessions_midgame.510.a:0 "Umm... Are you a cockroach?"
 obsessions_midgame.510.a.response:0 "Yes, I just woke up this way. As far as I can tell there is no downside. I appear to have adapted quite well to the radioactive environment."
 obsessions_midgame.510.b:0 "You used to be a robot..."
@@ -166,7 +166,7 @@ obsessions_midgame.511.a:0 "Back to work."
 obsessions_midgame.511.b:0 "They should retire."
 
 NAME_Gregor_Samsa:0 "Gregor Samsa"
-NAME_Gregor_Sams_Short:0 "Gregor"
+NAME_Gregor_Samsa_Short:0 "Gregor"
 
 obsessions_midgame.512.name:0 "The Metamorphosis"
 obsessions_midgame.512.desc:0 "Hello. I am pleased to report that the continued trips to the tomb worlds have led to significant discoveries. For example, I found a really cool looking rock. It's radioactive, of course, but that doesn't seem to have an effect on me. I've decided I need a new name, so I'm calling myself $NAME_Gregor_Samsa$ now."
