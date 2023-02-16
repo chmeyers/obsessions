@@ -116,5 +116,5 @@ special_project = {
 		has_trait = leader_trait_obsessed_1
 	}
 
-	on_success = { ship_event = { id = obsessions_midgame.405 } }
+	on_success = { ship_event = { id = obsessions_midgame.405 scopes = { from = from fromfrom = fromfrom } } }
 }

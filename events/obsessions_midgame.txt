@@ -33,6 +33,10 @@ country_event = {
 			limit = { has_event_chain = tomb_obsession_chain }
 			end_event_chain = tomb_obsession_chain
 		}
+		if = {
+			limit = { has_event_chain = gaia_obsession_chain }
+			end_event_chain = gaia_obsession_chain
+		}
 	}
 }
 
@@ -99,59 +103,59 @@ country_event = {
 			save_global_event_target_as = obsessions_midgame_scientist
 			random_list = {
 				# Black Holes
-				1 = {
-					modifier = {
-						add = 10
-						is_specialist_physics = yes
-					}
-					modifier = {
-						add = 100
-						has_trait = leader_trait_expertise_computing
-					}
-					leader_event = { id = obsessions_midgame.101 }
-				}
-				# Pulsars
-				1 = {
-					modifier = {
-						add = 10
-						is_specialist_physics = yes
-					}
-					modifier = {
-						add = 100
-						has_trait = leader_trait_expertise_field_manipulation
-					}
-					leader_event = { id = obsessions_midgame.102 }
-				}
-				# Neutron Stars
-				1 = {
-					modifier = {
-						add = 10
-						OR = {
-							is_specialist_physics = yes
-							is_specialist_engineer = yes
-						}
-					}
-					modifier = {
-						add = 100
-						OR = {
-							has_trait = leader_trait_expertise_particles
-							has_trait = leader_trait_expertise_propulsion
-						}
-					}
-					leader_event = { id = obsessions_midgame.103 }
-				}
-				# Tomb Worlds
-				1 = {
-					modifier = {
-						add = 10
-						is_specialist_society = yes
-					}
-					modifier = {
-						add = 100
-						has_trait = leader_trait_expertise_new_worlds
-					}
-					leader_event = { id = obsessions_midgame.104 }
-				}
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		is_specialist_physics = yes
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		has_trait = leader_trait_expertise_computing
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.101 }
+				# }
+				# # Pulsars
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		is_specialist_physics = yes
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		has_trait = leader_trait_expertise_field_manipulation
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.102 }
+				# }
+				# # Neutron Stars
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		OR = {
+				# 			is_specialist_physics = yes
+				# 			is_specialist_engineer = yes
+				# 		}
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		OR = {
+				# 			has_trait = leader_trait_expertise_particles
+				# 			has_trait = leader_trait_expertise_propulsion
+				# 		}
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.103 }
+				# }
+				# # Tomb Worlds
+				# 1 = {
+				# 	modifier = {
+				# 		add = 10
+				# 		is_specialist_society = yes
+				# 	}
+				# 	modifier = {
+				# 		add = 100
+				# 		has_trait = leader_trait_expertise_new_worlds
+				# 	}
+				# 	leader_event = { id = obsessions_midgame.104 }
+				# }
 				# Gaia Worlds
 				1 = {
 					modifier = {
@@ -1985,12 +1989,10 @@ country_event = {
 					NOT = { has_planet_flag = obsession_midgame_project }
 				}
 				set_planet_flag = obsession_midgame_project
-				root = {
-					enable_special_project = {
-						name = "OBSESSIONS_MIDGAME_GAIA_PROJECT"
-						location = prev
-						owner = root
-					}
+				enable_special_project = {
+					name = "OBSESSIONS_MIDGAME_GAIA_PROJECT"
+					location = this
+					owner = root
 				}
 			}
 		}
@@ -2000,15 +2002,14 @@ country_event = {
 			random_galaxy_planet = {
 				limit = {
 					is_planet_class = pc_gaia
+					is_capital = no
 					NOT = { has_planet_flag = obsession_midgame_project }
 				}
 				set_planet_flag = obsession_midgame_project
-				root = {
-					enable_special_project = {
-						name = "OBSESSIONS_MIDGAME_GAIA_PROJECT"
-						location = prev
-						owner = root
-					}
+				enable_special_project = {
+					name = "OBSESSIONS_MIDGAME_GAIA_PROJECT"
+					location = this
+					owner = root
 				}
 			}
 		}
@@ -2051,16 +2052,28 @@ ship_event = {
 	option = {
 		name = obsessions_midgame.405.a
 		hidden_effect = {
-			random_country = {
+			if = {
 				limit = {
-					OR = {
-						has_ai_personality = awakened_fallen_empire_spiritualist
-						has_ai_personality = fallen_empire_spiritualist
+					from = {
+						OR = {
+							has_planet_flag = holy_world_1
+							has_planet_flag = holy_world_2
+							has_planet_flag = holy_world_3
+							has_planet_flag = holy_world_4
+						}
 					}
 				}
-				save_global_event_target_as = outraged_FE
+				random_country = {
+					limit = {
+						OR = {
+							has_ai_personality = awakened_fallen_empire_spiritualist
+							has_ai_personality = fallen_empire_spiritualist
+						}
+					}
+					save_global_event_target_as = outraged_FE
+				}
+				owner = { country_event = { id = obsessions_midgame.514 days = 5 } }
 			}
-			owner = { country_event = { id = obsessions_midgame.514 days = 5 } }
 		}
 	}
 
@@ -2257,15 +2270,15 @@ country_event = {
 	option = {
 		trigger = {
 			NOT = { has_country_flag = obsessions_liar }
-			allow = {
-				NOR = {
-					has_ethic = ethic_fanatic_xenophobe
-					has_ethic = ethic_xenophobe
-					has_valid_civic = civic_fanatic_purifiers
-					has_valid_civic = civic_hive_devouring_swarm
-					has_valid_civic = civic_inwards_perfection
-					has_valid_civic = civic_machine_terminator
-				}
+		}
+		allow = {
+			NOR = {
+				has_ethic = ethic_fanatic_xenophobe
+				has_ethic = ethic_xenophobe
+				has_valid_civic = civic_fanatic_purifiers
+				has_valid_civic = civic_hive_devouring_swarm
+				has_valid_civic = civic_inwards_perfection
+				has_valid_civic = civic_machine_terminator
 			}
 		}
 		name = "obsessions_midgame.516.b"
@@ -2462,7 +2475,7 @@ country_event = {
 			event_target:outraged_FE = {
 				add_opinion_modifier = { who = root modifier = opinion_refused_fallen_empire_demand }
 				set_country_flag = holy_world_killed # Not really killed, but this flag let's us wake it up.
-				country_event = { id = fallen_empires_awakening.1 }
+				country_event = { id = fallen_empires_awakening.1 days = 40 }
 			}
 		}
 	}
@@ -2546,7 +2559,7 @@ country_event = {
 			}
 			event_target:outraged_FE = {
 				set_country_flag = holy_world_killed # Not really killed, but this flag let's us wake it up.
-				country_event = { id = fallen_empires_awakening.1 }
+				country_event = { id = fallen_empires_awakening.1 days = 40 }
 			}
 		}
 	}
@@ -2562,10 +2575,10 @@ country_event = {
 			end_event_chain = gaia_obsession_chain
 		}
 		hidden_effect = {
-			# Pick an unfortunate neighbor as the punching bag.
-			owner = {
+			event_target:outraged_FE = {
 				add_opinion_modifier = { who = root modifier = opinion_accepted_fallen_empire_request }
 			}
+			# Pick an unfortunate neighbor as the punching bag.
 			random_country = {
 				limit = {
 					is_ai = yes
@@ -2581,6 +2594,8 @@ country_event = {
 					order_by = owner.value:robot_pop_strength_proportion
 					limit = {
 						is_ai = yes
+						is_fallen_empire = no
+						is_fallen_empire_machine = no
 					}
 					save_event_target_as = FE_outrager
 				}
@@ -2588,7 +2603,7 @@ country_event = {
 			
 			event_target:outraged_FE = {
 				set_country_flag = holy_world_killed # Not really killed, but this flag let's us wake it up.
-				country_event = { id = fallen_empires_awakening.1 }
+				country_event = { id = fallen_empires_awakening.1 days = 40 }
 			}
 		}
 	}

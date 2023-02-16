@@ -246,7 +246,7 @@ obsessions_midgame.517.desc:0 "Our sanctified planets are not your laboratory. Y
 obsessions_midgame.517.a:0 "No"
 obsessions_midgame.517.a.tooltip:0 "Will they be mad? Yes."
 obsessions_midgame.517.b:0 "The samples have already been processed."
-obsessions_midgame.517.a.tooltip:0 "Will they be mad? Probably."
+obsessions_midgame.517.b.tooltip:0 "Will they be mad? Probably."
 obsessions_midgame.517.c:0 "As you wish."
 
 # None of your business
@@ -264,3 +264,4 @@ obsessions_midgame.519.desc:0 "Since when? We have protected this galaxy from th
 obsessions_midgame.519.a:0 "We are better off without you."
 obsessions_midgame.519.a.tooltip:0 "What can these old fools possibly do?"
 obsessions_midgame.519.b:0 "The galaxy needs you."
+obsessions_midgame.519.b.tooltip:0 "Will you wake the giant?"
