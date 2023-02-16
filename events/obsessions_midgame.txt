@@ -29,6 +29,10 @@ country_event = {
 			limit = { has_event_chain = neutron_obsession_chain }
 			end_event_chain = neutron_obsession_chain
 		}
+		if = {
+			limit = { has_event_chain = tomb_obsession_chain }
+			end_event_chain = tomb_obsession_chain
+		}
 	}
 }
 
@@ -92,6 +96,7 @@ country_event = {
 			}
 			# Found an eligible scientist. Trigger an obsession on them.
 			set_global_flag = obsessions_mod_spawned_obsession
+			save_global_event_target_as = obsessions_midgame_scientist
 			random_list = {
 				# Black Holes
 				1 = {
@@ -135,18 +140,18 @@ country_event = {
 					}
 					leader_event = { id = obsessions_midgame.103 }
 				}
-				# # Tomb Worlds
-				# 1 = {
-				# 	modifier = {
-				# 		add = 10
-				# 		is_specialist_society = yes
-				# 	}
-				# 	modifier = {
-				# 		add = 100
-				# 		has_trait = leader_trait_expertise_new_worlds
-				# 	}
-				# 	leader_event = { id = obsessions_midgame.104 }
-				# }
+				# Tomb Worlds
+				1 = {
+					modifier = {
+						add = 10
+						is_specialist_society = yes
+					}
+					modifier = {
+						add = 100
+						has_trait = leader_trait_expertise_new_worlds
+					}
+					leader_event = { id = obsessions_midgame.104 }
+				}
 				# # Gaia Worlds
 				# 1 = {
 				# 	modifier = {
@@ -1169,7 +1174,719 @@ country_event = {
 }
 
 # Tomb Worlds
-# obsessions_midgame.104
+leader_event = {
+	id = obsessions_midgame.104
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		# Make sure there are enough of the right object to trigger on.
+		if = {
+			limit = {
+				count_galaxy_planet = {
+					limit = {
+						is_planet_class = pc_nuked
+						NOT = { solar_system = { has_star_flag = hostile_system } }
+						NOT = { solar_system = { has_star_flag = marauder_system } }
+						solar_system = { is_pirate_system = no }
+					}
+					count >= 5
+				}
+			}
+			owner = { country_event = { id = obsessions_midgame.204 scopes = { from = root } } }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.204
+	title = "obsessions_midgame.204.name"
+	desc = "obsessions_midgame.204.desc"
+	picture = GFX_evt_tomb_world
+	is_triggered_only = yes
+
+	immediate = {
+		# Create Obsessed scientist
+		from = {
+			set_leader_flag = obsession_obsessed_midgame
+			add_trait = leader_trait_obsessed_1
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.very_well"
+		begin_event_chain = {
+			event_chain = tomb_obsession_chain
+			target = root
+		}
+		tooltip = { from = { add_trait = leader_trait_obsessed_1 } }
+		hidden_effect = { country_event = { id = obsessions_midgame.304 } }
+	}
+
+	option = {
+		name = "obsessions_midgame.fired"
+		from = { kill_leader = { show_notification = no } }
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.304
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		while = {
+			count = 8
+			random_galaxy_planet = {
+				limit = {
+					is_planet_class = pc_nuked
+					NOT = { solar_system = { has_star_flag = hostile_system } }
+					NOT = { solar_system = { has_star_flag = marauder_system } }
+					solar_system = { is_pirate_system = no }
+					NOT = { has_planet_flag = obsession_midgame_project }
+				}
+				set_planet_flag = obsession_midgame_project
+				root = {
+					enable_special_project = {
+						name = "OBSESSIONS_MIDGAME_TOMB_PROJECT"
+						location = prev
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_midgame.404
+	title = "obsessions_midgame.404.name"
+	picture = GFX_evt_tomb_world
+	location = root
+
+	is_triggered_only = yes
+
+	desc = {
+		exclusive_trigger = {
+			leader = { check_variable = { which = obsession_tomb_flybys value = 1 } }
+		}
+		text = "obsessions_midgame.404.desc_1"
+	}
+	desc = {
+		exclusive_trigger = {
+			leader = { check_variable = { which = obsession_tomb_flybys value = 2 } }
+		}
+		text = "obsessions_midgame.404.desc_2"
+	}
+	desc = {
+		exclusive_trigger = {
+			leader = { check_variable = { which = obsession_tomb_flybys value = 3 } }
+		}
+		text = "obsessions_midgame.404.desc_3"
+	}
+	desc = "obsessions_midgame.404.desc"
+
+	immediate = {
+		owner = {
+			add_event_chain_counter = {
+				event_chain = tomb_obsession_chain
+				counter = obsession_tombs_analyzed
+				amount = 1
+			}
+		}
+		# There doesn't appear to be a way to read the value of chain counter variable,
+		# so we have a duplicate variable.
+		leader = {
+			change_variable = {
+				which = obsession_tomb_flybys
+				value = 1
+			}
+			if = {
+				limit = {
+					check_variable = { which = obsession_tomb_flybys value = 2 }
+				}
+				# Time to change to a cockroach
+				create_species = {
+					name = "NAME_Gregor_Samsa"
+					plural = "NAME_Gregor_Samsa"
+					class = "ART"
+					portrait = pre_art11
+					traits = {
+						ideal_planet_class = "pc_nuked"
+						trait = trait_survivor
+						trait = trait_erudite
+						trait = trait_venerable
+						trait = trait_quick_learners
+						trait = trait_talented
+					}
+					effect = {
+						save_global_event_target_as = obsession_gregor_samsa
+					}
+				}
+				if = {
+					limit = { species = { is_robotic = yes } }
+					set_leader_flag = obsessions_was_robotic
+				}
+				change_species = event_target:obsession_gregor_samsa
+				if = {
+					limit = {
+						NOT = { has_trait = leader_trait_scientist_erudite }
+					}
+					add_trait = leader_trait_scientist_erudite
+					add_ruler_trait = leader_trait_ruler_erudite
+				}
+			}
+			if = {
+				limit = {
+					check_variable = { which = obsession_tomb_flybys value = 4 }
+				}
+				# Change name to Gregor Samsa, if it didn't already happen.
+				set_name = "NAME_Gregor_Samsa"
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			leader = { check_variable = { which = obsession_tomb_flybys value = 1 } }
+		}
+		name = obsessions_midgame.404.a.1
+	}
+
+	option = {
+		trigger = {
+			leader = { check_variable = { which = obsession_tomb_flybys value = 2 } }
+		}
+		name = obsessions_midgame.404.a.2
+		owner = { country_event = { id = obsessions_midgame.510 scopes = { from = root } } }
+		hidden_effect = {
+			leader = { set_leader_flag = obsessions_talked_one }
+		}
+	}
+
+	option = {
+		trigger = {
+			leader = { check_variable = { which = obsession_tomb_flybys value = 3 } }
+		}
+		name = obsessions_midgame.404.a.3
+		owner = { country_event = { id = obsessions_midgame.512 scopes = { from = root } } }
+		hidden_effect = {
+			leader = { set_leader_flag = obsessions_talked_two }
+		}
+	}
+
+	option = {
+		trigger = {
+			leader = { check_variable = { which = obsession_tomb_flybys value = 4 } }
+		}
+		name = obsessions_midgame.404.a.4
+		owner = { country_event = { id = obsessions_midgame.513 scopes = { from = root } } }
+	}
+
+	option = {
+		trigger = {
+			OR = {
+				leader = { check_variable = { which = obsession_tomb_flybys value = 2 } }
+				leader = { check_variable = { which = obsession_tomb_flybys value = 3 } }
+			}
+		}
+		name = obsessions_midgame.404.b
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.510
+	title = "obsessions_midgame.510.name"
+	desc = "obsessions_midgame.510.desc"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+
+	picture_event_data = {
+		portrait = event_target:obsessions_midgame_scientist
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		allow = {
+			hidden_trigger = {
+				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = asked_cockroach } }
+			}
+		}
+		name = obsessions_midgame.510.a
+		is_dialog_only = yes
+		response_text = obsessions_midgame.510.a.response
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				set_leader_flag = asked_cockroach
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_was_robotic }
+		}
+		name = obsessions_midgame.510.b
+		is_dialog_only = yes
+		response_text = obsessions_midgame.510.b.response
+	}
+
+	option = {
+		name = obsessions_midgame.510.c
+		owner = {
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_STUDY_GREGOR_PROJECT"
+				location = from
+				owner = root.owner
+			}
+		}
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				set_leader_flag = obsessions_study_project
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_midgame.510.d
+		owner = {
+			enable_special_project = {
+				name = "OBSESSIONS_MOD_FIX_GREGOR_PROJECT"
+				location = from
+				owner = root.owner
+			}
+		}
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				set_leader_flag = obsessions_fix_project
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_midgame.510.e
+		custom_tooltip = obsessions_midgame.510.e.tooltip
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				change_variable = { which = obsessions_compassion value = 1 }
+				change_variable = { which = obsessions_science value = 1 }
+			}
+		}
+	}
+
+	option = {
+		allow = {
+			OR = {
+				has_ethic = ethic_fanatic_xenophobe
+				has_ethic = ethic_xenophobe
+				has_ethic = ethic_fanatic_authoritarian
+				has_ethic = ethic_authoritarian
+				has_ethic = ethic_gestalt_consciousness
+			}
+		}
+		name = obsessions_midgame.510.f
+		event_target:obsessions_midgame_scientist = {
+			kill_leader = { show_notification = no }
+		}
+		owner = {
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier2researchreward
+				min = @tier2researchmin
+				max = @tier2researchmax
+			}
+		}
+	}
+
+	option = {
+		allow = {
+			NOR = {
+				has_ethic = ethic_fanatic_xenophile
+				has_ethic = ethic_xenophile
+				has_ethic = ethic_fanatic_egalitarian
+				has_ethic = ethic_egalitarian
+			}
+		}
+		name = obsessions_midgame.510.g
+		event_target:obsessions_midgame_scientist = {
+			kill_leader = { show_notification = no }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.511
+	title = "obsessions_midgame.511.name"
+	desc = "obsessions_midgame.511.desc"
+	picture = GFX_evt_tomb_world
+	is_triggered_only = yes
+
+	immediate = {
+		event_target:obsessions_midgame_scientist = {
+			# Increase the variable matching the project they did.
+			if = {
+				limit = { has_leader_flag = obsessions_study_project }
+				change_variable = { which = obsessions_science value = 2 }
+			}
+			else = {
+				change_variable = { which = obsessions_compassion value = 2 }
+			}
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.511.a"
+		add_monthly_resource_mult = {
+			resource = society_research
+			value = @tier1researchreward
+			min = @tier1researchmin
+			max = @tier1researchmax
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.511.b"
+		event_target:obsessions_midgame_scientist = {
+			kill_leader = { show_notification = no }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.512
+	title = "obsessions_midgame.512.name"
+	desc = "obsessions_midgame.512.desc"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_no_more }
+		}
+		text = obsessions_midgame.512.e.response
+	}
+
+	picture_event_data = {
+		portrait = event_target:obsessions_midgame_scientist
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		trigger = {
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_talked_one } }
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_no_more } }
+		}
+		allow = {
+			hidden_trigger = {
+				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = asked_cockroach } }
+			}
+		}
+		name = obsessions_midgame.512.a
+		is_dialog_only = yes
+		response_text = obsessions_midgame.512.a.response
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				set_leader_flag = asked_cockroach
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_no_more } }
+		}
+		allow = {
+			hidden_trigger = {
+				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_wrong_name } }
+			}
+		}
+		name = obsessions_midgame.512.b
+		is_dialog_only = yes
+		response_text = obsessions_midgame.512.b.response
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				set_leader_flag = obsessions_wrong_name
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_no_more } }
+		}
+		name = obsessions_midgame.512.c
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				change_variable = { which = obsessions_science value = 1 }
+				set_name = "NAME_Gregor_Samsa"
+			}
+		}
+	}
+
+	option = {
+		trigger = {
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_no_more } }
+		}
+		name = obsessions_midgame.512.d
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				change_variable = { which = obsessions_compassion value = 1 }
+			}
+		}
+		event_target:obsessions_midgame_scientist = {
+			set_name = "NAME_Gregor_Samsa"
+		}
+	}
+
+	option = {
+		trigger = {
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_no_more } }
+		}
+		name = obsessions_midgame.512.e
+		# Set flag and reload this same event to re-evaluate triggers.
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				set_leader_flag = obsessions_no_more
+				set_name = "NAME_Gregor_Samsa"
+			}
+			country_event = { id = obsessions_midgame.512 }
+		}
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_no_more }
+		}
+		name = obsessions_midgame.512.f
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_no_more }
+		}
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 1000
+				}
+			}
+		}
+		name = obsessions_midgame.512.g
+		owner = {
+			add_resource = {
+				energy = -1000
+			}
+			add_monthly_resource_mult = {
+				resource = society_research
+				value = @tier1researchreward
+				min = @tier1researchmin
+				max = @tier1researchmax
+			}
+			end_event_chain = tomb_obsession_chain
+		}
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_no_more }
+		}
+		name = obsessions_midgame.512.h
+		event_target:obsessions_midgame_scientist = {
+			kill_leader = { show_notification = no }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.513
+	title = "obsessions_midgame.513.name"
+	desc = "obsessions_midgame.513.desc"
+	location = from
+	is_triggered_only = yes
+	diplomatic = yes
+	diplomatic_title = BLANK_STRING
+
+	desc = {
+		exclusive_trigger = {
+			event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_rejoin }
+		}
+		text = obsessions_midgame.513.desc_rejoin
+	}
+
+	picture_event_data = {
+		portrait = event_target:obsessions_midgame_scientist
+		room = "ethic_spaceship_room"
+	}
+
+	option = {
+		trigger = {
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_talked_one } }
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_talked_two } }
+		}
+		allow = {
+			hidden_trigger = {
+				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = asked_cockroach } }
+			}
+		}
+		name = obsessions_midgame.513.a
+		is_dialog_only = yes
+		response_text = obsessions_midgame.513.a.response
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				set_leader_flag = asked_cockroach
+			}
+		}
+	}
+
+	# Failure option for compassion
+	option = {
+		trigger = {
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_rejoin } }
+			event_target:obsessions_midgame_scientist = {
+				check_variable = { which = obsessions_compassion value < 2 }
+			}
+		}
+		allow = {
+			hidden_trigger = {
+				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_for_compassion } }
+			}
+		}
+		name = obsessions_midgame.512.b
+		is_dialog_only = yes
+		response_text = obsessions_midgame.512.b.response
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				set_leader_flag = obsessions_for_compassion
+			}
+		}
+	}
+
+	# Failure option for science
+	option = {
+		trigger = {
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_rejoin } }
+			event_target:obsessions_midgame_scientist = {
+				check_variable = { which = obsessions_science value < 2 }
+			}
+		}
+		allow = {
+			hidden_trigger = {
+				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_for_science } }
+			}
+		}
+		name = obsessions_midgame.512.c
+		is_dialog_only = yes
+		response_text = obsessions_midgame.512.c.response
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				set_leader_flag = obsessions_for_science
+			}
+		}
+	}
+
+	# Success option for compassion
+	option = {
+		trigger = {
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_rejoin } }
+			event_target:obsessions_midgame_scientist = {
+				check_variable = { which = obsessions_compassion value >= 2 }
+			}
+		}
+		allow = {
+			hidden_trigger = {
+				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_for_compassion } }
+			}
+		}
+		name = obsessions_midgame.512.b
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				set_leader_flag = obsessions_rejoin
+				set_leader_flag = obsessions_for_compassion
+			}
+			country_event = { id = obsessions_midgame.513 }
+		}
+	}
+
+	# Success option for science
+	option = {
+		trigger = {
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_rejoin } }
+			event_target:obsessions_midgame_scientist = {
+				check_variable = { which = obsessions_science value >= 2 }
+			}
+		}
+		allow = {
+			hidden_trigger = {
+				NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_for_science } }
+			}
+		}
+		name = obsessions_midgame.512.c
+		hidden_effect = {
+			event_target:obsessions_midgame_scientist = {
+				set_leader_flag = obsessions_rejoin
+				set_leader_flag = obsessions_for_science
+			}
+			country_event = { id = obsessions_midgame.513 }
+		}
+	}
+
+	option = {
+		trigger = {
+			NOT = { event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_rejoin } }
+		}
+		allow = {
+			hidden_trigger = {
+				event_target:obsessions_midgame_scientist = {
+					has_leader_flag = obsessions_for_science
+					has_leader_flag = obsessions_for_compassion
+				}
+			}
+		}
+		name = obsessions_midgame.512.d
+		event_target:obsessions_midgame_scientist = {
+			kill_leader = { show_notification = no }
+		}
+		end_event_chain = tomb_obsession_chain
+	}
+
+	option = {
+		trigger = {
+			event_target:obsessions_midgame_scientist = { has_leader_flag = obsessions_rejoin }
+		}
+		name = obsessions_midgame.512.e
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		owner = {
+			if = {
+				limit = { NOT = { has_technology = tech_tomb_world_adaption }  }
+				give_technology = {
+					tech = tech_tomb_world_adaption
+				}
+			}
+			else = {
+				add_monthly_resource_mult = {
+					resource = society_research
+					value = @tier4researchreward
+					min = @tier4researchmin
+					max = @tier4researchmax
+				}
+			}
+		}
+		end_event_chain = tomb_obsession_chain
+	}
+}
+
 # Gaia Worlds
 # obsessions_midgame.105
 # Empire Capitals

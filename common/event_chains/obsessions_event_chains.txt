@@ -28,15 +28,15 @@ neutron_obsession_chain = {
 	}
 }
 
-# tomb_obsession_chain = {
-# 	picture = GFX_evt_tomb_world
-# 	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
-# 	counter = {
-# 		obsession_tombs_analyzed = {
-# 			max = 4
-# 		}
-# 	}
-# }
+tomb_obsession_chain = {
+	picture = GFX_evt_tomb_world
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	counter = {
+		obsession_tombs_analyzed = {
+			max = 4
+		}
+	}
+}
 
 # gaia_obsession_chain = {
 # 	picture = GFX_evt_gaia

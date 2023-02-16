@@ -54,3 +54,48 @@ special_project = {
 
 	on_success = { ship_event = { id = obsessions_midgame.403 } }
 }
+
+special_project = {
+	key = "OBSESSIONS_MIDGAME_TOMB_PROJECT"
+	event_chain = "tomb_obsession_chain"
+	cost = 0
+	days_to_research = 60
+	picture = GFX_evt_tomb_world
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = { ship_event = { id = obsessions_midgame.404 } }
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_STUDY_GREGOR_PROJECT"
+	event_chain = "tomb_obsession_chain"
+	cost = 0
+	days_to_research = 60
+	timelimit = 720
+	picture = GFX_evt_tomb_world
+
+	event_scope = country_event
+
+	on_success = { country_event = { id = obsessions_midgame.511 } }
+}
+
+special_project = {
+	key = "OBSESSIONS_MOD_FIX_GREGOR_PROJECT"
+	event_chain = "tomb_obsession_chain"
+	cost = 0
+	days_to_research = 60
+	timelimit = 720
+	picture = GFX_evt_tomb_world
+
+	event_scope = country_event
+
+	on_success = { country_event = { id = obsessions_midgame.511 } }
+}
