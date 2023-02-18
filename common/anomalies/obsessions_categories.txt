@@ -2,11 +2,10 @@
 # FROM = ship
 
 
-# For Alpha/Beta testing, make them very common
-@obsessions_mod_spawn_base = 10
-@obsessions_mod_spawn_modifier = 5
-@obsessions_mod_spawn_rocko = 5
-@obsessions_mod_spawn_obsession = 250
+# Spawn rates
+@obsessions_mod_spawn_modifier = 3
+@obsessions_mod_spawn_rocko = 3
+@obsessions_mod_spawn_obsession = 50
 
 
 # The Rocko anomaly
