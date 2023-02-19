@@ -68,3 +68,23 @@ opinion_obsession_refused_colony = {
 		base = -5
 	}
 }
+
+opinion_obsession_diplomatic_visit_good = {
+	opinion = {
+		base = 200
+	}
+
+	decay = {
+		base = -20
+	}
+}
+
+opinion_obsession_diplomatic_visit_bad = {
+	opinion = {
+		base = -200
+	}
+
+	decay = {
+		base = 20
+	}
+}

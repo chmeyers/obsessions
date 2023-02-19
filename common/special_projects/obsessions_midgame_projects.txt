@@ -118,3 +118,22 @@ special_project = {
 
 	on_success = { ship_event = { id = obsessions_midgame.405 scopes = { from = from fromfrom = fromfrom } } }
 }
+
+special_project = {
+	key = "OBSESSIONS_MIDGAME_EMPIRE_PROJECT"
+	event_chain = "empire_obsession_chain"
+	cost = 0
+	days_to_research = 60
+	picture = GFX_evt_busy_spaceport
+	location = yes
+
+	event_scope = ship_event
+
+	requirements = {
+		shipclass_science_ship = 1
+		leader = scientist
+		has_trait = leader_trait_obsessed_1
+	}
+
+	on_success = { ship_event = { id = obsessions_midgame.406 scopes = { from = from fromfrom = fromfrom } } }
+}

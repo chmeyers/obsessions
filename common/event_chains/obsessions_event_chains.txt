@@ -43,20 +43,20 @@ gaia_obsession_chain = {
 	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
 	counter = {
 		obsession_gaias_analyzed = {
-			max = 5
+			max = 4
 		}
 	}
 }
 
-# empire_obsession_chain = {
-# 	picture = GFX_evt_busy_spaceport
-# 	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
-# 	counter = {
-# 		obsession_capitals_analyzed = {
-# 			max = 5
-# 		}
-# 	}
-# }
+empire_obsession_chain = {
+	picture = GFX_evt_busy_spaceport
+	icon = "gfx/interface/icons/situation_log/situation_log_society.dds"
+	counter = {
+		obsession_empires_analyzed = {
+			max = 4
+		}
+	}
+}
 
 # enclave_obsession_chain = {
 # 	picture = GFX_evt_mercenary_enclave

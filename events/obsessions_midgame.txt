@@ -37,6 +37,10 @@ country_event = {
 			limit = { has_event_chain = gaia_obsession_chain }
 			end_event_chain = gaia_obsession_chain
 		}
+		if = {
+			limit = { has_event_chain = empire_obsession_chain }
+			end_event_chain = empire_obsession_chain
+		}
 	}
 }
 
@@ -60,7 +64,7 @@ country_event = {
 			1 = {
 				country_event = { id = obsessions_midgame.2 days = 1000 random = 500 }
 			}
-			2 = {} # 2/3 chance of nothing
+			4 = {} # 4/5 chance of nothing
 		}
 	}
 	
@@ -103,59 +107,59 @@ country_event = {
 			save_global_event_target_as = obsessions_midgame_scientist
 			random_list = {
 				# Black Holes
-				# 1 = {
-				# 	modifier = {
-				# 		add = 10
-				# 		is_specialist_physics = yes
-				# 	}
-				# 	modifier = {
-				# 		add = 100
-				# 		has_trait = leader_trait_expertise_computing
-				# 	}
-				# 	leader_event = { id = obsessions_midgame.101 }
-				# }
-				# # Pulsars
-				# 1 = {
-				# 	modifier = {
-				# 		add = 10
-				# 		is_specialist_physics = yes
-				# 	}
-				# 	modifier = {
-				# 		add = 100
-				# 		has_trait = leader_trait_expertise_field_manipulation
-				# 	}
-				# 	leader_event = { id = obsessions_midgame.102 }
-				# }
-				# # Neutron Stars
-				# 1 = {
-				# 	modifier = {
-				# 		add = 10
-				# 		OR = {
-				# 			is_specialist_physics = yes
-				# 			is_specialist_engineer = yes
-				# 		}
-				# 	}
-				# 	modifier = {
-				# 		add = 100
-				# 		OR = {
-				# 			has_trait = leader_trait_expertise_particles
-				# 			has_trait = leader_trait_expertise_propulsion
-				# 		}
-				# 	}
-				# 	leader_event = { id = obsessions_midgame.103 }
-				# }
-				# # Tomb Worlds
-				# 1 = {
-				# 	modifier = {
-				# 		add = 10
-				# 		is_specialist_society = yes
-				# 	}
-				# 	modifier = {
-				# 		add = 100
-				# 		has_trait = leader_trait_expertise_new_worlds
-				# 	}
-				# 	leader_event = { id = obsessions_midgame.104 }
-				# }
+				1 = {
+					modifier = {
+						add = 10
+						is_specialist_physics = yes
+					}
+					modifier = {
+						add = 100
+						has_trait = leader_trait_expertise_computing
+					}
+					leader_event = { id = obsessions_midgame.101 }
+				}
+				# Pulsars
+				1 = {
+					modifier = {
+						add = 10
+						is_specialist_physics = yes
+					}
+					modifier = {
+						add = 100
+						has_trait = leader_trait_expertise_field_manipulation
+					}
+					leader_event = { id = obsessions_midgame.102 }
+				}
+				# Neutron Stars
+				1 = {
+					modifier = {
+						add = 10
+						OR = {
+							is_specialist_physics = yes
+							is_specialist_engineer = yes
+						}
+					}
+					modifier = {
+						add = 100
+						OR = {
+							has_trait = leader_trait_expertise_particles
+							has_trait = leader_trait_expertise_propulsion
+						}
+					}
+					leader_event = { id = obsessions_midgame.103 }
+				}
+				# Tomb Worlds
+				1 = {
+					modifier = {
+						add = 10
+						is_specialist_society = yes
+					}
+					modifier = {
+						add = 100
+						has_trait = leader_trait_expertise_new_worlds
+					}
+					leader_event = { id = obsessions_midgame.104 }
+				}
 				# Gaia Worlds
 				1 = {
 					modifier = {
@@ -168,18 +172,18 @@ country_event = {
 					}
 					leader_event = { id = obsessions_midgame.105 }
 				}
-				# # Empire Capitals
-				# 1 = {
-				# 	modifier = {
-				# 		add = 10
-				# 		is_specialist_society = yes
-				# 	}
-				# 	modifier = {
-				# 		add = 100
-				# 		has_trait = leader_trait_expertise_statecraft
-				# 	}
-				# 	leader_event = { id = obsessions_midgame.106 }
-				# }
+				# Empire Capitals
+				1 = {
+					modifier = {
+						add = 10
+						is_specialist_society = yes
+					}
+					modifier = {
+						add = 100
+						has_trait = leader_trait_expertise_statecraft
+					}
+					leader_event = { id = obsessions_midgame.106 }
+				}
 				# # Enclaves
 				# 1 = {
 				# 	modifier = {
@@ -2610,7 +2614,484 @@ country_event = {
 }
 
 # Empire Capitals
-# obsessions_midgame.106
+leader_event = {
+	id = obsessions_midgame.106
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		# Only trigger if we aren't genocidal/isolationist and there are enough overlord empires with open borders
+		if = {
+			limit = {
+				owner = {
+					NOR = {
+						is_subject = no
+						has_ethic = ethic_fanatic_xenophobe
+						has_valid_civic = civic_fanatic_purifiers
+						has_valid_civic = civic_hive_devouring_swarm
+						has_valid_civic = civic_machine_terminator
+						has_valid_civic = civic_inwards_perfection
+						has_policy_flag = diplo_stance_isolationist
+					}
+				}
+				count_country = {
+					limit = {
+						NOT = { has_closed_borders = root.owner }
+						NOT = { is_overlord_to = root.owner }
+						NOT = { is_in_federation_with = root.owner }
+						is_subject = no
+						is_fallen_empire = no
+						is_ai = yes
+					}
+					count >= 5
+				}
+			}
+			owner = { country_event = { id = obsessions_midgame.206 scopes = { from = root } } }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.206
+	title = "obsessions_midgame.206.name"
+	desc = "obsessions_midgame.206.desc"
+	picture = GFX_evt_busy_spaceport
+	is_triggered_only = yes
+
+	immediate = {
+		# Create Obsessed scientist
+		from = {
+			set_leader_flag = obsession_obsessed_midgame
+			add_trait = leader_trait_obsessed_1
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.very_well"
+		begin_event_chain = {
+			event_chain = empire_obsession_chain
+			target = root
+		}
+		tooltip = { from = { add_trait = leader_trait_obsessed_1 } }
+		hidden_effect = { country_event = { id = obsessions_midgame.306 } }
+	}
+
+	option = {
+		name = "obsessions_midgame.fired"
+		from = { kill_leader = { show_notification = no } }
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.306
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		while = {
+			count = 10
+			random_country = {
+				limit = {
+					NOT = { has_closed_borders = root.owner }
+					NOT = { is_overlord_to = root.owner }
+					NOT = { is_in_federation_with = root.owner }
+					is_subject = no
+					is_fallen_empire = no
+					is_ai = yes
+					NOT = { has_country_flag = obsession_midgame_project }
+				}
+				set_country_flag = obsession_midgame_project
+				capital_scope = {
+					enable_special_project = {
+						name = "OBSESSIONS_MIDGAME_EMPIRE_PROJECT"
+						location = this
+						owner = root
+					}
+				}
+			}
+		}
+	}
+}
+
+ship_event = {
+	id = obsessions_midgame.406
+	title = "obsessions_midgame.406.name"
+	picture = GFX_evt_busy_spaceport
+	location = from # planet
+
+	is_triggered_only = yes
+
+	desc = "obsessions_midgame.406.desc.1"
+	desc = "obsessions_midgame.406.desc.2"
+	desc = "obsessions_midgame.406.desc.3"
+	desc = "obsessions_midgame.406.desc.4"
+	desc = "obsessions_midgame.406.desc.5"
+
+	immediate = {
+		owner = {
+			add_event_chain_counter = {
+				event_chain = empire_obsession_chain
+				counter = obsession_empires_analyzed
+				amount = 1
+			}
+		}
+	}
+
+	option = {
+		name = obsessions_midgame.406.a
+		hidden_effect = {
+			from.owner = {
+				save_event_target_as = obsession_capital_comm
+				if = {
+					limit = {
+						opposing_ethics_divergence = {
+							steps <= 1
+							who = root
+						}
+					}
+					root.owner = { country_event = { id = obsessions_midgame.520 } }
+				}
+				else_if = {
+					limit = {
+						opposing_ethics_divergence = {
+							steps <= 2
+							who = root
+						}
+					}
+					root.owner = { country_event = { id = obsessions_midgame.521 } }
+				}
+				else = {
+					root.owner = { country_event = { id = obsessions_midgame.522 } }
+				}
+			}
+			
+		}
+	}
+
+	option = {
+		exclusive_trigger = {
+			owner = {
+				OR = {
+					has_completed_event_chain_counter = {
+						event_chain = empire_obsession_chain
+						counter = obsession_empires_analyzed
+					}
+					NOT = { has_special_project = OBSESSIONS_MIDGAME_EMPIRE_PROJECT }
+				}
+			}
+		}
+		name = obsessions_midgame.406.b
+		hidden_effect = {
+			from.owner = {
+				save_event_target_as = obsession_capital_comm
+			}
+			owner = { country_event = { id = obsessions_midgame.523 } }
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.520
+	title = "obsessions_midgame.520.name"
+	location = event_target:obsession_capital_comm.capital_scope
+	is_triggered_only = yes
+
+	desc = "obsessions_midgame.520.desc.1"
+	desc = "obsessions_midgame.520.desc.2"
+	desc = "obsessions_midgame.520.desc.3"
+	desc = "obsessions_midgame.520.desc.4"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:obsession_capital_comm
+		planet_background = event_target:obsession_capital_comm
+		graphical_culture = event_target:obsession_capital_comm
+		city_level = event_target:obsession_capital_comm
+		room = event_target:obsession_capital_comm.ruler
+	}
+
+	option = {
+		name = "obsessions_midgame.520.a"
+		custom_tooltip = "obsessions_midgame.520.a.tooltip"
+		hidden_effect = {
+			event_target:obsession_capital_comm = {
+				add_opinion_modifier = { who = root modifier = opinion_obsession_diplomatic_visit_good }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.521
+	title = "obsessions_midgame.521.name"
+	location = event_target:obsession_capital_comm.capital_scope
+	is_triggered_only = yes
+
+	desc = "obsessions_midgame.521.desc.1"
+	desc = "obsessions_midgame.521.desc.2"
+	desc = "obsessions_midgame.521.desc.3"
+	desc = "obsessions_midgame.521.desc.4"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:obsession_capital_comm
+		planet_background = event_target:obsession_capital_comm
+		graphical_culture = event_target:obsession_capital_comm
+		city_level = event_target:obsession_capital_comm
+		room = event_target:obsession_capital_comm.ruler
+	}
+
+	option = {
+		name = "obsessions_midgame.521.a"
+		custom_tooltip = "obsessions_midgame.521.a.tooltip"
+	}
+
+	option = {
+		name = "obsessions_midgame.521.b"
+		custom_tooltip = "obsessions_midgame.521.b.tooltip"
+		hidden_effect = {
+			event_target:obsession_capital_comm = {
+				add_opinion_modifier = { who = root modifier = opinion_obsession_diplomatic_visit_bad }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.522
+	title = "obsessions_midgame.522.name"
+	location = event_target:obsession_capital_comm.capital_scope
+	is_triggered_only = yes
+
+	desc = "obsessions_midgame.522.desc.1"
+	desc = "obsessions_midgame.522.desc.2"
+	desc = "obsessions_midgame.522.desc.3"
+	desc = "obsessions_midgame.522.desc.4"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:obsession_capital_comm
+		planet_background = event_target:obsession_capital_comm
+		graphical_culture = event_target:obsession_capital_comm
+		city_level = event_target:obsession_capital_comm
+		room = event_target:obsession_capital_comm.ruler
+	}
+
+	option = {
+		name = "obsessions_midgame.522.a"
+		event_target:obsessions_midgame_scientist = {
+			kill_leader = { show_notification = no }
+		}
+	}
+
+	option = {
+		allow = {
+			owner = {
+				resource_stockpile_compare = {
+					resource = energy
+					value >= 500
+				}
+			}
+		}
+		name = "obsessions_midgame.522.b"
+		custom_tooltip = "obsessions_midgame.522.b.tooltip"
+		owner = {
+			add_resource = {
+				energy = -500
+			}
+		}
+		hidden_effect = {
+			event_target:obsession_capital_comm = {
+				add_opinion_modifier = { who = root modifier = opinion_obsession_diplomatic_visit_bad }
+			}
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.522.c"
+		custom_tooltip = "obsessions_midgame.522.c.tooltip"
+		hidden_effect = {
+			event_target:obsession_capital_comm = {
+				add_opinion_modifier = { who = root modifier = opinion_insult }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.523
+	title = "obsessions_midgame.523.name"
+	location = event_target:obsession_capital_comm.capital_scope
+	is_triggered_only = yes
+
+	desc = {
+		exclusive_trigger = {
+			has_country_flag = obsessions_tanagra_1
+			NOT = { has_country_flag = obsessions_tanagra_2 }
+			NOT = { has_country_flag = obsessions_tanagra_3 }
+		}
+		text = "obsessions_midgame.523.b.response"
+	}
+	desc = {
+		exclusive_trigger = {
+			has_country_flag = obsessions_tanagra_2
+			NOT = { has_country_flag = obsessions_tanagra_3 }
+		}
+		text = "obsessions_midgame.523.c.response"
+	}
+	desc = {
+		exclusive_trigger = {
+			has_country_flag = obsessions_tanagra_3
+		}
+		text = "obsessions_midgame.523.d.response"
+	}
+	desc = "obsessions_midgame.523.desc"
+
+	diplomatic = yes
+
+	picture_event_data = {
+		portrait = event_target:obsession_capital_comm
+		planet_background = event_target:obsession_capital_comm
+		graphical_culture = event_target:obsession_capital_comm
+		city_level = event_target:obsession_capital_comm
+		room = event_target:obsession_capital_comm.ruler
+	}
+
+	option = {
+		name = "obsessions_midgame.523.a"
+		hidden_effect = {
+			country_event = { id = obsessions_midgame.525 }
+		}
+	}
+
+	option = {
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = obsessions_tanagra_1 }
+			}
+		}
+		name = "obsessions_midgame.523.b"
+		hidden_effect = {
+			set_country_flag = obsessions_tanagra_1
+			country_event = { id = obsessions_midgame.523 }
+		}
+	}
+
+	option = {
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = obsessions_tanagra_2 }
+			}
+		}
+		name = "obsessions_midgame.523.c"
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = obsessions_tanagra_1 }
+				set_country_flag = obsessions_tanagra_2
+				country_event = { id = obsessions_midgame.523 }
+			}
+			else = {
+				country_event = { id = obsessions_midgame.525 }
+			}
+		}
+	}
+
+	option = {
+		allow = {
+			hidden_trigger = {
+				NOT = { has_country_flag = obsessions_tanagra_3 }
+			}
+		}
+		name = "obsessions_midgame.523.d"
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = obsessions_tanagra_2 }
+				set_country_flag = obsessions_tanagra_3
+				country_event = { id = obsessions_midgame.523 }
+			}
+			else = {
+				country_event = { id = obsessions_midgame.525 }
+			}
+		}
+	}
+
+	option = {
+		name = "obsessions_midgame.523.e"
+		hidden_effect = {
+			if = {
+				limit = { has_country_flag = obsessions_tanagra_3 }
+				country_event = { id = obsessions_midgame.524 }
+			}
+			else = {
+				country_event = { id = obsessions_midgame.525 }
+			}
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.524
+	title = "obsessions_midgame.524.name"
+	location = event_target:obsession_capital_comm.capital_scope
+	picture = GFX_evt_busy_spaceport
+	is_triggered_only = yes
+
+	desc = "obsessions_midgame.524.desc"
+
+
+	option = {
+		name = "obsessions_midgame.524.a"
+		hidden_effect = {
+			event_target:obsession_capital_comm = {
+				add_opinion_modifier = { who = root modifier = opinion_obsession_diplomatic_visit_good }
+			}
+			remove_country_flag = obsessions_tanagra_1
+			remove_country_flag = obsessions_tanagra_2
+			remove_country_flag = obsessions_tanagra_3
+		}
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		owner = {
+			end_event_chain = empire_obsession_chain
+		}
+	}
+}
+
+country_event = {
+	id = obsessions_midgame.525
+	title = "obsessions_midgame.525.name"
+	location = event_target:obsession_capital_comm.capital_scope
+	picture = GFX_evt_busy_spaceport
+	is_triggered_only = yes
+
+	desc = "obsessions_midgame.525.desc"
+
+
+	option = {
+		name = "obsessions_midgame.525.a"
+		hidden_effect = {
+			event_target:obsession_capital_comm = {
+				add_opinion_modifier = { who = root modifier = opinion_obsession_diplomatic_visit_bad }
+			}
+			remove_country_flag = obsessions_tanagra_1
+			remove_country_flag = obsessions_tanagra_2
+			remove_country_flag = obsessions_tanagra_3
+		}
+		event_target:obsessions_midgame_scientist = {
+			remove_trait_effect = { TRAIT = leader_trait_obsessed_1 }
+			add_trait = leader_trait_obsession_fulfilled
+		}
+		owner = {
+			end_event_chain = empire_obsession_chain
+		}
+	}
+}
+
 # Enclaves
 # obsessions_midgame.107
 # Relic/Ecu Worlds

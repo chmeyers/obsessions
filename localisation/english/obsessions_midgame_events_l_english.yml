@@ -265,3 +265,83 @@ obsessions_midgame.519.a:0 "We are better off without you."
 obsessions_midgame.519.a.tooltip:0 "What can these old fools possibly do?"
 obsessions_midgame.519.b:0 "The galaxy needs you."
 obsessions_midgame.519.b.tooltip:0 "Will you wake the giant?"
+
+empire_obsession_chain_title:0 "Diplomatic Tour"
+empire_obsession_chain_desc:0 "One of our idle scientists has proposed a diplomatic tour to encourage scientific cooperation with other empires."
+obsession_empires_analyzed:0 "Empire Capitals Visited"
+OBSESSIONS_MIDGAME_EMPIRE_PROJECT:0 "Diplomatic Visist"
+OBSESSIONS_MIDGAME_EMPIRE_PROJECT_DESC:0 "Our obsessed scientist will make a diplomatic visit to this capital."
+
+opinion_obsession_diplomatic_visit_good:0 "Good Diplomatic Visit"
+opinion_obsession_diplomatic_visit_bad:0 "Poor Diplomatic Visit"
+
+obsessions_midgame.206.name:0 "Statecraft Obsession"
+obsessions_midgame.206.desc:0 "One of our idle scientists has proposed a diplomatic tour visiting the capital planets of other empires. They have chosen several candidates that they would like to visit. This seems to have become a bit of an obsession with them. They insist that this is not just an extended tourism junket."
+
+obsessions_midgame.406.name:0 "Empire Capital Visited"
+obsessions_midgame.406.desc.1:0 "[leader.GetName] has completed a diplomatic visit to the capital planet of an empire. They report that the visit went well, with only a few very minor incidents. On a completely unrelated note, the rule of the empire wants to speak with you."
+obsessions_midgame.406.desc.2:0 "[leader.GetName] has completed a diplomatic visit to the capital planet of an empire. It went great, they say. So great in fact that the ruler of the empire would like to open a line of communication."
+obsessions_midgame.406.desc.3:0 "[leader.GetName] has completed a diplomatic visit to the capital planet of an empire. They insist that they did not intentionally insult anyone during the trip. So if the empire's ruler says otherwise, who are you going to believe?"
+obsessions_midgame.406.desc.4:0 "[leader.GetName] has completed a diplomatic visit to the capital planet of an empire. The food was horrible. The locals really didn't appreciate that being pointed out."
+obsessions_midgame.406.desc.5:0 "[leader.GetName] has completed a diplomatic visit to the capital planet of an empire. Any deaths during the trip were entirely coincidental."
+obsessions_midgame.406.a:0 "Sigh. On screen."
+obsessions_midgame.406.b:0 "This is the last one, right?"
+
+obsessions_midgame.520.name:0 "A Lovely Visit"
+obsessions_midgame.520.desc.1:0 "Ah, it is excellent to speak with you. I just wanted to say that [event_target:obsessions_midgame_scientist.GetName] was a delight during their visit. They clearly care about the relationship between our two peoples."
+obsessions_midgame.520.desc.2:0 "Welcome. We were hesitant to allow the visit from your scientist, [event_target:obsessions_midgame_scientist.GetName] but they showed themself to be a clear student of our culture. We must say that this reflects well upon all of your people."
+obsessions_midgame.520.desc.3:0 "[event_target:obsessions_midgame_scientist.GetName] really knows how to party. You may return at any time."
+obsessions_midgame.520.desc.4:0 "The stars will shine upon the friendship of our two peoples. [event_target:obsessions_midgame_scientist.GetName] is clearly your most treasured ambassador."
+obsessions_midgame.520.a:0 "Excellent"
+obsessions_midgame.520.a.tooltip:0 "Their opinion of us will temporarily improve."
+
+obsessions_midgame.521.name:0 "A Formal Visit"
+obsessions_midgame.521.desc.1:0 "We just wanted to confirm that the visit from [event_target:obsessions_midgame_scientist.GetName] is over. They're not coming back again, right?"
+obsessions_midgame.521.desc.2:0 "Hello. We were hesitant to allow the visit from your scientist, [event_target:obsessions_midgame_scientist.GetName]. We're still hesitant, but we used to be hesitant to. We would appreciate it if you made no further visits."
+obsessions_midgame.521.desc.3:0 "[event_target:obsessions_midgame_scientist.GetName] really knows how to party. We found them to be a poor example of diplomatic behavior."
+obsessions_midgame.521.desc.4:0 "If [event_target:obsessions_midgame_scientist.GetName] is your idea of an ambassador, then it appears that your people have much to learn."
+obsessions_midgame.521.a:0 "You won't see them again."
+obsessions_midgame.521.a.tooltip:0 "That went as well as could be hoped."
+obsessions_midgame.521.b:0 "It seems that you are the real problem."
+obsessions_midgame.521.b.tooltip:0 "They will be insulted."
+
+obsessions_midgame.522.name:0 "An Insulting Visit"
+obsessions_midgame.522.desc.1:0 "Your scientist, [event_target:obsessions_midgame_scientist.GetName], is a despicable individual. They managed to insult three of our leaders during the first day of their visit. We demand that they be turned over to us for punishment."
+obsessions_midgame.522.desc.2:0 "You scientist [event_target:obsessions_midgame_scientist.GetName] has broken our most important law and had the temerity to say that they were not even aware of doing anything wrong. They must be put on trial for their offense!"
+obsessions_midgame.522.desc.3:0 "We demand that [event_target:obsessions_midgame_scientist.GetName] be fired from their position. They know what they have done."
+obsessions_midgame.522.desc.4:0 "After the visit by [event_target:obsessions_midgame_scientist.GetName], we discovered that several very expensive artifacts were missing from our archives. We demand that they be turned over to us for questioning."
+obsessions_midgame.522.a:0 "Very well."
+obsessions_midgame.522.b:0 "We will pay for any damages."
+obsessions_midgame.522.b.tooltip:0 "Their opinion of us will temporarily decay."
+obsessions_midgame.522.c:0 "They will retain their position."
+obsessions_midgame.522.c.tooltip:0 "They will be insulted."
+
+obsessions_midgame.523.name:0 "An Enigmatic Visit"
+obsessions_midgame.523.desc:0 "Zinda! His face black, his eyes red."
+obsessions_midgame.523.a:0 "Hello?"
+obsessions_midgame.523.b:0 "Temarc! The river Temarc in winter"
+obsessions_midgame.523.b.response:0 "Darmok?"
+obsessions_midgame.523.c:0 "And Jalad. At Tanagra."
+obsessions_midgame.523.c.response:0 "Sokath, his eyes open!"
+obsessions_midgame.523.d:0 "The beast at Tanagra. Uzani, his army."
+obsessions_midgame.523.d.response:0 "Shaka when the walls fell."
+obsessions_midgame.523.e:0 "[event_target:obsessions_midgame_scientist.GetName] and Dathon at El-Adrel"
+
+obsessions_midgame.524.name:0 "Temba at rest"
+obsessions_midgame.524.desc:0 "That went... well?"
+obsessions_midgame.524.a:0 "Excellent"
+
+obsessions_midgame.525.name:0 "Shaka when the walls fell"
+obsessions_midgame.525.desc:0 "That went... poorly?"
+obsessions_midgame.525.a:0 "Too bad."
+
+# TAMARIAN [on viewscreen]: Zinda! His face black, his eyes red
+# PICARD: Temarc! The river Temarc in winter.
+# TAMARIAN [on viewscreen]: Darmok?
+# PICARD: And Jalad. At Tanagra. Darmok and Jalad on the ocean.
+# TAMARIAN [on viewscreen]: Sokath, his eyes open!
+# PICARD: The beast at Tanagra. Uzani, his army. Shaka when the walls fell.
+# (Picard holds up Dathon's journal, and the Tamarians beam it away.)
+# TAMARIAN [on viewscreen]: Picard and Dathon at El-Adrel. Mirab, with sails unfurled.
+# PICARD: (holds out the dagger) Temba, his arms open.
+# TAMARIAN [on viewscreen]: Temba at rest.
