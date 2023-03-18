@@ -259,16 +259,25 @@ country_event = {
 			limit = {
 				leader_class = scientist
 				has_skill <= 4
-				leader_age <= 60
+				OR = {
+					leader_age <= 60
+					AND = {
+						leader_age <= 90
+						species = { is_lithoid = yes }
+					}
+				}
 				is_event_leader = no
 				NOT = { has_leader_flag = obsession_obsessed }
 			}
 			# This scientist found their notes and will inherit the dead leader's obsession
 			save_event_target_as = inheriting_scientist
 		}
-		country_event = {
-			id = obsessions_mod_scientist.8
-			scopes = { from = event_target:inheriting_scientist fromfrom = event_target:obsessed_scientist_dead }
+		if = {
+			limit = { exists = event_target:inheriting_scientist }
+			country_event = {
+				id = obsessions_mod_scientist.8
+				scopes = { from = event_target:inheriting_scientist fromfrom = event_target:obsessed_scientist_dead }
+			}
 		}
 	}
 }
