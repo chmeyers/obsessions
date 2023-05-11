@@ -9,7 +9,7 @@ leader_trait_obsessed_1 = {
 	self_modifier = {
 		species_leader_exp_gain = 0.50
 		leader_age = 20
-		leader_skill_levels = 3
+		species_leader_exp_gain = 0.3
 	}
 	leader_trait = { scientist }
 	leader_class = { scientist }
@@ -37,7 +37,7 @@ leader_trait_obsession_admiral_breakdown = {
 	self_modifier = {
 		species_leader_exp_gain = 0.25
 		leader_age = 60
-		leader_skill_levels = 5
+		species_leader_exp_gain = 0.5
 	}
 	leader_trait = { admiral }
 	leader_class = { admiral }
@@ -56,7 +56,7 @@ leader_trait_obsession_fulfilled = {
 	self_modifier = {
 		species_leader_exp_gain = 0.25
 		leader_age = 60
-		leader_skill_levels = 5
+		species_leader_exp_gain = 0.5
 	}
 	leader_trait = { scientist }
 	leader_class = { scientist }
